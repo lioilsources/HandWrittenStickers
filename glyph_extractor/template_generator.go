@@ -35,6 +35,12 @@ func generateTemplate(outputPath string) error {
 	// Create PDF (A4: 210 x 297 mm)
 	pdf := gofpdf.New("P", "mm", "A4", "")
 
+	// Add UTF-8 font for full Unicode support
+	// Note: gofpdf has issues with absolute paths, using relative path from cwd
+	pdf.AddUTF8Font("DejaVu", "", "fonts/DejaVuSans.ttf")
+	pdf.AddUTF8Font("DejaVu", "B", "fonts/DejaVuSans.ttf")
+	pdf.AddUTF8Font("DejaVu", "I", "fonts/DejaVuSans.ttf")
+
 	// Page 1
 	pdf.AddPage()
 	drawGrid(pdf, config, Charset[:80], "Strana 1 - Velká písmena, čísla, interpunkce")
@@ -48,12 +54,12 @@ func generateTemplate(outputPath string) error {
 
 func drawGrid(pdf *gofpdf.Fpdf, config TemplateConfig, chars []rune, title string) {
 	// Title
-	pdf.SetFont("Helvetica", "B", 12)
+	pdf.SetFont("DejaVu", "B", 12)
 	pdf.SetXY(config.MarginLeftMM, 5)
 	pdf.Cell(0, 10, title)
 
 	// Set up for grid
-	pdf.SetFont("Helvetica", "", config.FontSize)
+	pdf.SetFont("DejaVu", "", config.FontSize)
 	pdf.SetDrawColor(180, 180, 180) // Light gray lines
 	pdf.SetLineWidth(0.3)
 
@@ -116,9 +122,9 @@ func drawGrid(pdf *gofpdf.Fpdf, config TemplateConfig, chars []rune, title strin
 	}
 
 	// Footer with info
-	pdf.SetFont("Helvetica", "I", 8)
+	pdf.SetFont("DejaVu", "I", 8)
 	pdf.SetTextColor(128, 128, 128)
 	pdf.SetXY(config.MarginLeftMM, 285)
-	pdf.Cell(0, 0, fmt.Sprintf("Policko: %.1f x %.1f mm | Mrizka: %d x %d | Modra cara = ucari",
+	pdf.Cell(0, 0, fmt.Sprintf("Políčko: %.1f × %.1f mm | Mřížka: %d × %d | Modrá čára = účaří",
 		config.CellWidthMM, config.CellHeightMM, config.Columns, config.Rows))
 }
