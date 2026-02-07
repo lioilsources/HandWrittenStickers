@@ -1,0 +1,10 @@
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:handwritten_stickers/main.dart';
+
+void main() {
+  testWidgets('App loads', (WidgetTester tester) async {
+    await tester.pumpWidget(const HandwrittenStickersApp());
+    expect(find.text('Handwritten Text'), findsOneWidget);
+  });
+}
