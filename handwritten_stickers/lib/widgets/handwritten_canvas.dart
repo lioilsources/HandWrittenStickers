@@ -74,15 +74,8 @@ class HandwrittenPainter extends CustomPainter {
         canvas.scale(pg.params.scale);
       }
 
-      // Create paint with color and opacity
-      final paint = Paint()
-        ..colorFilter = ColorFilter.mode(
-          style.inkColor.withValues(alpha: pg.params.opacity),
-          BlendMode.srcIn,
-        );
-
-      // Draw the glyph image
-      canvas.drawImage(pg.glyph.image, Offset.zero, paint);
+      // Draw the glyph image directly (glyphs are black on transparent)
+      canvas.drawImage(pg.glyph.image, Offset.zero, Paint());
 
       canvas.restore();
     }

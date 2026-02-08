@@ -10,6 +10,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"golang.org/x/text/unicode/norm"
 )
 
 // GlyphsJSON represents the output JSON structure
@@ -37,6 +39,19 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Println("Done!")
+		return
+	}
+
+	// Check for rename command
+	if len(os.Args) > 1 && os.Args[1] == "rename" {
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: glyph_extractor rename <glyphs_dir>")
+			os.Exit(1)
+		}
+		if err := renameGlyphs(os.Args[2]); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			os.Exit(1)
+		}
 		return
 	}
 
@@ -206,4 +221,202 @@ func savePNG(img image.Image, path string) error {
 	defer file.Close()
 
 	return png.Encode(file, img)
+}
+
+// renameGlyphs renames glyph files to ASCII-safe names and regenerates glyphs.json
+func renameGlyphs(glyphsDir string) error {
+	// Read existing files
+	entries, err := os.ReadDir(glyphsDir)
+	if err != nil {
+		return fmt.Errorf("reading directory: %w", err)
+	}
+
+	// Build mapping from normalized char to old filename
+	oldFiles := make(map[string]string) // normalized char -> old filename
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".png") {
+			continue
+		}
+		oldName := entry.Name()
+		charPart := strings.TrimSuffix(oldName, ".png")
+
+		// Handle special filenames that are already converted
+		char := filenameToChar(charPart)
+		normalized := norm.NFC.String(char)
+		oldFiles[normalized] = oldName
+
+		// Also store NFD form for macOS compatibility
+		nfd := norm.NFD.String(char)
+		if nfd != normalized {
+			oldFiles[nfd] = oldName
+		}
+	}
+
+	fmt.Printf("Found %d PNG files\n", len(oldFiles))
+
+	// Process each character in Charset
+	glyphsMap := make(map[string]string)
+	renamed := 0
+	missing := 0
+
+	for _, r := range Charset {
+		char := string(r)
+		normalized := norm.NFC.String(char)
+		newFilename := CharToFilename(r) + ".png"
+
+		oldFilename, exists := oldFiles[normalized]
+		if !exists {
+			// Try NFD form (macOS style)
+			nfdChar := norm.NFD.String(char)
+			oldFilename, exists = oldFiles[nfdChar]
+		}
+
+		if !exists {
+			fmt.Printf("  MISSING: '%s' (U+%04X)\n", char, r)
+			missing++
+			continue
+		}
+
+		// Add to glyphs map
+		glyphsMap[char] = newFilename
+
+		// Rename if needed
+		if oldFilename != newFilename {
+			oldPath := filepath.Join(glyphsDir, oldFilename)
+			newPath := filepath.Join(glyphsDir, newFilename)
+
+			// Check if target already exists (and is different file)
+			if _, err := os.Stat(newPath); err == nil && oldPath != newPath {
+				fmt.Printf("  CONFLICT: %s already exists, skipping %s\n", newFilename, oldFilename)
+				continue
+			}
+
+			if err := os.Rename(oldPath, newPath); err != nil {
+				fmt.Printf("  ERROR renaming %s -> %s: %v\n", oldFilename, newFilename, err)
+				continue
+			}
+			fmt.Printf("  RENAMED: %s -> %s\n", oldFilename, newFilename)
+			renamed++
+		}
+	}
+
+	fmt.Printf("\nRenamed %d files, %d missing\n", renamed, missing)
+
+	// Generate glyphs.json
+	output := GlyphsJSON{
+		Version: 1,
+		CellSize: CellSize{
+			Width:  22.5,
+			Height: 26.2,
+		},
+		Glyphs: glyphsMap,
+	}
+
+	jsonData, err := json.MarshalIndent(output, "", "  ")
+	if err != nil {
+		return fmt.Errorf("creating JSON: %w", err)
+	}
+
+	jsonPath := filepath.Join(glyphsDir, "glyphs.json")
+	if err := os.WriteFile(jsonPath, jsonData, 0644); err != nil {
+		return fmt.Errorf("writing JSON: %w", err)
+	}
+
+	fmt.Printf("Written %s with %d glyphs\n", jsonPath, len(glyphsMap))
+
+	// Clean up old files that are no longer needed
+	fmt.Println("\nCleaning up unused files...")
+	entries, _ = os.ReadDir(glyphsDir)
+	validFiles := make(map[string]bool)
+	validFiles["glyphs.json"] = true
+	for _, filename := range glyphsMap {
+		validFiles[filename] = true
+	}
+
+	cleaned := 0
+	for _, entry := range entries {
+		if !validFiles[entry.Name()] && strings.HasSuffix(entry.Name(), ".png") {
+			path := filepath.Join(glyphsDir, entry.Name())
+			fmt.Printf("  REMOVING unused: %s\n", entry.Name())
+			os.Remove(path)
+			cleaned++
+		}
+	}
+	fmt.Printf("Cleaned up %d unused files\n", cleaned)
+
+	return nil
+}
+
+// filenameToChar converts a filename back to character
+func filenameToChar(name string) string {
+	switch name {
+	case "dot":
+		return "."
+	case "comma":
+		return ","
+	case "exclaim":
+		return "!"
+	case "question":
+		return "?"
+	case "colon":
+		return ":"
+	case "semicolon":
+		return ";"
+	case "hyphen":
+		return "-"
+	case "underscore":
+		return "_"
+	case "apostrophe":
+		return "'"
+	case "doublequote":
+		return "\""
+	case "slash":
+		return "/"
+	case "backslash":
+		return "\\"
+	case "at":
+		return "@"
+	case "hash":
+		return "#"
+	case "ampersand":
+		return "&"
+	case "plus":
+		return "+"
+	case "equals":
+		return "="
+	case "percent":
+		return "%"
+	case "asterisk":
+		return "*"
+	case "dollar":
+		return "$"
+	case "space":
+		return " "
+	case "lparen":
+		return "("
+	case "rparen":
+		return ")"
+	case "lbracket":
+		return "["
+	case "rbracket":
+		return "]"
+	case "lbrace":
+		return "{"
+	case "rbrace":
+		return "}"
+	case "less":
+		return "<"
+	case "greater":
+		return ">"
+	case "tilde":
+		return "~"
+	case "backtick":
+		return "`"
+	case "caret":
+		return "^"
+	case "pipe":
+		return "|"
+	default:
+		return name
+	}
 }

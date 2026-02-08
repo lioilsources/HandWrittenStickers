@@ -29,7 +29,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   bool _showAdvanced = false;
 
   static const double _canvasWidth = 800;
-  static const double _baseGlyphHeight = 60;
+  static const double _baseGlyphHeight = 30;
 
   @override
   void initState() {
@@ -137,105 +137,112 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                // Canvas preview
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    margin: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.1),
-                          blurRadius: 10,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: _glyphs.isEmpty
-                          ? const Center(
-                              child: Text(
-                                'Type something below...',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            )
-                          : InteractiveHandwrittenCanvas(
-                              glyphs: _glyphs,
-                              style: _styleParams,
-                              backgroundColor: Colors.white,
-                            ),
-                    ),
-                  ),
-                ),
-
-                // Preset selector
-                PresetSelector(
-                  selected: _selectedPreset,
-                  onSelected: _onPresetChanged,
-                ),
-
-                // Advanced settings toggle
-                ListTile(
-                  dense: true,
-                  title: const Text('Advanced Settings'),
-                  trailing: Icon(
-                    _showAdvanced
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
-                  ),
-                  onTap: () {
-                    setState(() {
-                      _showAdvanced = !_showAdvanced;
-                    });
-                  },
-                ),
-
-                // Style params panel
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 200),
-                  child: StyleParamsPanel(
-                    params: _styleParams,
-                    onChanged: _onStyleParamsChanged,
-                    expanded: _showAdvanced,
-                  ),
-                ),
-
-                // Text input
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: TextField(
-                    controller: _textController,
-                    maxLines: 3,
-                    decoration: InputDecoration(
-                      hintText: 'Type your text here...',
-                      border: OutlineInputBorder(
+          : SafeArea(
+              child: Column(
+                children: [
+                  // Canvas preview
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.1),
+                            blurRadius: 10,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
                       ),
-                      filled: true,
-                      fillColor: Colors.grey.shade100,
-                      suffixIcon: _textController.text.isNotEmpty
-                          ? IconButton(
-                              icon: const Icon(Icons.clear),
-                              onPressed: () {
-                                _textController.clear();
-                              },
-                            )
-                          : null,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: _glyphs.isEmpty
+                            ? const Center(
+                                child: Text(
+                                  'Type something below...',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              )
+                            : InteractiveHandwrittenCanvas(
+                                glyphs: _glyphs,
+                                style: _styleParams,
+                                backgroundColor: Colors.white,
+                              ),
+                      ),
                     ),
                   ),
-                ),
 
-                // Safe area padding at bottom
-                SizedBox(height: MediaQuery.of(context).padding.bottom),
-              ],
+                  // Bottom controls in scrollable area
+                  Flexible(
+                    flex: 0,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Preset selector
+                          PresetSelector(
+                            selected: _selectedPreset,
+                            onSelected: _onPresetChanged,
+                          ),
+
+                          // Advanced settings toggle
+                          ListTile(
+                            dense: true,
+                            title: const Text('Advanced Settings'),
+                            trailing: Icon(
+                              _showAdvanced
+                                  ? Icons.keyboard_arrow_up
+                                  : Icons.keyboard_arrow_down,
+                            ),
+                            onTap: () {
+                              setState(() {
+                                _showAdvanced = !_showAdvanced;
+                              });
+                            },
+                          ),
+
+                          // Style params panel
+                          if (_showAdvanced)
+                            StyleParamsPanel(
+                              params: _styleParams,
+                              onChanged: _onStyleParamsChanged,
+                              expanded: true,
+                            ),
+
+                          // Text input
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: TextField(
+                              controller: _textController,
+                              maxLines: 2,
+                              decoration: InputDecoration(
+                                hintText: 'Type your text here...',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                filled: true,
+                                fillColor: Colors.grey.shade100,
+                                suffixIcon: _textController.text.isNotEmpty
+                                    ? IconButton(
+                                        icon: const Icon(Icons.clear),
+                                        onPressed: () {
+                                          _textController.clear();
+                                        },
+                                      )
+                                    : null,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
     );
   }

@@ -50,8 +50,11 @@ class GlyphRenderer {
         continue;
       }
 
+      // Calculate scale to fit baseGlyphHeight
+      final baseScale = baseGlyphHeight / glyph.height;
+
       // Generate randomized parameters based on style
-      final params = _generateParams(style, random);
+      final params = _generateParams(style, random, baseScale);
 
       // Check for word wrap
       final effectiveWidth = glyph.width * params.scale;
@@ -76,12 +79,13 @@ class GlyphRenderer {
   }
 
   /// Generate randomized glyph parameters based on style settings
-  GlyphParams _generateParams(StyleParams style, Random random) {
+  GlyphParams _generateParams(StyleParams style, Random random, double baseScale) {
+    final scaleVariation = 1.0 + _randomRange(random, -0.05, 0.05) * style.sizeVariance;
     return GlyphParams(
       baselineOffset: _randomRange(random, -2, 2) * style.baselineWobble,
       kerningAdjust: _randomRange(random, -1, 1) * style.baselineWobble,
       rotation: _randomRange(random, -3, 3) * style.rotationVariance,
-      scale: 1.0 + _randomRange(random, -0.05, 0.05) * style.sizeVariance,
+      scale: baseScale * scaleVariation,
       opacity: 1.0 - random.nextDouble() * style.opacityVariance,
     );
   }
