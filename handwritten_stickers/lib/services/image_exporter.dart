@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -106,13 +106,16 @@ class ImageExporter {
 
     if (bytes == null) return false;
 
-    final result = await ImageGallerySaver.saveImage(
-      bytes,
-      name: 'handwritten_${DateTime.now().millisecondsSinceEpoch}',
-      quality: 100,
-    );
-
-    return result['isSuccess'] == true;
+    try {
+      final tempDir = await getTemporaryDirectory();
+      final file = File(
+          '${tempDir.path}/handwritten_${DateTime.now().millisecondsSinceEpoch}.png');
+      await file.writeAsBytes(bytes);
+      await Gal.putImage(file.path);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   /// Share image
