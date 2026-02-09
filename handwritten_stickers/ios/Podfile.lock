@@ -1,26 +1,27 @@
 PODS:
   - Flutter (1.0.0)
-  - image_gallery_saver (2.0.2):
+  - gal (1.0.0):
     - Flutter
+    - FlutterMacOS
   - share_plus (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
+  - gal (from `.symlinks/plugins/gal/darwin`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  image_gallery_saver:
-    :path: ".symlinks/plugins/image_gallery_saver/ios"
+  gal:
+    :path: ".symlinks/plugins/gal/darwin"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  image_gallery_saver: 14711d79da40581063e8842a11acf1969d781ed7
+  gal: baecd024ebfd13c441269ca7404792a7152fde89
   share_plus: de6030e33b4e106470e09322d87cf2a4258d2d1d
 
 PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
