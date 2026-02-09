@@ -74,7 +74,7 @@ class HandwrittenPainter extends CustomPainter {
         canvas.scale(pg.params.scale);
       }
 
-      // Draw the glyph image directly (glyphs are black on transparent)
+      // Draw the glyph image (glyphs retain their original ink color from scan)
       canvas.drawImage(pg.glyph.image, Offset.zero, Paint());
 
       canvas.restore();

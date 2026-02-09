@@ -73,13 +73,8 @@ class ImageExporter {
         canvas.scale(pg.params.scale);
       }
 
-      final paint = Paint()
-        ..colorFilter = ColorFilter.mode(
-          style.inkColor.withValues(alpha: pg.params.opacity),
-          BlendMode.srcIn,
-        );
-
-      canvas.drawImage(pg.glyph.image, Offset.zero, paint);
+      // Draw the glyph image (glyphs retain their original ink color from scan)
+      canvas.drawImage(pg.glyph.image, Offset.zero, Paint());
 
       canvas.restore();
     }
