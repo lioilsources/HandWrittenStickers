@@ -91,11 +91,20 @@ func cropImage(img image.Image, rect image.Rectangle) image.Image {
 }
 
 // TrimWhitespace removes whitespace around the glyph and returns the trimmed image
-// along with the bounding box information
+// along with the bounding box information.
+// Uses a stricter ink detection threshold (half the transparency threshold) to ignore
+// JPEG compression artifacts while still finding real ink strokes.
 func TrimWhitespace(img image.Image, threshold uint8) (image.Image, image.Rectangle) {
 	bounds := img.Bounds()
 	minX, minY := bounds.Max.X, bounds.Max.Y
 	maxX, maxY := bounds.Min.X, bounds.Min.Y
+
+	// Use a stricter threshold for trim detection — we want to find actual ink,
+	// not JPEG artifacts. Ink is typically much darker than artifacts.
+	inkThreshold := int(threshold) * 3 / 4
+	if inkThreshold > 255 {
+		inkThreshold = 255
+	}
 
 	// Find bounding box of non-white pixels
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
@@ -106,8 +115,8 @@ func TrimWhitespace(img image.Image, threshold uint8) (image.Image, image.Rectan
 			g8 := uint8(g >> 8)
 			b8 := uint8(b >> 8)
 
-			// Check if pixel is not white (below threshold)
-			if r8 < threshold || g8 < threshold || b8 < threshold {
+			// Check if pixel is ink (all channels below stricter threshold)
+			if r8 < uint8(inkThreshold) && g8 < uint8(inkThreshold) && b8 < uint8(inkThreshold) {
 				if x < minX {
 					minX = x
 				}
@@ -140,24 +149,48 @@ func TrimWhitespace(img image.Image, threshold uint8) (image.Image, image.Rectan
 	return cropImage(img, trimRect), trimRect
 }
 
-// MakeTransparent converts white background to transparent
+// MakeTransparent converts white background to transparent with smooth alpha edges.
+// Three zones based on pixel lightness (max RGB channel):
+//   - Dark pixels (< inkOpaque): fully opaque ink, keeps original color
+//   - Mid pixels (inkOpaque..threshold): smooth alpha gradient for anti-aliased edges
+//   - Light pixels (>= threshold): fully transparent background
 func MakeTransparent(img image.Image, threshold uint8) image.Image {
 	bounds := img.Bounds()
-	result := image.NewRGBA(bounds)
+	result := image.NewNRGBA(bounds)
+
+	// Pixels darker than this are considered solid ink (fully opaque).
+	// Use 3/4 of threshold to keep the gradient zone narrow — only the
+	// lightest edge pixels get partial transparency.
+	inkOpaque := int(threshold) * 3 / 4
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
-			r, g, b, a := img.At(x, y).RGBA()
+			r, g, b, _ := img.At(x, y).RGBA()
 			r8 := uint8(r >> 8)
 			g8 := uint8(g >> 8)
 			b8 := uint8(b >> 8)
-			a8 := uint8(a >> 8)
 
-			// If pixel is white-ish, make it transparent
-			if r8 >= threshold && g8 >= threshold && b8 >= threshold {
-				result.Set(x, y, color.RGBA{R: r8, G: g8, B: b8, A: 0})
+			// Use the maximum channel as the "lightness" indicator
+			maxCh := int(r8)
+			if int(g8) > maxCh {
+				maxCh = int(g8)
+			}
+			if int(b8) > maxCh {
+				maxCh = int(b8)
+			}
+
+			if maxCh >= int(threshold) {
+				// Light pixel — fully transparent background
+				result.SetNRGBA(x, y, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+			} else if maxCh <= inkOpaque {
+				// Dark pixel — fully opaque ink
+				result.SetNRGBA(x, y, color.NRGBA{R: r8, G: g8, B: b8, A: 255})
 			} else {
-				result.Set(x, y, color.RGBA{R: r8, G: g8, B: b8, A: a8})
+				// Transition zone — smooth gradient from opaque to transparent
+				// Map [inkOpaque..threshold] → alpha [255..0]
+				span := int(threshold) - inkOpaque
+				alpha := 255 * (int(threshold) - maxCh) / span
+				result.SetNRGBA(x, y, color.NRGBA{R: r8, G: g8, B: b8, A: uint8(alpha)})
 			}
 		}
 	}

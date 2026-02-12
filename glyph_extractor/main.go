@@ -42,6 +42,24 @@ func main() {
 		return
 	}
 
+	// Check for reprocess command — applies transparency to existing glyph PNGs
+	if len(os.Args) > 1 && os.Args[1] == "reprocess" {
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: glyph_extractor reprocess <glyphs_dir> [threshold]")
+			os.Exit(1)
+		}
+		dir := os.Args[2]
+		thresh := 200
+		if len(os.Args) > 3 {
+			fmt.Sscanf(os.Args[3], "%d", &thresh)
+		}
+		if err := reprocessGlyphs(dir, uint8(thresh)); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			os.Exit(1)
+		}
+		return
+	}
+
 	// Check for rename command
 	if len(os.Args) > 1 && os.Args[1] == "rename" {
 		if len(os.Args) < 3 {
@@ -69,7 +87,7 @@ func main() {
 	flag.IntVar(&dpi, "dpi", 300, "Scanner DPI")
 	flag.Float64Var(&marginTop, "margin-top", 15.0, "Top margin in mm")
 	flag.Float64Var(&marginLeft, "margin-left", 15.0, "Left margin in mm")
-	flag.IntVar(&threshold, "threshold", 240, "White threshold (0-255)")
+	flag.IntVar(&threshold, "threshold", 160, "White threshold (0-255)")
 	flag.BoolVar(&transparent, "transparent", true, "Make background transparent")
 	flag.Parse()
 
@@ -419,4 +437,38 @@ func filenameToChar(name string) string {
 	default:
 		return name
 	}
+}
+
+// reprocessGlyphs applies MakeTransparent to all existing PNG files in a directory
+func reprocessGlyphs(dir string, threshold uint8) error {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return fmt.Errorf("reading directory: %w", err)
+	}
+
+	processed := 0
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".png") {
+			continue
+		}
+
+		path := filepath.Join(dir, entry.Name())
+		img, err := loadImage(path)
+		if err != nil {
+			fmt.Printf("  SKIP %s: %v\n", entry.Name(), err)
+			continue
+		}
+
+		result := MakeTransparent(img, threshold)
+		if err := savePNG(result, path); err != nil {
+			fmt.Printf("  ERROR %s: %v\n", entry.Name(), err)
+			continue
+		}
+
+		processed++
+		fmt.Printf("  OK %s\n", entry.Name())
+	}
+
+	fmt.Printf("\nReprocessed %d glyphs with threshold %d\n", processed, threshold)
+	return nil
 }
