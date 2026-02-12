@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/canvas_editor_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const HandwrittenStickersApp());
@@ -28,7 +28,7 @@ class HandwrittenStickersApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const CanvasEditorScreen(),
+      home: const HomeScreen(),
     );
   }
 }
