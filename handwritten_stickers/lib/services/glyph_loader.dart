@@ -1,36 +1,83 @@
 import 'dart:convert';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../models/glyph.dart';
 
-/// Service for loading and caching glyphs from assets
+/// Service for loading and caching glyphs of one glyph sheet from assets.
+///
+/// A sheet directory contains `glyphs.json` (manifest) and one PNG per
+/// character. Manifest version 2 additionally carries per-glyph metrics,
+/// see [GlyphMetrics].
 class GlyphLoader {
-  static const String _assetsPath = 'assets/glyphs/';
+  static const String defaultSheetPath = 'assets/glyphs/laurinka/';
   static const String _manifestFile = 'glyphs.json';
+
+  /// Default template geometry, used when a manifest does not specify it.
+  static const double _defaultCellHeightMM = 26.2;
+  static const int _defaultDpi = 300;
+  static const double _defaultBaselineRatio = 0.75;
+
+  /// Asset directory of this sheet, with trailing `/`.
+  final String sheetPath;
 
   final Map<String, Glyph> _cache = {};
   Map<String, String>? _glyphsMap;
+  Map<String, GlyphMetrics> _metrics = {};
   bool _initialized = false;
+
+  double _cellHeightPx = _defaultCellHeightMM / 25.4 * _defaultDpi;
+  double _baselineRatio = _defaultBaselineRatio;
+
+  GlyphLoader({this.sheetPath = defaultSheetPath})
+      : assert(sheetPath.endsWith('/'), 'sheetPath must end with /');
+
+  /// Height of one template cell in source pixels. All glyphs of a sheet are
+  /// scaled uniformly by `targetCellHeight / cellHeightPx`.
+  double get cellHeightPx => _cellHeightPx;
+
+  /// Where the baseline sits inside a cell (fraction from the top).
+  double get baselineRatio => _baselineRatio;
+
+  /// True when the sheet manifest carries per-glyph metrics.
+  bool get hasMetrics => _metrics.isNotEmpty;
+
+  bool get isInitialized => _initialized;
 
   /// Initialize the loader by reading the glyphs manifest
   Future<void> initialize() async {
     if (_initialized) return;
 
     try {
-      final manifestPath = '$_assetsPath$_manifestFile';
-      print('GlyphLoader: Loading manifest from $manifestPath');
+      final manifestPath = '$sheetPath$_manifestFile';
       final jsonString = await rootBundle.loadString(manifestPath);
       final Map<String, dynamic> manifest = json.decode(jsonString);
 
       _glyphsMap = Map<String, String>.from(manifest['glyphs'] as Map);
+
+      final cellSize = manifest['cellSize'] as Map<String, dynamic>?;
+      final cellHeightMM =
+          (cellSize?['height'] as num?)?.toDouble() ?? _defaultCellHeightMM;
+      final dpi = (manifest['dpi'] as num?)?.toInt() ?? _defaultDpi;
+      _cellHeightPx = cellHeightMM / 25.4 * dpi;
+      _baselineRatio = (manifest['baselineRatio'] as num?)?.toDouble() ??
+          _defaultBaselineRatio;
+
+      final metrics = manifest['metrics'] as Map<String, dynamic>?;
+      if (metrics != null) {
+        _metrics = metrics.map(
+          (k, v) =>
+              MapEntry(k, GlyphMetrics.fromJson(v as Map<String, dynamic>)),
+        );
+      }
       _initialized = true;
-      print('GlyphLoader: Loaded ${_glyphsMap!.length} glyphs');
-    } catch (e, stack) {
+      debugPrint('GlyphLoader: $sheetPath loaded ${_glyphsMap!.length} '
+          'glyphs, metrics: ${_metrics.length}');
+    } catch (e) {
       // If manifest doesn't exist, we'll try direct filename mapping
-      print('GlyphLoader: Error loading manifest: $e');
-      print('Stack: $stack');
+      debugPrint('GlyphLoader: error loading manifest from $sheetPath: $e');
       _glyphsMap = {};
       _initialized = true;
     }
@@ -58,7 +105,7 @@ class GlyphLoader {
 
     // Load image
     try {
-      final image = await _loadImage('$_assetsPath$filename');
+      final image = await _loadImage('$sheetPath$filename');
       if (image == null) return null;
 
       final glyph = Glyph(
@@ -66,6 +113,7 @@ class GlyphLoader {
         image: image,
         width: image.width,
         height: image.height,
+        metrics: _metrics[char],
       );
 
       _cache[char] = glyph;
@@ -248,6 +296,3 @@ class GlyphLoader {
     }
   }
 }
-
-/// Singleton instance for easy access
-final glyphLoader = GlyphLoader();

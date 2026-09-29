@@ -60,6 +60,15 @@ func main() {
 		return
 	}
 
+	// Check for fontset command — rasterise a TTF/OTF font into a glyph sheet
+	if len(os.Args) > 1 && os.Args[1] == "fontset" {
+		if err := runFontSet(os.Args[2:]); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			os.Exit(1)
+		}
+		return
+	}
+
 	// Check for rename command
 	if len(os.Args) > 1 && os.Args[1] == "rename" {
 		if len(os.Args) < 3 {
@@ -94,6 +103,10 @@ func main() {
 	if inputFiles == "" {
 		fmt.Println("Usage:")
 		fmt.Println("  glyph_extractor template [output.pdf]     - Generate template PDF")
+		fmt.Println("  glyph_extractor fontset --font F.ttf --output DIR --id ID --name NAME")
+		fmt.Println("                                           - Rasterise a font into a glyph sheet (see fontset -h)")
+		fmt.Println("  glyph_extractor reprocess <glyphs_dir> [threshold]")
+		fmt.Println("  glyph_extractor rename <glyphs_dir>")
 		fmt.Println("  glyph_extractor --input page1.png,page2.png [options]")
 		fmt.Println("\nOptions:")
 		flag.PrintDefaults()
