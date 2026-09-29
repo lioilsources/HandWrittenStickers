@@ -16,7 +16,7 @@ Two-part app that converts handwritten notes into digital stickers. A Go CLI ext
 - Interactive grid alignment tool for photo perspective correction
 - Glyph extraction from A4 template pages (160 characters, Czech diacritics)
 - 3-zone transparency algorithm with JPEG noise tolerance
-- 22 bundled glyph sheets in three categories, switchable in the editor: handwriting (Laurinka's scan + Caveat, Patrick Hand, Kalam, Indie Flower, Playpen Sans, Reenie Beanie), calligraphy (Dancing Script, Sacramento, Pacifico, Great Vibes, Alex Brush, Parisienne, Pinyon Script, Kaushan Script) and typography (Amatic SC, Playfair Display, Cinzel, Bebas Neue, Abril Fatface, Courier Prime, MedievalSharp)
+- 114 bundled glyph sheets in three categories (handwriting, calligraphy, typography), switchable in the editor: Laurinka's scanned handwriting plus 113 font sheets rasterised from Google Fonts with full Czech coverage
 - Baseline-aligned, proportionally spaced layout driven by per-glyph metrics
 - Text composition with styling variations
 - Export as PNG / save to gallery
@@ -45,7 +45,7 @@ go run . fontset -font Foo.ttf -output ../handwritten_stickers/assets/glyphs/foo
 
 ## Fonts
 
-The font-based glyph sheets are rasterised from Google Fonts families licensed under the SIL Open Font License 1.1; each sheet directory ships its `OFL.txt`. Preview of all sheets: [docs/glyph_sheets_preview.png](docs/glyph_sheets_preview.png).
+The font-based glyph sheets are rasterised from Google Fonts families licensed under the SIL Open Font License 1.1; each sheet directory ships its `OFL.txt`. Previews: [handwriting](docs/glyph_sheets_handwriting.png), [calligraphy](docs/glyph_sheets_calligraphy.png), [typography](docs/glyph_sheets_typography.png).
 
 ## Documentation
 

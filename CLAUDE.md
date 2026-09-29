@@ -68,10 +68,9 @@ Manifest versions:
 - v1 (`laurinka`): `{version, cellSize, glyphs: {char: file}}`, untrimmed cell scans, laid out cell by cell.
 - v2 (font sheets): adds `id, name, source, license, attribution, dpi, emHeight, baselineRatio, metrics: {char: {w, h, baseline, advance, bearing}}` in source pixels. `baseline` = px from PNG top to the baseline, `advance` = pen advance, `bearing` = origin → PNG left edge.
 
-Sheets carry a `category` in `sheets.json` (`handwriting`, `calligraphy`, `typography`) that groups the selector rows. Bundled font sheets (all SIL OFL 1.1 from Google Fonts):
-- handwriting: Caveat, Patrick Hand, Kalam, Indie Flower, Playpen Sans, Reenie Beanie
-- calligraphy: Dancing Script, Sacramento, Pacifico, Great Vibes, Alex Brush, Parisienne, Pinyon Script, Kaushan Script
-- typography: Amatic SC, Playfair Display, Cinzel, Bebas Neue, Abril Fatface, Courier Prime, MedievalSharp Preview: `docs/glyph_sheets_preview.png`. Release plan: `docs/RELEASE_PLAN.md`.
+Sheets carry a `category` in `sheets.json` (`handwriting`, `calligraphy`, `typography`) that groups the selector rows. 114 sheets are bundled: Laurinka's scan plus 113 font sheets (21 handwriting, 70 calligraphy, 22 typography), all SIL OFL 1.1 from Google Fonts. The authoritative list is `sheets.json`; previews per category are in `docs/glyph_sheets_<category>.png`. Release plan: `docs/RELEASE_PLAN.md`.
+
+`fontset` normalises every font so the capital H is 0.70 em (`-cap-ratio`), which keeps sheets visually interchangeable; `emHeight` in the manifest is the resulting em in px. The renderer scales by `cellHeightPx` (from `cellSize`/`dpi`), not by `emHeight`.
 
 ## Template Format
 

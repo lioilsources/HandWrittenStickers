@@ -2,7 +2,8 @@
 
 ## [29/09/2026]
 - Add `glyph_extractor fontset` command: rasterise TTF/OTF fonts into glyph sheets with metrics (manifest v2)
-- Add 21 font-based glyph sheets (SIL OFL) next to Laurinka's handwriting, grouped as handwriting / calligraphy / typography, sheet selector in the editor
+- Add 113 font-based glyph sheets (SIL OFL, every Google Fonts script/display family with full Czech coverage) next to Laurinka's handwriting, grouped as handwriting / calligraphy / typography, sheet selector in the editor
+- `fontset` normalises cap height across fonts so sheets are visually interchangeable
 - Renderer aligns glyphs on the baseline and uses proportional advances when metrics are present
 - Add renderer and asset tests; add release plan (`docs/RELEASE_PLAN.md`)
 

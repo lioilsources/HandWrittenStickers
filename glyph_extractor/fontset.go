@@ -60,14 +60,19 @@ type FontSetOptions struct {
 	EmRatio float64
 	// Padding in px kept around the ink after trimming.
 	Padding int
+	// CapRatio is the target height of the capital H relative to the em
+	// (0.70 is a typical text-face cap height); glyphs are rescaled so every
+	// sheet matches it.
+	CapRatio float64
 }
 
 // DefaultFontSetOptions returns options matching the paper template geometry.
 func DefaultFontSetOptions() FontSetOptions {
 	return FontSetOptions{
-		DPI:     300,
-		EmRatio: 0.62,
-		Padding: 2,
+		DPI:      300,
+		EmRatio:  0.62,
+		Padding:  2,
+		CapRatio: 0.70,
 	}
 }
 
@@ -99,13 +104,30 @@ func generateFontSet(opts FontSetOptions) error {
 
 	// Point size such that 1 em == emPx pixels at the chosen DPI.
 	sizePt := float64(emPx) * 72.0 / float64(opts.DPI)
-	face, err := opentype.NewFace(parsed, &opentype.FaceOptions{
-		Size:    sizePt,
-		DPI:     float64(opts.DPI),
-		Hinting: font.HintingNone,
-	})
+	newFace := func(pt float64) (font.Face, error) {
+		return opentype.NewFace(parsed, &opentype.FaceOptions{
+			Size:    pt,
+			DPI:     float64(opts.DPI),
+			Hinting: font.HintingNone,
+		})
+	}
+	face, err := newFace(sizePt)
 	if err != nil {
 		return fmt.Errorf("creating face: %w", err)
+	}
+
+	// Fonts place wildly different cap heights inside their em (script fonts
+	// often 0.4 em, display fonts 0.8 em). Normalise so the capital H of every
+	// sheet is the same fraction of the cell, which keeps sheets visually
+	// interchangeable in the app.
+	if capPx := measureInkHeight(face, 'H'); opts.CapRatio > 0 && capPx > 0 {
+		targetCap := float64(emPx) * opts.CapRatio
+		sizePt *= targetCap / float64(capPx)
+		emPx = int(float64(emPx) * targetCap / float64(capPx))
+		face.Close()
+		if face, err = newFace(sizePt); err != nil {
+			return fmt.Errorf("creating face: %w", err)
+		}
 	}
 	defer face.Close()
 
@@ -242,6 +264,7 @@ func runFontSet(args []string) error {
 	fs.StringVar(&opts.Attribution, "attribution", "", "Attribution / copyright line stored in the manifest")
 	fs.IntVar(&opts.DPI, "dpi", opts.DPI, "Raster DPI (matches the paper template pipeline)")
 	fs.Float64Var(&opts.EmRatio, "em-ratio", opts.EmRatio, "Font em size as a fraction of the cell height")
+	fs.Float64Var(&opts.CapRatio, "cap-ratio", opts.CapRatio, "Normalise so capital H is this fraction of the em (0 disables)")
 	check := fs.Bool("check", false, "Only report which Charset runes the font is missing")
 	if err := fs.Parse(args); err != nil {
 		return err
@@ -290,4 +313,20 @@ func checkFontCoverage(fontPath string) error {
 	}
 	fmt.Println()
 	return nil
+}
+
+// measureInkHeight renders r with face and returns the height in px of its
+// ink bounding box, or 0 when nothing is drawn.
+func measureInkHeight(face font.Face, r rune) int {
+	const size = 2048
+	canvas := image.NewNRGBA(image.Rect(0, 0, size, size))
+	d := &font.Drawer{
+		Dst:  canvas,
+		Src:  image.NewUniform(color.NRGBA{0, 0, 0, 255}),
+		Face: face,
+		Dot:  fixed.P(size/4, size*3/4),
+	}
+	d.DrawString(string(r))
+	_, rect := trimAlpha(canvas, 0)
+	return rect.Dy()
 }

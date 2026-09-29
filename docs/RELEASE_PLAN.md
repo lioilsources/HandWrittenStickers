@@ -6,16 +6,20 @@ priority; každá má odhad rozsahu a hotovo-kritérium, aby se dala odškrtnout
 
 ## Co už je hotové v této větvi
 
-- 21 sad glyphů generovaných z fontů (SIL OFL) ve třech kategoriích
-  (rukopis 6, kaligrafie 8, typografie 7) + původní Laurinčina ručně psaná
-  sada; přepínač sad v editoru seskupený po kategoriích.
+- 113 sad glyphů generovaných z fontů (SIL OFL) ve třech kategoriích
+  (rukopis 21, kaligrafie 70, typografie 22) + původní Laurinčina ručně
+  psaná sada; přepínač sad v editoru seskupený po kategoriích. Jde o všechny
+  rodiny z Google Fonts kategorií handwriting/display se skriptovým nebo
+  dekorativním charakterem, které pokrývají celou českou sadu.
+- `fontset` normalizuje výšku verzálek (H = 0,70 em), takže sady mají v
+  aplikaci stejnou velikost.
 - Manifest `glyphs.json` verze 2 s metrikami (baseline, advance, bearing);
   renderer zarovnává glyphy na účaří a používá proporcionální šířky.
 - `glyph_extractor fontset` (Go) – vyrobí sadu z libovolného TTF/OTF fontu,
   `-check` vypíše, které znaky z 160znakové české sady font neumí.
 - Testy: layout s metrikami, načtení všech sad z assetů, existence všech PNG.
 
-Náhled sad: [glyph_sheets_preview.png](glyph_sheets_preview.png).
+Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_calligraphy.png), [typografie](glyph_sheets_typography.png).
 
 ## Nalezené chyby a slabá místa (audit kódu)
 
@@ -59,7 +63,7 @@ Náhled sad: [glyph_sheets_preview.png](glyph_sheets_preview.png).
 
 | # | Problém | Náprava |
 |---|---------|---------|
-| R0 | Assety glyphů mají 16 MB (22 sad × ~700 KB). Pro App Store OK, ale zvážit menší DPI (200 místo 300) nebo on-demand resources, pokud sad přibude. |
+| R0 | Assety glyphů mají 42 MB (114 sad × ~370 KB, PNG se v IPA téměř nekomprimuje). Pro první release únosné, ale rozhodnout: (a) menší DPI pro fontové sady (`fontset -dpi 200` ≈ −55 %), (b) iOS On-Demand Resources po kategoriích, (c) kurátorský výběr ~30 sad v appce a zbytek ke stažení. |
 | R1 | `app-release.apk` (51 MB) je v gitu. | `git rm --cached`, do `.gitignore`, do budoucna GitHub Releases. |
 | R2 | `glyph_extractor/output/` (160 PNG s ne-ASCII názvy jako `!.png`) a `glyph_extractor/glyph_extractor` (binárka, v této větvi už odstraněna z gitu). | `git rm -r --cached glyph_extractor/output`, ignorovat. |
 | R3 | `glyph_extractor/grid.go` není `gofmt`. `go vet` je čistý. | `gofmt -w`. |
@@ -83,7 +87,10 @@ Náhled sad: [glyph_sheets_preview.png](glyph_sheets_preview.png).
   0.62·cellH`. Přegenerovat Laurinčinu sadu ze zarovnaných PNG (Grid
   Alignment tool → `--input`). Hotovo: `glyph_sheets_test` kontroluje metriky
   u všech sad, ne jen fontových.
-- [ ] **T4 Velikost písma a zalamování** (B5, B8). Slider velikosti,
+- [ ] **T4 Velikost písma a zalamování** (B5, B8). Se 114 sadami je přepínač
+  tři dlouhé řádky chipů; zvážit místo nich sheet s náhledem (render
+  „Ahoj“ v každé sadě) a oblíbené.
+- [ ] **T4a Velikost písma a zalamování** (B5, B8). Slider velikosti,
   `maxWidth` z `LayoutBuilder`. Hotovo: dlouhý text na iPhonu SE se zalomí
   uvnitř canvasu.
 - [ ] **T5 Normalizace vstupu** (B7). NFC + zástupný znak.
