@@ -109,6 +109,11 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
   (popis, klíčová slova, kategorie *Photo & Video* nebo *Utilities*,
   věkové hodnocení 4+, export compliance: bez šifrování).
 
+### Navazující funkce (mimo první release)
+
+- Animované 3D emoji jako tag samolepky: samostatný plán
+  [EMOJI_PLAN.md](EMOJI_PLAN.md). Přidává ~17 MB assetů a export APNG.
+
 ### Sprint 3 – hygiena a proces
 
 - [ ] **T13 Repo cleanup** (R1–R3, R5).
