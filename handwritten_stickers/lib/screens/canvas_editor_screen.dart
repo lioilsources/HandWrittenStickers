@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../models/glyph.dart';
+import '../models/glyph_sheet.dart';
 import '../models/style_params.dart';
 import '../services/glyph_loader.dart';
 import '../services/glyph_renderer.dart';
 import '../services/image_exporter.dart';
 import '../widgets/handwritten_canvas.dart';
 import '../widgets/preset_selector.dart';
+import '../widgets/sheet_selector.dart';
 import '../widgets/style_params_panel.dart';
 
 /// Main editor screen for creating handwritten text
@@ -19,8 +21,12 @@ class CanvasEditorScreen extends StatefulWidget {
 
 class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   final TextEditingController _textController = TextEditingController();
-  final GlyphLoader _glyphLoader = GlyphLoader();
-  late final GlyphRenderer _renderer;
+
+  /// One loader (with its own image cache) per sheet, created lazily.
+  final Map<String, GlyphLoader> _loaders = {};
+  GlyphSheetIndex? _sheetIndex;
+  GlyphSheet? _sheet;
+  late GlyphRenderer _renderer;
 
   StylePreset _selectedPreset = StylePreset.casual;
   StyleParams _styleParams = StyleParams.casual();
@@ -34,16 +40,62 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   @override
   void initState() {
     super.initState();
-    _renderer = GlyphRenderer(_glyphLoader);
-    _initializeLoader();
+    _initializeSheets();
     _textController.addListener(_onTextChanged);
   }
 
-  Future<void> _initializeLoader() async {
-    await _glyphLoader.initialize();
+  GlyphLoader _loaderFor(GlyphSheet sheet) {
+    return _loaders.putIfAbsent(
+      sheet.id,
+      () => GlyphLoader(sheetPath: sheet.path),
+    );
+  }
+
+  Future<void> _initializeSheets() async {
+    GlyphSheetIndex index;
+    try {
+      index = await GlyphSheetIndex.load();
+    } catch (e) {
+      debugPrint(
+        'CanvasEditor: sheets.json missing or invalid ($e), '
+        'falling back to the default sheet',
+      );
+      index = const GlyphSheetIndex(
+        sheets: [
+          GlyphSheet(
+            id: 'default',
+            name: 'Default',
+            path: GlyphLoader.defaultSheetPath,
+            source: 'handwriting',
+          ),
+        ],
+        defaultId: 'default',
+      );
+    }
+    final sheet = index.defaultSheet;
+    final loader = _loaderFor(sheet);
+    await loader.initialize();
+    if (!mounted) return;
     setState(() {
+      _sheetIndex = index;
+      _sheet = sheet;
+      _renderer = GlyphRenderer(loader);
       _isLoading = false;
     });
+    // Text typed while the sheet was loading has not been laid out yet.
+    _updateGlyphs();
+  }
+
+  Future<void> _onSheetChanged(GlyphSheet sheet) async {
+    if (sheet == _sheet) return;
+    final loader = _loaderFor(sheet);
+    await loader.initialize();
+    if (!mounted) return;
+    setState(() {
+      _sheet = sheet;
+      _renderer = GlyphRenderer(loader);
+    });
+    _updateGlyphs();
   }
 
   @override
@@ -56,8 +108,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     _updateGlyphs();
   }
 
+  int _layoutGeneration = 0;
+
   Future<void> _updateGlyphs() async {
+    if (_isLoading) return;
     final text = _textController.text;
+    final generation = ++_layoutGeneration;
     if (text.isEmpty) {
       setState(() {
         _glyphs = [];
@@ -65,13 +121,16 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       return;
     }
 
-    final glyphs = await _renderer.layoutText(
+    final renderer = _renderer;
+    final glyphs = await renderer.layoutText(
       text: text,
       style: _styleParams,
       maxWidth: _canvasWidth,
       baseGlyphHeight: _baseGlyphHeight,
     );
 
+    // Drop results of an older layout that finished after a newer one.
+    if (!mounted || generation != _layoutGeneration) return;
     setState(() {
       _glyphs = glyphs;
     });
@@ -103,18 +162,13 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(
-          success ? 'Saved to gallery!' : 'Failed to save image',
-        ),
+        content: Text(success ? 'Saved to gallery!' : 'Failed to save image'),
       ),
     );
   }
 
   Future<void> _shareImage() async {
-    await ImageExporter.shareImage(
-      glyphs: _glyphs,
-      style: _styleParams,
-    );
+    await ImageExporter.shareImage(glyphs: _glyphs, style: _styleParams);
   }
 
   @override
@@ -183,6 +237,15 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          // Sheet (handwriting) selector
+                          if (_sheetIndex != null &&
+                              _sheetIndex!.sheets.length > 1)
+                            SheetSelector(
+                              sheets: _sheetIndex!.sheets,
+                              selected: _sheet!,
+                              onSelected: _onSheetChanged,
+                            ),
+
                           // Preset selector
                           PresetSelector(
                             selected: _selectedPreset,

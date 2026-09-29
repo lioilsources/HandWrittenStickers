@@ -1,31 +1,55 @@
 import 'dart:ui' as ui;
 
+/// Typographic metrics of a trimmed glyph image, in source-sheet pixels.
+///
+/// Produced by `glyph_extractor fontset` (manifest version 2). Sheets without
+/// metrics (version 1, untrimmed cell scans) are laid out cell-by-cell.
+class GlyphMetrics {
+  /// Distance from the top edge of the image down to the baseline.
+  final int baseline;
+
+  /// Horizontal advance from the glyph origin to the next glyph origin.
+  final int advance;
+
+  /// Distance from the glyph origin to the left edge of the image.
+  final int bearing;
+
+  const GlyphMetrics({
+    required this.baseline,
+    required this.advance,
+    required this.bearing,
+  });
+
+  factory GlyphMetrics.fromJson(Map<String, dynamic> json) {
+    return GlyphMetrics(
+      baseline: (json['baseline'] as num).toInt(),
+      advance: (json['advance'] as num).toInt(),
+      bearing: (json['bearing'] as num).toInt(),
+    );
+  }
+}
+
 /// Represents a single handwritten glyph (letter/character)
 class Glyph {
   final String char;
   final ui.Image image;
 
-  /// Bounding box within the original cell
+  /// Image size in pixels.
   final int width;
   final int height;
 
-  /// Typographic metrics
-  final int leftBearing;
-  final int rightBearing;
-  final int baseline;
+  /// Baseline / advance information, or null for untrimmed cell scans.
+  final GlyphMetrics? metrics;
 
   const Glyph({
     required this.char,
     required this.image,
     required this.width,
     required this.height,
-    this.leftBearing = 0,
-    this.rightBearing = 0,
-    this.baseline = 0,
+    this.metrics,
   });
 
-  /// Effective advance width (how much to move cursor after drawing)
-  int get advanceWidth => width + leftBearing + rightBearing;
+  bool get hasMetrics => metrics != null;
 }
 
 /// Parameters for rendering a specific instance of a glyph
@@ -76,7 +100,9 @@ class GlyphParams {
   }
 }
 
-/// Positioned glyph ready for rendering
+/// Positioned glyph ready for rendering.
+///
+/// [x] and [y] are the top-left corner of the (scaled) glyph image.
 class PositionedGlyph {
   final Glyph glyph;
   final GlyphParams params;

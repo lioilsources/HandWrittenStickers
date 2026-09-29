@@ -10,7 +10,14 @@ class GlyphRenderer {
 
   GlyphRenderer(this._loader);
 
-  /// Generate positioned glyphs for the given text
+  GlyphLoader get loader => _loader;
+
+  /// Generate positioned glyphs for the given text.
+  ///
+  /// [baseGlyphHeight] is the on-screen height of one template cell. Sheets
+  /// with metrics are scaled uniformly by `baseGlyphHeight / cellHeightPx`
+  /// and every glyph is placed on the line baseline; sheets without metrics
+  /// (untrimmed cell scans) are scaled to [baseGlyphHeight] cell by cell.
   Future<List<PositionedGlyph>> layoutText({
     required String text,
     required StyleParams style,
@@ -19,6 +26,10 @@ class GlyphRenderer {
   }) async {
     final List<PositionedGlyph> result = [];
 
+    if (!_loader.isInitialized) {
+      await _loader.initialize();
+    }
+
     // Use text hash for deterministic randomness
     final random = Random(text.hashCode);
 
@@ -26,10 +37,12 @@ class GlyphRenderer {
     double y = 0;
     final lineHeight = baseGlyphHeight * style.lineHeight;
     final spaceWidth = baseGlyphHeight * 0.5 * style.wordSpacing;
+    final baselineY = baseGlyphHeight * _loader.baselineRatio;
+    final sheetScale = baseGlyphHeight / _loader.cellHeightPx;
 
-    for (int i = 0; i < text.length; i++) {
-      final char = text[i];
-
+    // Iterate over user-perceived characters so combining sequences and
+    // surrogate pairs are not split.
+    for (final char in text.runes.map(String.fromCharCode)) {
       // Handle whitespace
       if (char == ' ') {
         x += spaceWidth;
@@ -50,37 +63,53 @@ class GlyphRenderer {
         continue;
       }
 
-      // Calculate scale to fit baseGlyphHeight
-      final baseScale = baseGlyphHeight / glyph.height;
+      final metrics = glyph.metrics;
+
+      // Uniform scale for metric sheets, per-cell fit otherwise.
+      final baseScale = metrics != null
+          ? sheetScale
+          : baseGlyphHeight / glyph.height;
 
       // Generate randomized parameters based on style
       final params = _generateParams(style, random, baseScale);
+      final scale = params.scale;
+
+      final advance = metrics != null
+          ? metrics.advance * scale
+          : glyph.width * scale;
 
       // Check for word wrap
-      final effectiveWidth = glyph.width * params.scale;
-      if (x + effectiveWidth > maxWidth && x > 0) {
+      if (x + advance > maxWidth && x > 0) {
         x = 0;
         y += lineHeight;
       }
 
-      // Add positioned glyph
-      result.add(PositionedGlyph(
-        glyph: glyph,
-        params: params,
-        x: x,
-        y: y,
-      ));
+      // Top-left corner of the scaled image: on the baseline for metric
+      // sheets, top of the cell otherwise.
+      final drawX = metrics != null ? x + metrics.bearing * scale : x;
+      final drawY = metrics != null
+          ? y + baselineY - metrics.baseline * scale
+          : y;
+
+      result.add(
+        PositionedGlyph(glyph: glyph, params: params, x: drawX, y: drawY),
+      );
 
       // Advance cursor
-      x += effectiveWidth + style.letterSpacing + params.kerningAdjust;
+      x += advance + style.letterSpacing + params.kerningAdjust;
     }
 
     return result;
   }
 
   /// Generate randomized glyph parameters based on style settings
-  GlyphParams _generateParams(StyleParams style, Random random, double baseScale) {
-    final scaleVariation = 1.0 + _randomRange(random, -0.05, 0.05) * style.sizeVariance;
+  GlyphParams _generateParams(
+    StyleParams style,
+    Random random,
+    double baseScale,
+  ) {
+    final scaleVariation =
+        1.0 + _randomRange(random, -0.05, 0.05) * style.sizeVariance;
     return GlyphParams(
       baselineOffset: _randomRange(random, -2, 2) * style.baselineWobble,
       kerningAdjust: _randomRange(random, -1, 1) * style.baselineWobble,

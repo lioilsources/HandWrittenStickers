@@ -16,6 +16,8 @@ Two-part app that converts handwritten notes into digital stickers. A Go CLI ext
 - Interactive grid alignment tool for photo perspective correction
 - Glyph extraction from A4 template pages (160 characters, Czech diacritics)
 - 3-zone transparency algorithm with JPEG noise tolerance
+- 11 bundled glyph sheets: one scanned handwriting + 10 typographically different font sheets (Caveat, Patrick Hand, Kalam, Indie Flower, Playpen Sans, Reenie Beanie, Dancing Script, Sacramento, Pacifico, Amatic SC), switchable in the editor
+- Baseline-aligned, proportionally spaced layout driven by per-glyph metrics
 - Text composition with styling variations
 - Export as PNG / save to gallery
 
@@ -35,11 +37,18 @@ flutter run -d ios
 
 # Glyph extractor CLI
 cd glyph_extractor
-go run . template     # generate template PDF
-go run . extract      # extract glyphs from scan
+go run . template                                   # generate template PDF
+go run . --input page1.png,page2.png --output out    # extract glyphs from scan
+go run . fontset -font Foo.ttf -output ../handwritten_stickers/assets/glyphs/foo -id foo -name Foo
+                                                    # rasterise a TTF font into a glyph sheet
 ```
+
+## Fonts
+
+The font-based glyph sheets are rasterised from Google Fonts families licensed under the SIL Open Font License 1.1; each sheet directory ships its `OFL.txt`. Preview of all sheets: [docs/glyph_sheets_preview.png](docs/glyph_sheets_preview.png).
 
 ## Documentation
 
 - [CHANGELOG.md](CHANGELOG.md) — development history
+- [docs/RELEASE_PLAN.md](docs/RELEASE_PLAN.md) — audit findings and plan for the first App Store release
 - [GALLERY.md](GALLERY.md) — screenshots and videos

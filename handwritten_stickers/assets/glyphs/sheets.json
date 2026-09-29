@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "default": "laurinka",
+  "sheets": [
+    { "id": "laurinka",       "name": "Laurinka",       "path": "assets/glyphs/laurinka/",       "source": "handwriting" },
+    { "id": "caveat",         "name": "Caveat",         "path": "assets/glyphs/caveat/",         "source": "font" },
+    { "id": "patrick_hand",   "name": "Patrick Hand",   "path": "assets/glyphs/patrick_hand/",   "source": "font" },
+    { "id": "kalam",          "name": "Kalam",          "path": "assets/glyphs/kalam/",          "source": "font" },
+    { "id": "indie_flower",   "name": "Indie Flower",   "path": "assets/glyphs/indie_flower/",   "source": "font" },
+    { "id": "playpen_sans",   "name": "Playpen Sans",   "path": "assets/glyphs/playpen_sans/",   "source": "font" },
+    { "id": "reenie_beanie",  "name": "Reenie Beanie",  "path": "assets/glyphs/reenie_beanie/",  "source": "font" },
+    { "id": "dancing_script", "name": "Dancing Script", "path": "assets/glyphs/dancing_script/", "source": "font" },
+    { "id": "sacramento",     "name": "Sacramento",     "path": "assets/glyphs/sacramento/",     "source": "font" },
+    { "id": "pacifico",       "name": "Pacifico",       "path": "assets/glyphs/pacifico/",       "source": "font" },
+    { "id": "amatic_sc",      "name": "Amatic SC",      "path": "assets/glyphs/amatic_sc/",      "source": "font" }
+  ]
+}
