@@ -72,7 +72,18 @@ flutter:
     - assets/glyphs/dancing_script/
     - assets/glyphs/sacramento/
     - assets/glyphs/pacifico/
+    - assets/glyphs/great_vibes/
+    - assets/glyphs/alex_brush/
+    - assets/glyphs/parisienne/
+    - assets/glyphs/pinyon_script/
+    - assets/glyphs/kaushan_script/
     - assets/glyphs/amatic_sc/
+    - assets/glyphs/playfair_display/
+    - assets/glyphs/cinzel/
+    - assets/glyphs/bebas_neue/
+    - assets/glyphs/abril_fatface/
+    - assets/glyphs/courier_prime/
+    - assets/glyphs/medieval_sharp/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

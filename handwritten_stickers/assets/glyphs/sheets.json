@@ -2,16 +2,159 @@
   "version": 1,
   "default": "laurinka",
   "sheets": [
-    { "id": "laurinka",       "name": "Laurinka",       "path": "assets/glyphs/laurinka/",       "source": "handwriting" },
-    { "id": "caveat",         "name": "Caveat",         "path": "assets/glyphs/caveat/",         "source": "font" },
-    { "id": "patrick_hand",   "name": "Patrick Hand",   "path": "assets/glyphs/patrick_hand/",   "source": "font" },
-    { "id": "kalam",          "name": "Kalam",          "path": "assets/glyphs/kalam/",          "source": "font" },
-    { "id": "indie_flower",   "name": "Indie Flower",   "path": "assets/glyphs/indie_flower/",   "source": "font" },
-    { "id": "playpen_sans",   "name": "Playpen Sans",   "path": "assets/glyphs/playpen_sans/",   "source": "font" },
-    { "id": "reenie_beanie",  "name": "Reenie Beanie",  "path": "assets/glyphs/reenie_beanie/",  "source": "font" },
-    { "id": "dancing_script", "name": "Dancing Script", "path": "assets/glyphs/dancing_script/", "source": "font" },
-    { "id": "sacramento",     "name": "Sacramento",     "path": "assets/glyphs/sacramento/",     "source": "font" },
-    { "id": "pacifico",       "name": "Pacifico",       "path": "assets/glyphs/pacifico/",       "source": "font" },
-    { "id": "amatic_sc",      "name": "Amatic SC",      "path": "assets/glyphs/amatic_sc/",      "source": "font" }
+    {
+      "id": "laurinka",
+      "name": "Laurinka",
+      "path": "assets/glyphs/laurinka/",
+      "source": "handwriting",
+      "category": "handwriting"
+    },
+    {
+      "id": "caveat",
+      "name": "Caveat",
+      "path": "assets/glyphs/caveat/",
+      "source": "font",
+      "category": "handwriting"
+    },
+    {
+      "id": "patrick_hand",
+      "name": "Patrick Hand",
+      "path": "assets/glyphs/patrick_hand/",
+      "source": "font",
+      "category": "handwriting"
+    },
+    {
+      "id": "kalam",
+      "name": "Kalam",
+      "path": "assets/glyphs/kalam/",
+      "source": "font",
+      "category": "handwriting"
+    },
+    {
+      "id": "indie_flower",
+      "name": "Indie Flower",
+      "path": "assets/glyphs/indie_flower/",
+      "source": "font",
+      "category": "handwriting"
+    },
+    {
+      "id": "playpen_sans",
+      "name": "Playpen Sans",
+      "path": "assets/glyphs/playpen_sans/",
+      "source": "font",
+      "category": "handwriting"
+    },
+    {
+      "id": "reenie_beanie",
+      "name": "Reenie Beanie",
+      "path": "assets/glyphs/reenie_beanie/",
+      "source": "font",
+      "category": "handwriting"
+    },
+    {
+      "id": "dancing_script",
+      "name": "Dancing Script",
+      "path": "assets/glyphs/dancing_script/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "sacramento",
+      "name": "Sacramento",
+      "path": "assets/glyphs/sacramento/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "pacifico",
+      "name": "Pacifico",
+      "path": "assets/glyphs/pacifico/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "great_vibes",
+      "name": "Great Vibes",
+      "path": "assets/glyphs/great_vibes/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "alex_brush",
+      "name": "Alex Brush",
+      "path": "assets/glyphs/alex_brush/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "parisienne",
+      "name": "Parisienne",
+      "path": "assets/glyphs/parisienne/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "pinyon_script",
+      "name": "Pinyon Script",
+      "path": "assets/glyphs/pinyon_script/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "kaushan_script",
+      "name": "Kaushan Script",
+      "path": "assets/glyphs/kaushan_script/",
+      "source": "font",
+      "category": "calligraphy"
+    },
+    {
+      "id": "amatic_sc",
+      "name": "Amatic SC",
+      "path": "assets/glyphs/amatic_sc/",
+      "source": "font",
+      "category": "typography"
+    },
+    {
+      "id": "playfair_display",
+      "name": "Playfair Display",
+      "path": "assets/glyphs/playfair_display/",
+      "source": "font",
+      "category": "typography"
+    },
+    {
+      "id": "cinzel",
+      "name": "Cinzel",
+      "path": "assets/glyphs/cinzel/",
+      "source": "font",
+      "category": "typography"
+    },
+    {
+      "id": "bebas_neue",
+      "name": "Bebas Neue",
+      "path": "assets/glyphs/bebas_neue/",
+      "source": "font",
+      "category": "typography"
+    },
+    {
+      "id": "abril_fatface",
+      "name": "Abril Fatface",
+      "path": "assets/glyphs/abril_fatface/",
+      "source": "font",
+      "category": "typography"
+    },
+    {
+      "id": "courier_prime",
+      "name": "Courier Prime",
+      "path": "assets/glyphs/courier_prime/",
+      "source": "font",
+      "category": "typography"
+    },
+    {
+      "id": "medieval_sharp",
+      "name": "MedievalSharp",
+      "path": "assets/glyphs/medieval_sharp/",
+      "source": "font",
+      "category": "typography"
+    }
   ]
 }

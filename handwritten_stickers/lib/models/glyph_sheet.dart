@@ -2,6 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+/// Visual category of a sheet, used to group the sheet selector.
+enum SheetCategory {
+  handwriting('Handwriting'),
+  calligraphy('Calligraphy'),
+  typography('Typography');
+
+  final String label;
+  const SheetCategory(this.label);
+
+  static SheetCategory parse(String? value) {
+    for (final c in values) {
+      if (c.name == value) return c;
+    }
+    return SheetCategory.handwriting;
+  }
+}
+
 /// One glyph sheet (a complete character set in one "handwriting").
 class GlyphSheet {
   final String id;
@@ -13,11 +30,14 @@ class GlyphSheet {
   /// `handwriting` (scanned template) or `font` (rasterised TTF).
   final String source;
 
+  final SheetCategory category;
+
   const GlyphSheet({
     required this.id,
     required this.name,
     required this.path,
     required this.source,
+    this.category = SheetCategory.handwriting,
   });
 
   factory GlyphSheet.fromJson(Map<String, dynamic> json) {
@@ -28,6 +48,7 @@ class GlyphSheet {
       name: json['name'] as String,
       path: path,
       source: (json['source'] as String?) ?? 'handwriting',
+      category: SheetCategory.parse(json['category'] as String?),
     );
   }
 

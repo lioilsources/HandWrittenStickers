@@ -6,8 +6,9 @@ priority; každá má odhad rozsahu a hotovo-kritérium, aby se dala odškrtnout
 
 ## Co už je hotové v této větvi
 
-- 10 typografických sad glyphů generovaných z fontů (SIL OFL) + původní
-  Laurinčina ručně psaná sada, přepínač sad v editoru.
+- 21 sad glyphů generovaných z fontů (SIL OFL) ve třech kategoriích
+  (rukopis 6, kaligrafie 8, typografie 7) + původní Laurinčina ručně psaná
+  sada; přepínač sad v editoru seskupený po kategoriích.
 - Manifest `glyphs.json` verze 2 s metrikami (baseline, advance, bearing);
   renderer zarovnává glyphy na účaří a používá proporcionální šířky.
 - `glyph_extractor fontset` (Go) – vyrobí sadu z libovolného TTF/OTF fontu,
@@ -58,6 +59,7 @@ Náhled sad: [glyph_sheets_preview.png](glyph_sheets_preview.png).
 
 | # | Problém | Náprava |
 |---|---------|---------|
+| R0 | Assety glyphů mají 16 MB (22 sad × ~700 KB). Pro App Store OK, ale zvážit menší DPI (200 místo 300) nebo on-demand resources, pokud sad přibude. |
 | R1 | `app-release.apk` (51 MB) je v gitu. | `git rm --cached`, do `.gitignore`, do budoucna GitHub Releases. |
 | R2 | `glyph_extractor/output/` (160 PNG s ne-ASCII názvy jako `!.png`) a `glyph_extractor/glyph_extractor` (binárka, v této větvi už odstraněna z gitu). | `git rm -r --cached glyph_extractor/output`, ignorovat. |
 | R3 | `glyph_extractor/grid.go` není `gofmt`. `go vet` je čistý. | `gofmt -w`. |
@@ -118,7 +120,7 @@ Náhled sad: [glyph_sheets_preview.png](glyph_sheets_preview.png).
 ## Poznámky k formátu sad (pro implementaci T3)
 
 ```
-assets/glyphs/sheets.json          index: { default, sheets: [{id, name, path, source}] }
+assets/glyphs/sheets.json          index: { default, sheets: [{id, name, path, source, category}] }
 assets/glyphs/<id>/glyphs.json     manifest v2 (viz glyph_extractor/fontset.go: ManifestV2)
 assets/glyphs/<id>/*.png           černý inkoust + alfa, oříznuté na inkoust + 2 px
 assets/glyphs/<id>/OFL.txt         licence fontu (jen fontové sady)

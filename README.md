@@ -16,7 +16,7 @@ Two-part app that converts handwritten notes into digital stickers. A Go CLI ext
 - Interactive grid alignment tool for photo perspective correction
 - Glyph extraction from A4 template pages (160 characters, Czech diacritics)
 - 3-zone transparency algorithm with JPEG noise tolerance
-- 11 bundled glyph sheets: one scanned handwriting + 10 typographically different font sheets (Caveat, Patrick Hand, Kalam, Indie Flower, Playpen Sans, Reenie Beanie, Dancing Script, Sacramento, Pacifico, Amatic SC), switchable in the editor
+- 22 bundled glyph sheets in three categories, switchable in the editor: handwriting (Laurinka's scan + Caveat, Patrick Hand, Kalam, Indie Flower, Playpen Sans, Reenie Beanie), calligraphy (Dancing Script, Sacramento, Pacifico, Great Vibes, Alex Brush, Parisienne, Pinyon Script, Kaushan Script) and typography (Amatic SC, Playfair Display, Cinzel, Bebas Neue, Abril Fatface, Courier Prime, MedievalSharp)
 - Baseline-aligned, proportionally spaced layout driven by per-glyph metrics
 - Text composition with styling variations
 - Export as PNG / save to gallery
