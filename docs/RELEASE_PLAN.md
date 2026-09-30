@@ -113,6 +113,9 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
 
 - Animované 3D emoji jako tag samolepky: samostatný plán
   [EMOJI_PLAN.md](EMOJI_PLAN.md). Přidává ~17 MB assetů a export APNG.
+- Zdroje znaků mimo fonty (materiálové písmo z ComfyUI, datasety rukopisu,
+  archivy, fotky, vlastní list): [GLYPH_SOURCES_PLAN.md](GLYPH_SOURCES_PLAN.md).
+  Jeho sprint A obsahuje T3 (metriky z mřížky) a B7 (NFD normalizace).
 
 ### Sprint 3 – hygiena a proces
 

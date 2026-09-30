@@ -52,4 +52,5 @@ The font-based glyph sheets are rasterised from Google Fonts families licensed u
 - [CHANGELOG.md](CHANGELOG.md) — development history
 - [docs/RELEASE_PLAN.md](docs/RELEASE_PLAN.md) — audit findings and plan for the first App Store release
 - [docs/EMOJI_PLAN.md](docs/EMOJI_PLAN.md) — plan for animated 3D character emoji tags generated with ComfyUI
+- [docs/GLYPH_SOURCES_PLAN.md](docs/GLYPH_SOURCES_PLAN.md) — plan for glyph sources beyond fonts: AI-generated material lettering, handwriting datasets, archives, photographed found type
 - [GALLERY.md](GALLERY.md) — screenshots and videos
