@@ -129,6 +129,81 @@ class GlyphRenderer {
     return result;
   }
 
+  /// Widest a text block may be relative to its height before
+  /// [balanceLines] breaks it. Messengers fit a sticker to a fixed width,
+  /// so a long single line arrives with tiny letters.
+  static const double maxBlockAspect = 3.0;
+
+  /// Breaks [text] at spaces into the fewest lines of similar width whose
+  /// block is at most [maxAspect] times wider than tall. Text with explicit
+  /// line breaks is returned unchanged: the writer chose the lines.
+  Future<String> balanceLines({
+    required String text,
+    required StyleParams style,
+    required double baseGlyphHeight,
+    double maxAspect = maxBlockAspect,
+  }) async {
+    if (text.contains('\n')) return text;
+    final words = text.split(' ').where((w) => w.isNotEmpty).toList();
+    if (words.length < 2) return text;
+
+    final widths = <double>[];
+    for (final word in words) {
+      final bounds = await calculateBounds(
+        text: word,
+        style: style,
+        maxWidth: double.infinity,
+        baseGlyphHeight: baseGlyphHeight,
+      );
+      widths.add(bounds.width);
+    }
+    final space = baseGlyphHeight * 0.5 * style.wordSpacing;
+    final lineHeight = baseGlyphHeight * style.lineHeight;
+
+    // prefix[i] = width of words 0..i-1 without spaces.
+    final prefix = [0.0];
+    for (final w in widths) {
+      prefix.add(prefix.last + w);
+    }
+    double lineWidth(int from, int to) =>
+        prefix[to] - prefix[from] + space * (to - from - 1);
+
+    // best[i] = narrowest block for words 0..i-1 in the current number of
+    // lines; cut[n][i] = where its last line starts.
+    final count = words.length;
+    var best = [for (var i = 0; i <= count; i++) lineWidth(0, max(i, 1))];
+    final cuts = <List<int>>[List.filled(count + 1, 0)];
+    var lines = 1;
+    while (best[count] / (lines * lineHeight) > maxAspect && lines < count) {
+      lines++;
+      final next = List.filled(count + 1, double.infinity);
+      final cut = List.filled(count + 1, 0);
+      for (var i = lines; i <= count; i++) {
+        for (var j = lines - 1; j < i; j++) {
+          final width = max(best[j], lineWidth(j, i));
+          if (width < next[i]) {
+            next[i] = width;
+            cut[i] = j;
+          }
+        }
+      }
+      best = next;
+      cuts.add(cut);
+    }
+
+    final starts = <int>[];
+    for (var n = lines - 1, end = count; n > 0; n--) {
+      end = cuts[n][end];
+      starts.add(end);
+    }
+    final buffer = StringBuffer();
+    for (var i = 0; i < count; i++) {
+      if (i > 0) buffer.write(starts.contains(i) ? '\n' : ' ');
+      buffer.write(words[i]);
+    }
+    return buffer.toString();
+  }
+
   /// Finds the glyph for [char]: own glyph, composed glyph, fallback sheet.
   Future<_Resolved?> _resolve(
     String char,
@@ -214,11 +289,11 @@ class GlyphRenderer {
     int variant,
   ) {
     final scaleVariation =
-        1.0 + _randomRange(random, -0.05, 0.05) * style.sizeVariance;
+        1.0 + _randomRange(random, -0.25, 0.25) * style.sizeVariance;
     return GlyphParams(
       baselineOffset: _randomRange(random, -2, 2) * style.baselineWobble,
       kerningAdjust: _randomRange(random, -1, 1) * style.baselineWobble,
-      rotation: _randomRange(random, -3, 3) * style.rotationVariance,
+      rotation: _randomRange(random, -12, 12) * style.rotationVariance,
       scale: baseScale * scaleVariation,
       opacity: 1.0 - random.nextDouble() * style.opacityVariance,
       variantIndex: variant,

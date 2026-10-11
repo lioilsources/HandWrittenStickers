@@ -78,7 +78,9 @@ class HandwrittenPainter extends CustomPainter {
       canvas.drawImage(
         pg.glyph.image,
         Offset.zero,
-        Paint()..filterQuality = FilterQuality.medium,
+        Paint()
+          ..filterQuality = FilterQuality.medium
+          ..color = Color.fromRGBO(0, 0, 0, pg.params.opacity),
       );
 
       canvas.restore();

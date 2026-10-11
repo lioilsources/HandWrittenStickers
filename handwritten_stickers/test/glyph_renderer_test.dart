@@ -195,6 +195,39 @@ void main() {
     });
   });
 
+  group('GlyphRenderer.balanceLines', () {
+    late GlyphRenderer renderer;
+
+    setUpAll(() async {
+      // "l" advances 9 px at a 30 px cell; a line is 36 px tall.
+      renderer = GlyphRenderer(
+        _FakeLoader(
+          {'l': await _glyph('l', 100, 200, baseline: 180, advance: 90)},
+          cellHeightPx: 300,
+          hasMetrics: true,
+        ),
+      );
+    });
+
+    Future<String> balance(String text) =>
+        renderer.balanceLines(text: text, style: _plain, baseGlyphHeight: 30);
+
+    test('keeps a short line whole', () async {
+      expect(await balance('ll ll'), 'll ll');
+      expect(await balance('llllllllllllllllllll'), 'llllllllllllllllllll');
+    });
+
+    test('breaks a long line into lines of similar width', () async {
+      expect(await balance('lll lll lll lll'), 'lll lll\nlll lll');
+      // The long word sets the width; the short ones share the other line.
+      expect(await balance('l l llllllllll'), 'l l\nllllllllll');
+    });
+
+    test('leaves the lines the writer chose', () async {
+      expect(await balance('lll lll lll\nlll'), 'lll lll lll\nlll');
+    });
+  });
+
   group('GlyphRenderer with variants (manifest v3)', () {
     late _FakeLoader loader;
 
