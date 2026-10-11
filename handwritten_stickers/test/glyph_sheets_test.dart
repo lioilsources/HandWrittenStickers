@@ -137,6 +137,30 @@ void main() {
     },
   );
 
+  test('glyph file names are unique ignoring case', () async {
+    // iOS and macOS builds run on case-insensitive volumes, where "A.png"
+    // and "a.png" are one file and one of the two letters goes missing.
+    final index = await GlyphSheetIndex.load();
+    for (final sheet in index.sheets) {
+      final Map<String, dynamic> manifest = json.decode(
+        await rootBundle.loadString('${sheet.path}glyphs.json'),
+      );
+      final seen = <String, String>{};
+      for (final entry
+          in (manifest['glyphs'] as Map<String, dynamic>).entries) {
+        for (final file in _files(entry.value)) {
+          final other = seen[file.toLowerCase()];
+          expect(
+            other,
+            isNull,
+            reason: '${sheet.id}: "$file" and "$other" differ only by case',
+          );
+          seen[file.toLowerCase()] = file;
+        }
+      }
+    }
+  });
+
   test('release builds hide sheets marked "bundle": false', () async {
     final all = await GlyphSheetIndex.load(includeUnbundled: true);
     final release = await GlyphSheetIndex.load(includeUnbundled: false);

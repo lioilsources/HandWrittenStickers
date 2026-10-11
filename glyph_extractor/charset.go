@@ -1,5 +1,7 @@
 package main
 
+import "unicode"
+
 // Charset defines the fixed order of characters in the grid
 // Page 1: 80 characters (uppercase + numbers + punctuation)
 // Page 2: 80 characters (lowercase + extra symbols)
@@ -49,9 +51,23 @@ var Charset = []rune{
 	'¡', 'ñ', 'Ñ', 'ß', 'æ', 'Æ', 'ø', 'Ø',
 }
 
-// CharToFilename converts a character to a safe ASCII filename
-// All non-alphanumeric characters are mapped to descriptive names
+// CapPrefix marks the file of an uppercase letter. Without it "A.png" and
+// "a.png" differ only by case and one of them is lost on case-insensitive
+// file systems (macOS checkouts, so every iOS build).
+const CapPrefix = "cap_"
+
+// CharToFilename converts a character to a safe ASCII filename that stays
+// unique when case is ignored: uppercase letters get CapPrefix ("cap_A").
 func CharToFilename(r rune) string {
+	if unicode.IsUpper(r) {
+		return CapPrefix + charFileStem(r)
+	}
+	return charFileStem(r)
+}
+
+// charFileStem maps a character to an ASCII name.
+// All non-alphanumeric characters are mapped to descriptive names
+func charFileStem(r rune) string {
 	switch r {
 	// Basic punctuation
 	case '.':

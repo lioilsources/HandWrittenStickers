@@ -308,3 +308,19 @@ func TestDetectGridOnGuidePage(t *testing.T) {
 		}
 	}
 }
+
+// Sheets are checked out and built on case-insensitive volumes (macOS), where
+// "A.png" and "a.png" are one file.
+func TestCharFilenamesUniqueIgnoringCase(t *testing.T) {
+	seen := map[string]rune{}
+	for _, r := range Charset {
+		name := strings.ToLower(CharToFilename(r))
+		if other, dup := seen[name]; dup {
+			t.Errorf("%q and %q both map to %q ignoring case", other, r, name)
+		}
+		seen[name] = r
+	}
+	if got := filenameToChar(CharToFilename('A')); got != "A" {
+		t.Errorf("filenameToChar(cap_A) = %q, want A", got)
+	}
+}

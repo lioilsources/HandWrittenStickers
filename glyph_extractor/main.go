@@ -256,6 +256,7 @@ func renameGlyphs(glyphsDir string) error {
 
 // filenameToChar converts a filename back to character
 func filenameToChar(name string) string {
+	name = strings.TrimPrefix(name, CapPrefix)
 	switch name {
 	case "dot":
 		return "."
