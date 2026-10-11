@@ -1,0 +1,16 @@
+name: kid_sheets
+description: Rasterises CuteKidFonts (bubble effect) into HandWrittenStickers glyph sheet candidates.
+publish_to: none
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cute_kid_fonts:
+    path: ../../../CuteKidFonts
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

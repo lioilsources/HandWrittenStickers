@@ -1,0 +1,65 @@
+[
+  {
+    "id": "kid_bubble_peach",
+    "name": "Bublinky broskev",
+    "colored": true,
+    "license": "DynaPuff-OFL.txt",
+    "capRatio": 0.88
+  },
+  {
+    "id": "kid_bubble_mint",
+    "name": "Bublinky máta",
+    "colored": true,
+    "license": "DynaPuff-OFL.txt",
+    "capRatio": 0.88
+  },
+  {
+    "id": "kid_bubble_lavender",
+    "name": "Bublinky levandule",
+    "colored": true,
+    "license": "DynaPuff-OFL.txt",
+    "capRatio": 0.88
+  },
+  {
+    "id": "kid_bubble_lemon",
+    "name": "Bublinky citron",
+    "colored": true,
+    "license": "DynaPuff-OFL.txt",
+    "capRatio": 0.88
+  },
+  {
+    "id": "kid_bubble_sky",
+    "name": "Bublinky nebe",
+    "colored": true,
+    "license": "DynaPuff-OFL.txt",
+    "capRatio": 0.88
+  },
+  {
+    "id": "kid_bubble_italic",
+    "name": "Bublinky kurzíva",
+    "colored": true,
+    "license": "Grandstander-OFL.txt",
+    "capRatio": 0.88
+  },
+  {
+    "id": "kid_dynapuff",
+    "name": "DynaPuff",
+    "colored": false,
+    "license": "DynaPuff-OFL.txt",
+    "capRatio": 0.7
+  },
+  {
+    "id": "kid_grandstander",
+    "name": "Grandstander",
+    "colored": false,
+    "license": "Grandstander-OFL.txt",
+    "capRatio": 0.7
+  },
+  {
+    "id": "kid_baloo",
+    "name": "Baloo 2",
+    "colored": false,
+    "license": "Baloo2-OFL.txt",
+    "capRatio": 0.7
+  }
+]

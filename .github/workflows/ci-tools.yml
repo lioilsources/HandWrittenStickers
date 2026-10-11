@@ -1,0 +1,44 @@
+name: CI Tools
+
+# Glyph pipeline outside the Flutter app (glyph_extractor in Go, tools/ in
+# Python). Kept separate from ci.yml, which is synced from the Distribution
+# golden templates by align-project.sh.
+
+on:
+  push:
+    branches: ['**']
+    tags-ignore: ['v*']
+    paths: ['glyph_extractor/**', 'tools/**', '.github/workflows/ci-tools.yml']
+  pull_request:
+    paths: ['glyph_extractor/**', 'tools/**', '.github/workflows/ci-tools.yml']
+
+jobs:
+  glyph-extractor:
+    name: glyph_extractor (Go)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: glyph_extractor/go.mod
+          cache-dependency-path: glyph_extractor/go.sum
+      - name: gofmt
+        working-directory: glyph_extractor
+        run: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - name: Vet
+        working-directory: glyph_extractor
+        run: go vet ./...
+      - name: Test
+        working-directory: glyph_extractor
+        run: go test ./...
+
+  python-tools:
+    name: tools (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: python -m py_compile tools/comfy/client.py tools/sheets/material.py tools/sheets/nist.py

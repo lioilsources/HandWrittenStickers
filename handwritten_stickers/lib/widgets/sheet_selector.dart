@@ -59,7 +59,11 @@ class SheetSelector extends StatelessWidget {
               padding: const EdgeInsets.only(right: 8),
               child: ChoiceChip(
                 avatar: Icon(
-                  sheet.isHandwriting ? Icons.draw : Icons.text_fields,
+                  sheet.isHandwriting
+                      ? Icons.draw
+                      : sheet.isMaterial
+                      ? Icons.palette
+                      : Icons.text_fields,
                   size: 16,
                 ),
                 label: Text(sheet.name),

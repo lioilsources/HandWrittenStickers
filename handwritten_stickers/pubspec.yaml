@@ -61,6 +61,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/emoji/
     - assets/glyphs/
     - assets/glyphs/laurinka/
     - assets/glyphs/caveat/
@@ -176,6 +177,18 @@ flutter:
     - assets/glyphs/shojumaru/
     - assets/glyphs/uncial_antiqua/
     - assets/glyphs/wellfleet/
+    - assets/glyphs/kid_bubble_peach/
+    - assets/glyphs/kid_bubble_mint/
+    - assets/glyphs/kid_bubble_lavender/
+    - assets/glyphs/kid_bubble_lemon/
+    - assets/glyphs/kid_bubble_sky/
+    - assets/glyphs/kid_bubble_italic/
+    - assets/glyphs/kid_dynapuff/
+    - assets/glyphs/kid_grandstander/
+    - assets/glyphs/kid_baloo/
+    - assets/glyphs/mat_plasticine/
+    - assets/glyphs/mat_neon/
+    - assets/glyphs/mat_gingerbread/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glyph Labeler</title>
+<style>
+:root {
+  --bg: #f6f6f4; --panel: #ffffff; --fg: #1d1d1f; --muted: #6e6e73; --line: #d9d9dc;
+  --accent: #2463eb; --ok: #1f9d55; --skip: #b7791f; --todo: #9aa0a6; --pre: #7c3aed;
+  --chk1: #ffffff; --chk2: #e4e4e7; --miss-bg: #fde8e8; --miss-fg: #b42318;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161618; --panel: #202023; --fg: #ececf0; --muted: #9a9aa2; --line: #34343a;
+    --accent: #6b9bff; --ok: #3ccf7a; --skip: #e0a43a; --todo: #6b6f76; --pre: #a78bfa;
+    --chk1: #3a3a3f; --chk2: #2c2c30; --miss-bg: #3b1c1c; --miss-fg: #ff8a80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+header {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--panel);
+}
+header h1 { font-size: 16px; margin: 0 8px 0 0; }
+header .grow { flex: 1; }
+label.btn, button {
+  font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 10px; cursor: pointer; white-space: nowrap;
+}
+button:hover, label.btn:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button:disabled { opacity: .5; cursor: default; }
+input[type=file] { display: none; }
+input[type=text] {
+  font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 8px; min-width: 0;
+}
+#status { color: var(--muted); }
+main {
+  display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; padding: 16px;
+  max-width: 1500px; margin: 0 auto;
+}
+@media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+section.panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px;
+  min-width: 0;
+}
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 8px; }
+.checker {
+  background-color: var(--chk1);
+  background-image:
+    linear-gradient(45deg, var(--chk2) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--chk2) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--chk2) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--chk2) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+#stage {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  height: 340px; border-radius: 8px; overflow: hidden; padding: 12px;
+}
+#stage .side { display: flex; align-items: flex-end; gap: 6px; flex: 1; min-width: 0; overflow: hidden; }
+#stage .side.left { justify-content: flex-end; }
+#stage .side.right { justify-content: flex-start; }
+#stage .nb { opacity: .55; cursor: pointer; flex: none; }
+#stage .nb:hover { opacity: 1; }
+#stage img { image-rendering: auto; display: block; }
+#cur { outline: 2px dashed var(--accent); outline-offset: 4px; flex: none; }
+#info { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; margin: 10px 0; }
+#bigLabel { font-size: 42px; font-weight: 600; min-width: 1.2em; }
+#bigLabel.none { color: var(--muted); font-weight: 400; font-size: 20px; }
+#bigLabel.pre { color: var(--pre); }
+.meta { color: var(--muted); font-variant-numeric: tabular-nums; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+.row input[type=text] { flex: 1; min-width: 180px; }
+.help { color: var(--muted); font-size: 12px; }
+kbd {
+  font: 11px ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px;
+  border-radius: 4px; padding: 0 4px; background: var(--bg);
+}
+#strip { display: flex; flex-direction: column; gap: 6px; max-height: 44vh; overflow: auto; padding-right: 4px; }
+.lineRow { display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-end; }
+.lineRow .ln { width: 28px; color: var(--muted); font-size: 11px; align-self: center; flex: none; }
+.th {
+  width: 44px; border: 2px solid var(--todo); border-radius: 5px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; background: var(--panel); overflow: hidden;
+}
+.th .im { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.th img { max-width: 36px; max-height: 36px; }
+.th span { font-size: 12px; line-height: 16px; height: 16px; width: 100%; text-align: center; background: var(--todo); color: #fff; }
+.th.ok { border-color: var(--ok); } .th.ok span { background: var(--ok); }
+.th.skip { border-color: var(--skip); } .th.skip span { background: var(--skip); }
+.th.pre { border-color: var(--pre); } .th.pre span { background: var(--pre); }
+.th.current { box-shadow: 0 0 0 3px var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+#stats { font-variant-numeric: tabular-nums; margin-bottom: 8px; }
+#stats b { font-size: 18px; }
+#cov { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 3px; }
+#cov div {
+  border: 1px solid var(--line); border-radius: 4px; text-align: center; padding: 2px 0; line-height: 1.1;
+}
+#cov div .c { font-size: 16px; display: block; }
+#cov div .n { font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
+#cov div.miss { background: var(--miss-bg); border-color: transparent; }
+#cov div.miss .c { color: var(--miss-fg); }
+#extra { margin-top: 8px; font-size: 12px; color: var(--muted); word-break: break-all; }
+#empty { padding: 60px 20px; text-align: center; color: var(--muted); }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Glyph Labeler</h1>
+  <label class="btn" title="Choose the directory containing candidates.json">Open candidates folder…
+    <input type="file" id="dirInput" webkitdirectory directory multiple>
+  </label>
+  <label class="btn" title="Continue from an existing labels.json">Load labels.json…
+    <input type="file" id="labelsInput" accept=".json,application/json">
+  </label>
+  <button id="acceptPre" disabled title="Confirm every pre-filled label from candidates.json">Accept all pre-filled</button>
+  <span id="status">No folder loaded.</span>
+  <span class="grow"></span>
+  <button id="download" class="primary" disabled>Download labels.json</button>
+</header>
+
+<main>
+  <div style="min-width:0; display:flex; flex-direction:column; gap:16px;">
+    <section class="panel">
+      <div id="empty">Open a folder that contains <code>candidates.json</code> and the candidate PNGs.</div>
+      <div id="work" class="hidden">
+        <div id="stage" class="checker">
+          <div class="side left" id="left"></div>
+          <img id="cur" alt="">
+          <div class="side right" id="right"></div>
+        </div>
+        <div id="info">
+          <span id="bigLabel" class="none">—</span>
+          <span class="meta" id="metaPos"></span>
+          <span class="meta" id="metaDetail"></span>
+        </div>
+        <div class="row">
+          <button id="prev" title="ArrowLeft">&larr; Prev</button>
+          <button id="next" title="ArrowRight">Next &rarr;</button>
+          <button id="skip" title="Space / Delete">Skip</button>
+          <button id="clear" title="Backspace">Clear</button>
+          <span style="width:12px"></span>
+          <span class="help">Accent glyph:</span>
+          <button data-accent="caron">caron ˇ</button>
+          <button data-accent="acute">acute ´</button>
+          <button data-accent="ring">ring °</button>
+          <span style="width:12px"></span>
+          <button id="nextTodo" title="Jump to next unlabelled">Next unlabelled</button>
+        </div>
+        <div class="row">
+          <input type="text" id="seq" placeholder="Type or paste a transcript, e.g. “ahoj světe”, then Apply (whitespace is ignored)">
+          <button id="applySeq">Apply from current</button>
+        </div>
+        <div class="help">
+          Type a character to label and advance &middot; <kbd>Backspace</kbd> clear &amp; back &middot;
+          <kbd>Space</kbd>/<kbd>Delete</kbd> skip &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> navigate &middot;
+          <kbd>Enter</kbd> accept pre-filled label &middot; Progress autosaves in this browser.
+        </div>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Candidates</h2>
+      <div class="legend">
+        <span><i style="background:var(--ok)"></i>labelled</span>
+        <span><i style="background:var(--skip)"></i>skipped</span>
+        <span><i style="background:var(--pre)"></i>pre-filled (unconfirmed)</span>
+        <span><i style="background:var(--todo)"></i>unlabelled</span>
+      </div>
+      <div id="strip"></div>
+    </section>
+  </div>
+  <section class="panel">
+    <h2>Progress</h2>
+    <div id="stats">—</div>
+    <h2>Charset coverage</h2>
+    <div id="cov"></div>
+    <div id="extra"></div>
+  </section>
+</main>
+
+<script>
+"use strict";
+
+const CHARSET = "AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ0123456789.,!?:;-()\"'/@#&+=%*€$[]{}<>\\_aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž~`^|©®™°§¶•…–—„”‚’«»×÷±¼½¾¹²³µ¿¡ñÑßæÆøØ";
+const CHARS = Array.from(CHARSET);
+const ACCENTS = ["caron", "acute", "ring"];
+const STORE_PREFIX = "glyphLabeler:v1:";
+
+// ---- state ----
+let data = null;          // parsed candidates.json
+let cands = [];           // candidates sorted by line, order
+let byId = new Map();     // id -> index into cands
+let lines = new Map();    // line -> array of indices into cands
+let fileMap = new Map();  // normalised relative path -> File
+let baseDir = "";         // directory of candidates.json inside the picked folder
+let urlCache = new Map(); // index -> object URL
+let labels = {};          // id -> string | null (null = skipped); absent = unlabelled
+let cur = 0;
+let saveTimer = null;
+
+const $ = (id) => document.getElementById(id);
+
+// ---- helpers ----
+function normPath(p) {
+  const out = [];
+  for (const part of p.replace(/\\/g, "/").split("/")) {
+    if (part === "" || part === ".") continue;
+    if (part === "..") out.pop(); else out.push(part);
+  }
+  return out.join("/");
+}
+function state(c) {
+  const k = String(c.id);
+  if (Object.prototype.hasOwnProperty.call(labels, k)) return labels[k] === null ? "skip" : "ok";
+  if (typeof c.label === "string" && c.label !== "") return "pre";
+  return "todo";
+}
+function shownLabel(c) {
+  const k = String(c.id);
+  if (Object.prototype.hasOwnProperty.call(labels, k)) return labels[k];
+  return typeof c.label === "string" && c.label !== "" ? c.label : undefined;
+}
+function imgUrl(i) {
+  if (urlCache.has(i)) return urlCache.get(i);
+  const c = cands[i];
+  const f = fileMap.get(normPath(baseDir + "/" + c.file)) || fileMap.get(normPath(c.file));
+  const u = f ? URL.createObjectURL(f) : "";
+  urlCache.set(i, u);
+  return u;
+}
+function storeKey() { return STORE_PREFIX + (data && data.source ? data.source : "unknown"); }
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try { localStorage.setItem(storeKey(), JSON.stringify({ labels, cur, savedAt: Date.now() })); }
+    catch (e) { /* storage unavailable */ }
+  }, 250);
+}
+function setStatus(msg) { $("status").textContent = msg; }
+function readText(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result);
+    r.onerror = () => rej(r.error);
+    r.readAsText(file);
+  });
+}
+function parseLabels(obj) {
+  const src = obj && typeof obj === "object" && obj.labels && typeof obj.labels === "object" ? obj.labels : obj;
+  const out = {};
+  for (const [k, v] of Object.entries(src || {})) {
+    if (!byId.has(k)) continue;
+    if (v === null) out[k] = null;
+    else if (typeof v === "string" && v !== "") out[k] = v.normalize("NFC");
+  }
+  return out;
+}
+
+// ---- loading ----
+$("dirInput").addEventListener("change", async (ev) => {
+  const files = Array.from(ev.target.files || []);
+  ev.target.value = "";
+  if (!files.length) return;
+  for (const u of urlCache.values()) if (u) URL.revokeObjectURL(u);
+  urlCache = new Map();
+  fileMap = new Map();
+  let cj = null, lj = null;
+  for (const f of files) {
+    const rel = normPath(f.webkitRelativePath || f.name);
+    fileMap.set(rel, f);
+    const name = rel.split("/").pop();
+    if (name === "candidates.json" && (!cj || rel.length < normPath(cj.webkitRelativePath || cj.name).length)) cj = f;
+    if (name === "labels.json" && (!lj || rel.length < normPath(lj.webkitRelativePath || lj.name).length)) lj = f;
+  }
+  // also index paths relative to the picked folder (strip its top-level name)
+  for (const [rel, f] of Array.from(fileMap)) {
+    const i = rel.indexOf("/");
+    if (i > 0 && !fileMap.has(rel.slice(i + 1))) fileMap.set(rel.slice(i + 1), f);
+  }
+  if (!cj) { setStatus("candidates.json not found in the chosen folder."); return; }
+  const cjRel = normPath(cj.webkitRelativePath || cj.name);
+  baseDir = cjRel.includes("/") ? cjRel.slice(0, cjRel.lastIndexOf("/")) : "";
+  let parsed;
+  try { parsed = JSON.parse(await readText(cj)); }
+  catch (e) { setStatus("candidates.json is not valid JSON: " + e.message); return; }
+  if (!parsed || !Array.isArray(parsed.candidates)) { setStatus("candidates.json has no candidates array."); return; }
+  loadCandidates(parsed);
+
+  // restore: localStorage autosave first, then labels.json in folder
+  let restored = "";
+  try {
+    const raw = localStorage.getItem(storeKey());
+    if (raw) {
+      const s = JSON.parse(raw);
+      labels = parseLabels(s.labels || {});
+      if (Number.isInteger(s.cur) && s.cur >= 0 && s.cur < cands.length) cur = s.cur;
+      restored = "restored autosave";
+    }
+  } catch (e) { /* ignore */ }
+  if (!restored && lj) {
+    try { labels = parseLabels(JSON.parse(await readText(lj))); restored = "loaded labels.json from folder"; }
+    catch (e) { /* ignore */ }
+  }
+  const missing = cands.filter((c, i) => !imgUrl(i)).length;
+  setStatus(`${data.source || "?"} · ${cands.length} candidates` + (restored ? " · " + restored : "") +
+            (missing ? ` · ${missing} PNG(s) missing` : ""));
+  buildStrip();
+  renderAll();
+});
+
+$("labelsInput").addEventListener("change", async (ev) => {
+  const f = ev.target.files && ev.target.files[0];
+  ev.target.value = "";
+  if (!f) return;
+  if (!data) { setStatus("Open the candidates folder first."); return; }
+  try {
+    const obj = JSON.parse(await readText(f));
+    const got = parseLabels(obj);
+    const n = Object.keys(got).length;
+    if (Object.keys(labels).length && !confirm(`Replace current progress with ${n} labels from ${f.name}?`)) return;
+    labels = got;
+    setStatus(`Loaded ${n} labels from ${f.name}`);
+    scheduleSave();
+    renderAll();
+  } catch (e) { setStatus("Could not read labels file: " + e.message); }
+});
+
+function loadCandidates(parsed) {
+  data = parsed;
+  cands = parsed.candidates.slice().sort((a, b) =>
+    ((a.line ?? 0) - (b.line ?? 0)) || ((a.order ?? 0) - (b.order ?? 0)) || (a.id - b.id));
+  byId = new Map(); lines = new Map();
+  cands.forEach((c, i) => {
+    if (typeof c.label === "string") c.label = c.label.normalize("NFC");
+    byId.set(String(c.id), i);
+    const ln = c.line ?? 0;
+    if (!lines.has(ln)) lines.set(ln, []);
+    lines.get(ln).push(i);
+  });
+  labels = {};
+  cur = 0;
+  $("empty").classList.add("hidden");
+  $("work").classList.remove("hidden");
+  $("download").disabled = false;
+  $("acceptPre").disabled = !cands.some((c) => typeof c.label === "string" && c.label !== "");
+}
+
+// ---- rendering ----
+let thumbs = [];
+function buildStrip() {
+  const strip = $("strip");
+  strip.textContent = "";
+  thumbs = new Array(cands.length);
+  for (const [ln, idxs] of lines) {
+    const row = document.createElement("div");
+    row.className = "lineRow";
+    const lab = document.createElement("div");
+    lab.className = "ln"; lab.textContent = "L" + ln;
+    row.appendChild(lab);
+    for (const i of idxs) {
+      const t = document.createElement("div");
+      t.className = "th";
+      t.title = `#${cands[i].id}`;
+      const box = document.createElement("div");
+      box.className = "im checker";
+      const img = document.createElement("img");
+      img.loading = "lazy"; img.decoding = "async"; img.alt = "";
+      img.src = imgUrl(i);
+      box.appendChild(img);
+      const sp = document.createElement("span");
+      t.appendChild(box); t.appendChild(sp);
+      t.addEventListener("click", () => go(i));
+      row.appendChild(t);
+      thumbs[i] = t;
+    }
+    strip.appendChild(row);
+  }
+}
+function updateThumb(i) {
+  const t = thumbs[i]; if (!t) return;
+  const c = cands[i], s = state(c), l = shownLabel(c);
+  t.className = "th " + s + (i === cur ? " current" : "");
+  t.lastChild.textContent = s === "skip" ? "–" : (l === undefined ? "" : (ACCENTS.includes(l) ? { caron: "ˇ", acute: "´", ring: "°" }[l] : l));
+  t.title = `#${c.id} · line ${c.line ?? 0} · ` + (s === "skip" ? "skipped" : l === undefined ? "unlabelled" : `“${l}”` + (s === "pre" ? " (pre-filled)" : ""));
+}
+function bw(c) { return c.bbox ? Math.max(1, c.bbox[2] - c.bbox[0]) : 0; }
+function bh(c) { return c.bbox ? Math.max(1, c.bbox[3] - c.bbox[1]) : 0; }
+
+function renderCurrent() {
+  if (!cands.length) return;
+  const c = cands[cur];
+  const lineIdx = lines.get(c.line ?? 0) || [cur];
+  const pos = lineIdx.indexOf(cur);
+  // common scale for the current glyph; neighbours drawn at 40% of it, aligned by bbox top
+  const stageH = 300;
+  const hasBox = !!c.bbox;
+  const near = lineIdx.slice(Math.max(0, pos - 4), pos + 5);
+  const minY = hasBox ? Math.min(...near.map((i) => cands[i].bbox ? cands[i].bbox[1] : Infinity)) : 0;
+  const maxY = hasBox ? Math.max(...near.map((i) => cands[i].bbox ? cands[i].bbox[3] : -Infinity)) : 0;
+  const scale = hasBox ? Math.min(stageH / bh(c), 320 / bw(c), 6) : 0;
+
+  const curImg = $("cur");
+  curImg.src = imgUrl(cur);
+  if (hasBox) { curImg.style.width = bw(c) * scale + "px"; curImg.style.height = bh(c) * scale + "px"; }
+  else { curImg.style.width = ""; curImg.style.height = ""; curImg.style.maxHeight = stageH + "px"; curImg.style.maxWidth = "320px"; }
+
+  const nbScale = hasBox ? Math.min(scale * 0.4, 110 / Math.max(1, maxY - minY)) : 0;
+  const fill = (el, list) => {
+    el.textContent = "";
+    for (const i of list) {
+      const n = cands[i];
+      const im = document.createElement("img");
+      im.className = "nb"; im.alt = ""; im.src = imgUrl(i);
+      im.title = `#${n.id}` + (shownLabel(n) ? ` “${shownLabel(n)}”` : "");
+      if (hasBox && n.bbox) {
+        im.style.width = bw(n) * nbScale + "px";
+        im.style.height = bh(n) * nbScale + "px";
+        im.style.marginBottom = (maxY - n.bbox[3]) * nbScale + "px";
+      } else { im.style.maxHeight = "90px"; }
+      im.addEventListener("click", () => go(i));
+      el.appendChild(im);
+    }
+  };
+  fill($("left"), lineIdx.slice(Math.max(0, pos - 4), pos));
+  fill($("right"), lineIdx.slice(pos + 1, pos + 5));
+
+  const s = state(c), l = shownLabel(c), big = $("bigLabel");
+  big.className = s === "ok" ? "" : s === "pre" ? "pre" : "none";
+  big.textContent = s === "skip" ? "skipped" : l === undefined ? "unlabelled" : l + (s === "pre" ? "  ⏎?" : "");
+  $("metaPos").textContent = `${cur + 1} / ${cands.length} · id ${c.id} · line ${c.line ?? 0} · #${(c.order ?? pos)}`;
+  $("metaDetail").textContent = c.bbox ? `bbox ${c.bbox.join(",")} (${bw(c)}×${bh(c)} px)` + (c.baseline != null ? ` · baseline ${c.baseline}` : "") : "";
+  const th = thumbs[cur];
+  if (th) th.scrollIntoView({ block: "nearest", inline: "nearest" });
+}
+
+function renderStats() {
+  let ok = 0, skip = 0, pre = 0, todo = 0;
+  const counts = new Map();
+  for (const c of cands) {
+    const s = state(c);
+    if (s === "ok") { ok++; const l = labels[String(c.id)]; counts.set(l, (counts.get(l) || 0) + 1); }
+    else if (s === "skip") skip++; else if (s === "pre") pre++; else todo++;
+  }
+  const covered = CHARS.filter((ch) => counts.get(ch)).length;
+  $("stats").innerHTML =
+    `<b>${ok}</b> labelled · ${skip} skipped · ${pre} pre-filled · ${todo} unlabelled<br>` +
+    `<span class="meta">Charset: <b>${covered}</b> / ${CHARS.length} covered, ${CHARS.length - covered} missing</span>`;
+  const cov = $("cov");
+  cov.textContent = "";
+  for (const ch of CHARS) {
+    const n = counts.get(ch) || 0;
+    const d = document.createElement("div");
+    if (!n) d.className = "miss";
+    d.title = `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")} × ${n}`;
+    const a = document.createElement("span"); a.className = "c"; a.textContent = ch;
+    const b = document.createElement("span"); b.className = "n"; b.textContent = n;
+    d.appendChild(a); d.appendChild(b);
+    cov.appendChild(d);
+  }
+  const acc = ACCENTS.map((a) => `${a} ×${counts.get(a) || 0}`).join(", ");
+  const other = Array.from(counts).filter(([k]) => !CHARS.includes(k) && !ACCENTS.includes(k))
+    .map(([k, v]) => `“${k}” ×${v}`);
+  $("extra").textContent = `Accents: ${acc}` + (other.length ? ` · Outside charset: ${other.join(", ")}` : "");
+}
+
+let lastCur = 0;
+function renderAll() {
+  thumbs.forEach((_, i) => updateThumb(i));
+  lastCur = cur;
+  renderCurrent();
+  renderStats();
+}
+function renderChange(changed) {
+  for (const i of new Set([...changed, lastCur, cur])) updateThumb(i);
+  lastCur = cur;
+  renderCurrent();
+  renderStats();
+}
+
+// ---- actions ----
+function go(i) {
+  if (!cands.length) return;
+  const prev = cur;
+  cur = Math.max(0, Math.min(cands.length - 1, i));
+  scheduleSave();
+  renderChange([prev]);
+}
+function setLabel(i, value) {  // value: string | null (skip) | undefined (clear)
+  const k = String(cands[i].id);
+  if (value === undefined) delete labels[k]; else labels[k] = value;
+}
+function labelAndAdvance(value) {
+  const i = cur;
+  setLabel(i, value);
+  if (cur < cands.length - 1) cur++;
+  scheduleSave();
+  renderChange([i]);
+}
+function clearAndBack() {
+  const i = cur;
+  setLabel(i, undefined);
+  if (cur > 0) cur--;
+  scheduleSave();
+  renderChange([i]);
+}
+function applySequence(text) {
+  const chars = Array.from(text.normalize("NFC")).filter((ch) => !/\s/.test(ch));
+  if (!chars.length || !cands.length) return;
+  const changed = [];
+  let i = cur;
+  for (const ch of chars) {
+    if (i >= cands.length) break;
+    setLabel(i, ch); changed.push(i); i++;
+  }
+  const applied = changed.length;
+  cur = Math.min(i, cands.length - 1);
+  scheduleSave();
+  renderChange(changed);
+  setStatus(`Applied ${applied} label(s)` + (applied < chars.length ? ` (${chars.length - applied} left over — ran out of candidates)` : ""));
+}
+
+$("prev").onclick = () => go(cur - 1);
+$("next").onclick = () => go(cur + 1);
+$("skip").onclick = () => labelAndAdvance(null);
+$("clear").onclick = () => clearAndBack();
+$("nextTodo").onclick = () => {
+  for (let k = 1; k <= cands.length; k++) {
+    const i = (cur + k) % cands.length;
+    const s = state(cands[i]);
+    if (s === "todo" || s === "pre") { go(i); return; }
+  }
+  setStatus("Nothing left to label.");
+};
+document.querySelectorAll("[data-accent]").forEach((b) => {
+  b.onclick = () => { if (cands.length) labelAndAdvance(b.dataset.accent); b.blur(); };
+});
+$("applySeq").onclick = () => { applySequence($("seq").value); $("seq").value = ""; $("seq").blur(); };
+$("seq").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.isComposing) { e.preventDefault(); $("applySeq").click(); }
+  else if (e.key === "Escape") $("seq").blur();
+});
+$("acceptPre").onclick = () => {
+  const changed = [];
+  cands.forEach((c, i) => { if (state(c) === "pre") { setLabel(i, c.label); changed.push(i); } });
+  scheduleSave();
+  renderChange(changed);
+  setStatus(`Accepted ${changed.length} pre-filled label(s).`);
+};
+$("download").onclick = () => {
+  const out = {};
+  for (const c of cands) {
+    const k = String(c.id);
+    if (Object.prototype.hasOwnProperty.call(labels, k)) out[k] = labels[k];
+  }
+  const blob = new Blob([JSON.stringify({ version: 1, labels: out }, null, 2) + "\n"], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "labels.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+};
+
+// ---- keyboard ----
+document.addEventListener("keydown", (e) => {
+  if (!cands.length) return;
+  const t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+  if (e.ctrlKey || e.metaKey || e.isComposing) return;
+  const key = e.key;
+  if (key === "ArrowLeft") { e.preventDefault(); go(cur - 1); return; }
+  if (key === "ArrowRight") { e.preventDefault(); go(cur + 1); return; }
+  if (key === "Backspace") { e.preventDefault(); clearAndBack(); return; }
+  if (key === " " || key === "Delete") { e.preventDefault(); labelAndAdvance(null); return; }
+  if (key === "Enter") {
+    e.preventDefault();
+    const c = cands[cur];
+    if (state(c) === "pre") labelAndAdvance(c.label); else go(cur + 1);
+    return;
+  }
+  const ch = key.normalize("NFC");
+  if (Array.from(ch).length === 1 && !/\p{C}/u.test(ch)) {
+    e.preventDefault();
+    labelAndAdvance(ch);
+  }
+});
+</script>
+</body>
+</html>

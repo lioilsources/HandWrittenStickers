@@ -1,0 +1,200 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint"
+    },
+    "inputs": {
+      "ckpt_name": "sd_xl_base_1.0.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Guide"
+    },
+    "inputs": {
+      "image": "guide_strip.png"
+    }
+  },
+  "3": {
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Scale"
+    },
+    "inputs": {
+      "image": [
+        "2",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1536,
+      "height": 768,
+      "crop": "disabled"
+    }
+  },
+  "4": {
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "Encode"
+    },
+    "inputs": {
+      "pixels": [
+        "3",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive"
+    },
+    "inputs": {
+      "text": "",
+      "clip": [
+        "1",
+        1
+      ]
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative"
+    },
+    "inputs": {
+      "text": "",
+      "clip": [
+        "1",
+        1
+      ]
+    }
+  },
+  "7": {
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet Model"
+    },
+    "inputs": {
+      "control_net_name": "controlnet-union-sdxl-promax-xinsir.safetensors"
+    }
+  },
+  "8": {
+    "class_type": "Canny",
+    "_meta": {
+      "title": "Canny"
+    },
+    "inputs": {
+      "image": [
+        "3",
+        0
+      ],
+      "low_threshold": 0.4,
+      "high_threshold": 0.8
+    }
+  },
+  "9": {
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet"
+    },
+    "inputs": {
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "control_net": [
+        "13",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ],
+      "strength": 0.75,
+      "start_percent": 0.0,
+      "end_percent": 1.0
+    }
+  },
+  "10": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "Sampler"
+    },
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "seed": 1,
+      "steps": 30,
+      "cfg": 6.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": [
+        "9",
+        1
+      ],
+      "latent_image": [
+        "4",
+        0
+      ],
+      "denoise": 0.65
+    }
+  },
+  "11": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "Decode"
+    },
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    }
+  },
+  "12": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save"
+    },
+    "inputs": {
+      "images": [
+        "11",
+        0
+      ],
+      "filename_prefix": "sheets/material"
+    }
+  },
+  "13": {
+    "class_type": "SetUnionControlNetType",
+    "_meta": {
+      "title": "ControlNet Type"
+    },
+    "inputs": {
+      "control_net": [
+        "7",
+        0
+      ],
+      "type": "canny/lineart/anime_lineart/mlsd"
+    }
+  }
+}

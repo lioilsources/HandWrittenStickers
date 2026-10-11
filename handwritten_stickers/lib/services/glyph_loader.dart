@@ -5,12 +5,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../models/glyph.dart';
+import 'text_normalizer.dart';
 
 /// Service for loading and caching glyphs of one glyph sheet from assets.
 ///
 /// A sheet directory contains `glyphs.json` (manifest) and one PNG per
-/// character. Manifest version 2 additionally carries per-glyph metrics,
-/// see [GlyphMetrics].
+/// character. Manifest version 2 adds per-glyph metrics ([GlyphMetrics]);
+/// version 3 allows several variants per character (`"a": ["a.png",
+/// "a_1.png"]`, metrics likewise as a list), `compose` rules for accented
+/// letters, a `fallback` sheet and `colored` glyphs.
 class GlyphLoader {
   static const String defaultSheetPath = 'assets/glyphs/laurinka/';
   static const String _manifestFile = 'glyphs.json';
@@ -19,20 +22,35 @@ class GlyphLoader {
   static const double _defaultCellHeightMM = 26.2;
   static const int _defaultDpi = 300;
   static const double _defaultBaselineRatio = 0.75;
+  static const double _defaultEmRatio = 0.62;
 
   /// Asset directory of this sheet, with trailing `/`.
   final String sheetPath;
 
   final Map<String, Glyph> _cache = {};
-  Map<String, String>? _glyphsMap;
-  Map<String, GlyphMetrics> _metrics = {};
+  Map<String, List<String>>? _files;
+  Map<String, List<GlyphMetrics>> _metrics = {};
+  Map<String, List<String>> _compose = {};
+  bool _colored = false;
+  String? _fallbackId;
   bool _initialized = false;
 
   double _cellHeightPx = _defaultCellHeightMM / 25.4 * _defaultDpi;
   double _baselineRatio = _defaultBaselineRatio;
+  double? _emHeightPx;
 
-  GlyphLoader({this.sheetPath = defaultSheetPath})
-      : assert(sheetPath.endsWith('/'), 'sheetPath must end with /');
+  /// Sheet used for characters this sheet lacks (manifest `fallback`),
+  /// wired up by whoever owns the loaders once both are initialised.
+  GlyphLoader? fallbackLoader;
+
+  /// Asset bundle to read from; [rootBundle] unless injected (tests).
+  final AssetBundle? _bundle;
+
+  GlyphLoader({this.sheetPath = defaultSheetPath, AssetBundle? bundle})
+    : _bundle = bundle,
+      assert(sheetPath.endsWith('/'), 'sheetPath must end with /');
+
+  AssetBundle get _assets => _bundle ?? rootBundle;
 
   /// Height of one template cell in source pixels. All glyphs of a sheet are
   /// scaled uniformly by `targetCellHeight / cellHeightPx`.
@@ -41,10 +59,26 @@ class GlyphLoader {
   /// Where the baseline sits inside a cell (fraction from the top).
   double get baselineRatio => _baselineRatio;
 
+  /// Nominal em size in source pixels (manifest `emHeight`).
+  double get emHeightPx => _emHeightPx ?? _cellHeightPx * _defaultEmRatio;
+
   /// True when the sheet manifest carries per-glyph metrics.
   bool get hasMetrics => _metrics.isNotEmpty;
 
+  /// Glyphs carry their own colours and must not be tinted.
+  bool get isColored => _colored;
+
+  /// Id of the sheet to use for missing characters, if any.
+  String? get fallbackId => _fallbackId;
+
   bool get isInitialized => _initialized;
+
+  /// Manifest values may be a single item (v1/v2) or a list (v3 variants).
+  static List<T> _oneOrMany<T>(Object? value, T Function(Object?) convert) {
+    if (value is List) return value.map(convert).toList();
+    if (value == null) return const [];
+    return [convert(value)];
+  }
 
   /// Initialize the loader by reading the glyphs manifest
   Future<void> initialize() async {
@@ -52,52 +86,79 @@ class GlyphLoader {
 
     try {
       final manifestPath = '$sheetPath$_manifestFile';
-      final jsonString = await rootBundle.loadString(manifestPath);
+      final jsonString = await _assets.loadString(manifestPath);
       final Map<String, dynamic> manifest = json.decode(jsonString);
 
-      _glyphsMap = Map<String, String>.from(manifest['glyphs'] as Map);
+      _files = (manifest['glyphs'] as Map<String, dynamic>).map(
+        (k, v) => MapEntry(k, _oneOrMany(v, (e) => e as String)),
+      );
 
       final cellSize = manifest['cellSize'] as Map<String, dynamic>?;
       final cellHeightMM =
           (cellSize?['height'] as num?)?.toDouble() ?? _defaultCellHeightMM;
       final dpi = (manifest['dpi'] as num?)?.toInt() ?? _defaultDpi;
       _cellHeightPx = cellHeightMM / 25.4 * dpi;
-      _baselineRatio = (manifest['baselineRatio'] as num?)?.toDouble() ??
+      _baselineRatio =
+          (manifest['baselineRatio'] as num?)?.toDouble() ??
           _defaultBaselineRatio;
+      _emHeightPx = (manifest['emHeight'] as num?)?.toDouble();
+      _colored = (manifest['colored'] as bool?) ?? false;
+      _fallbackId = manifest['fallback'] as String?;
 
       final metrics = manifest['metrics'] as Map<String, dynamic>?;
       if (metrics != null) {
         _metrics = metrics.map(
-          (k, v) =>
-              MapEntry(k, GlyphMetrics.fromJson(v as Map<String, dynamic>)),
+          (k, v) => MapEntry(
+            k,
+            _oneOrMany(
+              v,
+              (e) => GlyphMetrics.fromJson(e as Map<String, dynamic>),
+            ),
+          ),
+        );
+      }
+      final compose = manifest['compose'] as Map<String, dynamic>?;
+      if (compose != null) {
+        _compose = compose.map(
+          (k, v) => MapEntry(k, List<String>.from(v as List)),
         );
       }
       _initialized = true;
-      debugPrint('GlyphLoader: $sheetPath loaded ${_glyphsMap!.length} '
-          'glyphs, metrics: ${_metrics.length}');
+      debugPrint(
+        'GlyphLoader: $sheetPath loaded ${_files!.length} '
+        'glyphs, metrics: ${_metrics.length}',
+      );
     } catch (e) {
       // If manifest doesn't exist, we'll try direct filename mapping
       debugPrint('GlyphLoader: error loading manifest from $sheetPath: $e');
-      _glyphsMap = {};
+      _files = {};
       _initialized = true;
     }
   }
 
-  /// Get a glyph for the given character
-  Future<Glyph?> getGlyph(String char) async {
+  /// Number of variants of [char] (0 when the sheet lacks it).
+  int variantCount(String char) => _files?[char]?.length ?? 0;
+
+  /// Get variant [variant] of the glyph for [char].
+  Future<Glyph?> getGlyph(String char, {int variant = 0}) async {
     if (!_initialized) {
       await initialize();
     }
 
-    // Check cache first
-    if (_cache.containsKey(char)) {
-      return _cache[char];
+    final files = _files?[char];
+    if (files != null && files.isNotEmpty) {
+      variant %= files.length;
+    } else {
+      variant = 0;
     }
+    final cacheKey = variant == 0 ? char : '$char#$variant';
+    final cached = _cache[cacheKey];
+    if (cached != null) return cached;
 
     // Determine filename
-    String filename;
-    if (_glyphsMap != null && _glyphsMap!.containsKey(char)) {
-      filename = _glyphsMap![char]!;
+    final String filename;
+    if (files != null && files.isNotEmpty) {
+      filename = files[variant];
     } else {
       // Fallback: use character as filename (with safe conversion)
       filename = '${_charToFilename(char)}.png';
@@ -108,47 +169,61 @@ class GlyphLoader {
       final image = await _loadImage('$sheetPath$filename');
       if (image == null) return null;
 
+      final metrics = _metrics[char];
       final glyph = Glyph(
         char: char,
         image: image,
         width: image.width,
         height: image.height,
-        metrics: _metrics[char],
+        metrics: metrics != null && variant < metrics.length
+            ? metrics[variant]
+            : null,
+        colored: _colored,
       );
 
-      _cache[char] = glyph;
+      _cache[cacheKey] = glyph;
       return glyph;
     } catch (e) {
       return null;
     }
   }
 
-  /// Preload all glyphs for faster rendering
+  /// How to build [char] from other glyphs of this sheet: `[base, accent]`.
+  ///
+  /// Uses the manifest `compose` rule, else the standard decomposition when
+  /// the sheet has an accent glyph (`caron`, `acute`, `ring`, `tilde`) and
+  /// the base letter. Only sheets with metrics can place accents.
+  List<String>? composeParts(String char) {
+    if (!hasMetrics) return null;
+    final rule = _compose[char];
+    if (rule != null && rule.length == 2) return rule;
+    final parts = TextNormalizer.decompose(char);
+    if (parts == null || !hasGlyph(parts[1])) return null;
+    var base = parts[0];
+    if (!hasGlyph(base) && base == 'ı') base = 'i';
+    return hasGlyph(base) ? [base, parts[1]] : null;
+  }
+
+  /// Preload all glyphs (every variant) for faster rendering
   Future<void> preloadAll() async {
     if (!_initialized) {
       await initialize();
     }
 
-    if (_glyphsMap == null) return;
-
-    for (final char in _glyphsMap!.keys) {
-      await getGlyph(char);
+    for (final entry in (_files ?? const <String, List<String>>{}).entries) {
+      for (var v = 0; v < entry.value.length; v++) {
+        await getGlyph(entry.key, variant: v);
+      }
     }
   }
 
   /// Get all available characters
-  Set<String> get availableCharacters {
-    if (_glyphsMap != null) {
-      return _glyphsMap!.keys.toSet();
-    }
-    return {};
-  }
+  Set<String> get availableCharacters => _files?.keys.toSet() ?? {};
 
   /// Check if a character is available
   bool hasGlyph(String char) {
     if (_cache.containsKey(char)) return true;
-    if (_glyphsMap != null) return _glyphsMap!.containsKey(char);
-    return false;
+    return _files?.containsKey(char) ?? false;
   }
 
   /// Clear the cache
@@ -159,7 +234,7 @@ class GlyphLoader {
   /// Load a ui.Image from assets
   Future<ui.Image?> _loadImage(String path) async {
     try {
-      final data = await rootBundle.load(path);
+      final data = await _assets.load(path);
       final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
       final frame = await codec.getNextFrame();
       return frame.image;

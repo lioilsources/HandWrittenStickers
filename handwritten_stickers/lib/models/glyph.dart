@@ -2,7 +2,7 @@ import 'dart:ui' as ui;
 
 /// Typographic metrics of a trimmed glyph image, in source-sheet pixels.
 ///
-/// Produced by `glyph_extractor fontset` (manifest version 2). Sheets without
+/// Produced by `glyph_extractor` (manifest version 2+). Sheets without
 /// metrics (version 1, untrimmed cell scans) are laid out cell-by-cell.
 class GlyphMetrics {
   /// Distance from the top edge of the image down to the baseline.
@@ -41,12 +41,17 @@ class Glyph {
   /// Baseline / advance information, or null for untrimmed cell scans.
   final GlyphMetrics? metrics;
 
+  /// The glyph carries its own colours (material letters) and must not be
+  /// tinted with the ink colour.
+  final bool colored;
+
   const Glyph({
     required this.char,
     required this.image,
     required this.width,
     required this.height,
     this.metrics,
+    this.colored = false,
   });
 
   bool get hasMetrics => metrics != null;
