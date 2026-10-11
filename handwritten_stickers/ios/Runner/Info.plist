@@ -28,8 +28,12 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera is used only if you choose to take a photo of a handwriting template.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app saves your handwritten text images to the photo library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photos are read only when you pick a picture of a handwriting template to align.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
