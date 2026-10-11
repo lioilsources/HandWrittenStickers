@@ -8,7 +8,7 @@
 PRODUCT_NAME = handwritten_stickers
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.handwritten.handwrittenStickers
+PRODUCT_BUNDLE_IDENTIFIER = com.ol1n.handwrittenStickers
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.handwritten. All rights reserved.

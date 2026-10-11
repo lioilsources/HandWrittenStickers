@@ -1,0 +1,205 @@
+{
+ "version": 1,
+ "emoji": [
+  {
+   "emoji": "❤",
+   "name": "Srdce",
+   "file": "2764.webp"
+  },
+  {
+   "emoji": "😂",
+   "name": "Smích",
+   "file": "1f602.webp"
+  },
+  {
+   "emoji": "😊",
+   "name": "Úsměv",
+   "file": "1f60a.webp"
+  },
+  {
+   "emoji": "😠",
+   "name": "Zlobím se",
+   "file": "1f620.webp"
+  },
+  {
+   "emoji": "😨",
+   "name": "Lekl jsem se",
+   "file": "1f628.webp"
+  },
+  {
+   "emoji": "👍",
+   "name": "Palec",
+   "file": "1f44d.webp"
+  },
+  {
+   "emoji": "👋",
+   "name": "Ahoj",
+   "file": "1f44b.webp"
+  },
+  {
+   "emoji": "🔥",
+   "name": "Oheň",
+   "file": "1f525.webp"
+  },
+  {
+   "emoji": "⭐",
+   "name": "Hvězda",
+   "file": "2b50.webp"
+  },
+  {
+   "emoji": "🌈",
+   "name": "Duha",
+   "file": "1f308.webp"
+  },
+  {
+   "emoji": "☀",
+   "name": "Sluníčko",
+   "file": "2600.webp"
+  },
+  {
+   "emoji": "🌸",
+   "name": "Kytička",
+   "file": "1f338.webp"
+  },
+  {
+   "emoji": "🎂",
+   "name": "Dort",
+   "file": "1f382.webp"
+  },
+  {
+   "emoji": "🎁",
+   "name": "Dárek",
+   "file": "1f381.webp"
+  },
+  {
+   "emoji": "🎈",
+   "name": "Balónek",
+   "file": "1f388.webp"
+  },
+  {
+   "emoji": "💤",
+   "name": "Dobrou noc",
+   "file": "1f4a4.webp"
+  },
+  {
+   "emoji": "🐶",
+   "name": "Pejsek",
+   "file": "1f436.webp"
+  },
+  {
+   "emoji": "🐱",
+   "name": "Kočička",
+   "file": "1f431.webp"
+  },
+  {
+   "emoji": "🦊",
+   "name": "Liška",
+   "file": "1f98a.webp"
+  },
+  {
+   "emoji": "🐼",
+   "name": "Panda",
+   "file": "1f43c.webp"
+  },
+  {
+   "emoji": "🍕",
+   "name": "Pizza",
+   "file": "1f355.webp"
+  },
+  {
+   "emoji": "☕",
+   "name": "Kafíčko",
+   "file": "2615.webp"
+  },
+  {
+   "emoji": "👀",
+   "name": "Koukám",
+   "file": "1f440.webp"
+  },
+  {
+   "emoji": "🤝",
+   "name": "Dohoda",
+   "file": "1f91d.webp"
+  },
+  {
+   "emoji": "🏆",
+   "name": "Vítěz",
+   "file": "1f3c6.webp"
+  },
+  {
+   "emoji": "😍",
+   "name": "Zamilovaný",
+   "file": "1f60d.webp"
+  },
+  {
+   "emoji": "😘",
+   "name": "Pusa",
+   "file": "1f618.webp"
+  },
+  {
+   "emoji": "🥰",
+   "name": "Láska",
+   "file": "1f970.webp"
+  },
+  {
+   "emoji": "😢",
+   "name": "Smutný",
+   "file": "1f622.webp"
+  },
+  {
+   "emoji": "😭",
+   "name": "Pláč",
+   "file": "1f62d.webp"
+  },
+  {
+   "emoji": "😮",
+   "name": "Překvapení",
+   "file": "1f62e.webp"
+  },
+  {
+   "emoji": "😴",
+   "name": "Spánek",
+   "file": "1f634.webp"
+  },
+  {
+   "emoji": "🤔",
+   "name": "Přemýšlím",
+   "file": "1f914.webp"
+  },
+  {
+   "emoji": "😎",
+   "name": "Pohoda",
+   "file": "1f60e.webp"
+  },
+  {
+   "emoji": "🥳",
+   "name": "Oslava",
+   "file": "1f973.webp"
+  },
+  {
+   "emoji": "😜",
+   "name": "Legrace",
+   "file": "1f61c.webp"
+  },
+  {
+   "emoji": "😇",
+   "name": "Andílek",
+   "file": "1f607.webp"
+  },
+  {
+   "emoji": "👏",
+   "name": "Potlesk",
+   "file": "1f44f.webp"
+  },
+  {
+   "emoji": "💪",
+   "name": "Síla",
+   "file": "1f4aa.webp"
+  },
+  {
+   "emoji": "🎉",
+   "name": "Hurá",
+   "file": "1f389.webp"
+  }
+ ]
+}

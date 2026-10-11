@@ -1,0 +1,1251 @@
+{
+  "version": 3,
+  "id": "mat_plasticine",
+  "name": "Modelína",
+  "source": "material",
+  "cellSize": {
+    "width": 22.5,
+    "height": 26.2
+  },
+  "dpi": 300,
+  "emHeight": 192,
+  "baselineRatio": 0.75,
+  "colored": true,
+  "fallback": "caveat",
+  "glyphs": {
+    "!": "exclaim.png",
+    "\"": "doublequote.png",
+    "#": "hash.png",
+    "$": "dollar.png",
+    "%": "percent.png",
+    "&": "ampersand.png",
+    "'": "apostrophe.png",
+    "(": "lparen.png",
+    ")": "rparen.png",
+    "+": "plus.png",
+    ",": "comma.png",
+    "-": "hyphen.png",
+    ".": "dot.png",
+    "/": "slash.png",
+    "0": "0.png",
+    "1": "1.png",
+    "2": "2.png",
+    "3": "3.png",
+    "4": "4.png",
+    "5": "5.png",
+    "6": "6.png",
+    "7": "7.png",
+    "8": "8.png",
+    "9": "9.png",
+    ":": "colon.png",
+    ";": "semicolon.png",
+    "<": "less.png",
+    "=": "equals.png",
+    ">": "greater.png",
+    "?": "question.png",
+    "@": "at.png",
+    "A": "A.png",
+    "B": "B.png",
+    "C": "C.png",
+    "D": "D.png",
+    "E": "E.png",
+    "F": "F.png",
+    "G": "G.png",
+    "H": "H.png",
+    "I": "I.png",
+    "J": "J.png",
+    "K": "K.png",
+    "L": "L.png",
+    "M": "M.png",
+    "N": "N.png",
+    "O": "O.png",
+    "P": "P.png",
+    "Q": "Q.png",
+    "R": "R.png",
+    "S": "S.png",
+    "T": "T.png",
+    "U": "U.png",
+    "V": "V.png",
+    "W": "W.png",
+    "X": "X.png",
+    "Y": "Y.png",
+    "Z": "Z.png",
+    "[": "lbracket.png",
+    "\\": "backslash.png",
+    "]": "rbracket.png",
+    "^": "caret.png",
+    "_": "underscore.png",
+    "a": "a.png",
+    "b": "b.png",
+    "c": "c.png",
+    "d": "d.png",
+    "e": "e.png",
+    "f": "f.png",
+    "g": "g.png",
+    "h": "h.png",
+    "i": "i.png",
+    "j": "j.png",
+    "k": "k.png",
+    "l": "l.png",
+    "m": "m.png",
+    "n": "n.png",
+    "o": "o.png",
+    "p": "p.png",
+    "q": "q.png",
+    "r": "r.png",
+    "s": "s.png",
+    "t": "t.png",
+    "u": "u.png",
+    "v": "v.png",
+    "w": "w.png",
+    "x": "x.png",
+    "y": "y.png",
+    "z": "z.png",
+    "{": "lbrace.png",
+    "|": "pipe.png",
+    "}": "rbrace.png",
+    "~": "tilde.png",
+    "¡": "exclamdown.png",
+    "§": "section.png",
+    "©": "copyright.png",
+    "«": "guillemotleft.png",
+    "®": "registered.png",
+    "°": "degree.png",
+    "±": "plusminus.png",
+    "²": "twosuperior.png",
+    "³": "threesuperior.png",
+    "µ": "micro.png",
+    "¶": "pilcrow.png",
+    "¹": "onesuperior.png",
+    "»": "guillemotright.png",
+    "¼": "onequarter.png",
+    "½": "onehalf.png",
+    "¾": "threequarters.png",
+    "¿": "questiondown.png",
+    "Á": "A_acute.png",
+    "Æ": "AE.png",
+    "É": "E_acute.png",
+    "Í": "I_acute.png",
+    "Ñ": "N_tilde.png",
+    "Ó": "O_acute.png",
+    "×": "multiply.png",
+    "Ø": "O_stroke.png",
+    "Ú": "U_acute.png",
+    "Ý": "Y_acute.png",
+    "ß": "eszett.png",
+    "á": "a_acute.png",
+    "æ": "ae.png",
+    "é": "e_acute.png",
+    "í": "i_acute.png",
+    "ñ": "n_tilde.png",
+    "ó": "o_acute.png",
+    "÷": "divide.png",
+    "ø": "o_stroke.png",
+    "ú": "u_acute.png",
+    "ý": "y_acute.png",
+    "Č": "C_caron.png",
+    "č": "c_caron.png",
+    "Ď": "D_caron.png",
+    "ď": "d_caron.png",
+    "Ě": "E_caron.png",
+    "ě": "e_caron.png",
+    "Ň": "N_caron.png",
+    "ň": "n_caron.png",
+    "Ř": "R_caron.png",
+    "ř": "r_caron.png",
+    "Š": "S_caron.png",
+    "š": "s_caron.png",
+    "Ť": "T_caron.png",
+    "ť": "t_caron.png",
+    "Ů": "U_ring.png",
+    "ů": "u_ring.png",
+    "Ž": "Z_caron.png",
+    "ž": "z_caron.png",
+    "–": "endash.png",
+    "—": "emdash.png",
+    "‚": "quotelowsgl.png",
+    "”": "quoterightdbl.png",
+    "€": "euro.png",
+    "™": "trademark.png"
+  },
+  "metrics": {
+    "!": {
+      "w": 52,
+      "h": 157,
+      "baseline": 154,
+      "advance": 66,
+      "bearing": 7
+    },
+    "\"": {
+      "w": 62,
+      "h": 69,
+      "baseline": 165,
+      "advance": 76,
+      "bearing": 7
+    },
+    "#": {
+      "w": 131,
+      "h": 140,
+      "baseline": 141,
+      "advance": 145,
+      "bearing": 7
+    },
+    "$": {
+      "w": 94,
+      "h": 174,
+      "baseline": 159,
+      "advance": 108,
+      "bearing": 7
+    },
+    "%": {
+      "w": 153,
+      "h": 150,
+      "baseline": 150,
+      "advance": 167,
+      "bearing": 7
+    },
+    "&": {
+      "w": 131,
+      "h": 136,
+      "baseline": 139,
+      "advance": 145,
+      "bearing": 7
+    },
+    "'": {
+      "w": 29,
+      "h": 67,
+      "baseline": 163,
+      "advance": 43,
+      "bearing": 7
+    },
+    "(": {
+      "w": 95,
+      "h": 188,
+      "baseline": 166,
+      "advance": 109,
+      "bearing": 7
+    },
+    ")": {
+      "w": 94,
+      "h": 188,
+      "baseline": 166,
+      "advance": 108,
+      "bearing": 7
+    },
+    "+": {
+      "w": 109,
+      "h": 101,
+      "baseline": 116,
+      "advance": 123,
+      "bearing": 7
+    },
+    ",": {
+      "w": 41,
+      "h": 73,
+      "baseline": 31,
+      "advance": 55,
+      "bearing": 7
+    },
+    "-": {
+      "w": 84,
+      "h": 32,
+      "baseline": 71,
+      "advance": 98,
+      "bearing": 7
+    },
+    ".": {
+      "w": 33,
+      "h": 40,
+      "baseline": 38,
+      "advance": 47,
+      "bearing": 7
+    },
+    "/": {
+      "w": 81,
+      "h": 175,
+      "baseline": 159,
+      "advance": 95,
+      "bearing": 7
+    },
+    "0": {
+      "w": 92,
+      "h": 141,
+      "baseline": 143,
+      "advance": 106,
+      "bearing": 7
+    },
+    "1": {
+      "w": 48,
+      "h": 140,
+      "baseline": 140,
+      "advance": 62,
+      "bearing": 7
+    },
+    "2": {
+      "w": 101,
+      "h": 141,
+      "baseline": 140,
+      "advance": 115,
+      "bearing": 7
+    },
+    "3": {
+      "w": 102,
+      "h": 139,
+      "baseline": 139,
+      "advance": 116,
+      "bearing": 7
+    },
+    "4": {
+      "w": 92,
+      "h": 146,
+      "baseline": 141,
+      "advance": 106,
+      "bearing": 7
+    },
+    "5": {
+      "w": 112,
+      "h": 140,
+      "baseline": 139,
+      "advance": 126,
+      "bearing": 7
+    },
+    "6": {
+      "w": 94,
+      "h": 140,
+      "baseline": 138,
+      "advance": 108,
+      "bearing": 7
+    },
+    "7": {
+      "w": 81,
+      "h": 143,
+      "baseline": 140,
+      "advance": 95,
+      "bearing": 7
+    },
+    "8": {
+      "w": 100,
+      "h": 139,
+      "baseline": 139,
+      "advance": 114,
+      "bearing": 7
+    },
+    "9": {
+      "w": 81,
+      "h": 143,
+      "baseline": 140,
+      "advance": 95,
+      "bearing": 7
+    },
+    ":": {
+      "w": 40,
+      "h": 105,
+      "baseline": 102,
+      "advance": 54,
+      "bearing": 7
+    },
+    ";": {
+      "w": 50,
+      "h": 144,
+      "baseline": 102,
+      "advance": 64,
+      "bearing": 7
+    },
+    "<": {
+      "w": 93,
+      "h": 108,
+      "baseline": 116,
+      "advance": 107,
+      "bearing": 7
+    },
+    "=": {
+      "w": 106,
+      "h": 63,
+      "baseline": 94,
+      "advance": 120,
+      "bearing": 7
+    },
+    ">": {
+      "w": 94,
+      "h": 116,
+      "baseline": 123,
+      "advance": 108,
+      "bearing": 7
+    },
+    "?": {
+      "w": 75,
+      "h": 150,
+      "baseline": 150,
+      "advance": 89,
+      "bearing": 7
+    },
+    "@": {
+      "w": 180,
+      "h": 174,
+      "baseline": 143,
+      "advance": 194,
+      "bearing": 7
+    },
+    "A": {
+      "w": 104,
+      "h": 137,
+      "baseline": 135,
+      "advance": 118,
+      "bearing": 7
+    },
+    "B": {
+      "w": 107,
+      "h": 140,
+      "baseline": 135,
+      "advance": 121,
+      "bearing": 7
+    },
+    "C": {
+      "w": 100,
+      "h": 139,
+      "baseline": 138,
+      "advance": 114,
+      "bearing": 7
+    },
+    "D": {
+      "w": 110,
+      "h": 140,
+      "baseline": 138,
+      "advance": 124,
+      "bearing": 7
+    },
+    "E": {
+      "w": 106,
+      "h": 137,
+      "baseline": 135,
+      "advance": 120,
+      "bearing": 7
+    },
+    "F": {
+      "w": 104,
+      "h": 135,
+      "baseline": 136,
+      "advance": 118,
+      "bearing": 7
+    },
+    "G": {
+      "w": 101,
+      "h": 154,
+      "baseline": 136,
+      "advance": 115,
+      "bearing": 7
+    },
+    "H": {
+      "w": 108,
+      "h": 139,
+      "baseline": 137,
+      "advance": 122,
+      "bearing": 7
+    },
+    "I": {
+      "w": 47,
+      "h": 138,
+      "baseline": 138,
+      "advance": 61,
+      "bearing": 7
+    },
+    "J": {
+      "w": 95,
+      "h": 139,
+      "baseline": 136,
+      "advance": 109,
+      "bearing": 7
+    },
+    "K": {
+      "w": 101,
+      "h": 141,
+      "baseline": 139,
+      "advance": 115,
+      "bearing": 7
+    },
+    "L": {
+      "w": 86,
+      "h": 142,
+      "baseline": 140,
+      "advance": 100,
+      "bearing": 7
+    },
+    "M": {
+      "w": 135,
+      "h": 139,
+      "baseline": 138,
+      "advance": 149,
+      "bearing": 7
+    },
+    "N": {
+      "w": 112,
+      "h": 140,
+      "baseline": 140,
+      "advance": 126,
+      "bearing": 7
+    },
+    "O": {
+      "w": 109,
+      "h": 142,
+      "baseline": 139,
+      "advance": 123,
+      "bearing": 7
+    },
+    "P": {
+      "w": 106,
+      "h": 141,
+      "baseline": 143,
+      "advance": 120,
+      "bearing": 7
+    },
+    "Q": {
+      "w": 116,
+      "h": 174,
+      "baseline": 140,
+      "advance": 130,
+      "bearing": 7
+    },
+    "R": {
+      "w": 103,
+      "h": 139,
+      "baseline": 138,
+      "advance": 117,
+      "bearing": 7
+    },
+    "S": {
+      "w": 105,
+      "h": 142,
+      "baseline": 138,
+      "advance": 119,
+      "bearing": 7
+    },
+    "T": {
+      "w": 107,
+      "h": 137,
+      "baseline": 137,
+      "advance": 121,
+      "bearing": 7
+    },
+    "U": {
+      "w": 101,
+      "h": 141,
+      "baseline": 139,
+      "advance": 115,
+      "bearing": 7
+    },
+    "V": {
+      "w": 103,
+      "h": 139,
+      "baseline": 138,
+      "advance": 117,
+      "bearing": 7
+    },
+    "W": {
+      "w": 129,
+      "h": 142,
+      "baseline": 141,
+      "advance": 143,
+      "bearing": 7
+    },
+    "X": {
+      "w": 116,
+      "h": 140,
+      "baseline": 138,
+      "advance": 130,
+      "bearing": 7
+    },
+    "Y": {
+      "w": 101,
+      "h": 139,
+      "baseline": 138,
+      "advance": 115,
+      "bearing": 7
+    },
+    "Z": {
+      "w": 96,
+      "h": 138,
+      "baseline": 136,
+      "advance": 110,
+      "bearing": 7
+    },
+    "[": {
+      "w": 101,
+      "h": 170,
+      "baseline": 156,
+      "advance": 115,
+      "bearing": 7
+    },
+    "\\": {
+      "w": 82,
+      "h": 176,
+      "baseline": 164,
+      "advance": 96,
+      "bearing": 7
+    },
+    "]": {
+      "w": 92,
+      "h": 165,
+      "baseline": 150,
+      "advance": 106,
+      "bearing": 7
+    },
+    "^": {
+      "w": 82,
+      "h": 73,
+      "baseline": 164,
+      "advance": 96,
+      "bearing": 7
+    },
+    "_": {
+      "w": 111,
+      "h": 32,
+      "baseline": 23,
+      "advance": 125,
+      "bearing": 7
+    },
+    "a": {
+      "w": 86,
+      "h": 101,
+      "baseline": 98,
+      "advance": 100,
+      "bearing": 7
+    },
+    "b": {
+      "w": 97,
+      "h": 151,
+      "baseline": 148,
+      "advance": 111,
+      "bearing": 7
+    },
+    "c": {
+      "w": 79,
+      "h": 97,
+      "baseline": 96,
+      "advance": 93,
+      "bearing": 7
+    },
+    "d": {
+      "w": 99,
+      "h": 151,
+      "baseline": 148,
+      "advance": 113,
+      "bearing": 7
+    },
+    "e": {
+      "w": 86,
+      "h": 99,
+      "baseline": 96,
+      "advance": 100,
+      "bearing": 7
+    },
+    "f": {
+      "w": 94,
+      "h": 147,
+      "baseline": 146,
+      "advance": 108,
+      "bearing": 7
+    },
+    "g": {
+      "w": 87,
+      "h": 149,
+      "baseline": 97,
+      "advance": 101,
+      "bearing": 7
+    },
+    "h": {
+      "w": 97,
+      "h": 147,
+      "baseline": 146,
+      "advance": 111,
+      "bearing": 7
+    },
+    "i": {
+      "w": 52,
+      "h": 137,
+      "baseline": 134,
+      "advance": 66,
+      "bearing": 7
+    },
+    "j": {
+      "w": 105,
+      "h": 185,
+      "baseline": 133,
+      "advance": 119,
+      "bearing": 7
+    },
+    "k": {
+      "w": 93,
+      "h": 149,
+      "baseline": 149,
+      "advance": 107,
+      "bearing": 7
+    },
+    "l": {
+      "w": 48,
+      "h": 153,
+      "baseline": 151,
+      "advance": 62,
+      "bearing": 7
+    },
+    "m": {
+      "w": 145,
+      "h": 103,
+      "baseline": 101,
+      "advance": 159,
+      "bearing": 7
+    },
+    "n": {
+      "w": 98,
+      "h": 101,
+      "baseline": 100,
+      "advance": 112,
+      "bearing": 7
+    },
+    "o": {
+      "w": 79,
+      "h": 100,
+      "baseline": 98,
+      "advance": 93,
+      "bearing": 7
+    },
+    "p": {
+      "w": 102,
+      "h": 146,
+      "baseline": 100,
+      "advance": 116,
+      "bearing": 7
+    },
+    "q": {
+      "w": 86,
+      "h": 150,
+      "baseline": 99,
+      "advance": 100,
+      "bearing": 7
+    },
+    "r": {
+      "w": 71,
+      "h": 100,
+      "baseline": 100,
+      "advance": 85,
+      "bearing": 7
+    },
+    "s": {
+      "w": 84,
+      "h": 101,
+      "baseline": 99,
+      "advance": 98,
+      "bearing": 7
+    },
+    "t": {
+      "w": 86,
+      "h": 129,
+      "baseline": 127,
+      "advance": 100,
+      "bearing": 7
+    },
+    "u": {
+      "w": 90,
+      "h": 101,
+      "baseline": 99,
+      "advance": 104,
+      "bearing": 7
+    },
+    "v": {
+      "w": 81,
+      "h": 101,
+      "baseline": 99,
+      "advance": 95,
+      "bearing": 7
+    },
+    "w": {
+      "w": 129,
+      "h": 100,
+      "baseline": 100,
+      "advance": 143,
+      "bearing": 7
+    },
+    "x": {
+      "w": 93,
+      "h": 103,
+      "baseline": 101,
+      "advance": 107,
+      "bearing": 7
+    },
+    "y": {
+      "w": 100,
+      "h": 150,
+      "baseline": 99,
+      "advance": 114,
+      "bearing": 7
+    },
+    "z": {
+      "w": 84,
+      "h": 102,
+      "baseline": 100,
+      "advance": 98,
+      "bearing": 7
+    },
+    "{": {
+      "w": 89,
+      "h": 191,
+      "baseline": 172,
+      "advance": 103,
+      "bearing": 7
+    },
+    "|": {
+      "w": 57,
+      "h": 192,
+      "baseline": 161,
+      "advance": 71,
+      "bearing": 7
+    },
+    "}": {
+      "w": 90,
+      "h": 191,
+      "baseline": 172,
+      "advance": 104,
+      "bearing": 7
+    },
+    "~": {
+      "w": 92,
+      "h": 49,
+      "baseline": 83,
+      "advance": 106,
+      "bearing": 7
+    },
+    "¡": {
+      "w": 52,
+      "h": 155,
+      "baseline": 111,
+      "advance": 66,
+      "bearing": 7
+    },
+    "§": {
+      "w": 102,
+      "h": 178,
+      "baseline": 152,
+      "advance": 116,
+      "bearing": 7
+    },
+    "©": {
+      "w": 118,
+      "h": 117,
+      "baseline": 124,
+      "advance": 132,
+      "bearing": 7
+    },
+    "«": {
+      "w": 116,
+      "h": 77,
+      "baseline": 105,
+      "advance": 130,
+      "bearing": 7
+    },
+    "®": {
+      "w": 91,
+      "h": 89,
+      "baseline": 134,
+      "advance": 105,
+      "bearing": 7
+    },
+    "°": {
+      "w": 70,
+      "h": 74,
+      "baseline": 138,
+      "advance": 84,
+      "bearing": 7
+    },
+    "±": {
+      "w": 109,
+      "h": 120,
+      "baseline": 124,
+      "advance": 123,
+      "bearing": 7
+    },
+    "²": {
+      "w": 57,
+      "h": 73,
+      "baseline": 133,
+      "advance": 71,
+      "bearing": 7
+    },
+    "³": {
+      "w": 53,
+      "h": 70,
+      "baseline": 131,
+      "advance": 67,
+      "bearing": 7
+    },
+    "µ": {
+      "w": 116,
+      "h": 138,
+      "baseline": 98,
+      "advance": 130,
+      "bearing": 7
+    },
+    "¶": {
+      "w": 106,
+      "h": 149,
+      "baseline": 149,
+      "advance": 120,
+      "bearing": 7
+    },
+    "¹": {
+      "w": 27,
+      "h": 74,
+      "baseline": 133,
+      "advance": 41,
+      "bearing": 7
+    },
+    "»": {
+      "w": 112,
+      "h": 69,
+      "baseline": 97,
+      "advance": 126,
+      "bearing": 7
+    },
+    "¼": {
+      "w": 129,
+      "h": 168,
+      "baseline": 149,
+      "advance": 143,
+      "bearing": 7
+    },
+    "½": {
+      "w": 127,
+      "h": 158,
+      "baseline": 151,
+      "advance": 141,
+      "bearing": 7
+    },
+    "¾": {
+      "w": 148,
+      "h": 166,
+      "baseline": 147,
+      "advance": 162,
+      "bearing": 7
+    },
+    "¿": {
+      "w": 77,
+      "h": 152,
+      "baseline": 112,
+      "advance": 91,
+      "bearing": 7
+    },
+    "Á": {
+      "w": 105,
+      "h": 189,
+      "baseline": 187,
+      "advance": 119,
+      "bearing": 7
+    },
+    "Æ": {
+      "w": 170,
+      "h": 138,
+      "baseline": 136,
+      "advance": 184,
+      "bearing": 7
+    },
+    "É": {
+      "w": 107,
+      "h": 188,
+      "baseline": 186,
+      "advance": 121,
+      "bearing": 7
+    },
+    "Í": {
+      "w": 78,
+      "h": 189,
+      "baseline": 186,
+      "advance": 92,
+      "bearing": 7
+    },
+    "Ñ": {
+      "w": 110,
+      "h": 181,
+      "baseline": 182,
+      "advance": 124,
+      "bearing": 7
+    },
+    "Ó": {
+      "w": 122,
+      "h": 188,
+      "baseline": 187,
+      "advance": 136,
+      "bearing": 7
+    },
+    "×": {
+      "w": 90,
+      "h": 94,
+      "baseline": 109,
+      "advance": 104,
+      "bearing": 7
+    },
+    "Ø": {
+      "w": 119,
+      "h": 139,
+      "baseline": 137,
+      "advance": 133,
+      "bearing": 7
+    },
+    "Ú": {
+      "w": 101,
+      "h": 189,
+      "baseline": 188,
+      "advance": 115,
+      "bearing": 7
+    },
+    "Ý": {
+      "w": 100,
+      "h": 185,
+      "baseline": 184,
+      "advance": 114,
+      "bearing": 7
+    },
+    "ß": {
+      "w": 100,
+      "h": 136,
+      "baseline": 134,
+      "advance": 114,
+      "bearing": 7
+    },
+    "á": {
+      "w": 111,
+      "h": 147,
+      "baseline": 144,
+      "advance": 125,
+      "bearing": 7
+    },
+    "æ": {
+      "w": 139,
+      "h": 98,
+      "baseline": 97,
+      "advance": 153,
+      "bearing": 7
+    },
+    "é": {
+      "w": 91,
+      "h": 146,
+      "baseline": 143,
+      "advance": 105,
+      "bearing": 7
+    },
+    "í": {
+      "w": 72,
+      "h": 145,
+      "baseline": 144,
+      "advance": 86,
+      "bearing": 7
+    },
+    "ñ": {
+      "w": 97,
+      "h": 140,
+      "baseline": 138,
+      "advance": 111,
+      "bearing": 7
+    },
+    "ó": {
+      "w": 94,
+      "h": 145,
+      "baseline": 143,
+      "advance": 108,
+      "bearing": 7
+    },
+    "÷": {
+      "w": 120,
+      "h": 116,
+      "baseline": 119,
+      "advance": 134,
+      "bearing": 7
+    },
+    "ø": {
+      "w": 96,
+      "h": 99,
+      "baseline": 99,
+      "advance": 110,
+      "bearing": 7
+    },
+    "ú": {
+      "w": 97,
+      "h": 145,
+      "baseline": 143,
+      "advance": 111,
+      "bearing": 7
+    },
+    "ý": {
+      "w": 109,
+      "h": 194,
+      "baseline": 143,
+      "advance": 123,
+      "bearing": 7
+    },
+    "Č": {
+      "w": 113,
+      "h": 189,
+      "baseline": 184,
+      "advance": 127,
+      "bearing": 7
+    },
+    "č": {
+      "w": 89,
+      "h": 143,
+      "baseline": 140,
+      "advance": 103,
+      "bearing": 7
+    },
+    "Ď": {
+      "w": 111,
+      "h": 173,
+      "baseline": 172,
+      "advance": 125,
+      "bearing": 7
+    },
+    "ď": {
+      "w": 138,
+      "h": 151,
+      "baseline": 148,
+      "advance": 152,
+      "bearing": 7
+    },
+    "Ě": {
+      "w": 108,
+      "h": 184,
+      "baseline": 184,
+      "advance": 122,
+      "bearing": 7
+    },
+    "ě": {
+      "w": 87,
+      "h": 142,
+      "baseline": 141,
+      "advance": 101,
+      "bearing": 7
+    },
+    "Ň": {
+      "w": 111,
+      "h": 186,
+      "baseline": 184,
+      "advance": 125,
+      "bearing": 7
+    },
+    "ň": {
+      "w": 96,
+      "h": 142,
+      "baseline": 141,
+      "advance": 110,
+      "bearing": 7
+    },
+    "Ř": {
+      "w": 104,
+      "h": 187,
+      "baseline": 185,
+      "advance": 118,
+      "bearing": 7
+    },
+    "ř": {
+      "w": 72,
+      "h": 143,
+      "baseline": 141,
+      "advance": 86,
+      "bearing": 7
+    },
+    "Š": {
+      "w": 112,
+      "h": 188,
+      "baseline": 184,
+      "advance": 126,
+      "bearing": 7
+    },
+    "š": {
+      "w": 86,
+      "h": 143,
+      "baseline": 141,
+      "advance": 100,
+      "bearing": 7
+    },
+    "Ť": {
+      "w": 109,
+      "h": 184,
+      "baseline": 185,
+      "advance": 123,
+      "bearing": 7
+    },
+    "ť": {
+      "w": 106,
+      "h": 146,
+      "baseline": 144,
+      "advance": 120,
+      "bearing": 7
+    },
+    "Ů": {
+      "w": 102,
+      "h": 187,
+      "baseline": 186,
+      "advance": 116,
+      "bearing": 7
+    },
+    "ů": {
+      "w": 91,
+      "h": 147,
+      "baseline": 146,
+      "advance": 105,
+      "bearing": 7
+    },
+    "Ž": {
+      "w": 100,
+      "h": 187,
+      "baseline": 186,
+      "advance": 114,
+      "bearing": 7
+    },
+    "ž": {
+      "w": 86,
+      "h": 145,
+      "baseline": 143,
+      "advance": 100,
+      "bearing": 7
+    },
+    "–": {
+      "w": 133,
+      "h": 159,
+      "baseline": 197,
+      "advance": 147,
+      "bearing": 7
+    },
+    "—": {
+      "w": 168,
+      "h": 40,
+      "baseline": 80,
+      "advance": 182,
+      "bearing": 7
+    },
+    "‚": {
+      "w": 79,
+      "h": 218,
+      "baseline": 175,
+      "advance": 93,
+      "bearing": 7
+    },
+    "”": {
+      "w": 88,
+      "h": 72,
+      "baseline": 164,
+      "advance": 102,
+      "bearing": 7
+    },
+    "€": {
+      "w": 117,
+      "h": 138,
+      "baseline": 141,
+      "advance": 131,
+      "bearing": 7
+    },
+    "™": {
+      "w": 135,
+      "h": 208,
+      "baseline": 130,
+      "advance": 149,
+      "bearing": 7
+    }
+  }
+}

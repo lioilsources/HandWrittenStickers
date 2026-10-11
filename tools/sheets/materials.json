@@ -1,0 +1,93 @@
+{
+  "defaults": {
+    "checkpoint": "sd_xl_base_1.0",
+    "controlnet": "controlnet-union-sdxl-promax-xinsir",
+    "denoise": 0.95,
+    "controlnet_strength": 0.85,
+    "steps": 30,
+    "cfg": 6.5,
+    "negative": "text, words, letters merged, touching letters, extra letters, shadow, drop shadow, background texture, table, watermark, signature, frame, border",
+    "background": "#ffffff",
+    "bg_tolerance": 14,
+    "prompt_suffix": ", each letter isolated in its own square, centered, on plain pure white background, studio lighting, high detail, product photo"
+  },
+  "materials": [
+    {
+      "id": "plasticine",
+      "name": "Modelína",
+      "guide_font": "Kalam-Bold.ttf",
+      "prompt": "letters made of colorful plasticine clay, rolled modeling clay, visible fingerprints, soft rounded edges"
+    },
+    {
+      "id": "gingerbread",
+      "name": "Perník",
+      "guide_font": "Kalam-Bold.ttf",
+      "prompt": "letters shaped from gingerbread dough, each letter is itself a cut-out gingerbread cookie in the shape of the letter, baked golden brown, thin white royal icing line along the letter",
+      "negative_extra": "round cookie, disc, plate, circle, background cookie, candy cane, decorations, gingerbread man"
+    },
+    {
+      "id": "neon",
+      "name": "Neon",
+      "guide_font": "Kalam-Regular.ttf",
+      "prompt": "glowing neon tube letters, pink and cyan neon glass tubes, bright glow, turned on",
+      "bg_tolerance": 18
+    },
+    {
+      "id": "wood",
+      "name": "Dřevo",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "carved wooden letters, natural oak wood grain, 3d wooden blocks"
+    },
+    {
+      "id": "balloon",
+      "name": "Balónky",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "inflated shiny gold foil balloon letters, metallic reflections"
+    },
+    {
+      "id": "ice",
+      "name": "Led",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "letters carved from clear blue ice, frosty, snow on top"
+    },
+    {
+      "id": "moss",
+      "name": "Mech",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "letters made of green moss and tiny leaves, living plant letters"
+    },
+    {
+      "id": "chalk",
+      "name": "Křída",
+      "guide_font": "Kalam-Regular.ttf",
+      "prompt": "white chalk handwritten letters on a dark green chalkboard, chalk dust texture",
+      "prompt_suffix": ", each letter isolated in its own square, centered, flat dark green chalkboard background",
+      "background": "#23402f",
+      "bg_tolerance": 16
+    },
+    {
+      "id": "lego",
+      "name": "LEGO",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "letters built from colorful toy plastic bricks, studs on top, toy brick letters"
+    },
+    {
+      "id": "embroidery",
+      "name": "Výšivka",
+      "guide_font": "Kalam-Bold.ttf",
+      "prompt": "embroidered letters, colorful cotton thread satin stitch embroidery, stitched"
+    },
+    {
+      "id": "pebbles",
+      "name": "Kamínky",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "letters arranged from small smooth river pebbles, grey and beige stones"
+    },
+    {
+      "id": "pasta",
+      "name": "Těstoviny",
+      "guide_font": "BebasNeue-Regular.ttf",
+      "prompt": "letters made of dry pasta pieces, macaroni and penne, yellow durum pasta"
+    }
+  ]
+}

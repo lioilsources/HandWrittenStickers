@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../models/emoji_tag.dart';
 import '../models/glyph.dart';
 import '../models/glyph_sheet.dart';
 import '../models/style_params.dart';
 import '../services/glyph_loader.dart';
 import '../services/glyph_renderer.dart';
 import '../services/image_exporter.dart';
+import '../widgets/emoji_picker.dart';
+import '../widgets/emoji_sticker.dart';
 import '../widgets/handwritten_canvas.dart';
 import '../widgets/preset_selector.dart';
 import '../widgets/sheet_selector.dart';
@@ -33,6 +36,11 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   List<PositionedGlyph> _glyphs = [];
   bool _isLoading = true;
   bool _showAdvanced = false;
+  bool _exporting = false;
+
+  /// Animated emoji the message is tagged with (one per sticker).
+  EmojiIndex? _emojiIndex;
+  EmojiTag? _emoji;
 
   static const double _canvasWidth = 800;
   static const double _baseGlyphHeight = 30;
@@ -41,6 +49,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   void initState() {
     super.initState();
     _initializeSheets();
+    _loadEmoji();
     _textController.addListener(_onTextChanged);
   }
 
@@ -49,6 +58,40 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       sheet.id,
       () => GlyphLoader(sheetPath: sheet.path),
     );
+  }
+
+  /// Initialises the loader of [sheet] and the loader of its fallback sheet
+  /// (manifest `fallback`), if the index has it.
+  Future<GlyphLoader> _prepareLoader(
+    GlyphSheet sheet,
+    GlyphSheetIndex? index,
+  ) async {
+    final loader = _loaderFor(sheet);
+    await loader.initialize();
+    final fallbackId = loader.fallbackId;
+    final fallbackSheet = fallbackId == null ? null : index?.byId(fallbackId);
+    if (fallbackSheet != null && fallbackSheet != sheet) {
+      final fallback = _loaderFor(fallbackSheet);
+      await fallback.initialize();
+      loader.fallbackLoader = fallback;
+    }
+    return loader;
+  }
+
+  Future<void> _loadEmoji() async {
+    try {
+      final index = await EmojiIndex.load();
+      if (mounted) setState(() => _emojiIndex = index);
+    } catch (e) {
+      debugPrint('CanvasEditor: no emoji stickers ($e)');
+    }
+  }
+
+  Future<void> _pickEmoji() async {
+    final index = _emojiIndex;
+    if (index == null) return;
+    final tag = await showEmojiPicker(context, index: index, selected: _emoji);
+    if (mounted) setState(() => _emoji = tag);
   }
 
   Future<void> _initializeSheets() async {
@@ -73,8 +116,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       );
     }
     final sheet = index.defaultSheet;
-    final loader = _loaderFor(sheet);
-    await loader.initialize();
+    final loader = await _prepareLoader(sheet, index);
     if (!mounted) return;
     setState(() {
       _sheetIndex = index;
@@ -88,8 +130,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
   Future<void> _onSheetChanged(GlyphSheet sheet) async {
     if (sheet == _sheet) return;
-    final loader = _loaderFor(sheet);
-    await loader.initialize();
+    final loader = await _prepareLoader(sheet, _sheetIndex);
     if (!mounted) return;
     setState(() {
       _sheet = sheet;
@@ -152,13 +193,27 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     _updateGlyphs();
   }
 
+  /// Runs an export, showing progress (the animated GIF takes a moment).
+  Future<T?> _withExport<T>(Future<T> Function() run) async {
+    if (_exporting) return null;
+    setState(() => _exporting = true);
+    try {
+      return await run();
+    } finally {
+      if (mounted) setState(() => _exporting = false);
+    }
+  }
+
   Future<void> _exportImage() async {
-    final success = await ImageExporter.saveToGallery(
-      glyphs: _glyphs,
-      style: _styleParams,
+    final success = await _withExport(
+      () => ImageExporter.saveToGallery(
+        glyphs: _glyphs,
+        style: _styleParams,
+        emoji: _emoji,
+      ),
     );
 
-    if (!mounted) return;
+    if (!mounted || success == null) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -168,7 +223,13 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   Future<void> _shareImage() async {
-    await ImageExporter.shareImage(glyphs: _glyphs, style: _styleParams);
+    await _withExport(
+      () => ImageExporter.shareImage(
+        glyphs: _glyphs,
+        style: _styleParams,
+        emoji: _emoji,
+      ),
+    );
   }
 
   @override
@@ -177,14 +238,33 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       appBar: AppBar(
         title: const Text('Handwritten Text'),
         actions: [
+          if (_emojiIndex != null)
+            IconButton(
+              icon: Icon(
+                _emoji == null
+                    ? Icons.add_reaction_outlined
+                    : Icons.add_reaction,
+              ),
+              onPressed: _pickEmoji,
+              tooltip: 'Emoji ke zprávě',
+            ),
+          if (_exporting)
+            const Padding(
+              padding: EdgeInsets.all(12),
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+            ),
           IconButton(
             icon: const Icon(Icons.save_alt),
-            onPressed: _glyphs.isNotEmpty ? _exportImage : null,
+            onPressed: _glyphs.isNotEmpty && !_exporting ? _exportImage : null,
             tooltip: 'Save to Gallery',
           ),
           IconButton(
             icon: const Icon(Icons.share),
-            onPressed: _glyphs.isNotEmpty ? _shareImage : null,
+            onPressed: _glyphs.isNotEmpty && !_exporting ? _shareImage : null,
             tooltip: 'Share',
           ),
         ],
@@ -209,23 +289,43 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                           ),
                         ],
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: _glyphs.isEmpty
-                            ? const Center(
-                                child: Text(
-                                  'Type something below...',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 16,
-                                  ),
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: _glyphs.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                        'Type something below...',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    )
+                                  : InteractiveHandwrittenCanvas(
+                                      glyphs: _glyphs,
+                                      style: _styleParams,
+                                      backgroundColor: Colors.white,
+                                    ),
+                            ),
+                          ),
+                          // The tag rides along in the corner; tap to change.
+                          if (_emoji != null)
+                            Positioned(
+                              right: 12,
+                              bottom: 12,
+                              child: GestureDetector(
+                                onTap: _pickEmoji,
+                                child: AnimatedEmojiSticker(
+                                  key: const ValueKey('emoji-badge'),
+                                  tag: _emoji!,
+                                  size: 72,
                                 ),
-                              )
-                            : InteractiveHandwrittenCanvas(
-                                glyphs: _glyphs,
-                                style: _styleParams,
-                                backgroundColor: Colors.white,
                               ),
+                            ),
+                        ],
                       ),
                     ),
                   ),

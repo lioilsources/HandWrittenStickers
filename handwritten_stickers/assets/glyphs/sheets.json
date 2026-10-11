@@ -799,6 +799,93 @@
       "path": "assets/glyphs/wellfleet/",
       "source": "font",
       "category": "typography"
+    },
+    {
+      "id": "kid_bubble_peach",
+      "name": "Bublinky broskev",
+      "path": "assets/glyphs/kid_bubble_peach/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_bubble_mint",
+      "name": "Bublinky máta",
+      "path": "assets/glyphs/kid_bubble_mint/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_bubble_lavender",
+      "name": "Bublinky levandule",
+      "path": "assets/glyphs/kid_bubble_lavender/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_bubble_lemon",
+      "name": "Bublinky citron",
+      "path": "assets/glyphs/kid_bubble_lemon/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_bubble_sky",
+      "name": "Bublinky nebe",
+      "path": "assets/glyphs/kid_bubble_sky/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_bubble_italic",
+      "name": "Bublinky kurzíva",
+      "path": "assets/glyphs/kid_bubble_italic/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_dynapuff",
+      "name": "DynaPuff",
+      "path": "assets/glyphs/kid_dynapuff/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_grandstander",
+      "name": "Grandstander",
+      "path": "assets/glyphs/kid_grandstander/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "kid_baloo",
+      "name": "Baloo 2",
+      "path": "assets/glyphs/kid_baloo/",
+      "source": "font",
+      "category": "kids"
+    },
+    {
+      "id": "mat_plasticine",
+      "name": "Modelína",
+      "path": "assets/glyphs/mat_plasticine/",
+      "source": "material",
+      "category": "material",
+      "bundle": false
+    },
+    {
+      "id": "mat_neon",
+      "name": "Neon",
+      "path": "assets/glyphs/mat_neon/",
+      "source": "material",
+      "category": "material",
+      "bundle": false
+    },
+    {
+      "id": "mat_gingerbread",
+      "name": "Perník",
+      "path": "assets/glyphs/mat_gingerbread/",
+      "source": "material",
+      "category": "material",
+      "bundle": false
     }
   ]
 }

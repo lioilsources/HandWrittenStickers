@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"flag"
 	"fmt"
 	"image"
 	"image/jpeg"
@@ -27,199 +26,76 @@ type CellSize struct {
 }
 
 func main() {
-	// Check for template command first
-	if len(os.Args) > 1 && os.Args[1] == "template" {
-		outputPath := "template.pdf"
-		if len(os.Args) > 2 {
-			outputPath = os.Args[2]
-		}
-		fmt.Printf("Generating template: %s\n", outputPath)
-		if err := generateTemplate(outputPath); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-			os.Exit(1)
-		}
-		fmt.Println("Done!")
-		return
+	if len(os.Args) < 2 {
+		printUsage()
+		os.Exit(1)
 	}
-
-	// Check for reprocess command — applies transparency to existing glyph PNGs
-	if len(os.Args) > 1 && os.Args[1] == "reprocess" {
+	var err error
+	switch os.Args[1] {
+	case "template":
+		err = runTemplate(os.Args[2:])
+	case "reprocess":
+		// Applies transparency to existing glyph PNGs
 		if len(os.Args) < 3 {
 			fmt.Println("Usage: glyph_extractor reprocess <glyphs_dir> [threshold]")
 			os.Exit(1)
 		}
-		dir := os.Args[2]
 		thresh := 200
 		if len(os.Args) > 3 {
 			fmt.Sscanf(os.Args[3], "%d", &thresh)
 		}
-		if err := reprocessGlyphs(dir, uint8(thresh)); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-			os.Exit(1)
-		}
-		return
-	}
-
-	// Check for fontset command — rasterise a TTF/OTF font into a glyph sheet
-	if len(os.Args) > 1 && os.Args[1] == "fontset" {
-		if err := runFontSet(os.Args[2:]); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-			os.Exit(1)
-		}
-		return
-	}
-
-	// Check for rename command
-	if len(os.Args) > 1 && os.Args[1] == "rename" {
+		err = reprocessGlyphs(os.Args[2], uint8(thresh))
+	case "fontset":
+		err = runFontSet(os.Args[2:])
+	case "rename":
 		if len(os.Args) < 3 {
 			fmt.Println("Usage: glyph_extractor rename <glyphs_dir>")
 			os.Exit(1)
 		}
-		if err := renameGlyphs(os.Args[2]); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-			os.Exit(1)
-		}
+		err = renameGlyphs(os.Args[2])
+	case "upgrade":
+		err = runUpgrade(os.Args[2:])
+	case "segment":
+		err = runSegment(os.Args[2:])
+	case "assemble":
+		err = runAssemble(os.Args[2:])
+	case "preview":
+		err = runPreview(os.Args[2:])
+	case "extract":
+		err = runExtract(os.Args[2:])
+	case "-h", "-help", "--help", "help":
+		printUsage()
 		return
+	default:
+		// Historical form: glyph_extractor --input page1.png,page2.png …
+		err = runExtract(os.Args[1:])
 	}
-
-	// Parse command line arguments
-	var inputFiles string
-	var outputDir string
-	var dpi int
-	var marginTop float64
-	var marginLeft float64
-	var threshold int
-	var transparent bool
-
-	flag.StringVar(&inputFiles, "input", "", "Input image files (comma-separated, e.g., page1.png,page2.png)")
-	flag.StringVar(&outputDir, "output", "./output", "Output directory")
-	flag.IntVar(&dpi, "dpi", 300, "Scanner DPI")
-	flag.Float64Var(&marginTop, "margin-top", 15.0, "Top margin in mm")
-	flag.Float64Var(&marginLeft, "margin-left", 15.0, "Left margin in mm")
-	flag.IntVar(&threshold, "threshold", 160, "White threshold (0-255)")
-	flag.BoolVar(&transparent, "transparent", true, "Make background transparent")
-	flag.Parse()
-
-	if inputFiles == "" {
-		fmt.Println("Usage:")
-		fmt.Println("  glyph_extractor template [output.pdf]     - Generate template PDF")
-		fmt.Println("  glyph_extractor fontset --font F.ttf --output DIR --id ID --name NAME")
-		fmt.Println("                                           - Rasterise a font into a glyph sheet (see fontset -h)")
-		fmt.Println("  glyph_extractor reprocess <glyphs_dir> [threshold]")
-		fmt.Println("  glyph_extractor rename <glyphs_dir>")
-		fmt.Println("  glyph_extractor --input page1.png,page2.png [options]")
-		fmt.Println("\nOptions:")
-		flag.PrintDefaults()
-		os.Exit(1)
-	}
-
-	// Split input files
-	files := strings.Split(inputFiles, ",")
-	for i := range files {
-		files[i] = strings.TrimSpace(files[i])
-	}
-
-	// Create config
-	config := GridConfig{
-		CellWidthMM:  22.5,
-		CellHeightMM: 26.2,
-		Columns:      8,
-		Rows:         10,
-		DPI:          dpi,
-		MarginTopMM:  marginTop,
-		MarginLeftMM: marginLeft,
-	}
-
-	// Create output directories
-	glyphsDir := filepath.Join(outputDir, "glyphs")
-	if err := os.MkdirAll(glyphsDir, 0755); err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating output directory: %v\n", err)
-		os.Exit(1)
-	}
-
-	// Process images
-	glyphsMap := make(map[string]string)
-	charIndex := 0
-
-	for pageIndex, inputFile := range files {
-		fmt.Printf("Processing page %d: %s\n", pageIndex+1, inputFile)
-
-		img, err := loadImage(inputFile)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error loading image %s: %v\n", inputFile, err)
-			os.Exit(1)
-		}
-
-		fmt.Printf("  Image size: %dx%d pixels\n", img.Bounds().Dx(), img.Bounds().Dy())
-		fmt.Printf("  Cell size: %dx%d pixels\n", config.CellWidthPx(), config.CellHeightPx())
-
-		// Extract cells
-		for row := 0; row < config.Rows; row++ {
-			for col := 0; col < config.Columns; col++ {
-				if charIndex >= len(Charset) {
-					fmt.Printf("  Warning: More cells than characters in charset\n")
-					break
-				}
-
-				char := Charset[charIndex]
-				charIndex++
-
-				// Extract cell
-				cell := config.ExtractCell(img, row, col)
-
-				// Trim whitespace
-				trimmed, _ := TrimWhitespace(cell, uint8(threshold))
-
-				// Make transparent if requested
-				var finalImg image.Image
-				if transparent {
-					finalImg = MakeTransparent(trimmed, uint8(threshold))
-				} else {
-					finalImg = trimmed
-				}
-
-				// Generate filename
-				filename := CharToFilename(char) + ".png"
-				filepath := filepath.Join(glyphsDir, filename)
-
-				// Save image
-				if err := savePNG(finalImg, filepath); err != nil {
-					fmt.Fprintf(os.Stderr, "Error saving %s: %v\n", filepath, err)
-					continue
-				}
-
-				// Add to map
-				glyphsMap[string(char)] = filename
-
-				fmt.Printf("  [%d,%d] '%c' -> %s\n", row, col, char, filename)
-			}
-		}
-	}
-
-	// Generate glyphs.json
-	glyphsJSON := GlyphsJSON{
-		Version: 1,
-		CellSize: CellSize{
-			Width:  config.CellWidthMM,
-			Height: config.CellHeightMM,
-		},
-		Glyphs: glyphsMap,
-	}
-
-	jsonPath := filepath.Join(outputDir, "glyphs.json")
-	jsonData, err := json.MarshalIndent(glyphsJSON, "", "  ")
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating JSON: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
+}
 
-	if err := os.WriteFile(jsonPath, jsonData, 0644); err != nil {
-		fmt.Fprintf(os.Stderr, "Error writing JSON: %v\n", err)
-		os.Exit(1)
-	}
+func printUsage() {
+	fmt.Println(`Usage:
+  glyph_extractor template [out.pdf]                     Template PDF to fill in by hand
+  glyph_extractor template -guide F.ttf -out p1.png,p2.png [-mask grid_mask.png]
+                                                         Guide sheets for img2img material letters
+  glyph_extractor template -pangram out.pdf              Lined sheet with grey text to trace (free-form handwriting)
+  glyph_extractor [extract] -input p1.png,p2.png -output DIR [-bg-mode lightness|chroma|alpha] [-cap-ratio 0.7]
+                                                         Extract a template scan into a v2 sheet with metrics
+  glyph_extractor upgrade <v1_sheet_dir> [-output DIR]   Trim a v1 cell sheet and add metrics
+  glyph_extractor segment -input page.png -output DIR [-labels "line 1\nline 2"]
+                                                         Cut free-form writing into candidates.json
+  glyph_extractor assemble DIR/candidates.json [-labels labels.json] -output SHEET
+                                                         Build a v3 sheet (variants) from labelled candidates
+  glyph_extractor preview <sheet_dir> [-out preview.png]  Contact sheet + sample text rendered with metrics
+  glyph_extractor fontset -font F.ttf -output DIR -id ID -name NAME
+  glyph_extractor fontset -font F.ttf -check
+  glyph_extractor reprocess <glyphs_dir> [threshold]
+  glyph_extractor rename <glyphs_dir>
 
-	fmt.Printf("\nDone! Extracted %d glyphs to %s\n", len(glyphsMap), outputDir)
-	fmt.Printf("JSON manifest: %s\n", jsonPath)
+Run a command with -h for its flags.`)
 }
 
 // loadImage loads an image from file (supports PNG and JPEG)

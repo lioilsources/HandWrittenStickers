@@ -1,3 +1,12 @@
 .DS_Store
 # compiled Go CLI
 glyph_extractor/glyph_extractor
+
+# local secrets for tools
+tools/**/.env
+tools/sheets/work/
+tools/sheets/.fonts/
+__pycache__/
+tools/kid_sheets/build/
+.dart_tool/
+tools/emoji/out/

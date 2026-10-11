@@ -24,8 +24,8 @@ func DefaultConfig() GridConfig {
 		Columns:      8,
 		Rows:         10,
 		DPI:          300,
-		MarginTopMM:  10.0,  // Default 10mm top margin
-		MarginLeftMM: 10.0,  // Default 10mm left margin
+		MarginTopMM:  10.0, // Default 10mm top margin
+		MarginLeftMM: 10.0, // Default 10mm left margin
 	}
 }
 

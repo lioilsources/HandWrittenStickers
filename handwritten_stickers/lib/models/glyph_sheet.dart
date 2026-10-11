@@ -1,12 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// Visual category of a sheet, used to group the sheet selector.
 enum SheetCategory {
   handwriting('Handwriting'),
   calligraphy('Calligraphy'),
-  typography('Typography');
+  typography('Typography'),
+  kids('Kids'),
+  material('Material');
 
   final String label;
   const SheetCategory(this.label);
@@ -27,10 +30,15 @@ class GlyphSheet {
   /// Asset directory containing `glyphs.json` and the PNGs, with trailing `/`.
   final String path;
 
-  /// `handwriting` (scanned template) or `font` (rasterised TTF).
+  /// `handwriting` (scanned template), `font` (rasterised TTF), `material`
+  /// (AI or photographed material letters), `dataset`, `archive`.
   final String source;
 
   final SheetCategory category;
+
+  /// False for sheets without a clear licence: they are hidden from release
+  /// builds (see [GlyphSheetIndex.load]).
+  final bool bundle;
 
   const GlyphSheet({
     required this.id,
@@ -38,6 +46,7 @@ class GlyphSheet {
     required this.path,
     required this.source,
     this.category = SheetCategory.handwriting,
+    this.bundle = true,
   });
 
   factory GlyphSheet.fromJson(Map<String, dynamic> json) {
@@ -49,10 +58,13 @@ class GlyphSheet {
       path: path,
       source: (json['source'] as String?) ?? 'handwriting',
       category: SheetCategory.parse(json['category'] as String?),
+      bundle: (json['bundle'] as bool?) ?? true,
     );
   }
 
   bool get isHandwriting => source == 'handwriting';
+
+  bool get isMaterial => source == 'material';
 
   @override
   bool operator ==(Object other) => other is GlyphSheet && other.id == id;
@@ -80,11 +92,17 @@ class GlyphSheetIndex {
     return null;
   }
 
-  static Future<GlyphSheetIndex> load({AssetBundle? bundle}) async {
+  /// Reads the index. Sheets marked `"bundle": false` are only included when
+  /// [includeUnbundled] is true, which defaults to debug/profile builds.
+  static Future<GlyphSheetIndex> load({
+    AssetBundle? bundle,
+    bool includeUnbundled = !kReleaseMode,
+  }) async {
     final jsonString = await (bundle ?? rootBundle).loadString(assetPath);
     final Map<String, dynamic> data = json.decode(jsonString);
     final sheets = (data['sheets'] as List)
         .map((e) => GlyphSheet.fromJson(e as Map<String, dynamic>))
+        .where((s) => includeUnbundled || s.bundle)
         .toList();
     if (sheets.isEmpty) {
       throw StateError('$assetPath lists no sheets');

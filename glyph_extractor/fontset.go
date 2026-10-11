@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"image"
@@ -16,35 +15,6 @@ import (
 	"golang.org/x/image/font/sfnt"
 	"golang.org/x/image/math/fixed"
 )
-
-// GlyphMetrics describes where a trimmed glyph PNG sits relative to the
-// typographic baseline and how far the cursor should advance after it.
-// All values are in pixels of the source sheet (see ManifestV2.EmHeight).
-type GlyphMetrics struct {
-	Width    int `json:"w"`        // trimmed PNG width
-	Height   int `json:"h"`        // trimmed PNG height
-	Baseline int `json:"baseline"` // px from top of PNG down to the baseline
-	Advance  int `json:"advance"`  // horizontal advance (px) from glyph origin
-	Bearing  int `json:"bearing"`  // px from glyph origin to left edge of PNG
-}
-
-// ManifestV2 is the glyph sheet manifest. It is a superset of the v1 format:
-// the "glyphs" map is unchanged so older readers keep working, and the
-// per-glyph "metrics" allow proper baseline alignment and proportional spacing.
-type ManifestV2 struct {
-	Version       int                     `json:"version"`
-	ID            string                  `json:"id"`
-	Name          string                  `json:"name"`
-	Source        string                  `json:"source"` // "font" or "handwriting"
-	License       string                  `json:"license,omitempty"`
-	Attribution   string                  `json:"attribution,omitempty"`
-	CellSize      CellSize                `json:"cellSize"`
-	DPI           int                     `json:"dpi"`
-	EmHeight      int                     `json:"emHeight"`      // nominal em size in px; renderer scales all glyphs by targetEm/emHeight
-	BaselineRatio float64                 `json:"baselineRatio"` // baseline position within a cell (0..1 from top)
-	Glyphs        map[string]string       `json:"glyphs"`
-	Metrics       map[string]GlyphMetrics `json:"metrics,omitempty"`
-}
 
 // FontSetOptions controls rasterisation of a font into a glyph sheet.
 type FontSetOptions struct {
@@ -141,20 +111,11 @@ func generateFontSet(opts FontSetOptions) error {
 	originX := cellW // glyph origin (pen position) x
 	originY := baselineY + cellH/2
 
-	manifest := ManifestV2{
-		Version:       2,
-		ID:            opts.ID,
-		Name:          opts.Name,
-		Source:        "font",
-		License:       opts.License,
-		Attribution:   opts.Attribution,
-		CellSize:      CellSize{Width: cfg.CellWidthMM, Height: cfg.CellHeightMM},
-		DPI:           opts.DPI,
-		EmHeight:      emPx,
-		BaselineRatio: baselineRatio,
-		Glyphs:        map[string]string{},
-		Metrics:       map[string]GlyphMetrics{},
-	}
+	manifest := NewManifest(opts.ID, opts.Name, "font", opts.DPI)
+	manifest.License = opts.License
+	manifest.Attribution = opts.Attribution
+	manifest.EmHeight = emPx
+	manifest.BaselineRatio = baselineRatio
 
 	var buf sfnt.Buffer
 	var missing []string
@@ -186,21 +147,16 @@ func generateFontSet(opts FontSetOptions) error {
 			return fmt.Errorf("saving %s: %w", filename, err)
 		}
 
-		manifest.Glyphs[string(r)] = filename
-		manifest.Metrics[string(r)] = GlyphMetrics{
+		manifest.Add(string(r), filename, GlyphMetrics{
 			Width:    rect.Dx(),
 			Height:   rect.Dy(),
 			Baseline: originY - rect.Min.Y,
 			Advance:  advance.Round(),
 			Bearing:  rect.Min.X - originX,
-		}
+		})
 	}
 
-	jsonData, err := json.MarshalIndent(manifest, "", "  ")
-	if err != nil {
-		return err
-	}
-	if err := os.WriteFile(filepath.Join(opts.OutputDir, "glyphs.json"), jsonData, 0644); err != nil {
+	if err := manifest.Write(opts.OutputDir); err != nil {
 		return err
 	}
 

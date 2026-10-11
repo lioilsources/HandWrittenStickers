@@ -12,6 +12,16 @@ podle tabulky v každé fázi se vybere konkrétní model.
 Strojově čitelný seznam gest: [`emoji/gestures.json`](emoji/gestures.json)
 (50 core + 11 rezervních, každé s `motion_prompt` pro video model).
 
+
+> **Stav 2026-10-05: plán nahrazen jednodušší cestou.** Místo 3D postavičky
+> a video modelů (Wan) používáme nálepkový styl SwypeKids: ilustrované
+> nálepky s bílým obrysem z flux-schnell, vyříznuté do WebP, a animaci
+> kódem (`EmojiMotion`: dýchání + kývání, plynulá smyčka 2,4 s). Stejná
+> funkce vykresluje náhled i export do GIFu, takže animace ve zprávě sedí
+> s náhledem. Nástroje: `tools/emoji/` (`emoji_set.json`, `run_batch.py`,
+> `build.py`), assety `handwritten_stickers/assets/emoji/`. 25 nálepek je
+> převzatých ze SwypeKids, 16 se dogeneruje. Zbytek dokumentu je historický.
+
 ## 1. Produktové rozhodnutí
 
 - **Co je „poznámka“:** samolepka vyexportovaná nebo nasdílená z editoru.
