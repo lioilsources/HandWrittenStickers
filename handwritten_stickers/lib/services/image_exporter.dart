@@ -26,7 +26,7 @@ class ExportedSticker {
 
 /// Geometry of an exported sticker in layout units (before export scale).
 class StickerLayout {
-  static const double padding = 20.0;
+  static const double padding = 8.0;
 
   /// Size of the text block (glyph bounds).
   final Size text;
@@ -184,7 +184,11 @@ class ImageExporter {
       }
 
       // Draw the glyph image (glyphs retain their original ink color from scan)
-      canvas.drawImage(pg.glyph.image, Offset.zero, paint);
+      canvas.drawImage(
+        pg.glyph.image,
+        Offset.zero,
+        paint..color = Color.fromRGBO(0, 0, 0, pg.params.opacity),
+      );
 
       canvas.restore();
     }

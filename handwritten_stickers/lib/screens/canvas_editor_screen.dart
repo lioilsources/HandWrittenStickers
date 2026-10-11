@@ -163,8 +163,13 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     }
 
     final renderer = _renderer;
-    final glyphs = await renderer.layoutText(
+    final lines = await renderer.balanceLines(
       text: text,
+      style: _styleParams,
+      baseGlyphHeight: _baseGlyphHeight,
+    );
+    final glyphs = await renderer.layoutText(
+      text: lines,
       style: _styleParams,
       maxWidth: _canvasWidth,
       baseGlyphHeight: _baseGlyphHeight,
