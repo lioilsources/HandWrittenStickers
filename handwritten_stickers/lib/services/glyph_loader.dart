@@ -244,8 +244,15 @@ class GlyphLoader {
   }
 
   /// Convert character to safe ASCII filename
-  /// Must match CharToFilename in glyph_extractor/charset.go
+  /// Must match CharToFilename in glyph_extractor/charset.go: uppercase
+  /// letters carry a `cap_` prefix so names stay unique ignoring case.
   String _charToFilename(String char) {
+    final stem = _charFileStem(char);
+    final isUpper = char != char.toLowerCase() && char == char.toUpperCase();
+    return isUpper ? 'cap_$stem' : stem;
+  }
+
+  String _charFileStem(String char) {
     switch (char) {
       // Basic punctuation
       case '.': return 'dot';

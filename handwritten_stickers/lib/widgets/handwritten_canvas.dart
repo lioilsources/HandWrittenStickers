@@ -75,7 +75,11 @@ class HandwrittenPainter extends CustomPainter {
       }
 
       // Draw the glyph image (glyphs retain their original ink color from scan)
-      canvas.drawImage(pg.glyph.image, Offset.zero, Paint());
+      canvas.drawImage(
+        pg.glyph.image,
+        Offset.zero,
+        Paint()..filterQuality = FilterQuality.medium,
+      );
 
       canvas.restore();
     }

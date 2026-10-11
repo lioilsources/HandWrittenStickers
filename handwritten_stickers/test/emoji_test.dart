@@ -71,7 +71,10 @@ void main() {
     expect(gif, isNotNull);
     final decoded = img.decodeGif(gif!)!;
     expect(decoded.numFrames, EmojiMotion.gifFrames);
-    expect(decoded.width, (layout.width * 2).ceil());
+    final gifScale = ImageExporter.scaleFor(layout, ImageExporter.gifMaxSide);
+    expect(decoded.width, (layout.width * gifScale).ceil());
+    // A short text is scaled up to a size messengers show at full width.
+    expect(decoded.width, greaterThanOrEqualTo(900));
 
     // Untagged export stays a single PNG without the badge column.
     final png = await ImageExporter.exportToPng(
@@ -80,6 +83,9 @@ void main() {
       backgroundColor: Colors.white,
     );
     final still = img.decodePng(png!)!;
-    expect(still.width, ((90 + StickerLayout.padding * 2) * 2).ceil());
+    expect(
+      still.width,
+      ((90 + StickerLayout.padding * 2) * ImageExporter.maxScale).ceil(),
+    );
   });
 }
