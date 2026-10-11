@@ -30,6 +30,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera is used only if you choose to take a photo of a handwriting template.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is not used. The photo picker library only references the API, and the app never asks for it.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app saves your handwritten text images to the photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
