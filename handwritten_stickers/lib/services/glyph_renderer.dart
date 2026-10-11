@@ -44,7 +44,7 @@ class GlyphRenderer {
 
     double x = 0;
     double y = 0;
-    final lineHeight = baseGlyphHeight * style.lineHeight;
+    final lineHeight = _linePitch(style, baseGlyphHeight);
     final spaceWidth = baseGlyphHeight * 0.5 * style.wordSpacing;
     final baselineY = baseGlyphHeight * _loader.baselineRatio;
 
@@ -129,6 +129,16 @@ class GlyphRenderer {
     return result;
   }
 
+  /// Distance between baselines. Sheets with metrics space lines by their
+  /// em, like type; a template cell is about 1.6 em tall, so spacing lines
+  /// by the cell left a blank line's worth of air between them.
+  double _linePitch(StyleParams style, double baseGlyphHeight) {
+    final unit = _loader.hasMetrics
+        ? baseGlyphHeight * _loader.emHeightPx / _loader.cellHeightPx
+        : baseGlyphHeight;
+    return unit * style.lineHeight;
+  }
+
   /// Widest a text block may be relative to its height before
   /// [balanceLines] breaks it. Messengers fit a sticker to a fixed width,
   /// so a long single line arrives with tiny letters.
@@ -158,7 +168,7 @@ class GlyphRenderer {
       widths.add(bounds.width);
     }
     final space = baseGlyphHeight * 0.5 * style.wordSpacing;
-    final lineHeight = baseGlyphHeight * style.lineHeight;
+    final lineHeight = _linePitch(style, baseGlyphHeight);
 
     // prefix[i] = width of words 0..i-1 without spaces.
     final prefix = [0.0];

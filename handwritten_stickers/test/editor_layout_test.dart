@@ -43,8 +43,8 @@ void main() {
     final visibleBottom = screen.height - keyboard;
     final canvas = tester.getRect(find.byType(HandwrittenCanvas));
     final field = tester.getRect(find.byType(TextField));
-    expect(canvas.height, greaterThan(20));
-    expect(canvas.width, greaterThan(screen.width * 0.6));
+    // The text is scaled up to the preview box, not drawn at layout size.
+    expect(canvas.height, greaterThan(60));
     expect(canvas.bottom, lessThanOrEqualTo(field.top));
     expect(field.bottom, lessThanOrEqualTo(visibleBottom));
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../models/emoji_tag.dart';
@@ -16,7 +17,14 @@ import '../widgets/style_params_panel.dart';
 
 /// Main editor screen for creating handwritten text
 class CanvasEditorScreen extends StatefulWidget {
-  const CanvasEditorScreen({super.key});
+  /// Whether sheets marked `"bundle": false` are offered. Release builds
+  /// hide them; screenshots pass false to show what a release shows.
+  final bool includeUnbundledSheets;
+
+  const CanvasEditorScreen({
+    super.key,
+    this.includeUnbundledSheets = !kReleaseMode,
+  });
 
   @override
   State<CanvasEditorScreen> createState() => _CanvasEditorScreenState();
@@ -97,7 +105,9 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Future<void> _initializeSheets() async {
     GlyphSheetIndex index;
     try {
-      index = await GlyphSheetIndex.load();
+      index = await GlyphSheetIndex.load(
+        includeUnbundled: widget.includeUnbundledSheets,
+      );
     } catch (e) {
       debugPrint(
         'CanvasEditor: sheets.json missing or invalid ($e), '
@@ -261,22 +271,50 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Widget _buildPreview() {
     return LayoutBuilder(
       builder: (context, box) {
-        final text = StickerLayout.of(_glyphs).text;
-        const inset = 16.0;
+        // Same geometry as the export, so the emoji sits where it will.
+        final layout = StickerLayout.of(_glyphs, withEmoji: _emoji != null);
+        const inset = 8.0;
         final zoom = [
           _maxPreviewZoom,
-          (box.maxWidth - inset * 2) / text.width,
-          (box.maxHeight - inset * 2) / text.height,
+          (box.maxWidth - inset * 2) / layout.width,
+          (box.maxHeight - inset * 2) / layout.height,
         ].reduce((a, b) => a < b ? a : b);
         return Center(
           child: SizedBox(
-            width: text.width * zoom,
-            height: text.height * zoom,
+            width: layout.width * zoom,
+            height: layout.height * zoom,
             child: FittedBox(
               child: SizedBox(
-                width: text.width,
-                height: text.height,
-                child: HandwrittenCanvas(glyphs: _glyphs, style: _styleParams),
+                width: layout.width,
+                height: layout.height,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: StickerLayout.padding,
+                      top: StickerLayout.padding,
+                      width: layout.text.width,
+                      height: layout.text.height,
+                      child: HandwrittenCanvas(
+                        glyphs: _glyphs,
+                        style: _styleParams,
+                      ),
+                    ),
+                    // The tag rides along beside the text; tap to change.
+                    if (_emoji != null)
+                      Positioned(
+                        left: layout.badgeOrigin.dx,
+                        top: layout.badgeOrigin.dy,
+                        child: GestureDetector(
+                          onTap: _pickEmoji,
+                          child: AnimatedEmojiSticker(
+                            key: const ValueKey('emoji-badge'),
+                            tag: _emoji!,
+                            size: layout.badge,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -361,20 +399,6 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                     )
                                   : _buildPreview(),
                             ),
-                            // The tag rides along in the corner; tap to change.
-                            if (_emoji != null)
-                              Positioned(
-                                right: 8,
-                                bottom: 8,
-                                child: GestureDetector(
-                                  onTap: _pickEmoji,
-                                  child: AnimatedEmojiSticker(
-                                    key: const ValueKey('emoji-badge'),
-                                    tag: _emoji!,
-                                    size: 48,
-                                  ),
-                                ),
-                              ),
                           ],
                         ),
                       ),
