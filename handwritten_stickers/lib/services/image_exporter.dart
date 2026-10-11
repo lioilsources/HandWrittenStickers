@@ -39,7 +39,10 @@ class StickerLayout {
   /// The emoji sits right of the text, bottom-aligned with the last line.
   static const double _gap = 8.0;
 
-  factory StickerLayout.of(List<PositionedGlyph> glyphs, {bool withEmoji = false}) {
+  factory StickerLayout.of(
+    List<PositionedGlyph> glyphs, {
+    bool withEmoji = false,
+  }) {
     double maxX = 0;
     double maxY = 0;
     for (final pg in glyphs) {
@@ -51,8 +54,7 @@ class StickerLayout {
     return StickerLayout(Size(maxX, maxY), badge);
   }
 
-  double get width =>
-      text.width + padding * 2 + (badge > 0 ? _gap + badge : 0);
+  double get width => text.width + padding * 2 + (badge > 0 ? _gap + badge : 0);
 
   double get height => math.max(text.height, badge) + padding * 2;
 
@@ -65,20 +67,32 @@ class StickerLayout {
 
 /// Service for exporting rendered handwritten text to images
 class ImageExporter {
-  /// Longest side of animated exports: GIFs get large fast, messengers
-  /// show stickers small anyway.
-  static const double gifMaxSide = 720;
+  /// Longest side of a still export in pixels. Messengers size an image by
+  /// its pixels, so a short text exported at a fixed scale arrives tiny.
+  static const double pngMaxSide = 1600;
+
+  /// Longest side of animated exports: GIFs get large fast.
+  static const double gifMaxSide = 960;
+
+  /// Glyph sources are about 8× the layout height; past that the export
+  /// only gets blurrier.
+  static const double maxScale = 8.0;
+
+  /// Export scale that brings the longest side of [layout] to [maxSide]
+  /// pixels, capped at [maxScale].
+  static double scaleFor(StickerLayout layout, double maxSide) =>
+      math.min(maxScale, maxSide / math.max(layout.width, layout.height));
 
   /// Export glyphs to PNG bytes (an emoji tag is drawn at rest).
   static Future<Uint8List?> exportToPng({
     required List<PositionedGlyph> glyphs,
     required StyleParams style,
     Color? backgroundColor,
-    double scale = 2.0,
     EmojiTag? emoji,
   }) async {
     if (glyphs.isEmpty) return null;
     final layout = StickerLayout.of(glyphs, withEmoji: emoji != null);
+    final scale = scaleFor(layout, pngMaxSide);
     final emojiImage = emoji == null ? null : await _loadImage(emoji.asset);
     final image = await renderFrame(
       glyphs: glyphs,
@@ -99,14 +113,10 @@ class ImageExporter {
     required List<PositionedGlyph> glyphs,
     required EmojiTag emoji,
     Color backgroundColor = Colors.white,
-    double maxScale = 2.0,
   }) async {
     if (glyphs.isEmpty) return null;
     final layout = StickerLayout.of(glyphs, withEmoji: true);
-    final scale = math.min(
-      maxScale,
-      gifMaxSide / math.max(layout.width, layout.height),
-    );
+    final scale = scaleFor(layout, gifMaxSide);
     final emojiImage = await _loadImage(emoji.asset);
     final frames = <Uint8List>[];
     int w = 0, h = 0;
@@ -121,7 +131,9 @@ class ImageExporter {
       );
       w = frame.width;
       h = frame.height;
-      final rgba = await frame.toByteData(format: ui.ImageByteFormat.rawStraightRgba);
+      final rgba = await frame.toByteData(
+        format: ui.ImageByteFormat.rawStraightRgba,
+      );
       frame.dispose();
       frames.add(rgba!.buffer.asUint8List());
     }
@@ -253,12 +265,15 @@ class ImageExporter {
     }
   }
 
-  /// Share image
+  /// Share image. [origin] is the on-screen rect of the control that
+  /// started the share: iOS anchors the share sheet to it and refuses to
+  /// open the sheet without one.
   static Future<void> shareImage({
     required List<PositionedGlyph> glyphs,
     required StyleParams style,
     EmojiTag? emoji,
     bool transparent = false,
+    Rect? origin,
   }) async {
     final sticker = await export(
       glyphs: glyphs,
@@ -270,8 +285,14 @@ class ImageExporter {
 
     final file = await _writeTemp(sticker);
     await Share.shareXFiles(
-      [XFile(file.path, mimeType: sticker.isAnimated ? 'image/gif' : 'image/png')],
-      text: 'Handwritten text',
+      // No caption: messengers would send it as a second message.
+      [
+        XFile(
+          file.path,
+          mimeType: sticker.isAnimated ? 'image/gif' : 'image/png',
+        ),
+      ],
+      sharePositionOrigin: origin,
     );
   }
 

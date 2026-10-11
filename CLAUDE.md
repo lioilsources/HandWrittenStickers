@@ -54,18 +54,18 @@ flutter test test/widget_test.dart  # Single test
 - `segment.go` / `assemble.go` - free-form writing: Otsu + connected components + diacritic grouping + lines → `candidates.json`; labelled candidates → v3 sheet with `compose` rules and dotless `ı`
 - `guide.go` - clean-font guide pages for material letters; `preview.go` - contact sheet renderer
 - `grid.go` - `GridConfig` for cell extraction, `TrimWhitespace` (JPEG-noise-tolerant), `MakeTransparent` (3-zone alpha: opaque ink / gradient edge / transparent background)
-- `charset.go` - `Charset` (160 runes), `CharToFilename` for special chars
+- `charset.go` - `Charset` (160 runes), `CharToFilename` (ASCII names for special chars, `cap_` prefix for uppercase)
 - `template_generator.go` - PDF generation with gofpdf
 - `fontset.go` - `fontset` command: rasterises a TTF/OTF into a glyph sheet with manifest v2 metrics (`ManifestV2`, `GlyphMetrics`)
 
 ### Flutter App
-- **Navigation**: `HomeScreen` with tabs → `CanvasEditorScreen` + `GridAlignmentScreen`
+- **Navigation**: `HomeScreen` with tabs → `CanvasEditorScreen` + `GridAlignmentScreen` on desktop; phones get the editor alone
 - `GlyphSheetIndex` reads `assets/glyphs/sheets.json` (list of bundled sheets, default sheet)
 - `GlyphLoader(sheetPath)` reads one sheet's `glyphs.json` manifest (v1–v3), caches `ui.Image` per variant, exposes `cellHeightPx`/`baselineRatio`/`emHeightPx`/metrics, `variantCount`, `composeParts`, `fallbackId` (+ `fallbackLoader` wired by the editor)
 - `GlyphRenderer` layouts text → `List<PositionedGlyph>`; with metrics it aligns glyphs on the baseline and uses proportional advances, without metrics it falls back to per-cell scaling. Input is recomposed (`TextNormalizer.nfc`); missing letters are composed from base + accent glyph, else taken from the fallback sheet; variants never repeat back to back (deterministic per text)
 - `SheetSelector` chip row in `CanvasEditorScreen` switches sheets (one loader per sheet)
 - `StyleParams` controls spacing, rotation, scale variations
-- `ImageExporter` renders to PNG for save/share; with an emoji tag it exports a looping GIF (`exportToGif`, frames from `renderFrame`, encoded off the UI isolate)
+- `ImageExporter` renders to PNG for save/share, scaled so the longest side reaches `pngMaxSide`/`gifMaxSide` px (`scaleFor`); with an emoji tag it exports a looping GIF (`exportToGif`, frames from `renderFrame`, encoded off the UI isolate)
 - Emoji tag: one animated sticker per message. `EmojiIndex` reads `assets/emoji/emoji.json` (built by `tools/emoji/build.py`; SwypeKids-style WebP stickers), `EmojiMotion.at(phase)` is the shared loop (preview widget `AnimatedEmojiSticker` and GIF export), `showEmojiPicker` is the bottom sheet
 
 #### Grid Alignment Tool (macOS)
@@ -89,7 +89,7 @@ Sheets carry a `category` in `sheets.json` (`handwriting`, `calligraphy`, `typog
 
 `fontset`, `extract` and `assemble` normalise every sheet so the capital H is 0.70 em (`-cap-ratio`), which keeps sheets visually interchangeable; `emHeight` in the manifest is the em in px. The renderer scales by `cellHeightPx` (from `cellSize`/`dpi`), not by `emHeight`.
 
-Sources beyond fonts (material letters via ComfyUI, free-form handwriting, NIST SD19, archives, found type): `tools/sheets/README.md`, shared ComfyUI client `tools/comfy/client.py`. Glyph file names differ only by case (`A.png`/`a.png`), so generate sheets on a case-sensitive volume.
+Sources beyond fonts (material letters via ComfyUI, free-form handwriting, NIST SD19, archives, found type): `tools/sheets/README.md`, shared ComfyUI client `tools/comfy/client.py`. Uppercase letters are stored as `cap_A.png` so file names stay unique on case-insensitive volumes (macOS checkouts, hence every iOS build); `CharToFilename` adds the prefix and a test in `glyph_sheets_test.dart` guards it.
 
 ## Template Format
 

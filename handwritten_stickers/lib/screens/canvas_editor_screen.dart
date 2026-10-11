@@ -222,13 +222,61 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     );
   }
 
+  final GlobalKey _shareButtonKey = GlobalKey();
+
   Future<void> _shareImage() async {
-    await _withExport(
-      () => ImageExporter.shareImage(
-        glyphs: _glyphs,
-        style: _styleParams,
-        emoji: _emoji,
-      ),
+    // The share sheet is anchored to the button (required on iOS).
+    final box =
+        _shareButtonKey.currentContext?.findRenderObject() as RenderBox?;
+    final origin = box == null
+        ? null
+        : box.localToGlobal(Offset.zero) & box.size;
+    try {
+      await _withExport(
+        () => ImageExporter.shareImage(
+          glyphs: _glyphs,
+          style: _styleParams,
+          emoji: _emoji,
+          origin: origin,
+        ),
+      );
+    } catch (e) {
+      debugPrint('CanvasEditor: share failed ($e)');
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Sharing failed')));
+    }
+  }
+
+  /// The sticker scaled to fit the preview box, never past [_maxPreviewZoom]
+  /// times the layout size.
+  static const double _maxPreviewZoom = 4;
+
+  Widget _buildPreview() {
+    return LayoutBuilder(
+      builder: (context, box) {
+        final text = StickerLayout.of(_glyphs).text;
+        const inset = 16.0;
+        final zoom = [
+          _maxPreviewZoom,
+          (box.maxWidth - inset * 2) / text.width,
+          (box.maxHeight - inset * 2) / text.height,
+        ].reduce((a, b) => a < b ? a : b);
+        return Center(
+          child: SizedBox(
+            width: text.width * zoom,
+            height: text.height * zoom,
+            child: FittedBox(
+              child: SizedBox(
+                width: text.width,
+                height: text.height,
+                child: HandwrittenCanvas(glyphs: _glyphs, style: _styleParams),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -263,6 +311,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
             tooltip: 'Save to Gallery',
           ),
           IconButton(
+            key: _shareButtonKey,
             icon: const Icon(Icons.share),
             onPressed: _glyphs.isNotEmpty && !_exporting ? _shareImage : null,
             tooltip: 'Share',
@@ -272,28 +321,29 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SafeArea(
-              child: Column(
-                children: [
-                  // Canvas preview
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned.fill(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
+              child: LayoutBuilder(
+                builder: (context, box) => Column(
+                  children: [
+                    // Preview and text field keep their place above the
+                    // keyboard; only the settings below them scroll.
+                    SizedBox(
+                      height: (box.maxHeight * 0.36).clamp(96.0, 320.0),
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.1),
+                              blurRadius: 10,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
                               child: _glyphs.isEmpty
                                   ? const Center(
                                       child: Text(
@@ -304,107 +354,106 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                         ),
                                       ),
                                     )
-                                  : InteractiveHandwrittenCanvas(
-                                      glyphs: _glyphs,
-                                      style: _styleParams,
-                                      backgroundColor: Colors.white,
-                                    ),
+                                  : _buildPreview(),
                             ),
-                          ),
-                          // The tag rides along in the corner; tap to change.
-                          if (_emoji != null)
-                            Positioned(
-                              right: 12,
-                              bottom: 12,
-                              child: GestureDetector(
-                                onTap: _pickEmoji,
-                                child: AnimatedEmojiSticker(
-                                  key: const ValueKey('emoji-badge'),
-                                  tag: _emoji!,
-                                  size: 72,
+                            // The tag rides along in the corner; tap to change.
+                            if (_emoji != null)
+                              Positioned(
+                                right: 8,
+                                bottom: 8,
+                                child: GestureDetector(
+                                  onTap: _pickEmoji,
+                                  child: AnimatedEmojiSticker(
+                                    key: const ValueKey('emoji-badge'),
+                                    tag: _emoji!,
+                                    size: 48,
+                                  ),
                                 ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
 
-                  // Bottom controls in scrollable area
-                  Flexible(
-                    flex: 0,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Sheet (handwriting) selector
-                          if (_sheetIndex != null &&
-                              _sheetIndex!.sheets.length > 1)
-                            SheetSelector(
-                              sheets: _sheetIndex!.sheets,
-                              selected: _sheet!,
-                              onSelected: _onSheetChanged,
-                            ),
-
-                          // Preset selector
-                          PresetSelector(
-                            selected: _selectedPreset,
-                            onSelected: _onPresetChanged,
+                    // Text input
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        controller: _textController,
+                        minLines: 1,
+                        maxLines: 2,
+                        decoration: InputDecoration(
+                          hintText: 'Type your text here...',
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
+                          filled: true,
+                          fillColor: Colors.grey.shade100,
+                          suffixIcon: _textController.text.isNotEmpty
+                              ? IconButton(
+                                  icon: const Icon(Icons.clear),
+                                  onPressed: () {
+                                    _textController.clear();
+                                  },
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
 
-                          // Advanced settings toggle
-                          ListTile(
-                            dense: true,
-                            title: const Text('Advanced Settings'),
-                            trailing: Icon(
-                              _showAdvanced
-                                  ? Icons.keyboard_arrow_up
-                                  : Icons.keyboard_arrow_down,
-                            ),
-                            onTap: () {
-                              setState(() {
-                                _showAdvanced = !_showAdvanced;
-                              });
-                            },
-                          ),
-
-                          // Style params panel
-                          if (_showAdvanced)
-                            StyleParamsPanel(
-                              params: _styleParams,
-                              onChanged: _onStyleParamsChanged,
-                              expanded: true,
-                            ),
-
-                          // Text input
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: TextField(
-                              controller: _textController,
-                              maxLines: 2,
-                              decoration: InputDecoration(
-                                hintText: 'Type your text here...',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey.shade100,
-                                suffixIcon: _textController.text.isNotEmpty
-                                    ? IconButton(
-                                        icon: const Icon(Icons.clear),
-                                        onPressed: () {
-                                          _textController.clear();
-                                        },
-                                      )
-                                    : null,
+                    Expanded(
+                      child: SingleChildScrollView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Sheet (handwriting) selector
+                            if (_sheetIndex != null &&
+                                _sheetIndex!.sheets.length > 1)
+                              SheetSelector(
+                                sheets: _sheetIndex!.sheets,
+                                selected: _sheet!,
+                                onSelected: _onSheetChanged,
                               ),
+
+                            // Preset selector
+                            PresetSelector(
+                              selected: _selectedPreset,
+                              onSelected: _onPresetChanged,
                             ),
-                          ),
-                        ],
+
+                            // Advanced settings toggle
+                            ListTile(
+                              dense: true,
+                              title: const Text('Advanced Settings'),
+                              trailing: Icon(
+                                _showAdvanced
+                                    ? Icons.keyboard_arrow_up
+                                    : Icons.keyboard_arrow_down,
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  _showAdvanced = !_showAdvanced;
+                                });
+                              },
+                            ),
+
+                            // Style params panel
+                            if (_showAdvanced)
+                              StyleParamsPanel(
+                                params: _styleParams,
+                                onChanged: _onStyleParamsChanged,
+                                expanded: true,
+                              ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
     );
