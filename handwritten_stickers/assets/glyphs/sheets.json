@@ -157,6 +157,13 @@
       "category": "handwriting"
     },
     {
+      "id": "jessie_1",
+      "name": "Jessie 1",
+      "path": "assets/glyphs/jessie_1/",
+      "source": "handwriting",
+      "category": "calligraphy"
+    },
+    {
       "id": "dancing_script",
       "name": "Dancing Script",
       "path": "assets/glyphs/dancing_script/",
