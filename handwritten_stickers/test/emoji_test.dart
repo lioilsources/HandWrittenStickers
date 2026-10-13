@@ -72,7 +72,10 @@ void main() {
     final decoded = img.decodeGif(gif!)!;
     expect(decoded.numFrames, EmojiMotion.gifFrames);
     final gifScale = ImageExporter.scaleFor(layout, ImageExporter.gifMaxSide);
-    expect(decoded.width, (layout.width * gifScale).ceil());
+    expect(decoded.width, closeTo(layout.width * gifScale, 2));
+    // Messengers convert GIFs to video, which needs even dimensions.
+    expect(decoded.width.isEven, isTrue);
+    expect(decoded.height.isEven, isTrue);
     // A short text is scaled up to a size messengers show at full width.
     expect(decoded.width, greaterThanOrEqualTo(900));
 

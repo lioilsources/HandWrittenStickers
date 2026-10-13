@@ -129,6 +129,7 @@ class ImageExporter {
         backgroundColor: backgroundColor,
         emoji: emojiImage,
         phase: i / EmojiMotion.gifFrames,
+        evenSize: true,
       );
       w = frame.width;
       h = frame.height;
@@ -145,6 +146,8 @@ class ImageExporter {
   }
 
   /// Draws one frame: background, glyphs, and the emoji at loop [phase].
+  /// [evenSize] rounds the pixel size up to even numbers: messengers turn
+  /// GIFs into H.264 video, which cannot have an odd width or height.
   static Future<ui.Image> renderFrame({
     required List<PositionedGlyph> glyphs,
     required StickerLayout layout,
@@ -152,17 +155,22 @@ class ImageExporter {
     Color? backgroundColor,
     ui.Image? emoji,
     double phase = 0,
+    bool evenSize = false,
   }) {
+    var width = (layout.width * scale).ceil();
+    var height = (layout.height * scale).ceil();
+    if (evenSize) {
+      width += width.isOdd ? 1 : 0;
+      height += height.isOdd ? 1 : 0;
+    }
+
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
-    canvas.scale(scale);
-
+    // The whole frame, including the pixels the size was rounded up by.
     if (backgroundColor != null) {
-      canvas.drawRect(
-        Rect.fromLTWH(0, 0, layout.width, layout.height),
-        Paint()..color = backgroundColor,
-      );
+      canvas.drawColor(backgroundColor, BlendMode.src);
     }
+    canvas.scale(scale);
 
     canvas.save();
     canvas.translate(StickerLayout.padding, StickerLayout.padding);
@@ -187,9 +195,7 @@ class ImageExporter {
     }
 
     final picture = recorder.endRecording();
-    return picture
-        .toImage((layout.width * scale).ceil(), (layout.height * scale).ceil())
-        .whenComplete(picture.dispose);
+    return picture.toImage(width, height).whenComplete(picture.dispose);
   }
 
   /// PNG without an emoji, animated GIF with one.
@@ -297,12 +303,15 @@ class _GifJob {
 
 Uint8List _encodeGif(_GifJob job) {
   // No dithering: it sprinkles the white background with noise that
-  // flickers from frame to frame.
+  // flickers from frame to frame. Frames are opaque and full size, so they
+  // are left in place (dispose 1): clearing to the background between
+  // frames shows as black in players without a global colour table.
   final encoder = img.GifEncoder(
     repeat: 0,
     delay: job.delay,
     samplingFactor: 4,
     dither: img.DitherKernel.none,
+    dispose: 1,
   );
   for (final rgba in job.frames) {
     encoder.addFrame(
