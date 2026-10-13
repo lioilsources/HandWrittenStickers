@@ -76,6 +76,9 @@ void main() {
     // Messengers convert GIFs to video, which needs even dimensions.
     expect(decoded.width.isEven, isTrue);
     expect(decoded.height.isEven, isTrue);
+    // One global colour table, no per-frame ones, frames left in place.
+    expect(gif[10], 0xf7);
+    expect(decoded.frames.last.getPixel(1, 1).r, greaterThan(250));
     // A short text is scaled up to a size messengers show at full width.
     expect(decoded.width, greaterThanOrEqualTo(900));
 

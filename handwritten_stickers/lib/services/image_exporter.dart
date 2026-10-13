@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -302,27 +303,86 @@ class _GifJob {
 }
 
 Uint8List _encodeGif(_GifJob job) {
-  // No dithering: it sprinkles the white background with noise that
-  // flickers from frame to frame. Frames are opaque and full size, so they
-  // are left in place (dispose 1): clearing to the background between
-  // frames shows as black in players without a global colour table.
-  final encoder = img.GifEncoder(
-    repeat: 0,
-    delay: job.delay,
-    samplingFactor: 4,
-    dither: img.DitherKernel.none,
-    dispose: 1,
+  img.Image frame(Uint8List rgba) => img.Image.fromBytes(
+    width: job.width,
+    height: job.height,
+    bytes: rgba.buffer,
+    numChannels: 4,
   );
+
+  // One palette for the whole loop: every frame has the same colours, and
+  // players that only read the global colour table show black otherwise.
+  final palette = img.NeuralQuantizer(
+    frame(job.frames.first),
+    samplingFactor: 4,
+  );
+  // Frames are opaque and full size, so they are left in place (dispose 1)
+  // rather than cleared to the background between frames.
+  final encoder = img.GifEncoder(repeat: 0, delay: job.delay, dispose: 1);
   for (final rgba in job.frames) {
-    encoder.addFrame(
-      img.Image.fromBytes(
-        width: job.width,
-        height: job.height,
-        bytes: rgba.buffer,
-        numChannels: 4,
-      ),
-      duration: job.delay,
-    );
+    // No dithering: it sprinkles the white background with noise that
+    // flickers from frame to frame.
+    encoder.addFrame(palette.getIndexImage(frame(rgba)), duration: job.delay);
   }
-  return encoder.finish()!;
+  return gifWithGlobalPalette(encoder.finish()!);
+}
+
+/// Rewrites a GIF whose frames all carry the same local colour table (what
+/// `GifEncoder` writes) to declare it once as the global colour table.
+/// Smaller, and readable by decoders that ignore local tables.
+@visibleForTesting
+Uint8List gifWithGlobalPalette(Uint8List gif) {
+  const tableSize = 3 * 256;
+  final out = BytesBuilder(copy: false);
+  var pos = 13; // signature + logical screen descriptor
+  var wroteHeader = false;
+
+  // Copies a chain of data sub-blocks including its terminator.
+  void copyBlocks() {
+    final start = pos;
+    while (gif[pos] != 0) {
+      pos += gif[pos] + 1;
+    }
+    pos++;
+    out.add(Uint8List.sublistView(gif, start, pos));
+  }
+
+  final pending = BytesBuilder(copy: false);
+  while (pos < gif.length) {
+    final type = gif[pos];
+    if (type == 0x2c) {
+      final packed = gif[pos + 9];
+      if (packed != 0x87) {
+        return gif; // not the layout we know how to rewrite
+      }
+      final table = Uint8List.sublistView(gif, pos + 10, pos + 10 + tableSize);
+      if (!wroteHeader) {
+        final header = Uint8List.fromList(gif.sublist(0, 13));
+        header[10] = 0xf7; // global table, 8 bits per channel, 256 entries
+        out.add(header);
+        out.add(table);
+        out.add(pending.takeBytes());
+        wroteHeader = true;
+      }
+      final descriptor = Uint8List.fromList(gif.sublist(pos, pos + 10));
+      descriptor[9] = 0; // no local table
+      out.add(descriptor);
+      pos += 10 + tableSize;
+      out.addByte(gif[pos++]); // LZW minimum code size
+      copyBlocks();
+    } else if (type == 0x21) {
+      final target = wroteHeader ? out : pending;
+      final start = pos;
+      pos += 2;
+      while (gif[pos] != 0) {
+        pos += gif[pos] + 1;
+      }
+      pos++;
+      target.add(Uint8List.sublistView(gif, start, pos));
+    } else {
+      out.addByte(type); // trailer
+      pos++;
+    }
+  }
+  return wroteHeader ? out.toBytes() : gif;
 }
