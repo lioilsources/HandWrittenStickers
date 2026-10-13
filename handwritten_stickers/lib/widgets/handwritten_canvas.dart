@@ -1,9 +1,8 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import '../models/glyph.dart';
 import '../models/style_params.dart';
+import '../services/glyph_painter.dart';
 
 /// Canvas widget for rendering handwritten text
 class HandwrittenCanvas extends StatelessWidget {
@@ -53,38 +52,7 @@ class HandwrittenPainter extends CustomPainter {
       );
     }
 
-    // Draw each glyph
-    for (final pg in glyphs) {
-      canvas.save();
-
-      // Move to glyph position
-      canvas.translate(pg.x, pg.y + pg.params.baselineOffset);
-
-      // Apply rotation around glyph center
-      if (pg.params.rotation != 0) {
-        final centerX = pg.glyph.width * pg.params.scale / 2;
-        final centerY = pg.glyph.height * pg.params.scale / 2;
-        canvas.translate(centerX, centerY);
-        canvas.rotate(pg.params.rotation * math.pi / 180);
-        canvas.translate(-centerX, -centerY);
-      }
-
-      // Apply scale
-      if (pg.params.scale != 1.0) {
-        canvas.scale(pg.params.scale);
-      }
-
-      // Draw the glyph image (glyphs retain their original ink color from scan)
-      canvas.drawImage(
-        pg.glyph.image,
-        Offset.zero,
-        Paint()
-          ..filterQuality = FilterQuality.medium
-          ..color = Color.fromRGBO(0, 0, 0, pg.params.opacity),
-      );
-
-      canvas.restore();
-    }
+    paintGlyphs(canvas, glyphs);
   }
 
   @override

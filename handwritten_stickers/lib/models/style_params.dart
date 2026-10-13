@@ -26,6 +26,10 @@ class StyleParams {
   /// Ink color
   final Color inkColor;
 
+  /// Join neighbouring letters with a pen stroke where the sheet knows how
+  /// (handwriting sheets with entry/exit points).
+  final bool joinLetters;
+
   const StyleParams({
     this.letterSpacing = 0,
     this.wordSpacing = 1.0,
@@ -35,6 +39,7 @@ class StyleParams {
     this.rotationVariance = 0.2,
     this.opacityVariance = 0.1,
     this.inkColor = Colors.black,
+    this.joinLetters = true,
   });
 
   /// Neat, careful handwriting
@@ -90,6 +95,7 @@ class StyleParams {
     double? rotationVariance,
     double? opacityVariance,
     Color? inkColor,
+    bool? joinLetters,
   }) {
     return StyleParams(
       letterSpacing: letterSpacing ?? this.letterSpacing,
@@ -100,6 +106,7 @@ class StyleParams {
       rotationVariance: rotationVariance ?? this.rotationVariance,
       opacityVariance: opacityVariance ?? this.opacityVariance,
       inkColor: inkColor ?? this.inkColor,
+      joinLetters: joinLetters ?? this.joinLetters,
     );
   }
 
@@ -114,7 +121,8 @@ class StyleParams {
         other.sizeVariance == sizeVariance &&
         other.rotationVariance == rotationVariance &&
         other.opacityVariance == opacityVariance &&
-        other.inkColor == inkColor;
+        other.inkColor == inkColor &&
+        other.joinLetters == joinLetters;
   }
 
   @override
@@ -127,6 +135,7 @@ class StyleParams {
         rotationVariance,
         opacityVariance,
         inkColor,
+        joinLetters,
       );
 }
 

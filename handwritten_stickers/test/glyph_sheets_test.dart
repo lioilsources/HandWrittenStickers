@@ -137,6 +137,37 @@ void main() {
     },
   );
 
+  test('join points of joined sheets lie inside their glyph image', () async {
+    final index = await GlyphSheetIndex.load();
+    var joined = 0;
+    for (final sheet in index.sheets) {
+      final Map<String, dynamic> manifest = json.decode(
+        await rootBundle.loadString('${sheet.path}glyphs.json'),
+      );
+      final metrics = manifest['metrics'] as Map<String, dynamic>?;
+      if (manifest['strokeWidth'] == null || metrics == null) continue;
+      joined++;
+      expect(manifest['xHeight'], greaterThan(0), reason: sheet.id);
+      var points = 0;
+      for (final entry in metrics.entries) {
+        for (final m in entry.value is List ? entry.value : [entry.value]) {
+          for (final key in ['entry', 'exit']) {
+            final p = m[key] as List?;
+            if (p == null) continue;
+            points++;
+            expect(
+              p[0] >= 0 && p[0] <= m['w'] && p[1] >= 0 && p[1] <= m['h'],
+              isTrue,
+              reason: '${sheet.id} "${entry.key}" $key $p outside its image',
+            );
+          }
+        }
+      }
+      expect(points, greaterThan(50), reason: '${sheet.id} has few joins');
+    }
+    expect(joined, greaterThan(0), reason: 'no bundled sheet joins letters');
+  });
+
   test('glyph file names are unique ignoring case', () async {
     // iOS and macOS builds run on case-insensitive volumes, where "A.png"
     // and "a.png" are one file and one of the two letters goes missing.

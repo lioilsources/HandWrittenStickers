@@ -8,11 +8,15 @@ class StyleParamsPanel extends StatelessWidget {
   final ValueChanged<StyleParams> onChanged;
   final bool expanded;
 
+  /// The current sheet can join its letters: offer the switch.
+  final bool canJoinLetters;
+
   const StyleParamsPanel({
     super.key,
     required this.params,
     required this.onChanged,
     this.expanded = true,
+    this.canJoinLetters = false,
   });
 
   @override
@@ -24,6 +28,14 @@ class StyleParamsPanel extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        if (canJoinLetters)
+          SwitchListTile(
+            dense: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            title: const Text('Join letters', style: TextStyle(fontSize: 13)),
+            value: params.joinLetters,
+            onChanged: (v) => onChanged(params.copyWith(joinLetters: v)),
+          ),
         _buildSlider(
           label: 'Letter Spacing',
           value: params.letterSpacing,

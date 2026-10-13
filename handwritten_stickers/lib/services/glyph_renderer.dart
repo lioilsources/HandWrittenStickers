@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui' show Offset;
 
 import '../models/glyph.dart';
 import '../models/style_params.dart';
@@ -24,6 +25,11 @@ class GlyphRenderer {
   /// glyph when possible, else taken from the fallback sheet, else skipped.
   /// With several variants per character, repeated letters never reuse the
   /// previous variant; the choice is deterministic for a given text.
+  ///
+  /// On sheets with join points ([GlyphLoader.strokeWidthPx]) letters of a
+  /// word are joined when [StyleParams.joinLetters] is set: the entry point
+  /// of a letter lands [joinGap] right of the previous letter's exit point
+  /// and [PositionedGlyph.join] carries the stroke between them.
   Future<List<PositionedGlyph>> layoutText({
     required String text,
     required StyleParams style,
@@ -48,18 +54,27 @@ class GlyphRenderer {
     final spaceWidth = baseGlyphHeight * 0.5 * style.wordSpacing;
     final baselineY = baseGlyphHeight * _loader.baselineRatio;
 
+    final strokeWidth = _loader.strokeWidthPx;
+    final joining = style.joinLetters && strokeWidth != null;
+    final sheetScale = baseGlyphHeight / _loader.cellHeightPx;
+    // Exit point of the previous letter while still inside a word.
+    Offset? penExit;
+    double penExitDirection = 0;
+
     // Iterate over user-perceived characters so combining sequences and
     // surrogate pairs are not split.
     for (final char in text.runes.map(String.fromCharCode)) {
       // Handle whitespace
       if (char == ' ') {
         x += spaceWidth;
+        penExit = null;
         continue;
       }
 
       if (char == '\n') {
         x = 0;
         y += lineHeight;
+        penExit = null;
         continue;
       }
 
@@ -67,6 +82,7 @@ class GlyphRenderer {
       if (resolved == null) {
         // Skip unknown characters or use placeholder
         x += baseGlyphHeight * 0.5;
+        penExit = null;
         continue;
       }
       final glyph = resolved.glyph;
@@ -83,8 +99,13 @@ class GlyphRenderer {
         random,
         baseScale,
         resolved.variant,
+        joining: joining,
       );
       final scale = params.scale;
+      // Letters borrowed from the fallback sheet are another hand: they
+      // stand apart.
+      final joinable =
+          joining && metrics != null && identical(resolved.loader, _loader);
 
       final advance = metrics != null
           ? metrics.advance * scale
@@ -94,18 +115,46 @@ class GlyphRenderer {
       if (x + advance > maxWidth && x > 0) {
         x = 0;
         y += lineHeight;
+        penExit = null;
       }
 
       // Top-left corner of the scaled image: on the baseline for metric
       // sheets, top of the cell otherwise.
-      final drawX = metrics != null ? x + metrics.bearing * scale : x;
+      var drawX = metrics != null ? x + metrics.bearing * scale : x;
       final drawY = metrics != null
           ? y + baselineY - metrics.baseline * scale
           : y;
 
-      result.add(
-        PositionedGlyph(glyph: glyph, params: params, x: drawX, y: drawY),
+      GlyphJoin? join;
+      final entry = joinable ? metrics.entry : null;
+      if (penExit != null && entry != null) {
+        final offset = PositionedGlyph.offsetOf(glyph, params, entry);
+        final entryY = drawY + offset.dy;
+        final gap = max(
+          joinGap(_loader.xHeightPx * sheetScale, entryY - penExit.dy) +
+              style.letterSpacing,
+          -0.3 * strokeWidth! * sheetScale,
+        );
+        final to = Offset(penExit.dx + gap, entryY);
+        drawX = to.dx - offset.dx;
+        join = GlyphJoin(
+          from: penExit,
+          to: to,
+          fromDirection: penExitDirection,
+          toDirection: entry.direction - params.rotation,
+          width: strokeWidth * sheetScale,
+          color: _loader.inkColor.withValues(alpha: params.opacity),
+        );
+      }
+
+      final placed = PositionedGlyph(
+        glyph: glyph,
+        params: params,
+        x: drawX,
+        y: drawY,
+        join: join,
       );
+      result.add(placed);
 
       final accent = resolved.accent;
       if (accent != null) {
@@ -123,11 +172,26 @@ class GlyphRenderer {
       }
 
       // Advance cursor
-      x += advance + style.letterSpacing + params.kerningAdjust;
+      final exit = joinable ? metrics.exit : null;
+      if (join != null) {
+        // The join already holds the letter spacing.
+        x = drawX + (metrics!.advance - metrics.bearing) * scale;
+      } else {
+        x += advance + style.letterSpacing + params.kerningAdjust;
+      }
+      penExit = exit == null ? null : placed.place(exit);
+      penExitDirection = (exit?.direction ?? 0) - params.rotation;
     }
 
     return result;
   }
+
+  /// Horizontal distance between the exit point of a letter and the entry
+  /// point of the next: a bit of the x-height plus room for the joining
+  /// stroke to climb or drop [dy]. `glyph_extractor preview` uses the same
+  /// rule (`JoinGap`).
+  static double joinGap(double xHeight, double dy) =>
+      0.10 * xHeight + 0.4 * dy.abs();
 
   /// Distance between baselines. Sheets with metrics space lines by their
   /// em, like type; a template cell is about 1.6 em tall, so spacing lines
@@ -296,14 +360,19 @@ class GlyphRenderer {
     StyleParams style,
     Random random,
     double baseScale,
-    int variant,
-  ) {
+    int variant, {
+    bool joining = false,
+  }) {
     final scaleVariation =
         1.0 + _randomRange(random, -0.25, 0.25) * style.sizeVariance;
     return GlyphParams(
       baselineOffset: _randomRange(random, -2, 2) * style.baselineWobble,
       kerningAdjust: _randomRange(random, -1, 1) * style.baselineWobble,
-      rotation: _randomRange(random, -12, 12) * style.rotationVariance,
+      // Joined letters share a stroke: tilt them half as much.
+      rotation:
+          _randomRange(random, -12, 12) *
+          style.rotationVariance *
+          (joining ? 0.5 : 1),
       scale: baseScale * scaleVariation,
       opacity: 1.0 - random.nextDouble() * style.opacityVariance,
       variantIndex: variant,

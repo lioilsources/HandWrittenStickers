@@ -38,6 +38,9 @@ class GlyphLoader {
   double _cellHeightPx = _defaultCellHeightMM / 25.4 * _defaultDpi;
   double _baselineRatio = _defaultBaselineRatio;
   double? _emHeightPx;
+  double? _strokeWidthPx;
+  double? _xHeightPx;
+  ui.Color? _inkColor;
 
   /// Sheet used for characters this sheet lacks (manifest `fallback`),
   /// wired up by whoever owns the loaders once both are initialised.
@@ -61,6 +64,16 @@ class GlyphLoader {
 
   /// Nominal em size in source pixels (manifest `emHeight`).
   double get emHeightPx => _emHeightPx ?? _cellHeightPx * _defaultEmRatio;
+
+  /// Pen width in source pixels (manifest `strokeWidth`). Sheets that have
+  /// it carry entry/exit points, so their letters can be joined.
+  double? get strokeWidthPx => _strokeWidthPx;
+
+  /// Height of lowercase letters without ascenders, in source pixels.
+  double get xHeightPx => _xHeightPx ?? emHeightPx * 0.45;
+
+  /// Colour of the pen (manifest `inkColor`), for the joining strokes.
+  ui.Color get inkColor => _inkColor ?? const ui.Color(0xFF000000);
 
   /// True when the sheet manifest carries per-glyph metrics.
   bool get hasMetrics => _metrics.isNotEmpty;
@@ -104,6 +117,13 @@ class GlyphLoader {
       _emHeightPx = (manifest['emHeight'] as num?)?.toDouble();
       _colored = (manifest['colored'] as bool?) ?? false;
       _fallbackId = manifest['fallback'] as String?;
+      _strokeWidthPx = (manifest['strokeWidth'] as num?)?.toDouble();
+      _xHeightPx = (manifest['xHeight'] as num?)?.toDouble();
+      final ink = manifest['inkColor'] as String?;
+      final rgb = ink == null
+          ? null
+          : int.tryParse(ink.replaceFirst('#', ''), radix: 16);
+      _inkColor = rgb == null ? null : ui.Color(0xFF000000 | rgb);
 
       final metrics = manifest['metrics'] as Map<String, dynamic>?;
       if (metrics != null) {

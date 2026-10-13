@@ -13,6 +13,7 @@ import 'package:share_plus/share_plus.dart';
 import '../models/emoji_tag.dart';
 import '../models/glyph.dart';
 import '../models/style_params.dart';
+import 'glyph_painter.dart';
 
 /// An exported sticker: PNG without an emoji tag, animated GIF with one.
 class ExportedSticker {
@@ -165,33 +166,7 @@ class ImageExporter {
 
     canvas.save();
     canvas.translate(StickerLayout.padding, StickerLayout.padding);
-    final paint = Paint()..filterQuality = FilterQuality.high;
-    for (final pg in glyphs) {
-      canvas.save();
-
-      canvas.translate(pg.x, pg.y + pg.params.baselineOffset);
-
-      if (pg.params.rotation != 0) {
-        final centerX = pg.glyph.width * pg.params.scale / 2;
-        final centerY = pg.glyph.height * pg.params.scale / 2;
-        canvas.translate(centerX, centerY);
-        canvas.rotate(pg.params.rotation * math.pi / 180);
-        canvas.translate(-centerX, -centerY);
-      }
-
-      if (pg.params.scale != 1.0) {
-        canvas.scale(pg.params.scale);
-      }
-
-      // Draw the glyph image (glyphs retain their original ink color from scan)
-      canvas.drawImage(
-        pg.glyph.image,
-        Offset.zero,
-        paint..color = Color.fromRGBO(0, 0, 0, pg.params.opacity),
-      );
-
-      canvas.restore();
-    }
+    paintGlyphs(canvas, glyphs, quality: FilterQuality.high);
     canvas.restore();
 
     if (emoji != null && layout.badge > 0) {
@@ -206,7 +181,7 @@ class ImageExporter {
         emoji,
         Rect.fromLTWH(0, 0, emoji.width.toDouble(), emoji.height.toDouble()),
         Rect.fromCenter(center: Offset.zero, width: b, height: b),
-        paint,
+        Paint()..filterQuality = FilterQuality.high,
       );
       canvas.restore();
     }

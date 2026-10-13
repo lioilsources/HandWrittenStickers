@@ -195,7 +195,9 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   void _onPresetChanged(StylePreset preset) {
     setState(() {
       _selectedPreset = preset;
-      _styleParams = preset.toStyleParams();
+      _styleParams = preset.toStyleParams().copyWith(
+        joinLetters: _styleParams.joinLetters,
+      );
     });
     _updateGlyphs();
   }
@@ -476,6 +478,8 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                 params: _styleParams,
                                 onChanged: _onStyleParamsChanged,
                                 expanded: true,
+                                canJoinLetters:
+                                    _renderer.loader.strokeWidthPx != null,
                               ),
                           ],
                         ),

@@ -6,6 +6,7 @@ import (
 	"image"
 	"image/color"
 	"image/draw"
+	"math"
 	"path/filepath"
 	"strings"
 
@@ -20,6 +21,8 @@ func runPreview(args []string) error {
 	fs := flag.NewFlagSet("preview", flag.ContinueOnError)
 	var out, text, bg string
 	var cell int
+	var marks bool
+	fs.BoolVar(&marks, "marks", false, "Mark the entry (green) and exit (red) join points of each letter")
 	fs.StringVar(&out, "out", "preview.png", "Output PNG")
 	fs.IntVar(&cell, "cell", 64, "Height in px of one template cell in the preview")
 	fs.StringVar(&text, "text", "Příliš žluťoučký kůň úpěl ďábelské ódy.\nPŘÍLIŠ ŽLUŤOUČKÝ KŮŇ, 0123456789!?", "Sample text (\\n = new line)")
@@ -39,7 +42,7 @@ func runPreview(args []string) error {
 	if err != nil {
 		return err
 	}
-	return renderPreview(fs.Arg(0), out, strings.ReplaceAll(text, `\n`, "\n"), cell, bgc)
+	return renderPreview(fs.Arg(0), out, strings.ReplaceAll(text, `\n`, "\n"), cell, bgc, marks)
 }
 
 type previewGlyph struct {
@@ -48,7 +51,7 @@ type previewGlyph struct {
 	has bool // metrics available
 }
 
-func renderPreview(dir, out, text string, cell int, bg color.NRGBA) error {
+func renderPreview(dir, out, text string, cell int, bg color.NRGBA, marks bool) error {
 	m, err := ReadManifest(dir)
 	if err != nil {
 		return err
@@ -148,7 +151,17 @@ func renderPreview(dir, out, text string, cell int, bg color.NRGBA) error {
 		}
 		if g.has {
 			w := float64(g.m.Width) * scale
-			blit(g, float64(x0)+(float64(colW)-w)/2, float64(baseY)-float64(g.m.Baseline)*scale, scale)
+			gx, gy := float64(x0)+(float64(colW)-w)/2, float64(baseY)-float64(g.m.Baseline)*scale
+			blit(g, gx, gy, scale)
+			if marks {
+				r := math.Max(1.5, float64(cell)/40)
+				if p := g.m.Entry; p != nil {
+					fillDisc(canvas, gx+float64(p[0])*scale, gy+float64(p[1])*scale, r, color.NRGBA{0, 160, 60, 255})
+				}
+				if p := g.m.Exit; p != nil {
+					fillDisc(canvas, gx+float64(p[0])*scale, gy+float64(p[1])*scale, r, color.NRGBA{220, 30, 30, 255})
+				}
+			}
 		} else {
 			s := float64(cell) / float64(g.img.Bounds().Dy())
 			blit(g, float64(x0), float64(y0), s)
@@ -156,31 +169,55 @@ func renderPreview(dir, out, text string, cell int, bg color.NRGBA) error {
 	}
 
 	// Sample text laid out like GlyphRenderer (variants cycle per character).
+	ink := color.NRGBA{20, 20, 20, 255}
+	if c, err := ParseHexColor(m.InkColor); err == nil {
+		ink = c
+	}
 	y := float64(pad/2 + gridRows*cell + cell/4)
 	used := map[string]int{}
 	for _, line := range lines {
 		x := float64(pad)
 		baseY := y + float64(cell)*baselineRatio
 		hline(canvas, pad, width-pad, int(baseY), guide)
+		// Joined sheets connect letters inside a word the way GlyphRenderer
+		// does: the entry point lands a little right of the previous exit
+		// and a pen-wide curve bridges the rest.
+		var prev *previewGlyph
+		var prevX, prevY float64 // top-left of the previous glyph image
 		for _, r := range norm.NFC.String(line) {
 			ch := string(r)
 			if ch == " " {
 				x += float64(cell) * 0.5
+				prev = nil
 				continue
 			}
 			g, ok := load(ch, used[ch])
 			used[ch]++
 			if !ok {
 				x += float64(cell) * 0.5
+				prev = nil
 				continue
 			}
 			if g.has {
-				blit(g, x+float64(g.m.Bearing)*scale, baseY-float64(g.m.Baseline)*scale, scale)
-				x += float64(g.m.Advance) * scale
+				gx, gy := x+float64(g.m.Bearing)*scale, baseY-float64(g.m.Baseline)*scale
+				if prev != nil && prev.m.Exit != nil && g.m.Entry != nil && m.StrokeWidth > 0 {
+					ex := prevX + float64(prev.m.Exit[0])*scale
+					ey := prevY + float64(prev.m.Exit[1])*scale
+					ny := gy + float64(g.m.Entry[1])*scale
+					nx := ex + JoinGap(m.XHeight*scale, ny-ey)
+					gx = nx - float64(g.m.Entry[0])*scale
+					drawJoin(canvas, ex, ey, float64(prev.m.Exit[2]), nx, ny, float64(g.m.Entry[2]),
+						m.StrokeWidth*scale, ink)
+				}
+				blit(g, gx, gy, scale)
+				x = gx + float64(g.m.Advance-g.m.Bearing)*scale
+				gc := g
+				prev, prevX, prevY = &gc, gx, gy
 			} else {
 				s := float64(cell) / float64(g.img.Bounds().Dy())
 				blit(g, x, y, s)
 				x += float64(g.img.Bounds().Dx()) * s
+				prev = nil
 			}
 		}
 		y += float64(cell) * 6 / 5
@@ -198,5 +235,64 @@ func hline(img *image.NRGBA, x0, x1, y int, c color.NRGBA) {
 	}
 	for x := max(0, x0); x < min(img.Bounds().Dx(), x1); x++ {
 		img.SetNRGBA(x, y, c)
+	}
+}
+
+// JoinGap is the horizontal distance between the exit point of a letter and
+// the entry point of the next: a fixed bit of the x-height plus room for the
+// joining stroke to climb or drop dy. GlyphRenderer (Dart) uses the same rule.
+func JoinGap(xHeight, dy float64) float64 {
+	return 0.10*xHeight + 0.4*math.Abs(dy)
+}
+
+// joinCurve returns the cubic Bézier control points of the stroke from
+// (x0,y0), leaving in direction d0, to (x1,y1), arriving in direction d1
+// (degrees, 0 = right, 90 = up). Directions pointing backwards are pulled
+// forward so the stroke never loops.
+func joinCurve(x0, y0, d0, x1, y1, d1 float64) [4][2]float64 {
+	l := math.Hypot(x1-x0, y1-y0) / 3
+	dir := func(deg float64) (float64, float64) {
+		deg = math.Max(-75, math.Min(75, deg))
+		r := deg * math.Pi / 180
+		return math.Cos(r), -math.Sin(r)
+	}
+	ax, ay := dir(d0)
+	bx, by := dir(d1)
+	return [4][2]float64{{x0, y0}, {x0 + ax*l, y0 + ay*l}, {x1 - bx*l, y1 - by*l}, {x1, y1}}
+}
+
+// drawJoin strokes the join curve with a round pen of the given width.
+func drawJoin(img *image.NRGBA, x0, y0, d0, x1, y1, d1, width float64, c color.NRGBA) {
+	if math.Hypot(x1-x0, y1-y0) < 0.5*width {
+		return
+	}
+	p := joinCurve(x0, y0, d0, x1, y1, d1)
+	n := int(math.Hypot(x1-x0, y1-y0)*2) + 2
+	for i := 0; i <= n; i++ {
+		t := float64(i) / float64(n)
+		u := 1 - t
+		x := u*u*u*p[0][0] + 3*u*u*t*p[1][0] + 3*u*t*t*p[2][0] + t*t*t*p[3][0]
+		y := u*u*u*p[0][1] + 3*u*u*t*p[1][1] + 3*u*t*t*p[2][1] + t*t*t*p[3][1]
+		fillDisc(img, x, y, width/2, c)
+	}
+}
+
+// fillDisc paints an anti-aliased disc.
+func fillDisc(img *image.NRGBA, cx, cy, r float64, c color.NRGBA) {
+	b := img.Bounds()
+	for y := int(cy - r - 1); y <= int(cy+r+1); y++ {
+		for x := int(cx - r - 1); x <= int(cx+r+1); x++ {
+			if x < b.Min.X || y < b.Min.Y || x >= b.Max.X || y >= b.Max.Y {
+				continue
+			}
+			a := r - math.Hypot(float64(x)+0.5-cx, float64(y)+0.5-cy) + 0.5
+			if a <= 0 {
+				continue
+			}
+			a = math.Min(a, 1)
+			o := img.NRGBAAt(x, y)
+			mix := func(dst, src uint8) uint8 { return uint8(float64(dst)*(1-a) + float64(src)*a + 0.5) }
+			img.SetNRGBA(x, y, color.NRGBA{mix(o.R, c.R), mix(o.G, c.G), mix(o.B, c.B), 255})
+		}
 	}
 }

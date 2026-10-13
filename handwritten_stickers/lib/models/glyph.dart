@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 /// Typographic metrics of a trimmed glyph image, in source-sheet pixels.
@@ -14,10 +15,17 @@ class GlyphMetrics {
   /// Distance from the glyph origin to the left edge of the image.
   final int bearing;
 
+  /// Where the pen stroke of a joined (cursive) letter comes in on the left
+  /// and leaves on the right; null when the letter does not join there.
+  final JoinPoint? entry;
+  final JoinPoint? exit;
+
   const GlyphMetrics({
     required this.baseline,
     required this.advance,
     required this.bearing,
+    this.entry,
+    this.exit,
   });
 
   factory GlyphMetrics.fromJson(Map<String, dynamic> json) {
@@ -25,7 +33,70 @@ class GlyphMetrics {
       baseline: (json['baseline'] as num).toInt(),
       advance: (json['advance'] as num).toInt(),
       bearing: (json['bearing'] as num).toInt(),
+      entry: JoinPoint.fromJson(json['entry']),
+      exit: JoinPoint.fromJson(json['exit']),
     );
+  }
+}
+
+/// A point of a glyph image (pixels from its top-left corner) where the pen
+/// stroke can be joined, and the direction the pen travels through it in
+/// degrees (0 = to the right, 90 = up). Stored as `[x, y, direction]`.
+class JoinPoint {
+  final double x;
+  final double y;
+  final double direction;
+
+  const JoinPoint(this.x, this.y, [this.direction = 0]);
+
+  static JoinPoint? fromJson(Object? json) {
+    if (json is! List || json.length < 2) return null;
+    return JoinPoint(
+      (json[0] as num).toDouble(),
+      (json[1] as num).toDouble(),
+      json.length > 2 ? (json[2] as num).toDouble() : 0,
+    );
+  }
+}
+
+/// The pen stroke that joins a glyph to the one before it, in layout
+/// coordinates.
+class GlyphJoin {
+  final ui.Offset from;
+  final ui.Offset to;
+
+  /// Pen direction at [from] and [to], degrees (0 = right, 90 = up).
+  final double fromDirection;
+  final double toDirection;
+
+  /// Pen width and colour.
+  final double width;
+  final ui.Color color;
+
+  const GlyphJoin({
+    required this.from,
+    required this.to,
+    required this.fromDirection,
+    required this.toDirection,
+    required this.width,
+    required this.color,
+  });
+
+  /// A cubic curve leaving [from] and arriving at [to] along the pen
+  /// directions. Directions pointing backwards are pulled forward so the
+  /// stroke never loops.
+  ui.Path get path {
+    final reach = (to - from).distance / 3;
+    ui.Offset along(double degrees) {
+      final r = degrees.clamp(-75.0, 75.0) * math.pi / 180;
+      return ui.Offset(math.cos(r), -math.sin(r)) * reach;
+    }
+
+    final c1 = from + along(fromDirection);
+    final c2 = to - along(toDirection);
+    return ui.Path()
+      ..moveTo(from.dx, from.dy)
+      ..cubicTo(c1.dx, c1.dy, c2.dx, c2.dy, to.dx, to.dy);
   }
 }
 
@@ -114,10 +185,32 @@ class PositionedGlyph {
   final double x;
   final double y;
 
+  /// Stroke joining this glyph to the previous one, if they are joined.
+  final GlyphJoin? join;
+
   const PositionedGlyph({
     required this.glyph,
     required this.params,
     required this.x,
     required this.y,
+    this.join,
   });
+
+  /// Where the point [p] of the glyph image ends up once the glyph is
+  /// scaled, rotated about its centre and shifted off the baseline, exactly
+  /// as [paintGlyphs] draws it.
+  ui.Offset place(JoinPoint p) => ui.Offset(x, y) + offsetOf(glyph, params, p);
+
+  /// [place] relative to the glyph's top-left corner.
+  static ui.Offset offsetOf(Glyph glyph, GlyphParams params, JoinPoint p) {
+    final s = params.scale;
+    final centre = ui.Offset(glyph.width * s / 2, glyph.height * s / 2);
+    final v = ui.Offset(p.x * s, p.y * s) - centre;
+    final r = params.rotation * math.pi / 180;
+    final rotated = ui.Offset(
+      v.dx * math.cos(r) - v.dy * math.sin(r),
+      v.dx * math.sin(r) + v.dy * math.cos(r),
+    );
+    return centre + rotated + ui.Offset(0, params.baselineOffset);
+  }
 }

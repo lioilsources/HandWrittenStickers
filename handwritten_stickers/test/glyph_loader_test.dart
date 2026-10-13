@@ -121,4 +121,49 @@ void main() {
     expect(loader.composeParts('í'), ['i', 'acute']);
     expect(loader.composeParts('ů'), isNull, reason: 'no ring glyph');
   });
+
+  test('reads join points and pen measures of a joined sheet', () async {
+    const dir = 'assets/glyphs/joined/';
+    final manifest = {
+      'version': 3,
+      'cellSize': {'width': 22.5, 'height': 26.2},
+      'dpi': 300,
+      'emHeight': 192,
+      'xHeight': 78.5,
+      'strokeWidth': 4.3,
+      'inkColor': '#3c362f',
+      'glyphs': {'a': 'a.png', 'A': 'cap_A.png'},
+      'metrics': {
+        'a': {
+          'w': 10,
+          'h': 12,
+          'baseline': 12,
+          'advance': 14,
+          'bearing': 2,
+          'entry': [1, 6, 0],
+          'exit': [9, 3, 60],
+        },
+        'A': {'w': 10, 'h': 12, 'baseline': 12, 'advance': 14, 'bearing': 2},
+      },
+    };
+    final loader = GlyphLoader(
+      sheetPath: dir,
+      bundle: _MemoryBundle({
+        '${dir}glyphs.json': _text(json.encode(manifest)),
+        '${dir}a.png': await _png(10, 12),
+        '${dir}cap_A.png': await _png(10, 12),
+      }),
+    );
+    await loader.initialize();
+
+    expect(loader.strokeWidthPx, 4.3);
+    expect(loader.xHeightPx, 78.5);
+    expect(loader.inkColor, const ui.Color(0xFF3C362F));
+    final a = (await loader.getGlyph('a'))!.metrics!;
+    expect([a.entry!.x, a.entry!.y, a.entry!.direction], [1, 6, 0]);
+    expect([a.exit!.x, a.exit!.y, a.exit!.direction], [9, 3, 60]);
+    final cap = (await loader.getGlyph('A'))!.metrics!;
+    expect(cap.entry, isNull);
+    expect(cap.exit, isNull);
+  });
 }

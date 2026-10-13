@@ -16,12 +16,32 @@ type GlyphMetrics struct {
 	Baseline int `json:"baseline"` // px from top of PNG down to the baseline
 	Advance  int `json:"advance"`  // horizontal advance (px) from glyph origin
 	Bearing  int `json:"bearing"`  // px from glyph origin to left edge of PNG
+	// Entry and Exit are where the pen stroke of a joined (cursive) letter
+	// comes in on the left and leaves on the right; nil when the letter
+	// does not join on that side. See joins.go.
+	Entry *JoinPoint `json:"entry,omitempty"`
+	Exit  *JoinPoint `json:"exit,omitempty"`
+}
+
+// JoinPoint is [x, y, direction]: a point in PNG pixels and the direction
+// the pen travels through it in degrees (0 = to the right, 90 = up).
+type JoinPoint [3]int
+
+func (p *JoinPoint) scaled(s float64) *JoinPoint {
+	if p == nil {
+		return nil
+	}
+	return &JoinPoint{int(float64(p[0])*s + 0.5), int(float64(p[1])*s + 0.5), p[2]}
 }
 
 // Scaled returns the metrics multiplied by s (used by size normalisation).
 func (m GlyphMetrics) Scaled(s float64) GlyphMetrics {
 	r := func(v int) int { return int(float64(v)*s + 0.5) }
-	return GlyphMetrics{r(m.Width), r(m.Height), r(m.Baseline), r(m.Advance), r(m.Bearing)}
+	return GlyphMetrics{
+		Width: r(m.Width), Height: r(m.Height), Baseline: r(m.Baseline),
+		Advance: r(m.Advance), Bearing: r(m.Bearing),
+		Entry: m.Entry.scaled(s), Exit: m.Exit.scaled(s),
+	}
 }
 
 // OneOrMany is a JSON value that is written as a single value when it has
@@ -74,6 +94,10 @@ type ManifestV2 struct {
 	Colored       bool                               `json:"colored,omitempty"`       // glyphs carry their own colours; renderer must not tint them
 	Fallback      string                             `json:"fallback,omitempty"`      // sheet id used for characters this sheet lacks
 	Compose       map[string][]string                `json:"compose,omitempty"`       // "č": ["c", "caron"] – build from base + accent glyphs
+	XHeight       float64                            `json:"xHeight,omitempty"`       // px, height of lowercase letters without ascenders
+	SlantDeg      float64                            `json:"slantDeg,omitempty"`      // slant of the writing, positive = leaning right
+	StrokeWidth   float64                            `json:"strokeWidth,omitempty"`   // px, pen width; set when letters carry entry/exit points
+	InkColor      string                             `json:"inkColor,omitempty"`      // #rrggbb of the pen, for the strokes joining letters
 	Glyphs        map[string]OneOrMany[string]       `json:"glyphs"`
 	Metrics       map[string]OneOrMany[GlyphMetrics] `json:"metrics,omitempty"`
 }
@@ -116,7 +140,7 @@ func (m *ManifestV2) Write(dir string) error {
 }
 
 func (m *ManifestV2) usesV3() bool {
-	if m.Colored || m.Fallback != "" || len(m.Compose) > 0 {
+	if m.Colored || m.Fallback != "" || len(m.Compose) > 0 || m.StrokeWidth > 0 {
 		return true
 	}
 	for _, files := range m.Glyphs {

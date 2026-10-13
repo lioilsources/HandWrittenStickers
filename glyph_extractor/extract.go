@@ -23,6 +23,25 @@ type ExtractOptions struct {
 	// AutoGrid finds the printed grid in each photo instead of assuming an
 	// aligned 300 DPI scan with fixed margins.
 	AutoGrid bool
+	Joins    JoinOptions
+}
+
+// addJoinFlags registers the joined-handwriting flags. They default to on
+// and only apply to handwriting sheets (see joinOptions).
+func addJoinFlags(fs *flag.FlagSet, o *JoinOptions) {
+	fs.BoolVar(&o.Joins, "joins", true, "Handwriting: store entry/exit points so the app can join letters")
+	fs.BoolVar(&o.FixSlant, "fix-slant", true, "Handwriting: shear letters to the sheet's median slant")
+	fs.BoolVar(&o.FixXHeight, "fix-xheight", true, "Handwriting: rescale lowercase letters to the median x-height")
+	fs.BoolVar(&o.SnapBaseline, "snap-baseline", true, "Handwriting: put each lowercase letter on the baseline")
+}
+
+// joinOptions returns o for handwriting and nothing for other sources:
+// fonts are already even and material letters do not join.
+func joinOptions(o JoinOptions, meta SheetMeta) JoinOptions {
+	if meta.Source != "handwriting" || meta.Colored {
+		return JoinOptions{}
+	}
+	return o
 }
 
 // SheetMeta holds the manifest fields shared by every command that writes a
@@ -128,6 +147,7 @@ func runExtract(args []string) error {
 	grid := fs.String("grid", "template", "Cell positions: template (aligned scan, fixed margins) or auto (detect the printed grid lines in a photo)")
 	fs.BoolVar(&opts.FitBaseline, "fit-baseline", true, "Fit the written baseline per template row instead of using the printed guide")
 	addKeyFlags(fs, &mode, &bgColor, &threshold, &tolerance)
+	addJoinFlags(fs, &opts.Joins)
 	opts.Meta.addFlags(fs)
 	if err := fs.Parse(args); err != nil {
 		return err
@@ -225,6 +245,9 @@ func extractSheet(opts ExtractOptions) error {
 			fmt.Println(l)
 		}
 	}
+	for _, l := range sb.PrepareJoins(joinOptions(opts.Joins, opts.Meta), opts.Cell.Padding) {
+		fmt.Println(l)
+	}
 	if s := sb.NormalizeCapHeight(opts.Meta.CapRatio, opts.Cell.Padding, "H", "E", "T"); s != 1 {
 		fmt.Printf("Normalised cap height: scale %.3f\n", s)
 	}
@@ -248,6 +271,8 @@ func runUpgrade(args []string) error {
 	fs.IntVar(&cell.Padding, "padding", 2, "Transparent padding in px kept around the ink")
 	fitBaseline := fs.Bool("fit-baseline", true, "Fit the written baseline per template row instead of using the guide at 75 %")
 	addKeyFlags(fs, &mode, &bgColor, &threshold, &tolerance)
+	var joins JoinOptions
+	addJoinFlags(fs, &joins)
 	meta.addFlags(fs)
 	fs.Usage = func() {
 		fmt.Println("Usage: glyph_extractor upgrade [flags] <v1_sheet_dir>")
@@ -328,6 +353,9 @@ func runUpgrade(args []string) error {
 		for _, l := range sb.FitRowBaselines(10, cell.Padding) {
 			fmt.Println(l)
 		}
+	}
+	for _, l := range sb.PrepareJoins(joinOptions(joins, meta), cell.Padding) {
+		fmt.Println(l)
 	}
 	if s := sb.NormalizeCapHeight(meta.CapRatio, cell.Padding, "H", "E", "T"); s != 1 {
 		fmt.Printf("Normalised cap height: scale %.3f\n", s)
