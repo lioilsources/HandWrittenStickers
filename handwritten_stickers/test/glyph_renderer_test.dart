@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:handwritten_stickers/models/glyph.dart';
 import 'package:handwritten_stickers/models/style_params.dart';
 import 'package:handwritten_stickers/services/glyph_loader.dart';
+import 'package:handwritten_stickers/services/glyph_painter.dart';
 import 'package:handwritten_stickers/services/glyph_renderer.dart';
 
 /// Loader that serves in-memory glyphs instead of reading assets.
@@ -16,6 +18,7 @@ class _FakeLoader extends GlyphLoader {
   final Map<String, List<String>> compose;
   final double _cellHeight;
   final bool _hasMetrics;
+  final double? _strokeWidth;
 
   _FakeLoader(
     this.glyphs, {
@@ -23,8 +26,10 @@ class _FakeLoader extends GlyphLoader {
     required bool hasMetrics,
     this.variants = const {},
     this.compose = const {},
+    double? strokeWidthPx,
   }) : _cellHeight = cellHeightPx,
        _hasMetrics = hasMetrics,
+       _strokeWidth = strokeWidthPx,
        super(sheetPath: 'assets/glyphs/fake/');
 
   @override
@@ -44,6 +49,12 @@ class _FakeLoader extends GlyphLoader {
 
   @override
   double get emHeightPx => _cellHeight * 0.62;
+
+  @override
+  double? get strokeWidthPx => _strokeWidth;
+
+  @override
+  double get xHeightPx => 100;
 
   @override
   int variantCount(String char) =>
@@ -72,12 +83,20 @@ Future<Glyph> _glyph(
   required int baseline,
   required int advance,
   int bearing = 0,
+  JoinPoint? entry,
+  JoinPoint? exit,
 }) async => Glyph(
   char: char,
   image: await _blankImage(w, h),
   width: w,
   height: h,
-  metrics: GlyphMetrics(baseline: baseline, advance: advance, bearing: bearing),
+  metrics: GlyphMetrics(
+    baseline: baseline,
+    advance: advance,
+    bearing: bearing,
+    entry: entry,
+    exit: exit,
+  ),
 );
 
 Future<ui.Image> _blankImage(int w, int h) async {
@@ -384,6 +403,153 @@ void main() {
       expect(out[0].y, 0);
       expect(out[0].params.scale, closeTo(30 / 252, 1e-9));
       expect(out[1].x, closeTo(217 * 30 / 252, 1e-9));
+    });
+  });
+
+  group('GlyphRenderer joining letters', () {
+    late _FakeLoader loader;
+    late GlyphRenderer renderer;
+
+    // Cell 300 px laid out 30 px tall: scale 0.1, x-height 10, pen 0.5.
+    // Glyph images are 10×10 on screen, the baseline along their bottom.
+    Future<List<PositionedGlyph>> layout(
+      String text, [
+      StyleParams style = _plain,
+    ]) => renderer.layoutText(
+      text: text,
+      style: style,
+      maxWidth: double.infinity,
+      baseGlyphHeight: 30,
+    );
+
+    setUpAll(() async {
+      Future<Glyph> letter(String c, JoinPoint? entry, JoinPoint? exit) =>
+          _glyph(
+            c,
+            100,
+            100,
+            baseline: 100,
+            advance: 120,
+            bearing: 10,
+            entry: entry,
+            exit: exit,
+          );
+      loader = _FakeLoader(
+        {
+          // Comes in and leaves half way up.
+          'a': await letter(
+            'a',
+            const JoinPoint(0, 50),
+            const JoinPoint(100, 50, 30),
+          ),
+          // Comes in lower, leaves higher.
+          'b': await letter(
+            'b',
+            const JoinPoint(0, 80),
+            const JoinPoint(100, 20),
+          ),
+          // A capital: leads into the next letter, takes no stroke itself.
+          'A': await letter('A', null, const JoinPoint(100, 50)),
+          '.': await letter('.', null, null),
+        },
+        cellHeightPx: 300,
+        hasMetrics: true,
+        strokeWidthPx: 5,
+      );
+      renderer = GlyphRenderer(loader);
+    });
+
+    test('the entry point lands a join gap right of the exit point', () async {
+      final glyphs = await layout('aa');
+      expect(glyphs[0].join, isNull);
+      expect(glyphs[0].x, closeTo(1, 1e-9));
+      // Exit of the first a: x = 1 + 10, y = 12.5 + 5.
+      final join = glyphs[1].join!;
+      expect(join.from, const Offset(11, 17.5));
+      // Same height: just the fixed gap of a tenth of the x-height.
+      expect(join.to.dx, closeTo(12, 1e-9));
+      expect(join.to.dy, closeTo(17.5, 1e-9));
+      expect(glyphs[1].x, closeTo(12, 1e-9));
+      expect(join.width, closeTo(0.5, 1e-9));
+      expect(join.fromDirection, 30);
+    });
+
+    test('a height difference widens the gap', () async {
+      final glyphs = await layout('ab');
+      // b comes in 3 px lower: gap = 1 + 0.4 × 3.
+      expect(glyphs[1].join!.to.dy, closeTo(20.5, 1e-9));
+      expect(glyphs[1].x, closeTo(11 + 2.2, 1e-9));
+    });
+
+    test('letter spacing lengthens the join', () async {
+      final glyphs = await layout('aa', _plain.copyWith(letterSpacing: 5));
+      expect(glyphs[1].x, closeTo(17, 1e-9));
+      expect(glyphs[1].join!.to.dx, closeTo(17, 1e-9));
+      // Far negative spacing stops where the strokes would overlap.
+      final tight = await layout('aa', _plain.copyWith(letterSpacing: -10));
+      expect(tight[1].x, closeTo(11 - 0.15, 1e-9));
+    });
+
+    test('words, lines and letters without points are not joined', () async {
+      final spaced = await layout('a a');
+      expect(spaced[1].join, isNull);
+      expect(spaced[1].x, closeTo(12 + 15 + 1, 1e-9));
+
+      final lines = await layout('a\na');
+      expect(lines[1].join, isNull);
+
+      // A capital joins forwards only; punctuation not at all.
+      final mixed = await layout('aAa.a');
+      expect(mixed[1].join, isNull, reason: 'nothing leads into a capital');
+      expect(mixed[2].join, isNotNull, reason: 'the capital leads on');
+      expect(mixed[3].join, isNull);
+      expect(mixed[4].join, isNull);
+    });
+
+    test('joinLetters off gives the plain layout', () async {
+      final glyphs = await layout('ab', _plain.copyWith(joinLetters: false));
+      expect(glyphs.map((g) => g.join), everyElement(isNull));
+      expect(glyphs[1].x, closeTo(12 + 1, 1e-9));
+    });
+
+    test('joins follow letters that wobble, tilt and change size', () async {
+      const lively = StyleParams(
+        baselineWobble: 1,
+        sizeVariance: 1,
+        rotationVariance: 1,
+        opacityVariance: 0,
+      );
+      final glyphs = await layout('abab', lively);
+      for (var i = 1; i < glyphs.length; i++) {
+        final join = glyphs[i].join!;
+        final exit = glyphs[i - 1].place(glyphs[i - 1].glyph.metrics!.exit!);
+        final entry = glyphs[i].place(glyphs[i].glyph.metrics!.entry!);
+        expect((join.from - exit).distance, closeTo(0, 1e-6));
+        expect((join.to - entry).distance, closeTo(0, 1e-6));
+        expect(join.to.dx, greaterThan(join.from.dx));
+      }
+    });
+
+    test('the join is painted between the letters', () async {
+      Future<int> alphaBetween(StyleParams style) async {
+        final glyphs = await layout('ab', style);
+        final recorder = ui.PictureRecorder();
+        final canvas = Canvas(recorder)..scale(10);
+        paintGlyphs(canvas, glyphs);
+        final image = await recorder.endRecording().toImage(400, 400);
+        final bytes = (await image.toByteData())!;
+        // Between the two 10 px wide letters, on the stroke.
+        final x = ((glyphs[0].x + 10 + glyphs[1].x) / 2 * 10).round();
+        var alpha = 0;
+        for (var y = 0; y < 400; y++) {
+          alpha = max(alpha, bytes.getUint8((y * 400 + x) * 4 + 3));
+        }
+        return alpha;
+      }
+
+      final spaced = _plain.copyWith(letterSpacing: 10);
+      expect(await alphaBetween(spaced), greaterThan(200));
+      expect(await alphaBetween(spaced.copyWith(joinLetters: false)), 0);
     });
   });
 }

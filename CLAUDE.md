@@ -22,7 +22,7 @@ go build                                    # Build
 ./glyph_extractor upgrade <v1_sheet_dir> [-output DIR]  # Trim a v1 cell sheet, add metrics
 ./glyph_extractor segment -input page.png -output DIR -labels-file pangram.txt  # Free-form writing → candidates.json
 ./glyph_extractor assemble DIR/candidates.json [-labels labels.json] -output SHEET  # → v3 sheet (variants, compose)
-./glyph_extractor preview <sheet_dir> -out preview.png  # Contact sheet + sample text laid out with metrics
+./glyph_extractor preview <sheet_dir> -out preview.png  # Contact sheet + sample text laid out with metrics (-marks shows join points)
 go test ./...                               # Tests
 ./glyph_extractor reprocess <glyphs_dir> [threshold]  # Re-apply transparency to existing PNGs
 ./glyph_extractor rename <glyphs_dir>       # Rename to ASCII-safe filenames
@@ -52,6 +52,7 @@ flutter test test/widget_test.dart  # Single test
 - `keying.go` - background removal modes: `lightness` (`MakeTransparent`), `chroma` (Lab ΔE from sampled paper colour), `alpha`
 - `autogrid.go` - `DetectGrid` finds the printed 8×10 grid in a photo (line projection profiles), `ExtractCellQuad` warps a cell
 - `segment.go` / `assemble.go` - free-form writing: Otsu + connected components + diacritic grouping + lines → `candidates.json`; labelled candidates → v3 sheet with `compose` rules and dotless `ı`
+- `joins.go` - joined handwriting (`SheetBuilder.PrepareJoins`, on by default for `-source handwriting`): snaps lowercase letters to the baseline, evens x-height and slant, thins each letter to its skeleton (Zhang–Suen) and stores stroke ends as `entry`/`exit` join points; flags `-joins`, `-fix-slant`, `-fix-xheight`, `-snap-baseline`
 - `guide.go` - clean-font guide pages for material letters; `preview.go` - contact sheet renderer
 - `grid.go` - `GridConfig` for cell extraction, `TrimWhitespace` (JPEG-noise-tolerant), `MakeTransparent` (3-zone alpha: opaque ink / gradient edge / transparent background)
 - `charset.go` - `Charset` (160 runes), `CharToFilename` (ASCII names for special chars, `cap_` prefix for uppercase)
@@ -63,6 +64,7 @@ flutter test test/widget_test.dart  # Single test
 - `GlyphSheetIndex` reads `assets/glyphs/sheets.json` (list of bundled sheets, default sheet)
 - `GlyphLoader(sheetPath)` reads one sheet's `glyphs.json` manifest (v1–v3), caches `ui.Image` per variant, exposes `cellHeightPx`/`baselineRatio`/`emHeightPx`/metrics, `variantCount`, `composeParts`, `fallbackId` (+ `fallbackLoader` wired by the editor)
 - `GlyphRenderer` layouts text → `List<PositionedGlyph>`; with metrics it aligns glyphs on the baseline and uses proportional advances, without metrics it falls back to per-cell scaling. Input is recomposed (`TextNormalizer.nfc`); missing letters are composed from base + accent glyph, else taken from the fallback sheet; variants never repeat back to back (deterministic per text)
+- Joined sheets (manifest `strokeWidth`): inside a word the entry point of a letter is placed `GlyphRenderer.joinGap` right of the previous exit point and `PositionedGlyph.join` (`GlyphJoin`, a pen-wide cubic curve) bridges them; `StyleParams.joinLetters` switches it off. `paintGlyphs` (`glyph_painter.dart`) is the one place glyphs and joins are drawn, for preview and export alike
 - `SheetSelector` chip row in `CanvasEditorScreen` switches sheets (one loader per sheet)
 - `StyleParams` controls spacing, rotation, scale variations
 - `ImageExporter` renders to PNG for save/share, scaled so the longest side reaches `pngMaxSide`/`gifMaxSide` px (`scaleFor`); with an emoji tag it exports a looping GIF (`exportToGif`, frames from `renderFrame`, encoded off the UI isolate)
@@ -83,7 +85,7 @@ Data flow: `GlyphSheetIndex` → `GlyphLoader` → `GlyphRenderer.layoutText()` 
 Manifest versions:
 - v1 (`laurinka`): `{version, cellSize, glyphs: {char: file}}`, untrimmed cell scans, laid out cell by cell.
 - v2 (font sheets, `extract`): adds `id, name, source, license, attribution, dpi, emHeight, baselineRatio, metrics: {char: {w, h, baseline, advance, bearing}}` in source pixels. `baseline` = px from PNG top to the baseline, `advance` = pen advance, `bearing` = origin → PNG left edge.
-- v3 (`assemble`, or any sheet using these keys): `glyphs`/`metrics` values may be lists (variants, `a.png`, `a_1.png`, …), `compose: {"č": ["c", "caron"]}` (accent glyph keys `caron`/`acute`/`ring`, dotless `ı` stored as `dotlessi.png`), `fallback: "<sheet id>"`, `colored: true` (material letters, never tinted). A single variant is still written as a plain string, so v2 readers keep working.
+- v3 (`assemble`, or any sheet using these keys): `glyphs`/`metrics` values may be lists (variants, `a.png`, `a_1.png`, …), `compose: {"č": ["c", "caron"]}` (accent glyph keys `caron`/`acute`/`ring`, dotless `ı` stored as `dotlessi.png`), `fallback: "<sheet id>"`, `colored: true` (material letters, never tinted). A single variant is still written as a plain string, so v2 readers keep working. Joined handwriting adds sheet keys `xHeight`, `slantDeg`, `strokeWidth` (px), `inkColor` (`#rrggbb`) and per-glyph `entry`/`exit` = `[x, y, direction°]` in PNG pixels (direction of pen travel, 0 = right, 90 = up); capitals only have `exit`, digits and punctuation neither.
 
 Sheets carry a `category` in `sheets.json` (`handwriting`, `calligraphy`, `typography`, `kids`, `material`) that groups the selector rows. `"bundle": false` hides a sheet from release builds (unclear licence, e.g. AI material sheets until the model licence is checked). 124 sheets are bundled: two template scans (Laurinka, and Jessie 1 in `calligraphy`, extracted from phone photos with `-grid auto`), 113 Google Fonts sheets (21 handwriting, 70 calligraphy, 22 typography) and 9 CuteKidFonts sheets (`kids`: 6 coloured bubble sheets + 3 plain, built by `tools/kid_sheets/build.sh`), all SIL OFL 1.1. The authoritative list is `sheets.json`; previews per category are in `docs/glyph_sheets_<category>.png`. Release plan: `docs/RELEASE_PLAN.md`.
 

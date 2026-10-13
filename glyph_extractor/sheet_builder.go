@@ -189,6 +189,9 @@ type SheetGlyph struct {
 type SheetBuilder struct {
 	Manifest *ManifestV2
 	glyphs   []SheetGlyph
+	// Set by PrepareJoins, in the same pixel units as the glyph images.
+	xHeight, slantDeg, strokeWidth float64
+	inkColor                       string
 }
 
 // NewSheetBuilder prepares a sheet with the template geometry at dpi.
@@ -343,6 +346,8 @@ func (sb *SheetBuilder) Scale(s float64) {
 	if s > 0.995 && s < 1.005 {
 		return
 	}
+	sb.xHeight *= s
+	sb.strokeWidth *= s
 	for i, g := range sb.glyphs {
 		b := g.Image.Bounds()
 		nw := max(1, int(float64(b.Dx())*s+0.5))
@@ -377,6 +382,11 @@ func (sb *SheetBuilder) Write(dir string) error {
 		}
 		sb.Manifest.Add(g.Key, file, m)
 	}
+	round1 := func(v float64) float64 { return float64(int(v*10+0.5)) / 10 }
+	sb.Manifest.XHeight = round1(sb.xHeight)
+	sb.Manifest.SlantDeg = float64(int(sb.slantDeg*10+0.5*sign(sb.slantDeg))) / 10
+	sb.Manifest.StrokeWidth = round1(sb.strokeWidth)
+	sb.Manifest.InkColor = sb.inkColor
 	return sb.Manifest.Write(dir)
 }
 
