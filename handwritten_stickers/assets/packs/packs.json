@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "handwriting",
+      "product": "com.ol1n.handwrittenStickers.pack.handwriting",
+      "name": {
+        "cs": "Rukopisy",
+        "en": "Handwriting"
+      },
+      "description": {
+        "cs": "Další ruční písma, od úhledného po ležérní.",
+        "en": "More handwriting, from neat to casual."
+      },
+      "order": 1,
+      "sampleText": "Ahoj, jak se máš?"
+    },
+    {
+      "id": "calligraphy",
+      "product": "com.ol1n.handwrittenStickers.pack.calligraphy",
+      "name": {
+        "cs": "Kaligrafie",
+        "en": "Calligraphy"
+      },
+      "description": {
+        "cs": "Kaligrafická písma pro přání, pozvánky a vyznání.",
+        "en": "Calligraphy scripts for cards, invitations and love notes."
+      },
+      "order": 2,
+      "sampleText": "Všechno nejlepší!"
+    },
+    {
+      "id": "poster",
+      "product": "com.ol1n.handwrittenStickers.pack.poster",
+      "name": {
+        "cs": "Plakát a nápisy",
+        "en": "Posters & signs"
+      },
+      "description": {
+        "cs": "Výrazná a historická písma pro nápisy, cedule a plakáty.",
+        "en": "Bold and historic type for signs and posters."
+      },
+      "order": 3,
+      "sampleText": "OTEVŘENO"
+    },
+    {
+      "id": "kids",
+      "product": "com.ol1n.handwrittenStickers.pack.kids",
+      "name": {
+        "cs": "Pro děti",
+        "en": "For kids"
+      },
+      "description": {
+        "cs": "Barevné bublinkové a hravé dětské písmo.",
+        "en": "Colourful bubble letters and playful kids' type."
+      },
+      "order": 4,
+      "sampleText": "Mám tě rád!"
+    },
+    {
+      "id": "materials",
+      "product": "com.ol1n.handwrittenStickers.pack.materials",
+      "name": {
+        "cs": "Materiály",
+        "en": "Materials"
+      },
+      "description": {
+        "cs": "Písmena z perníku, neonu a modelíny.",
+        "en": "Letters made of gingerbread, neon and plasticine."
+      },
+      "order": 5,
+      "sampleText": "Veselé Vánoce"
+    },
+    {
+      "id": "presets",
+      "product": "com.ol1n.handwrittenStickers.pack.presets",
+      "name": {
+        "cs": "Vlastní presety",
+        "en": "Your presets"
+      },
+      "description": {
+        "cs": "Ukládej si vlastní kombinace písma a stylu a vracej se k nim jedním klepnutím.",
+        "en": "Save your own font and style combinations and reuse them with one tap."
+      },
+      "order": 6,
+      "feature": "savePresets"
+    },
+    {
+      "id": "all",
+      "product": "com.ol1n.handwrittenStickers.pack.all",
+      "name": {
+        "cs": "Komplet",
+        "en": "Everything"
+      },
+      "description": {
+        "cs": "Všechny balíčky najednou, i ty, které teprve přibudou.",
+        "en": "Every pack, including the ones still to come."
+      },
+      "includes": "*",
+      "order": 99
+    }
+  ]
+}

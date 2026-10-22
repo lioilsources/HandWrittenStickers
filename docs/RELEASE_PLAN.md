@@ -116,6 +116,16 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
 - Ukládání presetů (sada + styl) a monetizace (aplikace zdarma, placené
   obsahové balíčky přes `in_app_purchase`): [PRESETS_MONETIZATION_PLAN.md](PRESETS_MONETIZATION_PLAN.md).
 
+### Monetizace (balíčky)
+
+- [ ] **T16 Produkty v obchodech**: Paid Apps smlouva, daně a banka
+  v App Store Connect; 7 non-consumable produktů
+  `com.ol1n.handwrittenStickers.pack.{handwriting,calligraphy,poster,kids,materials,presets,all}`
+  (balíčky tier 0,99 USD, `all` 99 Kč ručně pro CZ / ~3,99 USD jinde),
+  stejné produkty v Play Console, sandbox testeři. Do té doby release build
+  ukazuje u balíčků „Zatím není v prodeji“ a placený obsah jen v náhledu.
+  Podrobnosti: [PRESETS_MONETIZATION_PLAN.md](PRESETS_MONETIZATION_PLAN.md).
+
 ### Sprint 3 – hygiena a proces
 
 - [ ] **T13 Repo cleanup** (R1–R3, R5).

@@ -40,6 +40,10 @@ class GlyphSheet {
   /// builds (see [GlyphSheetIndex.load]).
   final bool bundle;
 
+  /// Content pack that unlocks the sheet (`assets/packs/packs.json`); null
+  /// means free.
+  final String? pack;
+
   const GlyphSheet({
     required this.id,
     required this.name,
@@ -47,6 +51,7 @@ class GlyphSheet {
     required this.source,
     this.category = SheetCategory.handwriting,
     this.bundle = true,
+    this.pack,
   });
 
   factory GlyphSheet.fromJson(Map<String, dynamic> json) {
@@ -59,12 +64,15 @@ class GlyphSheet {
       source: (json['source'] as String?) ?? 'handwriting',
       category: SheetCategory.parse(json['category'] as String?),
       bundle: (json['bundle'] as bool?) ?? true,
+      pack: json['pack'] as String?,
     );
   }
 
   bool get isHandwriting => source == 'handwriting';
 
   bool get isMaterial => source == 'material';
+
+  bool get isFree => pack == null;
 
   @override
   bool operator ==(Object other) => other is GlyphSheet && other.id == id;

@@ -9,12 +9,19 @@ class SheetSelector extends StatelessWidget {
   final GlyphSheet selected;
   final ValueChanged<GlyphSheet> onSelected;
 
+  /// Sheets from a content pack the user does not own: shown with a lock,
+  /// still selectable (the preview is free, export asks to buy).
+  final bool Function(GlyphSheet sheet) isLocked;
+
   const SheetSelector({
     super.key,
     required this.sheets,
     required this.selected,
     required this.onSelected,
+    this.isLocked = _never,
   });
+
+  static bool _never(GlyphSheet _) => false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +66,9 @@ class SheetSelector extends StatelessWidget {
               padding: const EdgeInsets.only(right: 8),
               child: ChoiceChip(
                 avatar: Icon(
-                  sheet.isHandwriting
+                  isLocked(sheet)
+                      ? Icons.lock_outline
+                      : sheet.isHandwriting
                       ? Icons.draw
                       : sheet.isMaterial
                       ? Icons.palette
