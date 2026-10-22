@@ -113,6 +113,8 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
 
 - Animované 3D emoji jako tag samolepky: samostatný plán
   [EMOJI_PLAN.md](EMOJI_PLAN.md). Přidává ~17 MB assetů a export APNG.
+- Ukládání presetů (sada + styl) a monetizace (aplikace zdarma, placené
+  obsahové balíčky přes `in_app_purchase`): [PRESETS_MONETIZATION_PLAN.md](PRESETS_MONETIZATION_PLAN.md).
 
 ### Sprint 3 – hygiena a proces
 

@@ -1,0 +1,401 @@
+{
+  "version": 1,
+  "presets": [
+    {
+      "id": "builtin:neat",
+      "name": {
+        "cs": "Úhledně",
+        "en": "Neat"
+      },
+      "sheet": "laurinka",
+      "pack": null,
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.2,
+        "lineHeight": 1.3,
+        "baselineWobble": 0.1,
+        "sizeVariance": 0.05,
+        "rotationVariance": 0.1,
+        "opacityVariance": 0.05,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:casual",
+      "name": {
+        "cs": "Běžně",
+        "en": "Casual"
+      },
+      "sheet": "caveat",
+      "pack": null,
+      "style": {
+        "letterSpacing": 0,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.3,
+        "sizeVariance": 0.15,
+        "rotationVariance": 0.3,
+        "opacityVariance": 0.1,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:fast",
+      "name": {
+        "cs": "Rychlý vzkaz",
+        "en": "Quick note"
+      },
+      "sheet": "reenie_beanie",
+      "pack": null,
+      "style": {
+        "letterSpacing": 4,
+        "wordSpacing": 1.1,
+        "lineHeight": 1.15,
+        "baselineWobble": 0.5,
+        "sizeVariance": 0.2,
+        "rotationVariance": 0.4,
+        "opacityVariance": 0.15,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:chaotic",
+      "name": {
+        "cs": "Chaos",
+        "en": "Chaotic"
+      },
+      "sheet": "indie_flower",
+      "pack": null,
+      "style": {
+        "letterSpacing": -2,
+        "wordSpacing": 0.8,
+        "lineHeight": 1.1,
+        "baselineWobble": 0.7,
+        "sizeVariance": 0.3,
+        "rotationVariance": 0.6,
+        "opacityVariance": 0.2,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:love_letter",
+      "name": {
+        "cs": "Milostný dopis",
+        "en": "Love letter"
+      },
+      "sheet": "parisienne",
+      "pack": "calligraphy",
+      "style": {
+        "letterSpacing": 0,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.1,
+        "sizeVariance": 0.05,
+        "rotationVariance": 0.05,
+        "opacityVariance": 0.05,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:wedding",
+      "name": {
+        "cs": "Svatební oznámení",
+        "en": "Wedding"
+      },
+      "sheet": "pinyon_script",
+      "pack": "calligraphy",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.4,
+        "baselineWobble": 0.1,
+        "sizeVariance": 0.05,
+        "rotationVariance": 0.05,
+        "opacityVariance": 0.05,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:greeting",
+      "name": {
+        "cs": "Přání",
+        "en": "Greetings"
+      },
+      "sheet": "allura",
+      "pack": "calligraphy",
+      "style": {
+        "letterSpacing": 0,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.2,
+        "sizeVariance": 0.05,
+        "rotationVariance": 0.05,
+        "opacityVariance": 0.05,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:diary",
+      "name": {
+        "cs": "Deník",
+        "en": "Diary"
+      },
+      "sheet": "kalam",
+      "pack": "handwriting",
+      "style": {
+        "letterSpacing": 0,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.3,
+        "sizeVariance": 0.15,
+        "rotationVariance": 0.3,
+        "opacityVariance": 0.1,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:grandma",
+      "name": {
+        "cs": "Dopis babičce",
+        "en": "Letter to grandma"
+      },
+      "sheet": "la_belle_aurore",
+      "pack": "handwriting",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.2,
+        "lineHeight": 1.3,
+        "baselineWobble": 0.1,
+        "sizeVariance": 0.05,
+        "rotationVariance": 0.1,
+        "opacityVariance": 0.05,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:sticky",
+      "name": {
+        "cs": "Lísteček",
+        "en": "Sticky note"
+      },
+      "sheet": "square_peg",
+      "pack": "handwriting",
+      "style": {
+        "letterSpacing": 4,
+        "wordSpacing": 1.1,
+        "lineHeight": 1.15,
+        "baselineWobble": 0.5,
+        "sizeVariance": 0.2,
+        "rotationVariance": 0.4,
+        "opacityVariance": 0.15,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:poster",
+      "name": {
+        "cs": "Plakát",
+        "en": "Poster"
+      },
+      "sheet": "abril_fatface",
+      "pack": "poster",
+      "style": {
+        "letterSpacing": 6,
+        "wordSpacing": 1.3,
+        "lineHeight": 1.2,
+        "baselineWobble": 0,
+        "sizeVariance": 0,
+        "rotationVariance": 0,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:cake",
+      "name": {
+        "cs": "Nápis na dort",
+        "en": "Cake writing"
+      },
+      "sheet": "lobster",
+      "pack": "poster",
+      "style": {
+        "letterSpacing": 1,
+        "wordSpacing": 1.3,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.15,
+        "sizeVariance": 0,
+        "rotationVariance": 0,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:sign",
+      "name": {
+        "cs": "Cedule",
+        "en": "Sign"
+      },
+      "sheet": "cinzel",
+      "pack": "poster",
+      "style": {
+        "letterSpacing": 8,
+        "wordSpacing": 1.3,
+        "lineHeight": 1.2,
+        "baselineWobble": 0,
+        "sizeVariance": 0,
+        "rotationVariance": 0,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:kid_note",
+      "name": {
+        "cs": "Dětský vzkaz",
+        "en": "Kid's note"
+      },
+      "sheet": "kid_bubble_sky",
+      "pack": "kids",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.5,
+        "sizeVariance": 0.25,
+        "rotationVariance": 0.4,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:school",
+      "name": {
+        "cs": "Do školy",
+        "en": "School"
+      },
+      "sheet": "kid_baloo",
+      "pack": "kids",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.3,
+        "sizeVariance": 0.25,
+        "rotationVariance": 0.2,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:gingerbread",
+      "name": {
+        "cs": "Perník",
+        "en": "Gingerbread"
+      },
+      "sheet": "mat_gingerbread",
+      "pack": "materials",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.2,
+        "sizeVariance": 0.1,
+        "rotationVariance": 0.2,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:neon",
+      "name": {
+        "cs": "Neonový nápis",
+        "en": "Neon sign"
+      },
+      "sheet": "mat_neon",
+      "pack": "materials",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0,
+        "sizeVariance": 0,
+        "rotationVariance": 0,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    },
+    {
+      "id": "builtin:plasticine",
+      "name": {
+        "cs": "Modelína",
+        "en": "Plasticine"
+      },
+      "sheet": "mat_plasticine",
+      "pack": "materials",
+      "style": {
+        "letterSpacing": 2,
+        "wordSpacing": 1.0,
+        "lineHeight": 1.2,
+        "baselineWobble": 0.4,
+        "sizeVariance": 0.1,
+        "rotationVariance": 0.4,
+        "opacityVariance": 0,
+        "inkColor": "#000000",
+        "joinLetters": true,
+        "fontScale": 1.0,
+        "transparentBackground": true
+      }
+    }
+  ]
+}
