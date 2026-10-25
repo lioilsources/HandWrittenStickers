@@ -62,6 +62,7 @@ flutter:
 
   assets:
     - assets/emoji/
+    - assets/presets/
     - assets/glyphs/
     - assets/glyphs/laurinka/
     - assets/glyphs/jessie_1/

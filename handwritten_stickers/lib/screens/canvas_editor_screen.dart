@@ -1,13 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../models/emoji_tag.dart';
 import '../models/glyph.dart';
 import '../models/glyph_sheet.dart';
+import '../models/preset.dart';
 import '../models/style_params.dart';
 import '../services/glyph_loader.dart';
 import '../services/glyph_renderer.dart';
 import '../services/image_exporter.dart';
+import '../services/preset_store.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/emoji_sticker.dart';
 import '../widgets/handwritten_canvas.dart';
@@ -21,9 +25,14 @@ class CanvasEditorScreen extends StatefulWidget {
   /// hide them; screenshots pass false to show what a release shows.
   final bool includeUnbundledSheets;
 
+  /// Built-in and saved presets plus the last editor state. Null creates a
+  /// store backed by the app support directory.
+  final PresetStore? presetStore;
+
   const CanvasEditorScreen({
     super.key,
     this.includeUnbundledSheets = !kReleaseMode,
+    this.presetStore,
   });
 
   @override
@@ -39,8 +48,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   GlyphSheet? _sheet;
   late GlyphRenderer _renderer;
 
-  StylePreset _selectedPreset = StylePreset.casual;
+  late final PresetStore _presets = widget.presetStore ?? PresetStore();
+
+  /// Preset the current look came from; the look may have changed since.
+  Preset? _appliedPreset;
   StyleParams _styleParams = StyleParams.casual();
+  Timer? _saveStateTimer;
   List<PositionedGlyph> _glyphs = [];
   bool _isLoading = true;
   bool _showAdvanced = false;
@@ -125,12 +138,23 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
         defaultId: 'default',
       );
     }
-    final sheet = index.defaultSheet;
+    if (!_presets.isLoaded) await _presets.load();
+    // Continue where the user left off, if that sheet still exists.
+    final last = _presets.lastState;
+    final sheet = index.byId(last?.sheetId ?? '') ?? index.defaultSheet;
+    final style = last != null && last.sheetId == sheet.id
+        ? last.style
+        : _styleParams;
+    final applied = last != null && last.sheetId == sheet.id
+        ? _presets.byId(last.presetId)
+        : null;
     final loader = await _prepareLoader(sheet, index);
     if (!mounted) return;
     setState(() {
       _sheetIndex = index;
       _sheet = sheet;
+      _styleParams = style;
+      _appliedPreset = applied;
       _renderer = GlyphRenderer(loader);
       _isLoading = false;
     });
@@ -147,12 +171,144 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       _renderer = GlyphRenderer(loader);
     });
     _updateGlyphs();
+    _scheduleSaveState();
   }
 
   @override
   void dispose() {
+    if (_saveStateTimer?.isActive ?? false) {
+      _saveStateTimer!.cancel();
+      _saveState();
+    }
     _textController.dispose();
+    // A store the editor created itself is the editor's to dispose.
+    if (widget.presetStore == null) _presets.dispose();
     super.dispose();
+  }
+
+  /// The look differs from the preset it came from.
+  bool get _modified {
+    final applied = _appliedPreset;
+    final sheet = _sheet;
+    return applied != null &&
+        sheet != null &&
+        !applied.matches(sheet.id, _styleParams);
+  }
+
+  /// Remembers the look for the next start, at most every 500 ms.
+  void _scheduleSaveState() {
+    _saveStateTimer?.cancel();
+    _saveStateTimer = Timer(const Duration(milliseconds: 500), _saveState);
+  }
+
+  void _saveState() {
+    final sheet = _sheet;
+    if (sheet == null) return;
+    _presets.saveLastState(
+      EditorState(
+        sheetId: sheet.id,
+        style: _styleParams,
+        presetId: _appliedPreset?.id,
+      ),
+    );
+  }
+
+  /// Switches sheet and style to [preset]; the text stays. A sheet that is
+  /// not available (removed, or hidden in release builds) is replaced by
+  /// the default sheet.
+  Future<void> _applyPreset(Preset preset) async {
+    final index = _sheetIndex;
+    if (index == null) return;
+    var sheet = index.byId(preset.sheetId);
+    if (sheet == null) {
+      sheet = index.defaultSheet;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Písmo presetu „${preset.name}“ není k dispozici, '
+            'použito ${sheet.name}.',
+          ),
+        ),
+      );
+    }
+    final loader = await _prepareLoader(sheet, index);
+    if (!mounted) return;
+    setState(() {
+      _appliedPreset = preset;
+      _sheet = sheet;
+      _renderer = GlyphRenderer(loader);
+      _styleParams = preset.style;
+    });
+    _updateGlyphs();
+    _scheduleSaveState();
+  }
+
+  String _defaultPresetName() {
+    final now = DateTime.now();
+    return '${_sheet?.name ?? 'Preset'} – ${now.day}. ${now.month}.';
+  }
+
+  Future<void> _saveAsNewPreset() async {
+    final sheet = _sheet;
+    if (sheet == null) return;
+    final name = await showPresetNameDialog(
+      context,
+      title: 'Nový preset',
+      initial: _defaultPresetName(),
+    );
+    if (name == null || !mounted) return;
+    final preset = await _presets.add(
+      name: name,
+      sheetId: sheet.id,
+      style: _styleParams,
+    );
+    if (!mounted) return;
+    setState(() => _appliedPreset = preset);
+    _scheduleSaveState();
+  }
+
+  Future<void> _onPresetLongPress(Preset preset) async {
+    final action = await showPresetActions(
+      context,
+      preset: preset,
+      modified: _appliedPreset == preset ? _modified : true,
+    );
+    if (action == null || !mounted) return;
+    switch (action) {
+      case PresetAction.saveAsNew:
+        await _saveAsNewPreset();
+      case PresetAction.overwrite:
+        final sheet = _sheet;
+        if (sheet == null) return;
+        final updated = await _presets.update(
+          preset.id,
+          sheetId: sheet.id,
+          style: _styleParams,
+        );
+        if (updated != null && mounted) {
+          setState(() => _appliedPreset = updated);
+          _scheduleSaveState();
+        }
+      case PresetAction.rename:
+        final name = await showPresetNameDialog(
+          context,
+          title: 'Přejmenovat preset',
+          initial: preset.name,
+        );
+        if (name == null) return;
+        final updated = await _presets.update(preset.id, name: name);
+        if (updated != null && mounted && _appliedPreset == preset) {
+          setState(() => _appliedPreset = updated);
+        }
+      case PresetAction.delete:
+        if (!await confirmPresetDelete(context, preset)) return;
+        await _presets.delete(preset.id);
+        if (!mounted) return;
+        if (_appliedPreset == preset) {
+          setState(() => _appliedPreset = null);
+          _scheduleSaveState();
+        }
+    }
   }
 
   void _onTextChanged() {
@@ -192,22 +348,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     });
   }
 
-  void _onPresetChanged(StylePreset preset) {
-    setState(() {
-      _selectedPreset = preset;
-      _styleParams = preset.toStyleParams().copyWith(
-        joinLetters: _styleParams.joinLetters,
-      );
-    });
-    _updateGlyphs();
-  }
-
   void _onStyleParamsChanged(StyleParams params) {
     setState(() {
       _styleParams = params;
-      _selectedPreset = StylePreset.custom;
     });
     _updateGlyphs();
+    _scheduleSaveState();
   }
 
   /// Runs an export, showing progress (the animated GIF takes a moment).
@@ -450,10 +596,19 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                 onSelected: _onSheetChanged,
                               ),
 
-                            // Preset selector
-                            PresetSelector(
-                              selected: _selectedPreset,
-                              onSelected: _onPresetChanged,
+                            // Presets: sheet + style, built-in and saved
+                            ListenableBuilder(
+                              listenable: _presets,
+                              builder: (context, _) => PresetSelector(
+                                builtIns: _presets.builtIns,
+                                userPresets: _presets.userPresets,
+                                applied: _appliedPreset,
+                                modified: _modified,
+                                sheetById: (id) => _sheetIndex?.byId(id),
+                                onApply: _applyPreset,
+                                onLongPress: _onPresetLongPress,
+                                onSave: _saveAsNewPreset,
+                              ),
                             ),
 
                             // Advanced settings toggle
