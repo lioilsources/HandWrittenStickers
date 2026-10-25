@@ -1,6 +1,14 @@
 # Plán: presety nastavení a monetizace
 
-Stav k 2026-10-22, větev `main` (po PR #10). Zadání pro Opuse. Dvě navazující
+Stav k 2026-10-22, větev `main` (po PR #10). Zadání pro Opuse.
+
+> **Stav 2026-10-22: implementováno** ve větvích `presets` (PR 1) a
+> `content-packs` (PR 2). Odchylky od plánu: služby se předávají
+> konstruktorem editoru (`presetStore`, `entitlements`), ne přes `provider`;
+> ukládání vlastních presetů je placený balíček `presets` (rozhodnutí
+> vlastníka); kategorie Materiály nemá sadu zdarma. Zbývá ruční část
+> „Obchody“ (smlouvy a produkty v App Store Connect a Play Console) a
+> obrazovka O aplikaci (T10) s tlačítkem Obnovit nákupy. Dvě navazující
 funkce, každá jako samostatný PR; druhá staví na první. Položky mají
 hotovo-kritérium, aby se daly odškrtnout.
 
@@ -126,12 +134,12 @@ doplnit z `StyleParams()` (dopředná kompatibilita, až přibudou pole).
 
 ## 2. PR 1 – presety
 
-- [ ] **S1 `StyleParams` JSON + nová pole.** `toJson()`/`fromJson()`, barva
+- [x] **S1 `StyleParams` JSON + nová pole.** `toJson()`/`fromJson()`, barva
   jako `#rrggbb`; přidat `fontScale` (výchozí 1.0, zatím bez UI) a
   `transparentBackground` (výchozí `true`, zatím bez UI). `fromJson` toleruje
   chybějící klíče. Hotovo: unit test round-trip včetně barvy; test, že
   `fromJson({})` == `StyleParams()`.
-- [ ] **S2 Model `Preset` + `PresetStore`.** `lib/models/preset.dart`,
+- [x] **S2 Model `Preset` + `PresetStore`.** `lib/models/preset.dart`,
   `lib/services/preset_store.dart` (`ChangeNotifier`, adresář injektovatelný
   kvůli testům; `load()`, `save(Preset)`, `rename`, `delete`, `builtIns`,
   `userPresets`, `lastState`). Vestavěné z `assets/presets/presets.json`.
@@ -139,30 +147,30 @@ doplnit z `StyleParams()` (dopředná kompatibilita, až přibudou pole).
   soubor → prázdný seznam bez pádu); test, že každý vestavěný preset
   odkazuje na existující sadu v `sheets.json` (stejný styl jako
   `glyph_sheets_test`).
-- [ ] **S3 Odstranit `enum StylePreset`.** Statické `StyleParams.neat()` atd.
+- [x] **S3 Odstranit `enum StylePreset`.** Statické `StyleParams.neat()` atd.
   zůstanou (používají je testy a vestavěné presety se z nich dají
   vygenerovat), enum a `toStyleParams()` zmizí. Editor místo
   `_selectedPreset` drží `_appliedPreset: Preset?` a `_modified: bool`
   (= aktuální sada/styl ≠ preset).
-- [ ] **S4 UI řádku presetů** (`preset_selector.dart` přepsat). Chip =
+- [x] **S4 UI řádku presetů** (`preset_selector.dart` přepsat). Chip =
   název + ikona sady (`draw`/`text_fields`/`palette` jako v
   `SheetSelector`) + tečka při „upraveno“ + zámek u presetu s `pack` (v
   tomto PR jen ikona, nic negatuje). Chip „+ Uložit aktuální“ otevře dialog názvu.
   Dlouhé stisknutí → `showModalBottomSheet` s akcemi. Hotovo: widget test
   „uložit → chip přibude → klepnout → sada i slidery odpovídají“; „smazat“
   s potvrzením.
-- [ ] **S5 Aplikace presetu v editoru.** `_applyPreset(Preset)`: najdi sadu
+- [x] **S5 Aplikace presetu v editoru.** `_applyPreset(Preset)`: najdi sadu
   (`_sheetIndex.byId`), fallback na `defaultSheet` + SnackBar, pak
   `_onSheetChanged` a `_styleParams = preset.style`, `_updateGlyphs()`.
   `joinLetters` se **nepřenáší** z předchozího stavu (dnes
   `_onPresetChanged` ho zachovává – to u presetu se sadou nedává smysl, preset
   ho nese sám). Hotovo: widget test s `Ahoj` – po aplikaci presetu
   s jinou sadou se změní `HandwrittenCanvas.glyphs` (jiný `cellHeightPx`).
-- [ ] **S6 Obnovení posledního stavu.** `editor_state.json` ukládat
+- [x] **S6 Obnovení posledního stavu.** `editor_state.json` ukládat
   debounced (500 ms) po každé změně stylu/sady/presetu; při startu načíst
   před `_initializeSheets` a použít místo `defaultSheet`. Hotovo: test
   `PresetStore.lastState` round-trip; ruční ověření na simulátoru.
-- [ ] **S7 Dokumentace.** `CLAUDE.md` (sekce Flutter App: `Preset`,
+- [x] **S7 Dokumentace.** `CLAUDE.md` (sekce Flutter App: `Preset`,
   `PresetStore`, `assets/presets/presets.json`), `pubspec.yaml`
   `assets: - assets/presets/`.
 
@@ -335,26 +343,26 @@ je podstrčí.
 
 ## 4. PR 2 – balíčky a paywall
 
-- [ ] **M1 `pack` v datech.** `packs.json`, `sheets.json` + `GlyphSheet.pack`,
+- [x] **M1 `pack` v datech.** `packs.json`, `sheets.json` + `GlyphSheet.pack`,
   `presets.json` už má. Hotovo: testy z „Datový model“ (balíček existuje,
   každá kategorie má sadu zdarma, balíček neprázdný, preset balíčku
   odkazuje jen na své/free sady).
-- [ ] **M2 `PurchaseBackend` + `EntitlementService`** s cache souborem a
+- [x] **M2 `PurchaseBackend` + `EntitlementService`** s cache souborem a
   `FakePurchaseBackend`. Přidat `in_app_purchase` (aktuální major), na iOS
   StoreKit 2. Hotovo: unit testy s fake backendem (koupit balíček →
   `ownsPack`, koupit `all` → vše, restore, cache přežije restart, chyba
   obchodu → `PurchaseOutcome.error` a nic se neodemkne).
-- [ ] **M3 Gating v editoru** (zámky, `_ensureOwned`). Hotovo: widget test
+- [x] **M3 Gating v editoru** (zámky, `_ensureOwned`). Hotovo: widget test
   „zamčená sada + Sdílet → paywall; po fake nákupu Sdílet projde“; „preset
   z balíčku → paywall“; „vlastní preset se uloží i bez nákupu“.
-- [ ] **M4 `PaywallSheet` + `PacksScreen`** + Obnovit nákupy + řádek v O
+- [x] **M4 `PaywallSheet` + `PacksScreen`** + Obnovit nákupy + řádek v O
   aplikaci. Hotovo: widget test s fake backendem (cena se zobrazí, Koupit
   volá `buy` se správným produktem, „Komplet“ se skryje při ≥ 2 balíčcích),
   snímky do `screenshots_test`.
-- [ ] **M5 Provider wiring** v `main.dart`, `HWS_PACKS` dart-define.
-- [ ] **M6 Rozdělení sad do balíčků** – návrh podle náhledů, přebytečné
+- [x] **M5 Provider wiring** v `main.dart`, `HWS_PACKS` dart-define.
+- [x] **M6 Rozdělení sad do balíčků** – návrh podle náhledů, přebytečné
   sady `bundle: false`. Hotovo: tabulka v PR popisu, `sheets.json` upraven.
-- [ ] **M7 Dokumentace**: `CLAUDE.md` (pack, EntitlementService, debug
+- [x] **M7 Dokumentace**: `CLAUDE.md` (pack, EntitlementService, debug
   odemknutí), `RELEASE_PLAN.md` – nová položka T16 (smlouvy a produkty).
 
 Ruční ověření před merge: TestFlight build se sandbox účtem – koupit

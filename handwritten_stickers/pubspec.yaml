@@ -37,6 +37,7 @@ dependencies:
   gal: ^2.3.0
   image: ^4.9.2
   file_picker: ^8.0.0
+  in_app_purchase: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
   assets:
     - assets/emoji/
     - assets/presets/
+    - assets/packs/
     - assets/glyphs/
     - assets/glyphs/laurinka/
     - assets/glyphs/jessie_1/

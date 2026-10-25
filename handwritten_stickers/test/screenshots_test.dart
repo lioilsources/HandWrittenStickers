@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
+import 'package:handwritten_stickers/services/entitlement_service.dart';
+import 'package:handwritten_stickers/services/purchases/purchase_backend.dart';
 
 /// Renders the editor to PNGs so the app can be shown without a device
 /// (store page, release notes):
@@ -61,7 +63,11 @@ void main() {
     }
   }
 
-  Future<void> open(WidgetTester tester) async {
+  /// Everything unlocked unless [entitlements] says otherwise.
+  Future<void> open(
+    WidgetTester tester, {
+    EntitlementService? entitlements,
+  }) async {
     tester.view.devicePixelRatio = _pixelRatio;
     tester.view.physicalSize = _phone * _pixelRatio;
     addTearDown(tester.view.reset);
@@ -77,7 +83,10 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
             fontFamily: 'Roboto',
           ),
-          home: const CanvasEditorScreen(includeUnbundledSheets: false),
+          home: CanvasEditorScreen(
+            includeUnbundledSheets: false,
+            entitlements: entitlements,
+          ),
         ),
       ),
     );
@@ -154,8 +163,30 @@ void main() {
     await open(tester);
     await pickSheet(tester, 'Caveat');
     await write(tester, 'Díky za všechno');
-    await tester.tap(find.text('Fast'));
+    await tester.tap(find.text('Rychlý vzkaz'));
+    await settle(tester);
+    await settle(tester);
     await tester.tap(find.text('Advanced Settings'));
     await shoot(tester, 'stickers_5_styl');
+
+    // Content packs, nothing bought yet.
+    await open(
+      tester,
+      entitlements: EntitlementService.fake(
+        FakePurchaseBackend(prices: EntitlementService.fakePrices),
+      ),
+    );
+    await tester.tap(find.byTooltip('Balíčky'));
+    for (var i = 0; i < 4; i++) {
+      await settle(tester);
+    }
+    await shoot(tester, 'stickers_6_balicky');
+
+    // Paywall of one pack.
+    await tester.tap(find.byKey(const ValueKey('pack-calligraphy')));
+    for (var i = 0; i < 4; i++) {
+      await settle(tester);
+    }
+    await shoot(tester, 'stickers_7_paywall');
   });
 }

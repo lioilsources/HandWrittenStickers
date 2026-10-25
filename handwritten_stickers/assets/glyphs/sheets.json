@@ -28,7 +28,8 @@
       "name": "Kalam",
       "path": "assets/glyphs/kalam/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "indie_flower",
@@ -42,7 +43,8 @@
       "name": "Playpen Sans",
       "path": "assets/glyphs/playpen_sans/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "reenie_beanie",
@@ -56,105 +58,120 @@
       "name": "Comforter",
       "path": "assets/glyphs/comforter/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "estonia",
       "name": "Estonia",
       "path": "assets/glyphs/estonia/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "give_you_glory",
       "name": "Give You Glory",
       "path": "assets/glyphs/give_you_glory/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "grape_nuts",
       "name": "Grape Nuts",
       "path": "assets/glyphs/grape_nuts/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "ingrid_darling",
       "name": "Ingrid Darling",
       "path": "assets/glyphs/ingrid_darling/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "la_belle_aurore",
       "name": "La Belle Aurore",
       "path": "assets/glyphs/la_belle_aurore/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "love_light",
       "name": "Love Light",
       "path": "assets/glyphs/love_light/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "oooh_baby",
       "name": "Oooh Baby",
       "path": "assets/glyphs/oooh_baby/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "over_the_rainbow",
       "name": "Over the Rainbow",
       "path": "assets/glyphs/over_the_rainbow/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "puppies_play",
       "name": "Puppies Play",
       "path": "assets/glyphs/puppies_play/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "send_flowers",
       "name": "Send Flowers",
       "path": "assets/glyphs/send_flowers/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "smooch",
       "name": "Smooch",
       "path": "assets/glyphs/smooch/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "square_peg",
       "name": "Square Peg",
       "path": "assets/glyphs/square_peg/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "twinkle_star",
       "name": "Twinkle Star",
       "path": "assets/glyphs/twinkle_star/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "whisper",
       "name": "Whisper",
       "path": "assets/glyphs/whisper/",
       "source": "font",
-      "category": "handwriting"
+      "category": "handwriting",
+      "pack": "handwriting"
     },
     {
       "id": "jessie_1",
@@ -175,7 +192,8 @@
       "name": "Sacramento",
       "path": "assets/glyphs/sacramento/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "pacifico",
@@ -196,462 +214,528 @@
       "name": "Alex Brush",
       "path": "assets/glyphs/alex_brush/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "parisienne",
       "name": "Parisienne",
       "path": "assets/glyphs/parisienne/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "pinyon_script",
       "name": "Pinyon Script",
       "path": "assets/glyphs/pinyon_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "kaushan_script",
       "name": "Kaushan Script",
       "path": "assets/glyphs/kaushan_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "allura",
       "name": "Allura",
       "path": "assets/glyphs/allura/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "arizonia",
       "name": "Arizonia",
       "path": "assets/glyphs/arizonia/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "babylonica",
       "name": "Babylonica",
       "path": "assets/glyphs/babylonica/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "ballet",
       "name": "Ballet",
       "path": "assets/glyphs/ballet/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "beau_rivage",
       "name": "Beau Rivage",
       "path": "assets/glyphs/beau_rivage/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "berkshire_swash",
       "name": "Berkshire Swash",
       "path": "assets/glyphs/berkshire_swash/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "birthstone",
       "name": "Birthstone",
       "path": "assets/glyphs/birthstone/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "birthstone_bounce",
       "name": "Birthstone Bounce",
       "path": "assets/glyphs/birthstone_bounce/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "bonheur_royale",
       "name": "Bonheur Royale",
       "path": "assets/glyphs/bonheur_royale/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "carattere",
       "name": "Carattere",
       "path": "assets/glyphs/carattere/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "charm",
       "name": "Charm",
       "path": "assets/glyphs/charm/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "cherish",
       "name": "Cherish",
       "path": "assets/glyphs/cherish/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "clicker_script",
       "name": "Clicker Script",
       "path": "assets/glyphs/clicker_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "comforter_brush",
       "name": "Comforter Brush",
       "path": "assets/glyphs/comforter_brush/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "corinthia",
       "name": "Corinthia",
       "path": "assets/glyphs/corinthia/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "damion",
       "name": "Damion",
       "path": "assets/glyphs/damion/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "devonshire",
       "name": "Devonshire",
       "path": "assets/glyphs/devonshire/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "dynalight",
       "name": "Dynalight",
       "path": "assets/glyphs/dynalight/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "engagement",
       "name": "Engagement",
       "path": "assets/glyphs/engagement/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "ephesis",
       "name": "Ephesis",
       "path": "assets/glyphs/ephesis/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "explora",
       "name": "Explora",
       "path": "assets/glyphs/explora/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "festive",
       "name": "Festive",
       "path": "assets/glyphs/festive/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "fleur_de_leah",
       "name": "Fleur De Leah",
       "path": "assets/glyphs/fleur_de_leah/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "grand_hotel",
       "name": "Grand Hotel",
       "path": "assets/glyphs/grand_hotel/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "hurricane",
       "name": "Hurricane",
       "path": "assets/glyphs/hurricane/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "imperial_script",
       "name": "Imperial Script",
       "path": "assets/glyphs/imperial_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "inspiration",
       "name": "Inspiration",
       "path": "assets/glyphs/inspiration/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "island_moments",
       "name": "Island Moments",
       "path": "assets/glyphs/island_moments/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "italianno",
       "name": "Italianno",
       "path": "assets/glyphs/italianno/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "jim_nightshade",
       "name": "Jim Nightshade",
       "path": "assets/glyphs/jim_nightshade/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "kolker_brush",
       "name": "Kolker Brush",
       "path": "assets/glyphs/kolker_brush/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "lavishly_yours",
       "name": "Lavishly Yours",
       "path": "assets/glyphs/lavishly_yours/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "licorice",
       "name": "Licorice",
       "path": "assets/glyphs/licorice/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "lovers_quarrel",
       "name": "Lovers Quarrel",
       "path": "assets/glyphs/lovers_quarrel/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "luxurious_script",
       "name": "Luxurious Script",
       "path": "assets/glyphs/luxurious_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "mea_culpa",
       "name": "Mea Culpa",
       "path": "assets/glyphs/mea_culpa/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "meddon",
       "name": "Meddon",
       "path": "assets/glyphs/meddon/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "moon_dance",
       "name": "Moon Dance",
       "path": "assets/glyphs/moon_dance/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "my_soul",
       "name": "My Soul",
       "path": "assets/glyphs/my_soul/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "neonderthaw",
       "name": "Neonderthaw",
       "path": "assets/glyphs/neonderthaw/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "norican",
       "name": "Norican",
       "path": "assets/glyphs/norican/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "ole",
       "name": "Ole",
       "path": "assets/glyphs/ole/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "passions_conflict",
       "name": "Passions Conflict",
       "path": "assets/glyphs/passions_conflict/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "petemoss",
       "name": "Petemoss",
       "path": "assets/glyphs/petemoss/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "petit_formal_script",
       "name": "Petit Formal Script",
       "path": "assets/glyphs/petit_formal_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "playball",
       "name": "Playball",
       "path": "assets/glyphs/playball/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "praise",
       "name": "Praise",
       "path": "assets/glyphs/praise/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "quintessential",
       "name": "Quintessential",
       "path": "assets/glyphs/quintessential/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "qwigley",
       "name": "Qwigley",
       "path": "assets/glyphs/qwigley/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "qwitcher_grypen",
       "name": "Qwitcher Grypen",
       "path": "assets/glyphs/qwitcher_grypen/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "ruthie",
       "name": "Ruthie",
       "path": "assets/glyphs/ruthie/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "sassy_frass",
       "name": "Sassy Frass",
       "path": "assets/glyphs/sassy_frass/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "shalimar",
       "name": "Shalimar",
       "path": "assets/glyphs/shalimar/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "splash",
       "name": "Splash",
       "path": "assets/glyphs/splash/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "stalemate",
       "name": "Stalemate",
       "path": "assets/glyphs/stalemate/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "style_script",
       "name": "Style Script",
       "path": "assets/glyphs/style_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "tapestry",
       "name": "Tapestry",
       "path": "assets/glyphs/tapestry/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "the_nautigal",
       "name": "The Nautigal",
       "path": "assets/glyphs/the_nautigal/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "vujahday_script",
       "name": "Vujahday Script",
       "path": "assets/glyphs/vujahday_script/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "water_brush",
       "name": "Water Brush",
       "path": "assets/glyphs/water_brush/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "waterfall",
       "name": "Waterfall",
       "path": "assets/glyphs/waterfall/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "bundle": false
     },
     {
       "id": "yesteryear",
       "name": "Yesteryear",
       "path": "assets/glyphs/yesteryear/",
       "source": "font",
-      "category": "calligraphy"
+      "category": "calligraphy",
+      "pack": "calligraphy"
     },
     {
       "id": "amatic_sc",
@@ -672,7 +756,8 @@
       "name": "Cinzel",
       "path": "assets/glyphs/cinzel/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "bebas_neue",
@@ -686,126 +771,144 @@
       "name": "Abril Fatface",
       "path": "assets/glyphs/abril_fatface/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "courier_prime",
       "name": "Courier Prime",
       "path": "assets/glyphs/courier_prime/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "medieval_sharp",
       "name": "MedievalSharp",
       "path": "assets/glyphs/medieval_sharp/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "dela_gothic_one",
       "name": "Dela Gothic One",
       "path": "assets/glyphs/dela_gothic_one/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "eagle_lake",
       "name": "Eagle Lake",
       "path": "assets/glyphs/eagle_lake/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "englebert",
       "name": "Englebert",
       "path": "assets/glyphs/englebert/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "fondamento",
       "name": "Fondamento",
       "path": "assets/glyphs/fondamento/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "fruktur",
       "name": "Fruktur",
       "path": "assets/glyphs/fruktur/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "grenze_gotisch",
       "name": "Grenze Gotisch",
       "path": "assets/glyphs/grenze_gotisch/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "julee",
       "name": "Julee",
       "path": "assets/glyphs/julee/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "kings",
       "name": "Kings",
       "path": "assets/glyphs/kings/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "lobster",
       "name": "Lobster",
       "path": "assets/glyphs/lobster/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "metamorphous",
       "name": "Metamorphous",
       "path": "assets/glyphs/metamorphous/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "new_rocker",
       "name": "New Rocker",
       "path": "assets/glyphs/new_rocker/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "oldenburg",
       "name": "Oldenburg",
       "path": "assets/glyphs/oldenburg/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "shojumaru",
       "name": "Shojumaru",
       "path": "assets/glyphs/shojumaru/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "uncial_antiqua",
       "name": "Uncial Antiqua",
       "path": "assets/glyphs/uncial_antiqua/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "wellfleet",
       "name": "Wellfleet",
       "path": "assets/glyphs/wellfleet/",
       "source": "font",
-      "category": "typography"
+      "category": "typography",
+      "pack": "poster"
     },
     {
       "id": "kid_bubble_peach",
@@ -819,35 +922,40 @@
       "name": "Bublinky máta",
       "path": "assets/glyphs/kid_bubble_mint/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "kid_bubble_lavender",
       "name": "Bublinky levandule",
       "path": "assets/glyphs/kid_bubble_lavender/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "kid_bubble_lemon",
       "name": "Bublinky citron",
       "path": "assets/glyphs/kid_bubble_lemon/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "kid_bubble_sky",
       "name": "Bublinky nebe",
       "path": "assets/glyphs/kid_bubble_sky/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "kid_bubble_italic",
       "name": "Bublinky kurzíva",
       "path": "assets/glyphs/kid_bubble_italic/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "kid_dynapuff",
@@ -861,14 +969,16 @@
       "name": "Grandstander",
       "path": "assets/glyphs/kid_grandstander/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "kid_baloo",
       "name": "Baloo 2",
       "path": "assets/glyphs/kid_baloo/",
       "source": "font",
-      "category": "kids"
+      "category": "kids",
+      "pack": "kids"
     },
     {
       "id": "mat_plasticine",
@@ -876,7 +986,7 @@
       "path": "assets/glyphs/mat_plasticine/",
       "source": "material",
       "category": "material",
-      "bundle": false
+      "pack": "materials"
     },
     {
       "id": "mat_neon",
@@ -884,7 +994,7 @@
       "path": "assets/glyphs/mat_neon/",
       "source": "material",
       "category": "material",
-      "bundle": false
+      "pack": "materials"
     },
     {
       "id": "mat_gingerbread",
@@ -892,7 +1002,7 @@
       "path": "assets/glyphs/mat_gingerbread/",
       "source": "material",
       "category": "material",
-      "bundle": false
+      "pack": "materials"
     }
   ]
 }

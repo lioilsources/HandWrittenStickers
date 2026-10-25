@@ -3,18 +3,22 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../models/content_pack.dart';
 import '../models/emoji_tag.dart';
 import '../models/glyph.dart';
 import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
 import '../models/style_params.dart';
+import '../services/entitlement_service.dart';
 import '../services/glyph_loader.dart';
 import '../services/glyph_renderer.dart';
 import '../services/image_exporter.dart';
 import '../services/preset_store.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/emoji_sticker.dart';
+import 'packs_screen.dart';
 import '../widgets/handwritten_canvas.dart';
+import '../widgets/paywall_sheet.dart';
 import '../widgets/preset_selector.dart';
 import '../widgets/sheet_selector.dart';
 import '../widgets/style_params_panel.dart';
@@ -29,10 +33,14 @@ class CanvasEditorScreen extends StatefulWidget {
   /// store backed by the app support directory.
   final PresetStore? presetStore;
 
+  /// Owned content packs. Null uses [EntitlementService.forPlatform].
+  final EntitlementService? entitlements;
+
   const CanvasEditorScreen({
     super.key,
     this.includeUnbundledSheets = !kReleaseMode,
     this.presetStore,
+    this.entitlements,
   });
 
   @override
@@ -49,6 +57,8 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   late GlyphRenderer _renderer;
 
   late final PresetStore _presets = widget.presetStore ?? PresetStore();
+  late final EntitlementService _entitlements =
+      widget.entitlements ?? EntitlementService.forPlatform();
 
   /// Preset the current look came from; the look may have changed since.
   Preset? _appliedPreset;
@@ -70,6 +80,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   void initState() {
     super.initState();
     _initializeSheets();
+    _initializeEntitlements();
     _loadEmoji();
     _textController.addListener(_onTextChanged);
   }
@@ -97,6 +108,86 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       loader.fallbackLoader = fallback;
     }
     return loader;
+  }
+
+  Future<void> _initializeEntitlements() async {
+    _entitlements.addListener(_onEntitlementsChanged);
+    if (_entitlements.isInitialized) return;
+    PackIndex packs;
+    try {
+      packs = await PackIndex.load();
+    } catch (e) {
+      debugPrint('CanvasEditor: no packs.json ($e)');
+      packs = PackIndex.empty;
+    }
+    await _entitlements.initialize(packs);
+  }
+
+  /// Locks come and go with purchases.
+  void _onEntitlementsChanged() {
+    if (mounted) setState(() {});
+  }
+
+  /// Pack the current look needs and the user does not own: the sheet's,
+  /// else that of the applied (unchanged) preset.
+  ContentPack? get _lockedPack {
+    final sheet = _sheet;
+    if (sheet != null && !_entitlements.canUseSheet(sheet)) {
+      return _entitlements.packs.byId(sheet.pack);
+    }
+    final preset = _appliedPreset;
+    if (preset != null && !_modified && !_entitlements.canUsePreset(preset)) {
+      return _entitlements.packs.byId(preset.pack);
+    }
+    return null;
+  }
+
+  Future<GlyphLoader> _sampleLoader(GlyphSheet sheet) async =>
+      _loaderFor(sheet);
+
+  /// Offers [pack]; true once the user owns it.
+  Future<bool> _offerPack(ContentPack pack) async {
+    final owned = await showPaywall(
+      context,
+      entitlements: _entitlements,
+      pack: pack,
+      contents: PackContents.of(
+        pack,
+        sheets: _sheetIndex?.sheets ?? const [],
+        presets: _presets.builtIns,
+      ),
+      loaderFor: _sampleLoader,
+    );
+    return owned ?? false;
+  }
+
+  /// Export and share need the content the look uses. Unknown packs (not
+  /// in packs.json) never block.
+  Future<bool> _ensureOwned() async {
+    final pack = _lockedPack;
+    if (pack == null) return true;
+    return _offerPack(pack);
+  }
+
+  /// Saving the user's own presets is the `presets` pack.
+  Future<bool> _ensureCanSavePresets() async {
+    if (_entitlements.canSavePresets) return true;
+    final pack = _entitlements.packs.forFeature(ContentPack.savePresetsFeature);
+    if (pack == null) return true;
+    return _offerPack(pack);
+  }
+
+  void _openPacks() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PacksScreen(
+          entitlements: _entitlements,
+          sheets: _sheetIndex?.sheets ?? const [],
+          presets: _presets.builtIns,
+          loaderFor: _sampleLoader,
+        ),
+      ),
+    );
   }
 
   Future<void> _loadEmoji() async {
@@ -181,8 +272,10 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       _saveState();
     }
     _textController.dispose();
-    // A store the editor created itself is the editor's to dispose.
+    // Services the editor created itself are the editor's to dispose.
     if (widget.presetStore == null) _presets.dispose();
+    _entitlements.removeListener(_onEntitlementsChanged);
+    if (widget.entitlements == null) _entitlements.dispose();
     super.dispose();
   }
 
@@ -249,8 +342,9 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   Future<void> _saveAsNewPreset() async {
-    final sheet = _sheet;
-    if (sheet == null) return;
+    if (_sheet == null || !await _ensureCanSavePresets()) return;
+    if (!mounted) return;
+    final sheet = _sheet!;
     final name = await showPresetNameDialog(
       context,
       title: 'Nový preset',
@@ -279,7 +373,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
         await _saveAsNewPreset();
       case PresetAction.overwrite:
         final sheet = _sheet;
-        if (sheet == null) return;
+        if (sheet == null || !await _ensureCanSavePresets()) return;
         final updated = await _presets.update(
           preset.id,
           sheetId: sheet.id,
@@ -290,6 +384,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
           _scheduleSaveState();
         }
       case PresetAction.rename:
+        if (!await _ensureCanSavePresets() || !mounted) return;
         final name = await showPresetNameDialog(
           context,
           title: 'Přejmenovat preset',
@@ -368,6 +463,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   Future<void> _exportImage() async {
+    if (!await _ensureOwned() || !mounted) return;
     final success = await _withExport(
       () => ImageExporter.saveToGallery(
         glyphs: _glyphs,
@@ -388,6 +484,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   final GlobalKey _shareButtonKey = GlobalKey();
 
   Future<void> _shareImage() async {
+    if (!await _ensureOwned() || !mounted) return;
     // The share sheet is anchored to the button (required on iOS).
     final box =
         _shareButtonKey.currentContext?.findRenderObject() as RenderBox?;
@@ -477,6 +574,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       appBar: AppBar(
         title: const Text('Handwritten Text'),
         actions: [
+          IconButton(
+            key: const ValueKey('open-packs'),
+            icon: const Icon(Icons.storefront_outlined),
+            onPressed: _openPacks,
+            tooltip: 'Balíčky',
+          ),
           if (_emojiIndex != null)
             IconButton(
               icon: Icon(
@@ -547,6 +650,15 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                     )
                                   : _buildPreview(),
                             ),
+                            if (_lockedPack != null && _glyphs.isNotEmpty)
+                              Positioned(
+                                top: 6,
+                                right: 6,
+                                child: _LockedBadge(
+                                  pack: _lockedPack!,
+                                  onTap: () => _offerPack(_lockedPack!),
+                                ),
+                              ),
                           ],
                         ),
                       ),
@@ -594,6 +706,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                 sheets: _sheetIndex!.sheets,
                                 selected: _sheet!,
                                 onSelected: _onSheetChanged,
+                                isLocked: (s) => !_entitlements.canUseSheet(s),
                               ),
 
                             // Presets: sheet + style, built-in and saved
@@ -608,6 +721,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                 onApply: _applyPreset,
                                 onLongPress: _onPresetLongPress,
                                 onSave: _saveAsNewPreset,
+                                isLocked: (p) => !_entitlements.canUsePreset(p),
                               ),
                             ),
 
@@ -644,6 +758,50 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                 ),
               ),
             ),
+    );
+  }
+}
+
+/// "Part of pack X" label on the preview of content the user does not own
+/// yet; tapping it offers the pack.
+class _LockedBadge extends StatelessWidget {
+  final ContentPack pack;
+  final VoidCallback onTap;
+
+  const _LockedBadge({required this.pack, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      key: const ValueKey('locked-badge'),
+      color: scheme.tertiaryContainer,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.lock_outline,
+                size: 14,
+                color: scheme.onTertiaryContainer,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                pack.name,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: scheme.onTertiaryContainer,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
