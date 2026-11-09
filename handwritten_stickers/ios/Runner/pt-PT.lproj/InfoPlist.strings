@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "A câmara só é usada se optares por fotografar um modelo de escrita à mão.";
+"NSLocationWhenInUseUsageDescription" = "A localização não é usada. A biblioteca de seleção de fotografias apenas referencia a API e a app nunca a pede.";
+"NSPhotoLibraryAddUsageDescription" = "Esta app guarda as imagens do teu texto manuscrito na fototeca.";
+"NSPhotoLibraryUsageDescription" = "As fotografias só são lidas quando escolhes a imagem de um modelo de escrita à mão para alinhar.";

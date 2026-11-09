@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Fotoaparát sa používa, len ak sa rozhodneš vyfotiť šablónu s rukopisom.";
+"NSLocationWhenInUseUsageDescription" = "Poloha sa nepoužíva. Knižnica na výber fotiek len odkazuje na toto API a aplikácia oň nikdy nežiada.";
+"NSPhotoLibraryAddUsageDescription" = "Aplikácia ukladá obrázky tvojho rukopisného textu do knižnice fotiek.";
+"NSPhotoLibraryUsageDescription" = "Fotky sa čítajú, len keď vyberieš snímku šablóny s rukopisom na zarovnanie.";

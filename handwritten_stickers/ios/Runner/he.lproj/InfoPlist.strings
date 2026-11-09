@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "המצלמה משמשת רק אם בחרת לצלם תבנית כתב יד.";
+"NSLocationWhenInUseUsageDescription" = "המיקום אינו בשימוש. ספריית בחירת התמונות רק מפנה ל־API, והאפליקציה אינה מבקשת אותו לעולם.";
+"NSPhotoLibraryAddUsageDescription" = "האפליקציה שומרת תמונות של הטקסט בכתב ידך בספריית התמונות.";
+"NSPhotoLibraryUsageDescription" = "תמונות נקראות רק כשאתה בוחר תמונה של תבנית כתב יד ליישור.";

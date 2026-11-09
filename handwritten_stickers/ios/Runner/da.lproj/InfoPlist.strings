@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kameraet bruges kun, hvis du vælger at tage et foto af en skabelon med håndskrift.";
+"NSLocationWhenInUseUsageDescription" = "Placering bruges ikke. Biblioteket til fotovalg henviser kun til API’et, og appen beder aldrig om det.";
+"NSPhotoLibraryAddUsageDescription" = "Appen gemmer billeder af din håndskrevne tekst i fotobiblioteket.";
+"NSPhotoLibraryUsageDescription" = "Fotos læses kun, når du vælger et billede af en skabelon med håndskrift, der skal justeres.";

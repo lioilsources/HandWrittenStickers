@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kamera se uporablja samo, če se odločiš fotografirati predlogo z lastnoročnim pisanjem.";
+"NSLocationWhenInUseUsageDescription" = "Lokacija se ne uporablja. Knjižnica za izbiro fotografij samo omenja API, aplikacija pa ga nikoli ne zahteva.";
+"NSPhotoLibraryAddUsageDescription" = "Ta aplikacija shranjuje slike tvojega rokopisnega besedila v knjižnico fotografij.";
+"NSPhotoLibraryUsageDescription" = "Fotografije se berejo samo, ko izbereš sliko predloge z rokopisom za poravnavo.";

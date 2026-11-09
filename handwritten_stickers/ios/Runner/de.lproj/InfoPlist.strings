@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Die Kamera wird nur verwendet, wenn du eine Handschriftvorlage fotografieren möchtest.";
+"NSLocationWhenInUseUsageDescription" = "Der Standort wird nicht verwendet. Die Fotoauswahl-Bibliothek verweist nur auf die API, die App fragt ihn nie ab.";
+"NSPhotoLibraryAddUsageDescription" = "Diese App sichert Bilder deines handgeschriebenen Textes in der Fotomediathek.";
+"NSPhotoLibraryUsageDescription" = "Fotos werden nur gelesen, wenn du ein Bild einer Handschriftvorlage zum Ausrichten auswählst.";

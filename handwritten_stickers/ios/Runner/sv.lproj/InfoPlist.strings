@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kameran används bara om du väljer att fotografera en handskriftsmall.";
+"NSLocationWhenInUseUsageDescription" = "Plats används inte. Fotovalsbiblioteket refererar bara till API:et och appen ber aldrig om det.";
+"NSPhotoLibraryAddUsageDescription" = "Appen sparar bilder av din handskrivna text i fotobiblioteket.";
+"NSPhotoLibraryUsageDescription" = "Foton läses bara när du väljer en bild av en handskriftsmall att justera.";

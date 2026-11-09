@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Máy ảnh chỉ được dùng khi bạn chọn chụp ảnh mẫu chữ viết tay.";
+"NSLocationWhenInUseUsageDescription" = "Vị trí không được sử dụng. Thư viện chọn ảnh chỉ tham chiếu API và ứng dụng không bao giờ yêu cầu.";
+"NSPhotoLibraryAddUsageDescription" = "Ứng dụng này lưu ảnh văn bản viết tay của bạn vào thư viện ảnh.";
+"NSPhotoLibraryUsageDescription" = "Ảnh chỉ được đọc khi bạn chọn ảnh mẫu chữ viết tay để căn chỉnh.";

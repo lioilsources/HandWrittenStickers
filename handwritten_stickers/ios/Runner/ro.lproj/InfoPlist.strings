@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Camera este folosită doar dacă alegi să fotografiezi un șablon cu scris de mână.";
+"NSLocationWhenInUseUsageDescription" = "Locația nu este folosită. Biblioteca de selectare a pozelor doar face referire la API, iar aplicația nu o solicită niciodată.";
+"NSPhotoLibraryAddUsageDescription" = "Această aplicație salvează imaginile textului tău scris de mână în biblioteca foto.";
+"NSPhotoLibraryUsageDescription" = "Pozele sunt citite doar când alegi imaginea unui șablon cu scris de mână pentru aliniere.";

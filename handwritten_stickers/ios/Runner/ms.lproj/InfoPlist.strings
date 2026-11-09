@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kamera hanya digunakan jika anda memilih untuk mengambil foto templat tulisan tangan.";
+"NSLocationWhenInUseUsageDescription" = "Lokasi tidak digunakan. Pustaka pemilih foto hanya merujuk API dan aplikasi tidak pernah memintanya.";
+"NSPhotoLibraryAddUsageDescription" = "Aplikasi ini menyimpan imej teks tulisan tangan anda ke pustaka foto.";
+"NSPhotoLibraryUsageDescription" = "Foto hanya dibaca apabila anda memilih imej templat tulisan tangan untuk diselaraskan.";

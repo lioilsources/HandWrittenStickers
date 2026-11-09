@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Aparat jest używany tylko wtedy, gdy zdecydujesz się sfotografować szablon z pismem odręcznym.";
+"NSLocationWhenInUseUsageDescription" = "Lokalizacja nie jest używana. Biblioteka wyboru zdjęć jedynie odwołuje się do tego API, a aplikacja nigdy o nią nie prosi.";
+"NSPhotoLibraryAddUsageDescription" = "Ta aplikacja zapisuje obrazy twojego odręcznego tekstu w bibliotece zdjęć.";
+"NSPhotoLibraryUsageDescription" = "Zdjęcia są odczytywane tylko wtedy, gdy wybierasz obraz szablonu pisma odręcznego do wyrównania.";

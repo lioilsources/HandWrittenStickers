@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Fotoaparát se používá jen tehdy, když se rozhodneš vyfotit šablonu s rukopisem.";
+"NSLocationWhenInUseUsageDescription" = "Poloha se nepoužívá. Knihovna pro výběr fotek jen odkazuje na toto API a appka o ni nikdy nežádá.";
+"NSPhotoLibraryAddUsageDescription" = "Appka ukládá obrázky tvého rukopisného textu do knihovny fotek.";
+"NSPhotoLibraryUsageDescription" = "Fotky se čtou jen tehdy, když vybereš snímek šablony s rukopisem k zarovnání.";

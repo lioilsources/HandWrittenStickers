@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kamera se koristi samo ako odlučiš fotografirati predložak s rukopisom.";
+"NSLocationWhenInUseUsageDescription" = "Lokacija se ne koristi. Biblioteka za odabir fotografija samo upućuje na API, a aplikacija ga nikada ne traži.";
+"NSPhotoLibraryAddUsageDescription" = "Ova aplikacija sprema slike tvog rukom pisanog teksta u biblioteku fotografija.";
+"NSPhotoLibraryUsageDescription" = "Fotografije se čitaju samo kad odabereš sliku predloška s rukopisom za poravnanje.";

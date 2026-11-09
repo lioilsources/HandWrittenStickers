@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kameraa käytetään vain, jos päätät kuvata käsinkirjoitusmallin.";
+"NSLocationWhenInUseUsageDescription" = "Sijaintia ei käytetä. Kuvanvalitsinkirjasto vain viittaa rajapintaan, eikä sovellus koskaan pyydä sijaintia.";
+"NSPhotoLibraryAddUsageDescription" = "Sovellus tallentaa käsinkirjoitetun tekstisi kuvat kuvakirjastoon.";
+"NSPhotoLibraryUsageDescription" = "Kuvia luetaan vain, kun valitset kuvan käsinkirjoitusmallista kohdistettavaksi.";
