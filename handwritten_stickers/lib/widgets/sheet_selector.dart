@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/glyph_sheet.dart';
+import '../l10n/app_localizations.dart';
 
 /// Chip rows for choosing which glyph sheet ("handwriting") to use, grouped
 /// by [SheetCategory].
@@ -37,12 +38,13 @@ class SheetSelector extends StatelessWidget {
       children: [
         for (final category in SheetCategory.values)
           if (groups.containsKey(category))
-            _buildRow(theme, category, groups[category]!),
+            _buildRow(context, theme, category, groups[category]!),
       ],
     );
   }
 
   Widget _buildRow(
+    BuildContext context,
     ThemeData theme,
     SheetCategory category,
     List<GlyphSheet> rowSheets,
@@ -55,7 +57,7 @@ class SheetSelector extends StatelessWidget {
           SizedBox(
             width: 84,
             child: Text(
-              category.label,
+              _categoryLabel(AppLocalizations.of(context), category),
               style: theme.textTheme.labelSmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -63,7 +65,7 @@ class SheetSelector extends StatelessWidget {
           ),
           for (final sheet in rowSheets)
             Padding(
-              padding: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsetsDirectional.only(end: 8),
               child: ChoiceChip(
                 avatar: Icon(
                   isLocked(sheet)
@@ -93,4 +95,13 @@ class SheetSelector extends StatelessWidget {
       ),
     );
   }
+
+  static String _categoryLabel(AppLocalizations l, SheetCategory category) =>
+      switch (category) {
+        SheetCategory.handwriting => l.categoryHandwriting,
+        SheetCategory.calligraphy => l.categoryCalligraphy,
+        SheetCategory.typography => l.categoryTypography,
+        SheetCategory.kids => l.categoryKids,
+        SheetCategory.material => l.categoryMaterial,
+      };
 }

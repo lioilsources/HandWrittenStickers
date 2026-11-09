@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../services/perspective_transformer.dart';
 import '../widgets/grid_painter.dart';
+import '../l10n/app_localizations.dart';
 
 /// Interactive screen for aligning a grid overlay on a photo of the
 /// handwriting template, then exporting a perspective-corrected image.
@@ -77,6 +78,7 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
 
   Future<void> _exportAligned() async {
     if (_image == null || _corners.length != 4) return;
+    final l = AppLocalizations.of(context);
 
     setState(() => _isProcessing = true);
 
@@ -92,7 +94,7 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
       final fileName = '${baseName}_aligned.png';
 
       final savePath = await FilePicker.platform.saveFile(
-        dialogTitle: 'Save Aligned Image',
+        dialogTitle: l.saveAlignedImage,
         fileName: fileName,
         type: FileType.custom,
         allowedExtensions: ['png'],
@@ -100,21 +102,25 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
       );
 
       if (savePath != null && mounted) {
-        final file =
-            File(savePath.endsWith('.png') ? savePath : '$savePath.png');
+        final file = File(
+          savePath.endsWith('.png') ? savePath : '$savePath.png',
+        );
         if (!await file.exists()) {
           await file.writeAsBytes(pngBytes);
         }
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Saved: ${file.path}')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(l.savedPath(file.path))));
         }
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text(l.errorMessage('$e')),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {
@@ -181,27 +187,30 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(_imagePath != null
-            ? 'Grid Alignment \u2014 ${_imagePath!.split('/').last}'
-            : 'Grid Alignment'),
+        title: Text(
+          _imagePath != null
+              ? l.gridAlignmentFile(_imagePath!.split('/').last)
+              : l.navGridAlignment,
+        ),
         actions: [
           if (_image != null) ...[
             IconButton(
               icon: const Icon(Icons.folder_open),
               onPressed: _pickImage,
-              tooltip: 'Open Another Image',
+              tooltip: l.openAnotherImage,
             ),
             IconButton(
               icon: Icon(_showGrid ? Icons.grid_on : Icons.grid_off),
               onPressed: () => setState(() => _showGrid = !_showGrid),
-              tooltip: _showGrid ? 'Hide Grid' : 'Show Grid',
+              tooltip: _showGrid ? l.hideGrid : l.showGrid,
             ),
             IconButton(
               icon: const Icon(Icons.refresh),
               onPressed: () => setState(() => _initCorners()),
-              tooltip: 'Reset Grid',
+              tooltip: l.resetGrid,
             ),
             const SizedBox(width: 8),
             IconButton(
@@ -213,7 +222,7 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
                     )
                   : const Icon(Icons.check_circle),
               onPressed: _isProcessing ? null : _exportAligned,
-              tooltip: 'Export Aligned Image',
+              tooltip: l.exportAlignedImage,
             ),
           ],
         ],
@@ -223,27 +232,30 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
   }
 
   Widget _buildEmptyState() {
+    final l = AppLocalizations.of(context);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.photo_library_outlined,
-              size: 64, color: Colors.grey.shade400),
+          Icon(
+            Icons.photo_library_outlined,
+            size: 64,
+            color: Colors.grey.shade400,
+          ),
           const SizedBox(height: 16),
           Text(
-            'Open a photo of your handwriting template',
+            l.openTemplatePhoto,
             style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
           ),
           const SizedBox(height: 24),
           FilledButton.icon(
             onPressed: _pickImage,
             icon: const Icon(Icons.folder_open),
-            label: const Text('Open Image'),
+            label: Text(l.openImage),
           ),
           const SizedBox(height: 12),
           Text(
-            'Drag the 4 corners to align the grid on the photo,\n'
-            'then export the perspective-corrected image.',
+            l.gridInstructions,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
           ),

@@ -80,7 +80,7 @@ class _SheetSampleState extends State<SheetSample> {
     return SizedBox(
       height: widget.height,
       child: FittedBox(
-        alignment: Alignment.centerLeft,
+        alignment: AlignmentDirectional.centerStart,
         child: SizedBox(
           width: size.width,
           height: size.height,

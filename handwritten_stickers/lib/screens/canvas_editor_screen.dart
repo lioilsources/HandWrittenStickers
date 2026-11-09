@@ -22,6 +22,8 @@ import '../widgets/paywall_sheet.dart';
 import '../widgets/preset_selector.dart';
 import '../widgets/sheet_selector.dart';
 import '../widgets/style_params_panel.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/content_language.dart';
 
 /// Main editor screen for creating handwritten text
 class CanvasEditorScreen extends StatefulWidget {
@@ -56,7 +58,11 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   GlyphSheet? _sheet;
   late GlyphRenderer _renderer;
 
-  late final PresetStore _presets = widget.presetStore ?? PresetStore();
+  /// Language of preset and pack names, from the app locale; set before
+  /// anything loads (see [didChangeDependencies]).
+  late final String _language;
+  late final PresetStore _presets =
+      widget.presetStore ?? PresetStore(language: _language);
   late final EntitlementService _entitlements =
       widget.entitlements ?? EntitlementService.forPlatform();
 
@@ -76,13 +82,23 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   static const double _canvasWidth = 800;
   static const double _baseGlyphHeight = 30;
 
+  bool _started = false;
+
   @override
   void initState() {
     super.initState();
+    _textController.addListener(_onTextChanged);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    _language = contentLanguageOf(Localizations.localeOf(context));
     _initializeSheets();
     _initializeEntitlements();
     _loadEmoji();
-    _textController.addListener(_onTextChanged);
   }
 
   GlyphLoader _loaderFor(GlyphSheet sheet) {
@@ -115,7 +131,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     if (_entitlements.isInitialized) return;
     PackIndex packs;
     try {
-      packs = await PackIndex.load();
+      packs = await PackIndex.load(language: _language);
     } catch (e) {
       debugPrint('CanvasEditor: no packs.json ($e)');
       packs = PackIndex.empty;
@@ -318,8 +334,9 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Písmo presetu „${preset.name}“ není k dispozici, '
-            'použito ${sheet.name}.',
+            AppLocalizations.of(
+              context,
+            ).presetSheetMissing(preset.name, sheet.name),
           ),
         ),
       );
@@ -337,8 +354,11 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   String _defaultPresetName() {
-    final now = DateTime.now();
-    return '${_sheet?.name ?? 'Preset'} – ${now.day}. ${now.month}.';
+    final l = AppLocalizations.of(context);
+    return l.presetDefaultName(
+      _sheet?.name ?? l.presetFallbackName,
+      DateTime.now(),
+    );
   }
 
   Future<void> _saveAsNewPreset() async {
@@ -347,7 +367,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final sheet = _sheet!;
     final name = await showPresetNameDialog(
       context,
-      title: 'Nový preset',
+      title: AppLocalizations.of(context).newPreset,
       initial: _defaultPresetName(),
     );
     if (name == null || !mounted) return;
@@ -387,7 +407,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
         if (!await _ensureCanSavePresets() || !mounted) return;
         final name = await showPresetNameDialog(
           context,
-          title: 'Přejmenovat preset',
+          title: AppLocalizations.of(context).renamePreset,
           initial: preset.name,
         );
         if (name == null) return;
@@ -476,7 +496,11 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(success ? 'Saved to gallery!' : 'Failed to save image'),
+        content: Text(
+          success
+              ? AppLocalizations.of(context).savedToGallery
+              : AppLocalizations.of(context).saveFailed,
+        ),
       ),
     );
   }
@@ -503,9 +527,9 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     } catch (e) {
       debugPrint('CanvasEditor: share failed ($e)');
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Sharing failed')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).shareFailed)),
+      );
     }
   }
 
@@ -570,15 +594,16 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Handwritten Text'),
+        title: Text(l.editorTitle),
         actions: [
           IconButton(
             key: const ValueKey('open-packs'),
             icon: const Icon(Icons.storefront_outlined),
             onPressed: _openPacks,
-            tooltip: 'Balíčky',
+            tooltip: l.packs,
           ),
           if (_emojiIndex != null)
             IconButton(
@@ -588,7 +613,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                     : Icons.add_reaction,
               ),
               onPressed: _pickEmoji,
-              tooltip: 'Emoji ke zprávě',
+              tooltip: l.emojiForMessage,
             ),
           if (_exporting)
             const Padding(
@@ -602,13 +627,13 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
           IconButton(
             icon: const Icon(Icons.save_alt),
             onPressed: _glyphs.isNotEmpty && !_exporting ? _exportImage : null,
-            tooltip: 'Save to Gallery',
+            tooltip: l.saveToGallery,
           ),
           IconButton(
             key: _shareButtonKey,
             icon: const Icon(Icons.share),
             onPressed: _glyphs.isNotEmpty && !_exporting ? _shareImage : null,
-            tooltip: 'Share',
+            tooltip: l.share,
           ),
         ],
       ),
@@ -639,10 +664,10 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                           children: [
                             Positioned.fill(
                               child: _glyphs.isEmpty
-                                  ? const Center(
+                                  ? Center(
                                       child: Text(
-                                        'Type something below...',
-                                        style: TextStyle(
+                                        l.previewEmpty,
+                                        style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 16,
                                         ),
@@ -651,9 +676,9 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                   : _buildPreview(),
                             ),
                             if (_lockedPack != null && _glyphs.isNotEmpty)
-                              Positioned(
+                              PositionedDirectional(
                                 top: 6,
-                                right: 6,
+                                end: 6,
                                 child: _LockedBadge(
                                   pack: _lockedPack!,
                                   onTap: () => _offerPack(_lockedPack!),
@@ -672,7 +697,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                         minLines: 1,
                         maxLines: 2,
                         decoration: InputDecoration(
-                          hintText: 'Type your text here...',
+                          hintText: l.textHint,
                           isDense: true,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -728,7 +753,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                             // Advanced settings toggle
                             ListTile(
                               dense: true,
-                              title: const Text('Advanced Settings'),
+                              title: Text(l.advancedSettings),
                               trailing: Icon(
                                 _showAdvanced
                                     ? Icons.keyboard_arrow_up

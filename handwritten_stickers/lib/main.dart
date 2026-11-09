@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'l10n/app_localizations.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -14,6 +15,8 @@ class HandwrittenStickersApp extends StatelessWidget {
     return MaterialApp(
       title: 'Handwritten Stickers',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.indigo,

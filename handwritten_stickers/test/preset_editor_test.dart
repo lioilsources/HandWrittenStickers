@@ -7,6 +7,7 @@ import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
 import 'package:handwritten_stickers/services/preset_store.dart';
 import 'package:handwritten_stickers/widgets/handwritten_canvas.dart';
 import 'package:handwritten_stickers/widgets/sheet_selector.dart';
+import 'package:handwritten_stickers/l10n/app_localizations.dart';
 
 void main() {
   /// Sheets and glyph images load from real assets, in real time.
@@ -28,7 +29,12 @@ void main() {
     addTearDown(rootBundle.clear);
     final presets = store ?? PresetStore.inMemory();
     await tester.pumpWidget(
-      MaterialApp(home: CanvasEditorScreen(presetStore: presets)),
+      MaterialApp(
+        locale: const Locale('cs'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: CanvasEditorScreen(presetStore: presets),
+      ),
     );
     for (var i = 0; i < 100 && find.byType(TextField).evaluate().isEmpty; i++) {
       await settle(tester);
@@ -114,7 +120,7 @@ void main() {
   testWidgets('changing a slider marks the preset as modified', (tester) async {
     await open(tester);
     await tapPreset(tester, 'builtin:neat');
-    final advanced = find.text('Advanced Settings');
+    final advanced = find.text('Pokročilé nastavení');
     await tester.ensureVisible(advanced);
     await tester.tap(advanced);
     await settle(tester);

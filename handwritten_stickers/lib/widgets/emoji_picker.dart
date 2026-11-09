@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/emoji_tag.dart';
 import 'emoji_sticker.dart';
+import '../l10n/app_localizations.dart';
 
 /// Bottom sheet for tagging the message with one animated emoji. Resolves
 /// to the chosen tag, `null` for "no emoji", or the current [selected] when
@@ -44,20 +45,21 @@ class _EmojiPickerSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 8, 8),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 8, 8),
               child: Row(
                 children: [
                   Expanded(
                     child: Text(
-                      'Emoji ke zprávě',
+                      AppLocalizations.of(context).emojiForMessage,
                       style: theme.textTheme.titleMedium,
                     ),
                   ),
                   if (selected != null)
                     TextButton.icon(
-                      onPressed: () => Navigator.pop(context, const _Pick(null)),
+                      onPressed: () =>
+                          Navigator.pop(context, const _Pick(null)),
                       icon: const Icon(Icons.close),
-                      label: const Text('Bez emoji'),
+                      label: Text(AppLocalizations.of(context).noEmoji),
                     ),
                 ],
               ),

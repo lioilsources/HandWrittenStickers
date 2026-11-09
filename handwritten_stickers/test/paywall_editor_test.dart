@@ -5,6 +5,7 @@ import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
 import 'package:handwritten_stickers/services/entitlement_service.dart';
 import 'package:handwritten_stickers/services/preset_store.dart';
 import 'package:handwritten_stickers/services/purchases/purchase_backend.dart';
+import 'package:handwritten_stickers/l10n/app_localizations.dart';
 
 const _p = 'com.ol1n.handwrittenStickers.pack.';
 
@@ -30,6 +31,9 @@ void main() {
     entitlements = EntitlementService.fake(backend);
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('cs'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: CanvasEditorScreen(
           presetStore: PresetStore.inMemory(),
           entitlements: entitlements,
@@ -53,7 +57,7 @@ void main() {
   testWidgets('free sheets export without asking', (tester) async {
     await open(tester);
     expect(find.byKey(const ValueKey('locked-badge')), findsNothing);
-    await tap(tester, find.byTooltip('Save to Gallery'));
+    await tap(tester, find.byTooltip('Uložit do galerie'));
     expect(find.byKey(const ValueKey('paywall-buy')), findsNothing);
   });
 
@@ -65,7 +69,7 @@ void main() {
     expect(find.byKey(const ValueKey('locked-badge')), findsOneWidget);
     expect(find.byIcon(Icons.lock_outline), findsWidgets);
 
-    await tap(tester, find.byTooltip('Save to Gallery'));
+    await tap(tester, find.byTooltip('Uložit do galerie'));
     expect(find.text('Pro děti'), findsWidgets);
     expect(find.text('Koupit za 25 Kč'), findsOneWidget);
     expect(find.byKey(const ValueKey('paywall-buy-all')), findsOneWidget);
@@ -80,7 +84,7 @@ void main() {
     await open(tester);
     await tap(tester, find.byKey(const ValueKey('preset-builtin:kid_note')));
     expect(find.byKey(const ValueKey('locked-badge')), findsOneWidget);
-    await tap(tester, find.byTooltip('Share'));
+    await tap(tester, find.byTooltip('Sdílet'));
     backend.nextOutcome = PurchaseEventKind.cancelled;
     await tap(tester, find.byKey(const ValueKey('paywall-buy')));
     expect(find.byKey(const ValueKey('paywall-buy')), findsOneWidget);
@@ -106,7 +110,7 @@ void main() {
     await tester.pump();
     expect(entitlements.offerAll, isFalse);
     await tap(tester, find.text('Baloo 2'));
-    await tap(tester, find.byTooltip('Save to Gallery'));
+    await tap(tester, find.byTooltip('Uložit do galerie'));
     expect(find.byKey(const ValueKey('paywall-buy')), findsOneWidget);
     expect(find.byKey(const ValueKey('paywall-buy-all')), findsNothing);
   });
