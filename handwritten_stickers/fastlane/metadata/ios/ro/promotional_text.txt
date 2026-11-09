@@ -1,0 +1,1 @@
+Scrie un mesaj, iar aplicația îl aranjează literă cu literă în scris de mână real. Salvează-l ca PNG transparent sau sticker GIF animat și trimite-l oriunde.

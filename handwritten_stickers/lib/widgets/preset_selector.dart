@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
+import '../l10n/app_localizations.dart';
 
 /// Horizontal row of presets: built-in ones, then the user's own, then a
 /// chip that saves the current look.
@@ -56,8 +57,8 @@ class PresetSelector extends StatelessWidget {
           ActionChip(
             key: const ValueKey('preset-save'),
             avatar: const Icon(Icons.bookmark_add_outlined, size: 18),
-            label: const Text('Uložit'),
-            tooltip: 'Uložit aktuální písmo a styl jako preset',
+            label: Text(AppLocalizations.of(context).save),
+            tooltip: AppLocalizations.of(context).presetSaveTooltip,
             onPressed: onSave,
           ),
         ],
@@ -71,7 +72,7 @@ class PresetSelector extends StatelessWidget {
     final sheet = sheetById(preset.sheetId);
     final locked = isLocked(preset);
     return Padding(
-      padding: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsetsDirectional.only(end: 8),
       child: GestureDetector(
         onLongPress: () => onLongPress(preset),
         child: ChoiceChip(
@@ -94,7 +95,7 @@ class PresetSelector extends StatelessWidget {
               Text(preset.name),
               if (isSelected && modified)
                 Padding(
-                  padding: const EdgeInsets.only(left: 4),
+                  padding: const EdgeInsetsDirectional.only(start: 4),
                   child: Icon(
                     Icons.circle,
                     key: const ValueKey('preset-modified'),
@@ -144,24 +145,24 @@ Future<PresetAction?> showPresetActions(
           ),
           ListTile(
             leading: const Icon(Icons.bookmark_add_outlined),
-            title: const Text('Uložit aktuální jako nový preset'),
+            title: Text(AppLocalizations.of(context).presetSaveAsNew),
             onTap: () => Navigator.pop(context, PresetAction.saveAsNew),
           ),
           if (!preset.builtIn) ...[
             ListTile(
               leading: const Icon(Icons.save_outlined),
-              title: const Text('Přepsat aktuálním nastavením'),
+              title: Text(AppLocalizations.of(context).presetOverwrite),
               enabled: modified,
               onTap: () => Navigator.pop(context, PresetAction.overwrite),
             ),
             ListTile(
               leading: const Icon(Icons.edit_outlined),
-              title: const Text('Přejmenovat'),
+              title: Text(AppLocalizations.of(context).rename),
               onTap: () => Navigator.pop(context, PresetAction.rename),
             ),
             ListTile(
               leading: const Icon(Icons.delete_outline),
-              title: const Text('Smazat'),
+              title: Text(AppLocalizations.of(context).delete),
               onTap: () => Navigator.pop(context, PresetAction.delete),
             ),
           ],
@@ -222,19 +223,21 @@ class _PresetNameDialogState extends State<_PresetNameDialog> {
         controller: _controller,
         autofocus: true,
         maxLength: 40,
-        decoration: const InputDecoration(labelText: 'Název'),
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context).presetName,
+        ),
         onChanged: (_) => setState(() {}),
         onSubmitted: (_) => _submit(),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Zrušit'),
+          child: Text(AppLocalizations.of(context).cancel),
         ),
         FilledButton(
           key: const ValueKey('preset-name-ok'),
           onPressed: _controller.text.trim().isEmpty ? null : _submit,
-          child: const Text('Uložit'),
+          child: Text(AppLocalizations.of(context).save),
         ),
       ],
     );
@@ -246,17 +249,17 @@ Future<bool> confirmPresetDelete(BuildContext context, Preset preset) async {
   final ok = await showDialog<bool>(
     context: context,
     builder: (context) => AlertDialog(
-      title: const Text('Smazat preset?'),
-      content: Text('„${preset.name}“ se smaže. Text v editoru zůstane.'),
+      title: Text(AppLocalizations.of(context).deletePresetTitle),
+      content: Text(AppLocalizations.of(context).deletePresetBody(preset.name)),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, false),
-          child: const Text('Zrušit'),
+          child: Text(AppLocalizations.of(context).cancel),
         ),
         FilledButton(
           key: const ValueKey('preset-delete-ok'),
           onPressed: () => Navigator.pop(context, true),
-          child: const Text('Smazat'),
+          child: Text(AppLocalizations.of(context).delete),
         ),
       ],
     ),

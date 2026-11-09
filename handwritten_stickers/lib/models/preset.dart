@@ -1,3 +1,4 @@
+import '../l10n/content_language.dart';
 import 'style_params.dart';
 
 /// A saved look: which glyph sheet and which [StyleParams]. The text and
@@ -47,18 +48,12 @@ class Preset {
       );
 
   /// Built-in entry of `presets.json`. `name` is a map of language codes;
-  /// [language] is preferred, then English, then any.
+  /// [language] is preferred (see [pickLocalized]), then English, then any.
   factory Preset.builtInFromJson(
     Map<String, dynamic> json, {
     String language = 'cs',
   }) {
-    final names = json['name'];
-    String name;
-    if (names is Map) {
-      name = (names[language] ?? names['en'] ?? names.values.first) as String;
-    } else {
-      name = names as String;
-    }
+    final name = pickLocalized(json['name'], language);
     return Preset(
       id: json['id'] as String,
       name: name,

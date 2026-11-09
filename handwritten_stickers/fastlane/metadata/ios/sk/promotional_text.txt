@@ -1,0 +1,1 @@
+Napíš správu a aplikácia ju zloží znak po znaku z pravého rukopisu. Ulož ju ako priehľadné PNG alebo animovanú GIF nálepku a pošli kamkoľvek.

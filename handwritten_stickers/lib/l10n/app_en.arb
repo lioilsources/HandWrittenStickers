@@ -1,0 +1,171 @@
+{
+  "@@locale": "en",
+  "navTextEditor": "Text Editor",
+  "navGridAlignment": "Grid Alignment",
+  "editorTitle": "Handwritten Text",
+  "packs": "Packs",
+  "@packs": {
+    "description": "Paid content packs (fonts and presets)."
+  },
+  "emojiForMessage": "Emoji for the message",
+  "saveToGallery": "Save to Gallery",
+  "share": "Share",
+  "previewEmpty": "Type something below…",
+  "textHint": "Type your text here…",
+  "advancedSettings": "Advanced Settings",
+  "savedToGallery": "Saved to gallery!",
+  "saveFailed": "Failed to save image",
+  "shareFailed": "Sharing failed",
+  "presetSheetMissing": "The font of preset “{preset}” is not available, using {sheet}.",
+  "@presetSheetMissing": {
+    "placeholders": {
+      "preset": {
+        "type": "String"
+      },
+      "sheet": {
+        "type": "String"
+      }
+    }
+  },
+  "presetDefaultName": "{sheet} – {date}",
+  "@presetDefaultName": {
+    "description": "Default name of a new preset: font name and today's date.",
+    "placeholders": {
+      "sheet": {
+        "type": "String"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "MMMd"
+      }
+    }
+  },
+  "presetFallbackName": "Preset",
+  "@presetFallbackName": {
+    "description": "A preset = saved combination of font and style."
+  },
+  "newPreset": "New preset",
+  "renamePreset": "Rename preset",
+  "restorePurchases": "Restore purchases",
+  "purchasesRestored": "Purchases restored.",
+  "packsIntro": "Every feature of the app is free. Packs add more fonts and presets.",
+  "owned": "Owned",
+  "fontCount": "{count, plural, one{{count} font} other{{count} fonts}}",
+  "@fontCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "presetCount": "{count, plural, one{{count} preset} other{{count} presets}}",
+  "@presetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "purchasePending": "The purchase is waiting for approval. It unlocks by itself.",
+  "purchaseFailed": "The purchase failed. Please try again.",
+  "purchasesRestoredUnlocked": "Purchases restored. Everything you bought is unlocked.",
+  "paywallPresets": "Presets: {names}",
+  "@paywallPresets": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "unlimitedPresets": "Unlimited presets of your own",
+  "buyOnce": "Buy once, keep forever, on your other devices too",
+  "allFeaturesFree": "Every feature of the app stays free",
+  "storeUnavailable": "The store is not available right now. Try again later.",
+  "buyFor": "Buy for {price}",
+  "@buyFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "notForSale": "Not on sale yet",
+  "loadingPrice": "Loading price…",
+  "buyAllFor": "{bundle}: all packs for {price}",
+  "@buyAllFor": {
+    "description": "Button offering the bundle of every pack; bundle = its name.",
+    "placeholders": {
+      "bundle": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "save": "Save",
+  "presetSaveTooltip": "Save the current font and style as a preset",
+  "presetSaveAsNew": "Save current as a new preset",
+  "presetOverwrite": "Overwrite with current settings",
+  "rename": "Rename",
+  "delete": "Delete",
+  "presetName": "Name",
+  "cancel": "Cancel",
+  "deletePresetTitle": "Delete preset?",
+  "deletePresetBody": "“{name}” will be deleted. The text in the editor stays.",
+  "@deletePresetBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "joinLetters": "Join letters",
+  "letterSpacing": "Letter Spacing",
+  "baselineWobble": "Baseline Wobble",
+  "sizeVariance": "Size Variance",
+  "rotationVariance": "Rotation Variance",
+  "opacityVariance": "Opacity Variance",
+  "categoryHandwriting": "Handwriting",
+  "categoryCalligraphy": "Calligraphy",
+  "categoryTypography": "Typography",
+  "categoryKids": "Kids",
+  "categoryMaterial": "Material",
+  "@categoryMaterial": {
+    "description": "Sheet category: letters made of materials (gingerbread, neon, plasticine)."
+  },
+  "noEmoji": "No emoji",
+  "saveAlignedImage": "Save Aligned Image",
+  "savedPath": "Saved: {path}",
+  "@savedPath": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "errorMessage": "Error: {error}",
+  "@errorMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gridAlignmentFile": "Grid Alignment — {file}",
+  "@gridAlignmentFile": {
+    "placeholders": {
+      "file": {
+        "type": "String"
+      }
+    }
+  },
+  "openAnotherImage": "Open Another Image",
+  "hideGrid": "Hide Grid",
+  "showGrid": "Show Grid",
+  "resetGrid": "Reset Grid",
+  "exportAlignedImage": "Export Aligned Image",
+  "openTemplatePhoto": "Open a photo of your handwriting template",
+  "openImage": "Open Image",
+  "gridInstructions": "Drag the 4 corners to align the grid on the photo,\nthen export the perspective-corrected image."
+}

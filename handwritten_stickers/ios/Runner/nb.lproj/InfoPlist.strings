@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kameraet brukes bare hvis du velger å ta et bilde av en håndskriftmal.";
+"NSLocationWhenInUseUsageDescription" = "Posisjon brukes ikke. Biblioteket for bildevalg refererer bare til API-et, og appen ber aldri om det.";
+"NSPhotoLibraryAddUsageDescription" = "Appen lagrer bilder av den håndskrevne teksten din i bildebiblioteket.";
+"NSPhotoLibraryUsageDescription" = "Bilder leses bare når du velger et bilde av en håndskriftmal som skal justeres.";

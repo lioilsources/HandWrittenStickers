@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "تُستخدم الكاميرا فقط إذا اخترت تصوير قالب الكتابة اليدوية.";
+"NSLocationWhenInUseUsageDescription" = "لا يُستخدم الموقع. مكتبة اختيار الصور تشير إلى الواجهة البرمجية فقط، والتطبيق لا يطلبه أبدًا.";
+"NSPhotoLibraryAddUsageDescription" = "يحفظ هذا التطبيق صور نصوصك المكتوبة بخط اليد في مكتبة الصور.";
+"NSPhotoLibraryUsageDescription" = "تُقرأ الصور فقط عندما تختار صورة لقالب كتابة يدوية لمحاذاتها.";

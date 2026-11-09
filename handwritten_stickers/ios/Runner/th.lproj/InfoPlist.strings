@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "ใช้กล้องเฉพาะเมื่อคุณเลือกถ่ายภาพแม่แบบลายมือเท่านั้น";
+"NSLocationWhenInUseUsageDescription" = "ไม่มีการใช้ตำแหน่ง ไลบรารีตัวเลือกรูปภาพเพียงอ้างอิง API และแอปไม่เคยขอสิทธิ์นี้";
+"NSPhotoLibraryAddUsageDescription" = "แอปนี้บันทึกรูปข้อความลายมือของคุณลงในคลังรูปภาพ";
+"NSPhotoLibraryUsageDescription" = "อ่านรูปภาพเฉพาะเมื่อคุณเลือกรูปแม่แบบลายมือเพื่อจัดแนว";

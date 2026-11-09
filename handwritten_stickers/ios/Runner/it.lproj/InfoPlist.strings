@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "La fotocamera viene usata solo se scegli di fotografare un modello di scrittura a mano.";
+"NSLocationWhenInUseUsageDescription" = "La posizione non viene usata. La libreria di selezione foto fa solo riferimento all’API e l’app non la richiede mai.";
+"NSPhotoLibraryAddUsageDescription" = "Questa app salva le immagini del tuo testo scritto a mano nella libreria foto.";
+"NSPhotoLibraryUsageDescription" = "Le foto vengono lette solo quando scegli l’immagine di un modello di scrittura a mano da allineare.";

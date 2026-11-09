@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import '../l10n/content_language.dart';
+
 /// A paid content pack: a curated set of glyph sheets and presets, or a
 /// feature (saving presets). One non-consumable store product each.
 ///
@@ -45,12 +47,7 @@ class ContentPack {
     Map<String, dynamic> json, {
     String language = 'cs',
   }) {
-    String text(Object? v) {
-      if (v is Map) {
-        return (v[language] ?? v['en'] ?? v.values.first) as String;
-      }
-      return (v as String?) ?? '';
-    }
+    String text(Object? v) => pickLocalized(v, language);
 
     return ContentPack(
       id: json['id'] as String,

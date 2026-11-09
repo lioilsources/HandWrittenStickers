@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
 import 'package:handwritten_stickers/widgets/handwritten_canvas.dart';
+import 'package:handwritten_stickers/l10n/app_localizations.dart';
 
 void main() {
   testWidgets('phone with the keyboard up still shows preview and text field', (
@@ -23,7 +24,12 @@ void main() {
     await tester.pumpWidget(
       RepaintBoundary(
         key: boundary,
-        child: const MaterialApp(home: CanvasEditorScreen()),
+        child: const MaterialApp(
+          locale: Locale('cs'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: CanvasEditorScreen(),
+        ),
       ),
     );
     // Sheets and glyph images load from real assets.

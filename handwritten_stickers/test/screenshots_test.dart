@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
 import 'package:handwritten_stickers/services/entitlement_service.dart';
 import 'package:handwritten_stickers/services/purchases/purchase_backend.dart';
+import 'package:handwritten_stickers/l10n/app_localizations.dart';
 
 /// Renders the editor to PNGs so the app can be shown without a device
 /// (store page, release notes):
@@ -79,6 +80,9 @@ void main() {
       RepaintBoundary(
         key: boundary,
         child: MaterialApp(
+          locale: const Locale('cs'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
             fontFamily: 'Roboto',
@@ -166,7 +170,7 @@ void main() {
     await tester.tap(find.text('Rychlý vzkaz'));
     await settle(tester);
     await settle(tester);
-    await tester.tap(find.text('Advanced Settings'));
+    await tester.tap(find.text('Pokročilé nastavení'));
     await shoot(tester, 'stickers_5_styl');
 
     // Content packs, nothing bought yet.

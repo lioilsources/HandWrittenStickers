@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "A kamerát csak akkor használjuk, ha úgy döntesz, hogy lefotózol egy kézírás-sablont.";
+"NSLocationWhenInUseUsageDescription" = "A helyadatot nem használjuk. A fotóválasztó könyvtár csak hivatkozik az API-ra, az alkalmazás sosem kéri.";
+"NSPhotoLibraryAddUsageDescription" = "Az alkalmazás a kézzel írt szövegedről készült képeket a fotótárba menti.";
+"NSPhotoLibraryUsageDescription" = "A fotókat csak akkor olvassuk, ha egy kézírás-sablonról készült képet választasz igazításhoz.";

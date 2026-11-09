@@ -1,0 +1,1 @@
+Écris un message et l’app le compose lettre par lettre en vraie écriture manuscrite. Enregistre-le en PNG transparent ou en sticker GIF animé et envoie-le partout.

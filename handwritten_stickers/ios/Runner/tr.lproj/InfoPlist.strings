@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Kamera yalnızca bir el yazısı şablonunun fotoğrafını çekmeyi seçersen kullanılır.";
+"NSLocationWhenInUseUsageDescription" = "Konum kullanılmaz. Fotoğraf seçici kitaplığı yalnızca API’ye atıfta bulunur, uygulama konumu asla istemez.";
+"NSPhotoLibraryAddUsageDescription" = "Bu uygulama el yazısı metin görsellerini fotoğraf kitaplığına kaydeder.";
+"NSPhotoLibraryUsageDescription" = "Fotoğraflar yalnızca hizalamak için bir el yazısı şablonu görseli seçtiğinde okunur.";

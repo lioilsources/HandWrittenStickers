@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "La càmera només s’utilitza si decideixes fer una foto d’una plantilla d’escriptura a mà.";
+"NSLocationWhenInUseUsageDescription" = "La ubicació no s’utilitza. La biblioteca del selector de fotos només fa referència a l’API i l’app mai la sol·licita.";
+"NSPhotoLibraryAddUsageDescription" = "Aquesta app desa les imatges del teu text manuscrit a la fototeca.";
+"NSPhotoLibraryUsageDescription" = "Les fotos només es llegeixen quan tries la imatge d’una plantilla d’escriptura a mà per alinear-la.";

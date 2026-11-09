@@ -1,0 +1,1 @@
+Írj egy üzenetet, az app pedig betűről betűre összerakja valódi kézírással. Mentsd átlátszó PNG-ként vagy animált GIF-matricaként, és küldd bárhová.

@@ -1,0 +1,1 @@
+Kirjoita viesti, ja sovellus asettaa sen kirjain kirjaimelta aitoon käsialaan. Tallenna läpinäkyvänä PNG:nä tai animoituna GIF-tarrana ja lähetä minne haluat.

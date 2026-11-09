@@ -1,0 +1,1 @@
+Metni el yazısı çıkartmalara dönüştür: şeffaf PNG ve hareketli GIF

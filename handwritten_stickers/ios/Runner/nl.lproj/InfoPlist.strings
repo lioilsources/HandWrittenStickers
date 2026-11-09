@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "De camera wordt alleen gebruikt als je ervoor kiest een sjabloon met handschrift te fotograferen.";
+"NSLocationWhenInUseUsageDescription" = "Locatie wordt niet gebruikt. De fotokiezerbibliotheek verwijst alleen naar de API en de app vraagt er nooit om.";
+"NSPhotoLibraryAddUsageDescription" = "Deze app bewaart afbeeldingen van je handgeschreven tekst in de fotobibliotheek.";
+"NSPhotoLibraryUsageDescription" = "Foto’s worden alleen gelezen als je een afbeelding van een handschriftsjabloon kiest om uit te lijnen.";

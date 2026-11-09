@@ -7,6 +7,7 @@ import '../services/entitlement_service.dart';
 import '../services/glyph_loader.dart';
 import '../widgets/paywall_sheet.dart';
 import '../widgets/sheet_sample.dart';
+import '../l10n/app_localizations.dart';
 
 /// Every content pack with its price or "owned", and Restore purchases.
 class PacksScreen extends StatelessWidget {
@@ -39,9 +40,10 @@ class PacksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Balíčky'),
+        title: Text(l.packs),
         actions: [
           TextButton(
             key: const ValueKey('packs-restore'),
@@ -50,9 +52,9 @@ class PacksScreen extends StatelessWidget {
               if (!context.mounted) return;
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(const SnackBar(content: Text('Nákupy obnoveny.')));
+              ).showSnackBar(SnackBar(content: Text(l.purchasesRestored)));
             },
-            child: const Text('Obnovit nákupy'),
+            child: Text(l.restorePurchases),
           ),
         ],
       ),
@@ -63,11 +65,7 @@ class PacksScreen extends StatelessWidget {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Text(
-                'Všechny funkce aplikace jsou zdarma. Balíčky přidávají '
-                'další písma a presety.',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              Text(l.packsIntro, style: Theme.of(context).textTheme.bodyMedium),
               const SizedBox(height: 12),
               for (final pack in packs)
                 // The bundle only while it is still worth it.
@@ -110,10 +108,11 @@ class _PackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context);
     final sample = pack.sampleText;
     final details = [
-      if (contents.sheets.isNotEmpty) '${contents.sheets.length} písem',
-      if (contents.presets.isNotEmpty) '${contents.presets.length} presetů',
+      if (contents.sheets.isNotEmpty) l.fontCount(contents.sheets.length),
+      if (contents.presets.isNotEmpty) l.presetCount(contents.presets.length),
     ].join(' · ');
     return Card(
       key: ValueKey('pack-${pack.id}'),
@@ -134,7 +133,7 @@ class _PackCard extends StatelessWidget {
                   if (owned)
                     Chip(
                       avatar: const Icon(Icons.check, size: 16),
-                      label: const Text('Vlastníš'),
+                      label: Text(l.owned),
                       visualDensity: VisualDensity.compact,
                     )
                   else if (price != null)

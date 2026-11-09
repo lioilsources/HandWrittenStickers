@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "L’appareil photo n’est utilisé que si tu choisis de photographier un modèle d’écriture manuscrite.";
+"NSLocationWhenInUseUsageDescription" = "La localisation n’est pas utilisée. La bibliothèque de sélection de photos ne fait que référencer l’API et l’app ne la demande jamais.";
+"NSPhotoLibraryAddUsageDescription" = "Cette app enregistre les images de ton texte manuscrit dans la photothèque.";
+"NSPhotoLibraryUsageDescription" = "Les photos ne sont lues que lorsque tu choisis l’image d’un modèle d’écriture à aligner.";

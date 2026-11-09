@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "仅当你选择拍摄手写模板照片时才会使用相机。";
+"NSLocationWhenInUseUsageDescription" = "不会使用位置信息。照片选择库仅引用该 API，应用从不请求位置。";
+"NSPhotoLibraryAddUsageDescription" = "此应用会将你的手写文字图片存入照片图库。";
+"NSPhotoLibraryUsageDescription" = "仅当你选择手写模板图片进行对齐时才会读取照片。";

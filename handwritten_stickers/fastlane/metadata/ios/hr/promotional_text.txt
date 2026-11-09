@@ -1,0 +1,1 @@
+Upiši poruku, a aplikacija je slovo po slovo slaže pravim rukopisom. Spremi je kao prozirni PNG ili animiranu GIF naljepnicu i pošalji kamo god želiš.

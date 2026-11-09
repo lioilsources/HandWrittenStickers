@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "The camera is used only if you choose to take a photo of a handwriting template.";
+"NSLocationWhenInUseUsageDescription" = "Location is not used. The photo picker library only references the API, and the app never asks for it.";
+"NSPhotoLibraryAddUsageDescription" = "This app saves your handwritten text images to the photo library.";
+"NSPhotoLibraryUsageDescription" = "Photos are read only when you pick a picture of a handwriting template to align.";

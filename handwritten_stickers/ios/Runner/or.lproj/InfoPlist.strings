@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "ଆପଣ ହସ୍ତଲିଖନ ଟେମ୍ପଲେଟର ଫଟୋ ଉଠାଇବାକୁ ବାଛିଲେ ହିଁ କ୍ୟାମେରା ବ୍ୟବହାର ହୁଏ।";
+"NSLocationWhenInUseUsageDescription" = "ଲୋକେସନ୍ ବ୍ୟବହାର ହୁଏ ନାହିଁ। ଫଟୋ ବାଛିବା ଲାଇବ୍ରେରୀ କେବଳ API କୁ ଉଲ୍ଲେଖ କରେ, ଆପ୍ ତାହା କେବେ ମାଗେ ନାହିଁ।";
+"NSPhotoLibraryAddUsageDescription" = "ଏହି ଆପ୍ ଆପଣଙ୍କ ହାତଲେଖା ଲେଖାର ଛବିଗୁଡ଼ିକୁ ଫଟୋ ଲାଇବ୍ରେରୀରେ ସେଭ୍ କରେ।";
+"NSPhotoLibraryUsageDescription" = "ସଜାଇବା ପାଇଁ ହସ୍ତଲିଖନ ଟେମ୍ପଲେଟର ଛବି ବାଛିଲେ ହିଁ ଫଟୋ ପଢ଼ାଯାଏ।";
