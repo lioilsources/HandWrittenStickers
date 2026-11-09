@@ -1,0 +1,1 @@
+Escreve uma mensagem e a app compõe-na letra a letra com caligrafia real. Guarda-a como PNG transparente ou autocolante GIF animado e envia-a para onde quiseres.

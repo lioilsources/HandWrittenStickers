@@ -1,0 +1,1 @@
+Escriu un missatge i l’app el compon lletra a lletra amb cal·ligrafia real. Desa’l com a PNG transparent o adhesiu GIF animat i envia’l allà on vulguis.

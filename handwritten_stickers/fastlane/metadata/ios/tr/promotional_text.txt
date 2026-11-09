@@ -1,0 +1,1 @@
+Bir mesaj yaz, uygulama onu gerçek el yazısıyla harf harf dizsin. Şeffaf PNG veya hareketli GIF çıkartma olarak kaydet ve her yere gönder.

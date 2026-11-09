@@ -1,0 +1,1 @@
+Skriv en besked, og appen sætter den bogstav for bogstav i ægte håndskrift. Gem den som gennemsigtig PNG eller animeret GIF-sticker, og send den hvorhen du vil.

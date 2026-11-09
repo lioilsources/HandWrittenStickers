@@ -1,0 +1,1 @@
+Vpiši sporočilo in aplikacija ga bo črko za črko sestavila v pravem rokopisu. Shrani ga kot prosojni PNG ali animirano nalepko GIF in ga pošlji kamor koli.
