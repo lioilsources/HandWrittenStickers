@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:handwritten_stickers/l10n/l10n.dart';
 import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
 import 'package:handwritten_stickers/widgets/handwritten_canvas.dart';
 
@@ -23,7 +24,12 @@ void main() {
     await tester.pumpWidget(
       RepaintBoundary(
         key: boundary,
-        child: const MaterialApp(home: CanvasEditorScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('cs'),
+          home: CanvasEditorScreen(),
+        ),
       ),
     );
     // Sheets and glyph images load from real assets.

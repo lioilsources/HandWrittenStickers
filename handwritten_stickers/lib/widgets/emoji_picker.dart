@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import '../models/emoji_tag.dart';
 import 'emoji_sticker.dart';
 
@@ -49,15 +50,16 @@ class _EmojiPickerSheet extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'Emoji ke zprávě',
+                      context.l10n.emojiTag,
                       style: theme.textTheme.titleMedium,
                     ),
                   ),
                   if (selected != null)
                     TextButton.icon(
-                      onPressed: () => Navigator.pop(context, const _Pick(null)),
+                      onPressed: () =>
+                          Navigator.pop(context, const _Pick(null)),
                       icon: const Icon(Icons.close),
-                      label: const Text('Bez emoji'),
+                      label: Text(context.l10n.noEmoji),
                     ),
                 ],
               ),

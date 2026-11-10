@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'l10n/l10n.dart';
 import 'screens/home_screen.dart';
+import 'services/font_licenses.dart';
 
 void main() {
+  FontLicenses.register();
   runApp(const HandwrittenStickersApp());
 }
 
@@ -14,6 +17,9 @@ class HandwrittenStickersApp extends StatelessWidget {
     return MaterialApp(
       title: 'Handwritten Stickers',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      localeResolutionCallback: resolveAppLocale,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.indigo,

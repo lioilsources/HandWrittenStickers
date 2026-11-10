@@ -1,0 +1,141 @@
+{
+  "@@locale": "en",
+  "navEditor": "Text Editor",
+  "navGrid": "Grid Alignment",
+  "editorTitle": "Handwritten Text",
+  "packs": "Packs",
+  "aboutAndLicences": "About and licences",
+  "emojiTag": "Emoji tag",
+  "noEmoji": "No emoji",
+  "saveToGallery": "Save to Gallery",
+  "share": "Share",
+  "savedToGallery": "Saved to gallery!",
+  "saveFailed": "Failed to save image",
+  "shareFailed": "Sharing failed",
+  "emptyCanvasHint": "Type something below...",
+  "textHint": "Type your text here...",
+  "advancedSettings": "Advanced Settings",
+  "presetDefaultName": "Preset",
+  "newPreset": "New preset",
+  "renamePreset": "Rename preset",
+  "presetSheetMissing": "The font of preset “{preset}” is not available, using {sheet}.",
+  "@presetSheetMissing": {
+    "placeholders": {
+      "preset": {
+        "type": "String"
+      },
+      "sheet": {
+        "type": "String"
+      }
+    }
+  },
+  "save": "Save",
+  "savePresetTooltip": "Save the current font and style as a preset",
+  "saveAsNewPreset": "Save current as a new preset",
+  "overwritePreset": "Overwrite with the current settings",
+  "rename": "Rename",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "nameLabel": "Name",
+  "deletePresetTitle": "Delete preset?",
+  "deletePresetBody": "“{name}” will be deleted. The text in the editor stays.",
+  "@deletePresetBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "restorePurchases": "Restore purchases",
+  "purchasesRestored": "Purchases restored.",
+  "purchasesRestoredUnlocked": "Purchases restored. What you bought is unlocked.",
+  "owned": "Owned",
+  "packsIntro": "Every feature of the app is free. Packs add more fonts and presets.",
+  "purchasePending": "The purchase is waiting for approval. It will unlock by itself.",
+  "purchaseFailed": "The purchase failed. Please try again.",
+  "storeUnavailable": "The store is not available right now. Try again later.",
+  "buyFor": "Buy for {price}",
+  "@buyFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "notForSaleYet": "Not for sale yet",
+  "allPacksFor": "{name}: all packs for {price}",
+  "@allPacksFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "joinLetters": "Join letters",
+  "letterSpacing": "Letter Spacing",
+  "baselineWobble": "Baseline Wobble",
+  "sizeVariance": "Size Variance",
+  "rotationVariance": "Rotation Variance",
+  "opacityVariance": "Opacity Variance",
+  "categoryHandwriting": "Handwriting",
+  "categoryCalligraphy": "Calligraphy",
+  "categoryTypography": "Typography",
+  "categoryKids": "Kids",
+  "categoryMaterial": "Material",
+  "gridSaved": "Saved: {path}",
+  "@gridSaved": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "gridError": "Error: {error}",
+  "@gridError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gridSaveDialogTitle": "Save Aligned Image",
+  "gridOpenAnother": "Open Another Image",
+  "gridHide": "Hide Grid",
+  "gridShow": "Show Grid",
+  "gridReset": "Reset Grid",
+  "gridExport": "Export Aligned Image",
+  "gridOpenImage": "Open Image",
+  "gridOpenHint": "Open a photo of your handwriting template",
+  "gridDragHint": "Drag the 4 corners to align the grid on the photo,\nthen export the perspective-corrected image.",
+  "sheetCount": "{count, plural, =1{1 font} other{{count} fonts}}",
+  "presetCount": "{count, plural, =1{1 preset} other{{count} presets}}",
+  "presetsList": "Presets: {names}",
+  "unlimitedPresets": "Unlimited presets of your own",
+  "buyOnceKeepForever": "Buy once, keep forever, on your other devices too",
+  "featuresStayFree": "Every feature of the app stays free",
+  "loadingPrice": "Loading price…",
+  "@sheetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@presetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@presetsList": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  }
+}

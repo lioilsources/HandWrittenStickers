@@ -13,7 +13,10 @@
         "en": "More handwriting, from neat to casual."
       },
       "order": 1,
-      "sampleText": "Ahoj, jak se máš?"
+      "sampleText": {
+        "cs": "Ahoj, jak se máš?",
+        "en": "Hi, how are you?"
+      }
     },
     {
       "id": "calligraphy",
@@ -27,7 +30,10 @@
         "en": "Calligraphy scripts for cards, invitations and love notes."
       },
       "order": 2,
-      "sampleText": "Všechno nejlepší!"
+      "sampleText": {
+        "cs": "Všechno nejlepší!",
+        "en": "Happy birthday!"
+      }
     },
     {
       "id": "poster",
@@ -41,7 +47,10 @@
         "en": "Bold and historic type for signs and posters."
       },
       "order": 3,
-      "sampleText": "OTEVŘENO"
+      "sampleText": {
+        "cs": "OTEVŘENO",
+        "en": "OPEN"
+      }
     },
     {
       "id": "kids",
@@ -55,7 +64,10 @@
         "en": "Colourful bubble letters and playful kids' type."
       },
       "order": 4,
-      "sampleText": "Mám tě rád!"
+      "sampleText": {
+        "cs": "Mám tě rád!",
+        "en": "I love you!"
+      }
     },
     {
       "id": "materials",
@@ -69,7 +81,10 @@
         "en": "Letters made of gingerbread, neon and plasticine."
       },
       "order": 5,
-      "sampleText": "Veselé Vánoce"
+      "sampleText": {
+        "cs": "Veselé Vánoce",
+        "en": "Merry Christmas"
+      }
     },
     {
       "id": "presets",

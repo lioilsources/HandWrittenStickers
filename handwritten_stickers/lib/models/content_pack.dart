@@ -45,19 +45,21 @@ class ContentPack {
     Map<String, dynamic> json, {
     String language = 'cs',
   }) {
-    String text(Object? v) {
+    String? optional(Object? v) {
       if (v is Map) {
         return (v[language] ?? v['en'] ?? v.values.first) as String;
       }
-      return (v as String?) ?? '';
+      return v as String?;
     }
+
+    String text(Object? v) => optional(v) ?? '';
 
     return ContentPack(
       id: json['id'] as String,
       productId: json['product'] as String,
       name: text(json['name']),
       description: text(json['description']),
-      sampleText: json['sampleText'] as String?,
+      sampleText: optional(json['sampleText']),
       feature: json['feature'] as String?,
       includesAll: json['includes'] == '*',
       order: (json['order'] as num?)?.toInt() ?? 0,

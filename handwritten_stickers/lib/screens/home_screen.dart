@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import 'canvas_editor_screen.dart';
 import 'grid_alignment_screen.dart';
 
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     if (!_hasGridTool) return const CanvasEditorScreen();
+    final l10n = context.l10n;
     return Scaffold(
       body: IndexedStack(index: _selectedIndex, children: _screens),
       bottomNavigationBar: NavigationBar(
@@ -38,11 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.edit), label: 'Text Editor'),
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.grid_4x4),
-            label: 'Grid Alignment',
+            icon: const Icon(Icons.edit),
+            label: l10n.navEditor,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.grid_4x4),
+            label: l10n.navGrid,
           ),
         ],
       ),

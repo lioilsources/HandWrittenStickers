@@ -5,14 +5,11 @@ import 'package:flutter/services.dart';
 
 /// Visual category of a sheet, used to group the sheet selector.
 enum SheetCategory {
-  handwriting('Handwriting'),
-  calligraphy('Calligraphy'),
-  typography('Typography'),
-  kids('Kids'),
-  material('Material');
-
-  final String label;
-  const SheetCategory(this.label);
+  handwriting,
+  calligraphy,
+  typography,
+  kids,
+  material;
 
   static SheetCategory parse(String? value) {
     for (final c in values) {
@@ -54,12 +51,21 @@ class GlyphSheet {
     this.pack,
   });
 
-  factory GlyphSheet.fromJson(Map<String, dynamic> json) {
+  /// `name` is a string, or a map of language codes for names that are
+  /// words rather than a font's name: [language] is preferred, then
+  /// English, then any.
+  factory GlyphSheet.fromJson(
+    Map<String, dynamic> json, {
+    String language = 'cs',
+  }) {
     var path = json['path'] as String;
     if (!path.endsWith('/')) path = '$path/';
+    final names = json['name'];
     return GlyphSheet(
       id: json['id'] as String,
-      name: json['name'] as String,
+      name: names is Map
+          ? (names[language] ?? names['en'] ?? names.values.first) as String
+          : names as String,
       path: path,
       source: (json['source'] as String?) ?? 'handwriting',
       category: SheetCategory.parse(json['category'] as String?),
@@ -105,11 +111,17 @@ class GlyphSheetIndex {
   static Future<GlyphSheetIndex> load({
     AssetBundle? bundle,
     bool includeUnbundled = !kReleaseMode,
+    String language = 'cs',
   }) async {
     final jsonString = await (bundle ?? rootBundle).loadString(assetPath);
     final Map<String, dynamic> data = json.decode(jsonString);
     final sheets = (data['sheets'] as List)
-        .map((e) => GlyphSheet.fromJson(e as Map<String, dynamic>))
+        .map(
+          (e) => GlyphSheet.fromJson(
+            e as Map<String, dynamic>,
+            language: language,
+          ),
+        )
         .where((s) => includeUnbundled || s.bundle)
         .toList();
     if (sheets.isEmpty) {

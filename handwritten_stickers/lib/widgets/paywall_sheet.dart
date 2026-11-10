@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import '../models/content_pack.dart';
 import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
@@ -113,24 +114,17 @@ class _PaywallSheetState extends State<PaywallSheet> {
     if (!mounted) return;
     setState(() => _busy = false);
     final messenger = ScaffoldMessenger.of(context);
+    final l10n = context.l10n;
     switch (outcome) {
       case PurchaseOutcome.purchased:
         if (_e.ownsPack(widget.pack.id)) _close(true);
       case PurchaseOutcome.pending:
-        messenger.showSnackBar(
-          const SnackBar(
-            content: Text('Nákup čeká na schválení. Odemkne se sám.'),
-          ),
-        );
+        messenger.showSnackBar(SnackBar(content: Text(l10n.purchasePending)));
       case PurchaseOutcome.cancelled:
         break;
       case PurchaseOutcome.error:
       case PurchaseOutcome.unavailable:
-        messenger.showSnackBar(
-          const SnackBar(
-            content: Text('Nákup se nepodařil. Zkus to prosím znovu.'),
-          ),
-        );
+        messenger.showSnackBar(SnackBar(content: Text(l10n.purchaseFailed)));
     }
   }
 
@@ -140,15 +134,14 @@ class _PaywallSheetState extends State<PaywallSheet> {
     if (!mounted || _closed) return;
     setState(() => _busy = false);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Nákupy obnoveny. Co jsi koupil(a), je odemčené.'),
-      ),
+      SnackBar(content: Text(context.l10n.purchasesRestoredUnlocked)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     final pack = widget.pack;
     final contents = widget.contents;
     final price = _e.price(pack.id);
@@ -182,19 +175,21 @@ class _PaywallSheetState extends State<PaywallSheet> {
             ],
             const SizedBox(height: 16),
             if (contents.sheets.isNotEmpty)
-              _Bullet('${contents.sheets.length} písem'),
+              _Bullet(l10n.sheetCount(contents.sheets.length)),
             if (contents.presets.isNotEmpty)
               _Bullet(
-                'Presety: ${contents.presets.map((p) => p.name).join(', ')}',
+                l10n.presetsList(
+                  contents.presets.map((p) => p.name).join(', '),
+                ),
               ),
             if (pack.feature == ContentPack.savePresetsFeature)
-              const _Bullet('Neomezeně vlastních presetů'),
-            const _Bullet('Jednou koupíš, máš navždy, i na dalších zařízeních'),
-            const _Bullet('Všechny funkce aplikace zůstávají zdarma'),
+              _Bullet(l10n.unlimitedPresets),
+            _Bullet(l10n.buyOnceKeepForever),
+            _Bullet(l10n.featuresStayFree),
             const SizedBox(height: 20),
             if (!_e.storeAvailable)
               Text(
-                'Obchod teď není dostupný. Zkus to později.',
+                l10n.storeUnavailable,
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodySmall,
               )
@@ -204,10 +199,10 @@ class _PaywallSheetState extends State<PaywallSheet> {
                 onPressed: _busy || price == null ? null : () => _buy(pack.id),
                 child: Text(
                   price != null
-                      ? 'Koupit za $price'
+                      ? l10n.buyFor(price)
                       : _e.productsLoaded
-                      ? 'Zatím není v prodeji'
-                      : 'Načítám cenu…',
+                      ? l10n.notForSaleYet
+                      : l10n.loadingPrice,
                 ),
               ),
             if (offerAll && _e.storeAvailable) ...[
@@ -215,14 +210,14 @@ class _PaywallSheetState extends State<PaywallSheet> {
               OutlinedButton(
                 key: const ValueKey('paywall-buy-all'),
                 onPressed: _busy ? null : () => _buy(all.id),
-                child: Text('${all.name}: všechny balíčky za $allPrice'),
+                child: Text(l10n.allPacksFor(all.name, allPrice)),
               ),
             ],
             const SizedBox(height: 4),
             TextButton(
               key: const ValueKey('paywall-restore'),
               onPressed: _busy ? null : _restore,
-              child: const Text('Obnovit nákupy'),
+              child: Text(l10n.restorePurchases),
             ),
             if (_busy)
               const Padding(
