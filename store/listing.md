@@ -30,8 +30,9 @@ SDK rules). The app qualifies, but 13+ is the quicker route for a first
 release.
 
 Screenshots: `store/screenshots.sh` renders them to
-`store/screenshots/<cs|en>/<iphone69|play|ipad13>/`. Google Play also needs
-a 1024×500 feature graphic and a 512×512 icon, which are not made yet.
+`store/screenshots/<cs|en>/<iphone69|play|ipad13|play_tablet>/`. The Google
+Play feature graphic (1024×500) and icon (512×512) are in `store/graphics/`,
+rendered from the app's glyphs by `store/play_graphics.py`.
 
 ## English
 
