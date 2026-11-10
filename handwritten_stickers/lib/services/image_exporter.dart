@@ -270,15 +270,17 @@ class ImageExporter {
     if (sticker == null) return;
 
     final file = await _writeTemp(sticker);
-    await Share.shareXFiles(
-      // No caption: messengers would send it as a second message.
-      [
-        XFile(
-          file.path,
-          mimeType: sticker.isAnimated ? 'image/gif' : 'image/png',
-        ),
-      ],
-      sharePositionOrigin: origin,
+    await SharePlus.instance.share(
+      ShareParams(
+        // No caption: messengers would send it as a second message.
+        files: [
+          XFile(
+            file.path,
+            mimeType: sticker.isAnimated ? 'image/gif' : 'image/png',
+          ),
+        ],
+        sharePositionOrigin: origin,
+      ),
     );
   }
 

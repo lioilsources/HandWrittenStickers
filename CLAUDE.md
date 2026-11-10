@@ -40,6 +40,9 @@ flutter build apk         # Build Android
 flutter build ios         # Build iOS
 flutter test              # Run tests
 flutter test test/widget_test.dart  # Single test
+flutter gen-l10n          # After editing lib/l10n/*.arb
+../store/screenshots.sh   # Store screenshots, cs/en × iPhone 6.9" / Play / iPad 13"
+python3 ../store/check_listing.py  # Length limits of store/listing.md
 ```
 
 ## Architecture
@@ -66,6 +69,8 @@ flutter test test/widget_test.dart  # Single test
 - `GlyphRenderer` layouts text → `List<PositionedGlyph>`; with metrics it aligns glyphs on the baseline and uses proportional advances, without metrics it falls back to per-cell scaling. Input is recomposed (`TextNormalizer.nfc`); missing letters are composed from base + accent glyph, else taken from the fallback sheet; variants never repeat back to back (deterministic per text)
 - Joined sheets (manifest `strokeWidth`): inside a word the entry point of a letter is placed `GlyphRenderer.joinGap` right of the previous exit point and `PositionedGlyph.join` (`GlyphJoin`, a pen-wide cubic curve) bridges them; `StyleParams.joinLetters` switches it off. `paintGlyphs` (`glyph_painter.dart`) is the one place glyphs and joins are drawn, for preview and export alike
 - `SheetSelector` chip row in `CanvasEditorScreen` switches sheets (one loader per sheet)
+- Localisation (cs/en): strings in `lib/l10n/app_{en,cs}.arb` (English is the template), `flutter gen-l10n` writes `app_localizations*.dart`, widgets read `context.l10n` (`lib/l10n/l10n.dart`). Czech and Slovak devices get Czech, everyone else English (`resolveAppLocale`). Content names follow the same language (`context.contentLanguage`): `name` in `sheets.json` (a string, or `{cs, en}` for names that are words), packs and built-in presets. The editor starts loading in `didChangeDependencies`, where the locale is known. Widget tests pass the delegates and `locale: Locale('cs')`; `l10n_test.dart` keeps the two ARB files in step
+- `FontLicenses.register()` (`main`) feeds each sheet's `OFL.txt` and `attribution` to `LicenseRegistry`; the ⓘ button in the editor opens `showLicensePage`
 - `StyleParams` controls spacing, rotation, scale variations; `toJson`/`fromJson` (missing keys take defaults) for presets
 - Presets (`Preset` = sheet + `StyleParams`, no text, no emoji): built-ins in `assets/presets/presets.json` (`name` per language, optional `pack`), the user's own and the last editor state (`EditorState`) in `PresetStore` (JSON files in the app support directory, in memory when there is none; `PresetStore.inMemory` in tests). `PresetSelector` row: tap applies sheet + style (text stays), long press = save as new / overwrite / rename / delete; a dot marks a look changed since the preset. The editor restores the last state on start
 - Content packs (all features free except saving presets; everything else paid is content): `assets/packs/packs.json` (`ContentPack`, `PackIndex`; product id `com.ol1n.handwrittenStickers.pack.<id>`, `all` = every pack, `presets` = the save-presets feature). Sheets and presets name their pack in `pack`; no `pack` = free (`packs_test.dart` pins the free sheet list). `EntitlementService` (owned packs, prices, `buy`, `restore`; cache `entitlements.json` so offline never locks) over `PurchaseBackend`: `StorePurchaseBackend` (`in_app_purchase`, StoreKit 2, no server, so not tamper-proof) or `FakePurchaseBackend`. `EntitlementService.forPlatform`: store on iOS/Android/macOS, all unlocked under `flutter test` and on Windows/Linux, `--dart-define=HWS_PACKS=all|none|kids,poster` = fake store for trying the paywall. Locked sheets and presets preview freely (lock icon, badge on the preview); Save/Share and saving a preset open `showPaywall`; `PacksScreen` lists packs with Restore purchases
@@ -80,6 +85,10 @@ flutter test test/widget_test.dart  # Single test
 - Workflow: open iPhone photo → drag corners to match template grid → export aligned PNG → feed to Go extractor
 
 Data flow: `GlyphSheetIndex` → `GlyphLoader` → `GlyphRenderer.layoutText()` → `HandwrittenCanvas` → `ImageExporter`
+
+## Store
+
+`store/listing.md` holds the store texts (cs/en) and the in-app purchase table, `site/` the support page and privacy policy that `.github/workflows/pages.yml` publishes to GitHub Pages. `ios/Runner/PrivacyInfo.xcprivacy` is the app's privacy manifest (no tracking, no collected data).
 
 ## Glyph Sheets
 

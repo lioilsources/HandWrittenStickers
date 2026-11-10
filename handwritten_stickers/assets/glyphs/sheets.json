@@ -912,14 +912,20 @@
     },
     {
       "id": "kid_bubble_peach",
-      "name": "Bublinky broskev",
+      "name": {
+        "cs": "Bublinky broskev",
+        "en": "Bubbles Peach"
+      },
       "path": "assets/glyphs/kid_bubble_peach/",
       "source": "font",
       "category": "kids"
     },
     {
       "id": "kid_bubble_mint",
-      "name": "Bublinky máta",
+      "name": {
+        "cs": "Bublinky máta",
+        "en": "Bubbles Mint"
+      },
       "path": "assets/glyphs/kid_bubble_mint/",
       "source": "font",
       "category": "kids",
@@ -927,7 +933,10 @@
     },
     {
       "id": "kid_bubble_lavender",
-      "name": "Bublinky levandule",
+      "name": {
+        "cs": "Bublinky levandule",
+        "en": "Bubbles Lavender"
+      },
       "path": "assets/glyphs/kid_bubble_lavender/",
       "source": "font",
       "category": "kids",
@@ -935,7 +944,10 @@
     },
     {
       "id": "kid_bubble_lemon",
-      "name": "Bublinky citron",
+      "name": {
+        "cs": "Bublinky citron",
+        "en": "Bubbles Lemon"
+      },
       "path": "assets/glyphs/kid_bubble_lemon/",
       "source": "font",
       "category": "kids",
@@ -943,7 +955,10 @@
     },
     {
       "id": "kid_bubble_sky",
-      "name": "Bublinky nebe",
+      "name": {
+        "cs": "Bublinky nebe",
+        "en": "Bubbles Sky"
+      },
       "path": "assets/glyphs/kid_bubble_sky/",
       "source": "font",
       "category": "kids",
@@ -951,7 +966,10 @@
     },
     {
       "id": "kid_bubble_italic",
-      "name": "Bublinky kurzíva",
+      "name": {
+        "cs": "Bublinky kurzíva",
+        "en": "Bubbles Italic"
+      },
       "path": "assets/glyphs/kid_bubble_italic/",
       "source": "font",
       "category": "kids",
@@ -982,7 +1000,10 @@
     },
     {
       "id": "mat_plasticine",
-      "name": "Modelína",
+      "name": {
+        "cs": "Modelína",
+        "en": "Plasticine"
+      },
       "path": "assets/glyphs/mat_plasticine/",
       "source": "material",
       "category": "material",
@@ -998,7 +1019,10 @@
     },
     {
       "id": "mat_gingerbread",
-      "name": "Perník",
+      "name": {
+        "cs": "Perník",
+        "en": "Gingerbread"
+      },
       "path": "assets/glyphs/mat_gingerbread/",
       "source": "material",
       "category": "material",

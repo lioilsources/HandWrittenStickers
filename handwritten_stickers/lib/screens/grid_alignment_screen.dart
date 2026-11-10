@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import '../services/perspective_transformer.dart';
 import '../widgets/grid_painter.dart';
 
@@ -57,13 +58,10 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
   }
 
   Future<void> _pickImage() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
-    if (result == null || result.files.single.path == null) return;
+    final picked = await FilePicker.pickFile(type: FileType.image);
+    if (picked == null || picked.path == null) return;
 
-    final path = result.files.single.path!;
+    final path = picked.path!;
     final bytes = await File(path).readAsBytes();
     final codec = await ui.instantiateImageCodec(bytes);
     final frame = await codec.getNextFrame();
@@ -77,6 +75,7 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
 
   Future<void> _exportAligned() async {
     if (_image == null || _corners.length != 4) return;
+    final l10n = context.l10n;
 
     setState(() => _isProcessing = true);
 
@@ -91,30 +90,25 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
           : 'aligned';
       final fileName = '${baseName}_aligned.png';
 
-      final savePath = await FilePicker.platform.saveFile(
-        dialogTitle: 'Save Aligned Image',
+      final saved = await FilePicker.saveFile(
+        dialogTitle: l10n.gridSaveDialogTitle,
         fileName: fileName,
-        type: FileType.custom,
-        allowedExtensions: ['png'],
+        mimeType: 'image/png',
         bytes: pngBytes,
       );
 
-      if (savePath != null && mounted) {
-        final file =
-            File(savePath.endsWith('.png') ? savePath : '$savePath.png');
-        if (!await file.exists()) {
-          await file.writeAsBytes(pngBytes);
-        }
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Saved: ${file.path}')),
-          );
-        }
+      if (saved != null && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.gridSaved(saved.toFilePath()))),
+        );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text(l10n.gridError('$e')),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {
@@ -181,27 +175,30 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        title: Text(_imagePath != null
-            ? 'Grid Alignment \u2014 ${_imagePath!.split('/').last}'
-            : 'Grid Alignment'),
+        title: Text(
+          _imagePath != null
+              ? '${l10n.navGrid} \u2014 ${_imagePath!.split('/').last}'
+              : l10n.navGrid,
+        ),
         actions: [
           if (_image != null) ...[
             IconButton(
               icon: const Icon(Icons.folder_open),
               onPressed: _pickImage,
-              tooltip: 'Open Another Image',
+              tooltip: l10n.gridOpenAnother,
             ),
             IconButton(
               icon: Icon(_showGrid ? Icons.grid_on : Icons.grid_off),
               onPressed: () => setState(() => _showGrid = !_showGrid),
-              tooltip: _showGrid ? 'Hide Grid' : 'Show Grid',
+              tooltip: _showGrid ? l10n.gridHide : l10n.gridShow,
             ),
             IconButton(
               icon: const Icon(Icons.refresh),
               onPressed: () => setState(() => _initCorners()),
-              tooltip: 'Reset Grid',
+              tooltip: l10n.gridReset,
             ),
             const SizedBox(width: 8),
             IconButton(
@@ -213,7 +210,7 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
                     )
                   : const Icon(Icons.check_circle),
               onPressed: _isProcessing ? null : _exportAligned,
-              tooltip: 'Export Aligned Image',
+              tooltip: l10n.gridExport,
             ),
           ],
         ],
@@ -223,27 +220,30 @@ class _GridAlignmentScreenState extends State<GridAlignmentScreen> {
   }
 
   Widget _buildEmptyState() {
+    final l10n = context.l10n;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.photo_library_outlined,
-              size: 64, color: Colors.grey.shade400),
+          Icon(
+            Icons.photo_library_outlined,
+            size: 64,
+            color: Colors.grey.shade400,
+          ),
           const SizedBox(height: 16),
           Text(
-            'Open a photo of your handwriting template',
+            l10n.gridOpenHint,
             style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
           ),
           const SizedBox(height: 24),
           FilledButton.icon(
             onPressed: _pickImage,
             icon: const Icon(Icons.folder_open),
-            label: const Text('Open Image'),
+            label: Text(l10n.gridOpenImage),
           ),
           const SizedBox(height: 12),
           Text(
-            'Drag the 4 corners to align the grid on the photo,\n'
-            'then export the perspective-corrected image.',
+            l10n.gridDragHint,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
           ),

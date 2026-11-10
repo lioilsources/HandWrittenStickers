@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:handwritten_stickers/l10n/l10n.dart';
 import 'package:handwritten_stickers/screens/canvas_editor_screen.dart';
 import 'package:handwritten_stickers/services/entitlement_service.dart';
 import 'package:handwritten_stickers/services/purchases/purchase_backend.dart';
@@ -13,16 +14,39 @@ import 'package:handwritten_stickers/services/purchases/purchase_backend.dart';
 /// (store page, release notes):
 ///
 ///     SCREENSHOT_DIR=/path/to/out flutter test test/screenshots_test.dart
+///     SCREENSHOT_LOCALE=en SCREENSHOT_DIR=... (default: cs)
+///     SCREENSHOT_DEVICE=iphone69|play|ipad13 SCREENSHOT_DIR=...
+///
+/// Devices are the sizes the stores ask for, see [_devices].
 ///
 /// Without SCREENSHOT_DIR the tests are skipped: the output depends on the
 /// machine's Skia and fonts, so it is not something CI should compare.
 ///
 /// Real fonts are loaded by hand (the test font draws every letter as a
 /// box) and glyph images decode inside `runAsync`, where real time passes.
-const _phone = Size(402, 874);
-const _pixelRatio = 3.0;
+/// Logical size and pixel ratio per device.
+const _devices = <String, (Size, double)>{
+  // iPhone 6.3": 1206×2622.
+  'iphone63': (Size(402, 874), 3),
+  // iPhone 6.9", the size App Store Connect requires: 1320×2868.
+  'iphone69': (Size(440, 956), 3),
+  // 9:16 for Google Play (longer side at most twice the shorter) and the
+  // 5.5" iPhone slot: 1242×2208.
+  'play': (Size(414, 736), 3),
+  // iPad 13": 2064×2752.
+  'ipad13': (Size(1032, 1376), 2),
+};
+final _device =
+    _devices[Platform.environment['SCREENSHOT_DEVICE'] ?? 'iphone63']!;
+final _screen = _device.$1;
+final _pixelRatio = _device.$2;
 
 final _outDir = Platform.environment['SCREENSHOT_DIR'];
+final _english = Platform.environment['SCREENSHOT_LOCALE'] == 'en';
+final _locale = Locale(_english ? 'en' : 'cs');
+
+/// The Czech or the English variant of a text in the shots.
+String _t(String cs, String en) => _english ? en : cs;
 
 Future<void> _loadRealFonts() async {
   final root = Platform.environment['FLUTTER_ROOT'];
@@ -69,7 +93,7 @@ void main() {
     EntitlementService? entitlements,
   }) async {
     tester.view.devicePixelRatio = _pixelRatio;
-    tester.view.physicalSize = _phone * _pixelRatio;
+    tester.view.physicalSize = _screen * _pixelRatio;
     addTearDown(tester.view.reset);
     WidgetsApp.debugAllowBannerOverride = false;
     addTearDown(() => WidgetsApp.debugAllowBannerOverride = true);
@@ -79,6 +103,9 @@ void main() {
       RepaintBoundary(
         key: boundary,
         child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: _locale,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
             fontFamily: 'Roboto',
@@ -102,7 +129,7 @@ void main() {
   }
 
   Future<void> pickEmoji(WidgetTester tester, String emoji) async {
-    await tester.tap(find.byTooltip('Emoji ke zprávě'));
+    await tester.tap(find.byTooltip(_t('Emoji ke zprávě', 'Emoji tag')));
     await settle(tester);
     final tile = find.byKey(ValueKey('emoji-$emoji'));
     await tester.ensureVisible(tile);
@@ -133,28 +160,28 @@ void main() {
   testWidgets('screenshots', skip: _outDir == null, (tester) async {
     // Bubble letters with an emoji tag.
     await open(tester);
-    await pickSheet(tester, 'Bublinky broskev');
-    await write(tester, 'Ahoj maminko');
+    await pickSheet(tester, _t('Bublinky broskev', 'Bubbles Peach'));
+    await write(tester, _t('Ahoj maminko', 'Hi mummy'));
     await pickEmoji(tester, '🐱');
     await shoot(tester, 'stickers_1_bublinky');
 
     // A scanned child handwriting (the default sheet).
     await open(tester);
-    await write(tester, 'Mám tě ráda, babičko.');
+    await write(tester, _t('Mám tě ráda, babičko.', 'I love you, grandma.'));
     await shoot(tester, 'stickers_2_rukopis');
 
     // Calligraphy.
     await open(tester);
     await pickSheet(tester, 'Great Vibes');
-    await write(tester, 'Všechno nejlepší!');
+    await write(tester, _t('Všechno nejlepší!', 'Happy birthday!'));
     await pickEmoji(tester, '🎂');
     await shoot(tester, 'stickers_3_kaligrafie');
 
     // Emoji picker.
     await open(tester);
-    await pickSheet(tester, 'Bublinky máta');
-    await write(tester, 'Dobrou noc');
-    await tester.tap(find.byTooltip('Emoji ke zprávě'));
+    await pickSheet(tester, _t('Bublinky máta', 'Bubbles Mint'));
+    await write(tester, _t('Dobrou noc', 'Good night'));
+    await tester.tap(find.byTooltip(_t('Emoji ke zprávě', 'Emoji tag')));
     await shoot(tester, 'stickers_4_emoji');
     await tester.tapAt(const Offset(20, 20));
     await settle(tester);
@@ -162,21 +189,26 @@ void main() {
     // Style settings.
     await open(tester);
     await pickSheet(tester, 'Caveat');
-    await write(tester, 'Díky za všechno');
-    await tester.tap(find.text('Rychlý vzkaz'));
+    await write(tester, _t('Díky za všechno', 'Thanks for everything'));
+    await tester.tap(find.text(_t('Rychlý vzkaz', 'Quick note')));
     await settle(tester);
     await settle(tester);
-    await tester.tap(find.text('Advanced Settings'));
+    await tester.tap(find.text(_t('Pokročilé nastavení', 'Advanced Settings')));
     await shoot(tester, 'stickers_5_styl');
 
     // Content packs, nothing bought yet.
     await open(
       tester,
       entitlements: EntitlementService.fake(
-        FakePurchaseBackend(prices: EntitlementService.fakePrices),
+        FakePurchaseBackend(
+          prices: {
+            for (final e in EntitlementService.fakePrices.entries)
+              e.key: _t(e.value, e.key.endsWith('.all') ? r'$3.99' : r'$0.99'),
+          },
+        ),
       ),
     );
-    await tester.tap(find.byTooltip('Balíčky'));
+    await tester.tap(find.byTooltip(_t('Balíčky', 'Packs')));
     for (var i = 0; i < 4; i++) {
       await settle(tester);
     }

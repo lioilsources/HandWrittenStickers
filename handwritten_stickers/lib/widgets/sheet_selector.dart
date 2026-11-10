@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import '../models/glyph_sheet.dart';
 
 /// Chip rows for choosing which glyph sheet ("handwriting") to use, grouped
@@ -26,6 +27,7 @@ class SheetSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     final groups = <SheetCategory, List<GlyphSheet>>{};
     for (final sheet in sheets) {
       groups.putIfAbsent(sheet.category, () => []).add(sheet);
@@ -37,13 +39,14 @@ class SheetSelector extends StatelessWidget {
       children: [
         for (final category in SheetCategory.values)
           if (groups.containsKey(category))
-            _buildRow(theme, category, groups[category]!),
+            _buildRow(theme, l10n, category, groups[category]!),
       ],
     );
   }
 
   Widget _buildRow(
     ThemeData theme,
+    AppLocalizations l10n,
     SheetCategory category,
     List<GlyphSheet> rowSheets,
   ) {
@@ -55,7 +58,7 @@ class SheetSelector extends StatelessWidget {
           SizedBox(
             width: 84,
             child: Text(
-              category.label,
+              category.localizedLabel(l10n),
               style: theme.textTheme.labelSmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
