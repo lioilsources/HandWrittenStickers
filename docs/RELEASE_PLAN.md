@@ -54,7 +54,7 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
 
 | # | Problém | Dopad |
 |---|---------|-------|
-| L1 | Laurinčina sada je rukopis dítěte kamaráda, v aplikaci pod jménem. Před veřejným vydáním je potřeba souhlas rodičů (a rozhodnout, zda sadu pojmenovat neutrálně, např. „Ruční písmo 1“). Fotky předloh `glyph_extractor/matrix/*.jpg` jsou v repu. | Bez souhlasu vydat jen fontové sady (přepnout `default` v `sheets.json`). |
+| L1 | Laurinčina sada je rukopis dítěte, v aplikaci pod jménem. **Vyřešeno 10. 11. 2026:** souhlas rodiče dán, sada zůstává pod jménem Laurinka a jako výchozí. Fotky předloh `glyph_extractor/matrix/*.jpg` jsou v repu. | – |
 | L2 | Fontové sady jsou z fontů pod SIL OFL 1.1. Rasterizované PNG nejsou „Font Software“, ale attribution je slušnost a licence je u každé sady v `OFL.txt` (bundlují se do appky). | Přidat obrazovku „O aplikaci / Licence“ se seznamem fontů. |
 | L3 | App Store vyžaduje URL na Privacy Policy (i když appka nesbírá nic). | Statická stránka (GitHub Pages) – „aplikace neposílá žádná data“. |
 | L4 | Název „Handwritten Stickers“ je generický, v App Store pravděpodobně obsazený. | Ověřit v App Store Connect, připravit alternativu. |
@@ -99,15 +99,21 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
 
 - [ ] **T6 Skrýt Grid Alignment na mobilu** (P1).
 - [ ] **T7 Ikona, launch screen, název, bundle ID** (P2, P3, P6, L4).
-- [ ] **T8 Upgrade pluginů + privacy manifest** (P4, P5). Po upgradu
-  `share_plus` zkontrolovat API změny (`SharePlus.instance.share`).
-- [ ] **T9 Lokalizace cs/en** (P8).
-- [ ] **T10 Obrazovka O aplikaci s licencemi fontů** (L2) a rozhodnutí o
-  Laurinčině sadě (L1) – bez souhlasu nastavit `default` na `caveat`.
+- [x] **T8 Upgrade pluginů + privacy manifest** (P4, P5). `share_plus` 13,
+  `file_picker` 13, `ios/Runner/PrivacyInfo.xcprivacy`. Zbývá vyzkoušet
+  sdílení na reálném iPhonu.
+- [x] **T9 Lokalizace cs/en** (P8). `lib/l10n/*.arb`; čeština pro cs a sk,
+  jinak angličtina. Popisy oprávnění v `Info.plist` zůstávají anglicky.
+- [x] **T10 Obrazovka O aplikaci s licencemi fontů** (L2) a rozhodnutí o
+  Laurinčině sadě (L1). Licence: ikona ⓘ v editoru, `FontLicenses`.
+  L1: souhlas rodiče dán 10. 11. 2026, sada zůstává výchozí.
 - [ ] **T11 Ošetření chyb při ukládání** (P9).
 - [ ] **T12 Privacy policy URL** (L3), texty do App Store Connect
   (popis, klíčová slova, kategorie *Photo & Video* nebo *Utilities*,
   věkové hodnocení 4+, export compliance: bez šifrování).
+  Připraveno: stránka `site/` (podpora + zásady, workflow `pages.yml`) a
+  texty cs/en v `store/listing.md`. Zbývá zapnout GitHub Pages a texty
+  vložit do obchodů.
 
 ### Navazující funkce (mimo první release)
 
@@ -133,6 +139,8 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
   nahrání přes Transporter/Xcode, TestFlight interní test.
 - [ ] **T15 Screenshoty** pro 6,7" a 6,1" iPhone (App Store je vyžaduje),
   volitelně iPad – pokud se iPad nepodporuje, nastavit `TARGETED_DEVICE_FAMILY = 1`.
+  `store/screenshots.sh` je renderuje cs/en pro iPhone 6,9", Google Play
+  (9:16) a iPad 13". Zbývá feature graphic 1024×500 pro Google Play.
 
 ### Doporučené pořadí pro Opus
 
