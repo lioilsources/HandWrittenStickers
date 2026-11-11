@@ -176,7 +176,9 @@ První vydání.
 
 ## In-app purchases
 
-Seven non-consumable products, the same ids in both stores. Display names
+Seven non-consumable products. Play allows no capital letters in product
+ids, so Play sells the lowercase form (`com.ol1n.handwrittenstickers.pack.kids`);
+`StorePurchaseBackend` maps it back to the id below. Display names
 match `assets/packs/packs.json`. The limits here are kept short enough for
 both stores.
 

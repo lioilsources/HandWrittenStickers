@@ -12,14 +12,24 @@ import 'purchase_backend.dart';
 /// its purchase tokens, but nothing here checks a receipt against a
 /// backend, so a jailbroken or patched device can unlock packs. That is
 /// accepted for packs at 0.99 USD; do not treat this as secure.
+///
+/// Play product ids allow no capital letters, so on Android each app id
+/// (`com.ol1n.handwrittenStickers.pack.kids`) is sold under its lowercase
+/// form and mapped back here; the rest of the app only sees app ids.
 class StorePurchaseBackend extends PurchaseBackend {
   final InAppPurchase _iap;
+  final bool _lowercaseIds;
+
+  /// Store id → app id for every product queried so far.
+  final Map<String, String> _appIds = {};
   final StreamController<PurchaseEvent> _updates =
       StreamController<PurchaseEvent>.broadcast();
   StreamSubscription<List<PurchaseDetails>>? _subscription;
 
-  StorePurchaseBackend({InAppPurchase? iap})
-    : _iap = iap ?? InAppPurchase.instance {
+  StorePurchaseBackend({InAppPurchase? iap, bool? lowercaseIds})
+    : _iap = iap ?? InAppPurchase.instance,
+      _lowercaseIds =
+          lowercaseIds ?? defaultTargetPlatform == TargetPlatform.android {
     // Listen from the start: the store delivers interrupted purchases
     // (app killed mid-purchase, Ask to Buy approved later) on launch.
     _subscription = _iap.purchaseStream.listen(
@@ -37,7 +47,7 @@ class StorePurchaseBackend extends PurchaseBackend {
         PurchaseStatus.canceled => PurchaseEventKind.cancelled,
         PurchaseStatus.error => PurchaseEventKind.error,
       };
-      _updates.add(PurchaseEvent(p.productID, kind, p.error?.message));
+      _updates.add(PurchaseEvent(_appId(p.productID), kind, p.error?.message));
       // Unfinished transactions are redelivered (and on Android refunded
       // after three days), so every final state is acknowledged.
       if (p.pendingCompletePurchase) {
@@ -49,6 +59,14 @@ class StorePurchaseBackend extends PurchaseBackend {
       }
     }
   }
+
+  String _storeId(String appId) {
+    final id = _lowercaseIds ? appId.toLowerCase() : appId;
+    _appIds[id] = appId;
+    return id;
+  }
+
+  String _appId(String storeId) => _appIds[storeId] ?? storeId;
 
   @override
   Future<bool> isAvailable() async {
@@ -62,7 +80,7 @@ class StorePurchaseBackend extends PurchaseBackend {
 
   @override
   Future<List<StoreProduct>> products(Set<String> ids) async {
-    final response = await _iap.queryProductDetails(ids);
+    final response = await _iap.queryProductDetails(ids.map(_storeId).toSet());
     if (response.error != null) {
       debugPrint('Purchases: product query failed (${response.error})');
     }
@@ -71,7 +89,7 @@ class StorePurchaseBackend extends PurchaseBackend {
     }
     return [
       for (final d in response.productDetails)
-        StoreProduct(id: d.id, title: d.title, price: d.price, raw: d),
+        StoreProduct(id: _appId(d.id), title: d.title, price: d.price, raw: d),
     ];
   }
 
