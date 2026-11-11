@@ -64,6 +64,18 @@ void main() {
       expect(packs.forFeature(ContentPack.savePresetsFeature)?.id, 'presets');
     });
 
+    test('Play ids (lowercase, no capitals allowed) find their pack', () {
+      for (final p in packs.packs) {
+        final play = p.productId.toLowerCase();
+        expect(RegExp(r'^[a-z0-9][a-z0-9._]*$').hasMatch(play), isTrue);
+        expect(packs.byProduct(play), p);
+      }
+      expect(
+        packs.productIds.map((id) => id.toLowerCase()).toSet(),
+        hasLength(packs.packs.length),
+      );
+    });
+
     test('every pack a sheet or preset names exists', () async {
       final all = await GlyphSheetIndex.load(includeUnbundled: true);
       for (final s in all.sheets) {

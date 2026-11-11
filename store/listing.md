@@ -30,8 +30,9 @@ SDK rules). The app qualifies, but 13+ is the quicker route for a first
 release.
 
 Screenshots: `store/screenshots.sh` renders them to
-`store/screenshots/<cs|en>/<iphone69|play|ipad13>/`. Google Play also needs
-a 1024×500 feature graphic and a 512×512 icon, which are not made yet.
+`store/screenshots/<cs|en>/<iphone69|play|ipad13|play_tablet>/`. The Google
+Play feature graphic (1024×500) and icon (512×512) are in `store/graphics/`,
+rendered from the app's glyphs by `store/play_graphics.py`.
 
 ## English
 
@@ -175,7 +176,9 @@ První vydání.
 
 ## In-app purchases
 
-Seven non-consumable products, the same ids in both stores. Display names
+Seven non-consumable products. Play allows no capital letters in product
+ids, so Play sells the lowercase form (`com.ol1n.handwrittenstickers.pack.kids`);
+`StorePurchaseBackend` maps it back to the id below. Display names
 match `assets/packs/packs.json`. The limits here are kept short enough for
 both stores.
 

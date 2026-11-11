@@ -35,6 +35,8 @@ const _devices = <String, (Size, double)>{
   'play': (Size(414, 736), 3),
   // iPad 13": 2064×2752.
   'ipad13': (Size(1032, 1376), 2),
+  // Google Play 7" and 10" tablets: 9:16, both sides at least 1080: 1800×3200.
+  'play_tablet': (Size(900, 1600), 2),
 };
 final _device =
     _devices[Platform.environment['SCREENSHOT_DEVICE'] ?? 'iphone63']!;

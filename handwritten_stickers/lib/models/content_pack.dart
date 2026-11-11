@@ -11,7 +11,8 @@ class ContentPack {
   /// Pack id, e.g. `calligraphy`. [allId] is the bundle of every pack.
   final String id;
 
-  /// Store product id, the same in App Store Connect and Play Console.
+  /// Store product id as App Store Connect has it. Play allows no capitals
+  /// and sells it lowercased (`StorePurchaseBackend` maps the two).
   final String productId;
   final String name;
   final String description;
@@ -90,9 +91,11 @@ class PackIndex {
     return null;
   }
 
+  /// Case-insensitive: Play reports the lowercase form of [productId].
   ContentPack? byProduct(String productId) {
+    final id = productId.toLowerCase();
     for (final p in packs) {
-      if (p.productId == productId) return p;
+      if (p.productId.toLowerCase() == id) return p;
     }
     return null;
   }
