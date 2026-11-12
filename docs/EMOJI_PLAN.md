@@ -21,6 +21,9 @@ Strojově čitelný seznam gest: [`emoji/gestures.json`](emoji/gestures.json)
 > s náhledem. Nástroje: `tools/emoji/` (`emoji_set.json`, `run_batch.py`,
 > `build.py`), assety `handwritten_stickers/assets/emoji/`. 25 nálepek je
 > převzatých ze SwypeKids, 16 se dogeneruje. Zbytek dokumentu je historický.
+>
+> **Stav 2026-11-12:** převzaté nálepky nahradí vlastní sada 150+ emoji
+> generovaná na L40S, viz [`EMOJI_SET_PLAN.md`](EMOJI_SET_PLAN.md).
 
 ## 1. Produktové rozhodnutí
 
