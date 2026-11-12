@@ -208,7 +208,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
   Future<void> _loadEmoji() async {
     try {
-      final index = await EmojiIndex.load();
+      final index = await EmojiIndex.load(language: _language);
       if (mounted) setState(() => _emojiIndex = index);
     } catch (e) {
       debugPrint('CanvasEditor: no emoji stickers ($e)');
@@ -218,8 +218,15 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Future<void> _pickEmoji() async {
     final index = _emojiIndex;
     if (index == null) return;
-    final tag = await showEmojiPicker(context, index: index, selected: _emoji);
-    if (mounted) setState(() => _emoji = tag);
+    final tag = await showEmojiPicker(
+      context,
+      index: index,
+      selected: _emoji,
+      recent: [for (final id in _presets.recentEmoji) ?index.byId(id)],
+    );
+    if (!mounted) return;
+    setState(() => _emoji = tag);
+    if (tag != null) _presets.noteEmojiUsed(tag.id);
   }
 
   Future<void> _initializeSheets() async {

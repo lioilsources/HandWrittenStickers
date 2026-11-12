@@ -1,205 +1,517 @@
 {
- "version": 1,
+ "version": 2,
+ "categories": [
+  {
+   "id": "smileys",
+   "name": {
+    "cs": "Smajlíci",
+    "en": "Smileys"
+   }
+  },
+  {
+   "id": "emotions",
+   "name": {
+    "cs": "Emoce",
+    "en": "Feelings"
+   }
+  },
+  {
+   "id": "flirt",
+   "name": {
+    "cs": "Flirtování",
+    "en": "Flirting"
+   }
+  },
+  {
+   "id": "romance",
+   "name": {
+    "cs": "Romantika",
+    "en": "Romance"
+   }
+  },
+  {
+   "id": "hands",
+   "name": {
+    "cs": "Gesta rukou",
+    "en": "Hands"
+   }
+  },
+  {
+   "id": "animals",
+   "name": {
+    "cs": "Zvířátka",
+    "en": "Animals"
+   }
+  },
+  {
+   "id": "celebration",
+   "name": {
+    "cs": "Oslavy",
+    "en": "Celebrations"
+   }
+  },
+  {
+   "id": "food",
+   "name": {
+    "cs": "Jídlo a pití",
+    "en": "Food & drink"
+   }
+  },
+  {
+   "id": "nature",
+   "name": {
+    "cs": "Příroda a počasí",
+    "en": "Nature & weather"
+   }
+  },
+  {
+   "id": "everyday",
+   "name": {
+    "cs": "Všední den",
+    "en": "Everyday"
+   }
+  }
+ ],
  "emoji": [
   {
-   "emoji": "❤",
-   "name": "Srdce",
-   "file": "2764.webp"
-  },
-  {
-   "emoji": "😂",
-   "name": "Smích",
-   "file": "1f602.webp"
-  },
-  {
+   "id": "smile_happy",
+   "category": "smileys",
    "emoji": "😊",
-   "name": "Úsměv",
-   "file": "1f60a.webp"
+   "name": {
+    "cs": "Úsměv",
+    "en": "Smile"
+   },
+   "file": "smile_happy.webp",
+   "motion": "breathe"
   },
   {
-   "emoji": "😠",
-   "name": "Zlobím se",
-   "file": "1f620.webp"
+   "id": "smile_laugh",
+   "category": "smileys",
+   "emoji": "😂",
+   "name": {
+    "cs": "Smích do slz",
+    "en": "Tears of joy"
+   },
+   "file": "smile_laugh.webp",
+   "motion": "shake"
   },
   {
-   "emoji": "😨",
-   "name": "Lekl jsem se",
-   "file": "1f628.webp"
-  },
-  {
-   "emoji": "👍",
-   "name": "Palec",
-   "file": "1f44d.webp"
-  },
-  {
-   "emoji": "👋",
-   "name": "Ahoj",
-   "file": "1f44b.webp"
-  },
-  {
-   "emoji": "🔥",
-   "name": "Oheň",
-   "file": "1f525.webp"
-  },
-  {
-   "emoji": "⭐",
-   "name": "Hvězda",
-   "file": "2b50.webp"
-  },
-  {
-   "emoji": "🌈",
-   "name": "Duha",
-   "file": "1f308.webp"
-  },
-  {
-   "emoji": "☀",
-   "name": "Sluníčko",
-   "file": "2600.webp"
-  },
-  {
-   "emoji": "🌸",
-   "name": "Kytička",
-   "file": "1f338.webp"
-  },
-  {
-   "emoji": "🎂",
-   "name": "Dort",
-   "file": "1f382.webp"
-  },
-  {
-   "emoji": "🎁",
-   "name": "Dárek",
-   "file": "1f381.webp"
-  },
-  {
-   "emoji": "🎈",
-   "name": "Balónek",
-   "file": "1f388.webp"
-  },
-  {
-   "emoji": "💤",
-   "name": "Dobrou noc",
-   "file": "1f4a4.webp"
-  },
-  {
-   "emoji": "🐶",
-   "name": "Pejsek",
-   "file": "1f436.webp"
-  },
-  {
-   "emoji": "🐱",
-   "name": "Kočička",
-   "file": "1f431.webp"
-  },
-  {
-   "emoji": "🦊",
-   "name": "Liška",
-   "file": "1f98a.webp"
-  },
-  {
-   "emoji": "🐼",
-   "name": "Panda",
-   "file": "1f43c.webp"
-  },
-  {
-   "emoji": "🍕",
-   "name": "Pizza",
-   "file": "1f355.webp"
-  },
-  {
-   "emoji": "☕",
-   "name": "Kafíčko",
-   "file": "2615.webp"
-  },
-  {
-   "emoji": "👀",
-   "name": "Koukám",
-   "file": "1f440.webp"
-  },
-  {
-   "emoji": "🤝",
-   "name": "Dohoda",
-   "file": "1f91d.webp"
-  },
-  {
-   "emoji": "🏆",
-   "name": "Vítěz",
-   "file": "1f3c6.webp"
-  },
-  {
-   "emoji": "😍",
-   "name": "Zamilovaný",
-   "file": "1f60d.webp"
-  },
-  {
-   "emoji": "😘",
-   "name": "Pusa",
-   "file": "1f618.webp"
-  },
-  {
-   "emoji": "🥰",
-   "name": "Láska",
-   "file": "1f970.webp"
-  },
-  {
-   "emoji": "😢",
-   "name": "Smutný",
-   "file": "1f622.webp"
-  },
-  {
-   "emoji": "😭",
-   "name": "Pláč",
-   "file": "1f62d.webp"
-  },
-  {
-   "emoji": "😮",
-   "name": "Překvapení",
-   "file": "1f62e.webp"
-  },
-  {
-   "emoji": "😴",
-   "name": "Spánek",
-   "file": "1f634.webp"
-  },
-  {
-   "emoji": "🤔",
-   "name": "Přemýšlím",
-   "file": "1f914.webp"
-  },
-  {
+   "id": "smile_cool",
+   "category": "smileys",
    "emoji": "😎",
-   "name": "Pohoda",
-   "file": "1f60e.webp"
+   "name": {
+    "cs": "Pohodář",
+    "en": "Cool"
+   },
+   "file": "smile_cool.webp",
+   "motion": "nod"
   },
   {
-   "emoji": "🥳",
-   "name": "Oslava",
-   "file": "1f973.webp"
-  },
-  {
+   "id": "smile_tongue",
+   "category": "smileys",
    "emoji": "😜",
-   "name": "Legrace",
-   "file": "1f61c.webp"
+   "name": {
+    "cs": "Vyplazený jazyk",
+    "en": "Cheeky"
+   },
+   "file": "smile_tongue.webp",
+   "motion": "bounce"
   },
   {
+   "id": "smile_angel",
+   "category": "smileys",
    "emoji": "😇",
-   "name": "Andílek",
-   "file": "1f607.webp"
+   "name": {
+    "cs": "Andílek",
+    "en": "Angel"
+   },
+   "file": "smile_angel.webp",
+   "motion": "float"
   },
   {
+   "id": "smile_party",
+   "category": "smileys",
+   "emoji": "🥳",
+   "name": {
+    "cs": "Slavím",
+    "en": "Party face"
+   },
+   "file": "smile_party.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "smile_thinking",
+   "category": "smileys",
+   "emoji": "🤔",
+   "name": {
+    "cs": "Přemýšlím",
+    "en": "Thinking"
+   },
+   "file": "smile_thinking.webp",
+   "motion": "nod"
+  },
+  {
+   "id": "smile_sleeping",
+   "category": "smileys",
+   "emoji": "😴",
+   "name": {
+    "cs": "Spím",
+    "en": "Sleeping"
+   },
+   "file": "smile_sleeping.webp",
+   "motion": "float"
+  },
+  {
+   "id": "feel_tear",
+   "category": "emotions",
+   "emoji": "😢",
+   "name": {
+    "cs": "Slzička",
+    "en": "Tear"
+   },
+   "file": "feel_tear.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "feel_crying",
+   "category": "emotions",
+   "emoji": "😭",
+   "name": {
+    "cs": "Brečím",
+    "en": "Crying"
+   },
+   "file": "feel_crying.webp",
+   "motion": "shake"
+  },
+  {
+   "id": "feel_angry",
+   "category": "emotions",
+   "emoji": "😠",
+   "name": {
+    "cs": "Zlobím se",
+    "en": "Angry"
+   },
+   "file": "feel_angry.webp",
+   "motion": "shake"
+  },
+  {
+   "id": "feel_scared",
+   "category": "emotions",
+   "emoji": "😨",
+   "name": {
+    "cs": "Leknutí",
+    "en": "Scared"
+   },
+   "file": "feel_scared.webp",
+   "motion": "shake"
+  },
+  {
+   "id": "feel_surprised",
+   "category": "emotions",
+   "emoji": "😮",
+   "name": {
+    "cs": "Překvapení",
+    "en": "Surprised"
+   },
+   "file": "feel_surprised.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "flirt_kiss",
+   "category": "flirt",
+   "emoji": "😘",
+   "name": {
+    "cs": "Posílám pusu",
+    "en": "Blowing a kiss"
+   },
+   "file": "flirt_kiss.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "flirt_heart_eyes",
+   "category": "flirt",
+   "emoji": "😍",
+   "name": {
+    "cs": "Zamilované oči",
+    "en": "Heart eyes"
+   },
+   "file": "flirt_heart_eyes.webp",
+   "motion": "pulse"
+  },
+  {
+   "id": "flirt_eyes",
+   "category": "flirt",
+   "emoji": "👀",
+   "name": {
+    "cs": "Koukám",
+    "en": "Looking"
+   },
+   "file": "flirt_eyes.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "love_heart",
+   "category": "romance",
+   "emoji": "❤️",
+   "name": {
+    "cs": "Srdce",
+    "en": "Heart"
+   },
+   "file": "love_heart.webp",
+   "motion": "pulse"
+  },
+  {
+   "id": "love_smitten",
+   "category": "romance",
+   "emoji": "🥰",
+   "name": {
+    "cs": "Zamilovaně",
+    "en": "Smitten"
+   },
+   "file": "love_smitten.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "love_balloon",
+   "category": "romance",
+   "emoji": "🎈",
+   "name": {
+    "cs": "Srdíčkový balónek",
+    "en": "Heart balloon"
+   },
+   "file": "love_balloon.webp",
+   "motion": "float"
+  },
+  {
+   "id": "hand_thumbs_up",
+   "category": "hands",
+   "emoji": "👍",
+   "name": {
+    "cs": "Palec nahoru",
+    "en": "Thumbs up"
+   },
+   "file": "hand_thumbs_up.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "hand_wave",
+   "category": "hands",
+   "emoji": "👋",
+   "name": {
+    "cs": "Ahoj",
+    "en": "Hello"
+   },
+   "file": "hand_wave.webp",
+   "motion": "wave"
+  },
+  {
+   "id": "hand_clap",
+   "category": "hands",
    "emoji": "👏",
-   "name": "Potlesk",
-   "file": "1f44f.webp"
+   "name": {
+    "cs": "Potlesk",
+    "en": "Applause"
+   },
+   "file": "hand_clap.webp",
+   "motion": "shake"
   },
   {
+   "id": "hand_flex",
+   "category": "hands",
    "emoji": "💪",
-   "name": "Síla",
-   "file": "1f4aa.webp"
+   "name": {
+    "cs": "Síla",
+    "en": "Strong"
+   },
+   "file": "hand_flex.webp",
+   "motion": "pulse"
   },
   {
+   "id": "hand_handshake",
+   "category": "hands",
+   "emoji": "🤝",
+   "name": {
+    "cs": "Platí",
+    "en": "Deal"
+   },
+   "file": "hand_handshake.webp",
+   "motion": "nod"
+  },
+  {
+   "id": "animal_dog",
+   "category": "animals",
+   "emoji": "🐶",
+   "name": {
+    "cs": "Pejsek",
+    "en": "Puppy"
+   },
+   "file": "animal_dog.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "animal_cat",
+   "category": "animals",
+   "emoji": "🐱",
+   "name": {
+    "cs": "Kočička",
+    "en": "Kitty"
+   },
+   "file": "animal_cat.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "animal_fox",
+   "category": "animals",
+   "emoji": "🦊",
+   "name": {
+    "cs": "Liška",
+    "en": "Fox"
+   },
+   "file": "animal_fox.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "animal_panda",
+   "category": "animals",
+   "emoji": "🐼",
+   "name": {
+    "cs": "Panda",
+    "en": "Panda"
+   },
+   "file": "animal_panda.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "party_popper",
+   "category": "celebration",
    "emoji": "🎉",
-   "name": "Hurá",
-   "file": "1f389.webp"
+   "name": {
+    "cs": "Oslava",
+    "en": "Party"
+   },
+   "file": "party_popper.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "party_cake",
+   "category": "celebration",
+   "emoji": "🎂",
+   "name": {
+    "cs": "Dort",
+    "en": "Cake"
+   },
+   "file": "party_cake.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "party_gift",
+   "category": "celebration",
+   "emoji": "🎁",
+   "name": {
+    "cs": "Dárek",
+    "en": "Gift"
+   },
+   "file": "party_gift.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "party_trophy",
+   "category": "celebration",
+   "emoji": "🏆",
+   "name": {
+    "cs": "Vítěz",
+    "en": "Winner"
+   },
+   "file": "party_trophy.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "party_star",
+   "category": "celebration",
+   "emoji": "⭐",
+   "name": {
+    "cs": "Hvězda",
+    "en": "Star"
+   },
+   "file": "party_star.webp",
+   "motion": "twinkle"
+  },
+  {
+   "id": "food_coffee",
+   "category": "food",
+   "emoji": "☕",
+   "name": {
+    "cs": "Kafe",
+    "en": "Coffee"
+   },
+   "file": "food_coffee.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "food_pizza",
+   "category": "food",
+   "emoji": "🍕",
+   "name": {
+    "cs": "Pizza",
+    "en": "Pizza"
+   },
+   "file": "food_pizza.webp",
+   "motion": "bounce"
+  },
+  {
+   "id": "nature_sun",
+   "category": "nature",
+   "emoji": "☀️",
+   "name": {
+    "cs": "Sluníčko",
+    "en": "Sunshine"
+   },
+   "file": "nature_sun.webp",
+   "motion": "twinkle"
+  },
+  {
+   "id": "nature_rainbow",
+   "category": "nature",
+   "emoji": "🌈",
+   "name": {
+    "cs": "Duha",
+    "en": "Rainbow"
+   },
+   "file": "nature_rainbow.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "nature_blossom",
+   "category": "nature",
+   "emoji": "🌸",
+   "name": {
+    "cs": "Kytička",
+    "en": "Blossom"
+   },
+   "file": "nature_blossom.webp",
+   "motion": "breathe"
+  },
+  {
+   "id": "nature_fire",
+   "category": "nature",
+   "emoji": "🔥",
+   "name": {
+    "cs": "Oheň",
+    "en": "Fire"
+   },
+   "file": "nature_fire.webp",
+   "motion": "pulse"
+  },
+  {
+   "id": "day_zzz",
+   "category": "everyday",
+   "emoji": "💤",
+   "name": {
+    "cs": "Dobrou noc",
+    "en": "Good night"
+   },
+   "file": "day_zzz.webp",
+   "motion": "float"
   }
  ]
 }

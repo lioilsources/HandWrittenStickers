@@ -1,0 +1,434 @@
+[
+ {
+  "file": "smile_laugh__marker__7060.png",
+  "id": "smile_laugh",
+  "style": "marker",
+  "seed": 7060,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "smile_laugh__marker__7061.png",
+  "id": "smile_laugh",
+  "style": "marker",
+  "seed": 7061,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "smile_laugh__paper__7060.png",
+  "id": "smile_laugh",
+  "style": "paper",
+  "seed": 7060,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "smile_laugh__paper__7061.png",
+  "id": "smile_laugh",
+  "style": "paper",
+  "seed": 7061,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "smile_laugh__clay__7060.png",
+  "id": "smile_laugh",
+  "style": "clay",
+  "seed": 7060,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "smile_laugh__clay__7061.png",
+  "id": "smile_laugh",
+  "style": "clay",
+  "seed": 7061,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "flirt_wink__marker__7900.png",
+  "id": "flirt_wink",
+  "style": "marker",
+  "seed": 7900,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "flirt_wink__marker__7901.png",
+  "id": "flirt_wink",
+  "style": "marker",
+  "seed": 7901,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "flirt_wink__paper__7900.png",
+  "id": "flirt_wink",
+  "style": "paper",
+  "seed": 7900,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "flirt_wink__paper__7901.png",
+  "id": "flirt_wink",
+  "style": "paper",
+  "seed": 7901,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "flirt_wink__clay__7900.png",
+  "id": "flirt_wink",
+  "style": "clay",
+  "seed": 7900,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "flirt_wink__clay__7901.png",
+  "id": "flirt_wink",
+  "style": "clay",
+  "seed": 7901,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "love_heart__marker__8220.png",
+  "id": "love_heart",
+  "style": "marker",
+  "seed": 8220,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a glossy bright red heart, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "love_heart__marker__8221.png",
+  "id": "love_heart",
+  "style": "marker",
+  "seed": 8221,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a glossy bright red heart, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "love_heart__paper__8220.png",
+  "id": "love_heart",
+  "style": "paper",
+  "seed": 8220,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a glossy bright red heart, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "love_heart__paper__8221.png",
+  "id": "love_heart",
+  "style": "paper",
+  "seed": 8221,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a glossy bright red heart, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "love_heart__clay__8220.png",
+  "id": "love_heart",
+  "style": "clay",
+  "seed": 8220,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a glossy bright red heart, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "love_heart__clay__8221.png",
+  "id": "love_heart",
+  "style": "clay",
+  "seed": 8221,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a glossy bright red heart, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_thumbs_up__marker__8580.png",
+  "id": "hand_thumbs_up",
+  "style": "marker",
+  "seed": 8580,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_thumbs_up__marker__8581.png",
+  "id": "hand_thumbs_up",
+  "style": "marker",
+  "seed": 8581,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_thumbs_up__paper__8580.png",
+  "id": "hand_thumbs_up",
+  "style": "paper",
+  "seed": 8580,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_thumbs_up__paper__8581.png",
+  "id": "hand_thumbs_up",
+  "style": "paper",
+  "seed": 8581,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_thumbs_up__clay__8580.png",
+  "id": "hand_thumbs_up",
+  "style": "clay",
+  "seed": 8580,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_thumbs_up__clay__8581.png",
+  "id": "hand_thumbs_up",
+  "style": "clay",
+  "seed": 8581,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_peace__marker__8680.png",
+  "id": "hand_peace",
+  "style": "marker",
+  "seed": 8680,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_peace__marker__8681.png",
+  "id": "hand_peace",
+  "style": "marker",
+  "seed": 8681,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_peace__paper__8680.png",
+  "id": "hand_peace",
+  "style": "paper",
+  "seed": 8680,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_peace__paper__8681.png",
+  "id": "hand_peace",
+  "style": "paper",
+  "seed": 8681,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_peace__clay__8680.png",
+  "id": "hand_peace",
+  "style": "clay",
+  "seed": 8680,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "hand_peace__clay__8681.png",
+  "id": "hand_peace",
+  "style": "clay",
+  "seed": 8681,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "animal_fox__marker__9040.png",
+  "id": "animal_fox",
+  "style": "marker",
+  "seed": 9040,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a cute orange fox face with a white muzzle and pointy ears, sly smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "animal_fox__marker__9041.png",
+  "id": "animal_fox",
+  "style": "marker",
+  "seed": 9041,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a cute orange fox face with a white muzzle and pointy ears, sly smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "animal_fox__paper__9040.png",
+  "id": "animal_fox",
+  "style": "paper",
+  "seed": 9040,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a cute orange fox face with a white muzzle and pointy ears, sly smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "animal_fox__paper__9041.png",
+  "id": "animal_fox",
+  "style": "paper",
+  "seed": 9041,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a cute orange fox face with a white muzzle and pointy ears, sly smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "animal_fox__clay__9040.png",
+  "id": "animal_fox",
+  "style": "clay",
+  "seed": 9040,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a cute orange fox face with a white muzzle and pointy ears, sly smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "animal_fox__clay__9041.png",
+  "id": "animal_fox",
+  "style": "clay",
+  "seed": 9041,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a cute orange fox face with a white muzzle and pointy ears, sly smile, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "party_popper__marker__9460.png",
+  "id": "party_popper",
+  "style": "marker",
+  "seed": 9460,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a party popper cone bursting with colourful confetti and streamers, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "party_popper__marker__9461.png",
+  "id": "party_popper",
+  "style": "marker",
+  "seed": 9461,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a party popper cone bursting with colourful confetti and streamers, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "party_popper__paper__9460.png",
+  "id": "party_popper",
+  "style": "paper",
+  "seed": 9460,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a party popper cone bursting with colourful confetti and streamers, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "party_popper__paper__9461.png",
+  "id": "party_popper",
+  "style": "paper",
+  "seed": 9461,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a party popper cone bursting with colourful confetti and streamers, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "party_popper__clay__9460.png",
+  "id": "party_popper",
+  "style": "clay",
+  "seed": 9460,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a party popper cone bursting with colourful confetti and streamers, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "party_popper__clay__9461.png",
+  "id": "party_popper",
+  "style": "clay",
+  "seed": 9461,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a party popper cone bursting with colourful confetti and streamers, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "feel_angry__marker__7540.png",
+  "id": "feel_angry",
+  "style": "marker",
+  "seed": 7540,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "feel_angry__marker__7541.png",
+  "id": "feel_angry",
+  "style": "marker",
+  "seed": 7541,
+  "size": 1024,
+  "prompt": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes, a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "feel_angry__paper__7540.png",
+  "id": "feel_angry",
+  "style": "paper",
+  "seed": 7540,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "feel_angry__paper__7541.png",
+  "id": "feel_angry",
+  "style": "paper",
+  "seed": 7541,
+  "size": 1024,
+  "prompt": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture, a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "feel_angry__clay__7540.png",
+  "id": "feel_angry",
+  "style": "clay",
+  "seed": 7540,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ },
+ {
+  "file": "feel_angry__clay__7541.png",
+  "id": "feel_angry",
+  "style": "clay",
+  "seed": 7541,
+  "size": 1024,
+  "prompt": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture, a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth, one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers"
+ }
+]

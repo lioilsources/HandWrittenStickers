@@ -56,7 +56,12 @@ class StickerLayout {
     return StickerLayout(Size(maxX, maxY), badge);
   }
 
-  double get width => text.width + padding * 2 + (badge > 0 ? _gap + badge : 0);
+  /// Extra room right of the badge: wave and nod rotate it about its
+  /// bottom edge, which swings the top corner sideways.
+  double get badgeRoom => badge * 0.1;
+
+  double get width =>
+      text.width + padding * 2 + (badge > 0 ? _gap + badge + badgeRoom : 0);
 
   double get height => math.max(text.height, badge) + padding * 2;
 
@@ -129,6 +134,7 @@ class ImageExporter {
         scale: scale,
         backgroundColor: backgroundColor,
         emoji: emojiImage,
+        motion: emoji.motion,
         phase: i / EmojiMotion.gifFrames,
         evenSize: true,
       );
@@ -155,6 +161,7 @@ class ImageExporter {
     required double scale,
     Color? backgroundColor,
     ui.Image? emoji,
+    EmojiMotionKind motion = EmojiMotionKind.breathe,
     double phase = 0,
     bool evenSize = false,
   }) {
@@ -179,13 +186,11 @@ class ImageExporter {
     canvas.restore();
 
     if (emoji != null && layout.badge > 0) {
-      final m = EmojiMotion.at(phase);
       final b = layout.badge;
-      final centre = layout.badgeOrigin + Offset(b / 2, b / 2 + b * m.lift);
+      final centre = layout.badgeOrigin + Offset(b / 2, b / 2);
       canvas.save();
       canvas.translate(centre.dx, centre.dy);
-      canvas.rotate(m.angle);
-      canvas.scale(m.scale);
+      canvas.transform(EmojiMotion.pose(motion, phase).matrix(b).storage);
       canvas.drawImageRect(
         emoji,
         Rect.fromLTWH(0, 0, emoji.width.toDouble(), emoji.height.toDouble()),

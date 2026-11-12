@@ -1,0 +1,30 @@
+{
+ "_comment": "Prompt = styles[selected or candidate] + ', ' + subject + ', ' + framing. Qwen-Image ignores negatives (L40S, 2026-11-12), so framing describes what we want; negative is still sent for models that use it. See docs/EMOJI_SET_PLAN.md §6.",
+ "selected": null,
+ "styles": {
+  "marker": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes",
+  "paper": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture",
+  "clay": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture"
+ },
+ "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat light grey background",
+ "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers",
+ "size": 1024,
+ "seed": {
+  "base": 7000,
+  "per_item": 20,
+  "_formula": "seed = base + per_item * n + k; k = 0..3 (hands category 0..7), retries continue with the next k"
+ },
+ "style_test": {
+  "ids": [
+   "smile_laugh",
+   "flirt_wink",
+   "love_heart",
+   "hand_thumbs_up",
+   "hand_peace",
+   "animal_fox",
+   "party_popper",
+   "feel_angry"
+  ],
+  "seeds_per_item": 2
+ }
+}

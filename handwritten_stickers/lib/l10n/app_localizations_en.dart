@@ -27,6 +27,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emojiTag => 'Emoji tag';
 
   @override
+  String get emojiRecent => 'Recent';
+
+  @override
   String get noEmoji => 'No emoji';
 
   @override

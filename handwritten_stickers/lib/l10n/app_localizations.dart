@@ -134,6 +134,12 @@ abstract class AppLocalizations {
   /// **'Emoji tag'**
   String get emojiTag;
 
+  /// No description provided for @emojiRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get emojiRecent;
+
   /// No description provided for @noEmoji.
   ///
   /// In en, this message translates to:

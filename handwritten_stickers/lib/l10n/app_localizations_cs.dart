@@ -27,6 +27,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get emojiTag => 'Emoji ke zprávě';
 
   @override
+  String get emojiRecent => 'Naposledy';
+
+  @override
   String get noEmoji => 'Bez emoji';
 
   @override

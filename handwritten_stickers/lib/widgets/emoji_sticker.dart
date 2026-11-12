@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../models/emoji_tag.dart';
 
-/// An emoji sticker that breathes and rocks ([EmojiMotion]) and pops in when
+/// An emoji sticker that plays its loop ([EmojiMotion]) and pops in when
 /// the tag changes. Stands still when the platform asks to reduce motion.
 class AnimatedEmojiSticker extends StatefulWidget {
   final EmojiTag tag;
   final double size;
   final bool animate;
 
+  /// Decode width in physical pixels (picker grids); null decodes at the
+  /// image's own size, which the zoomed preview needs.
+  final int? cacheWidth;
+
   const AnimatedEmojiSticker({
     super.key,
     required this.tag,
     required this.size,
     this.animate = true,
+    this.cacheWidth,
   });
 
   @override
@@ -70,23 +75,21 @@ class _AnimatedEmojiStickerState extends State<AnimatedEmojiSticker>
     return AnimatedBuilder(
       animation: Listenable.merge([_loop, _pop]),
       builder: (context, child) {
-        final m = EmojiMotion.at(_loop.value);
-        final pop = Curves.elasticOut.transform(_pop.value);
-        return Transform.translate(
-          offset: Offset(0, size * m.lift),
-          child: Transform.rotate(
-            angle: m.angle,
-            child: Transform.scale(
-              scale: m.scale * (0.6 + 0.4 * pop),
-              child: child,
-            ),
-          ),
+        final pose = EmojiMotion.pose(widget.tag.motion, _loop.value);
+        final pop = 0.6 + 0.4 * Curves.elasticOut.transform(_pop.value);
+        // Same matrix as the GIF export (ImageExporter.renderFrame).
+        return Transform(
+          alignment: Alignment.center,
+          transform: pose.matrix(size)
+            ..multiply(Matrix4.diagonal3Values(pop, pop, 1)),
+          child: child,
         );
       },
       child: Image.asset(
         widget.tag.asset,
         width: size,
         height: size,
+        cacheWidth: widget.cacheWidth,
         filterQuality: FilterQuality.medium,
         semanticLabel: widget.tag.name,
         errorBuilder: (_, _, _) =>

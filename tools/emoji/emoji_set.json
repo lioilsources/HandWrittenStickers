@@ -1,207 +1,2249 @@
-[
- {
-  "emoji": "❤",
-  "name": "Srdce",
-  "source": "swypekids"
- },
- {
-  "emoji": "😂",
-  "name": "Smích",
-  "source": "swypekids"
- },
- {
-  "emoji": "😊",
-  "name": "Úsměv",
-  "source": "swypekids"
- },
- {
-  "emoji": "😠",
-  "name": "Zlobím se",
-  "source": "swypekids"
- },
- {
-  "emoji": "😨",
-  "name": "Lekl jsem se",
-  "source": "swypekids"
- },
- {
-  "emoji": "👍",
-  "name": "Palec",
-  "source": "swypekids"
- },
- {
-  "emoji": "👋",
-  "name": "Ahoj",
-  "source": "swypekids"
- },
- {
-  "emoji": "🔥",
-  "name": "Oheň",
-  "source": "swypekids"
- },
- {
-  "emoji": "⭐",
-  "name": "Hvězda",
-  "source": "swypekids"
- },
- {
-  "emoji": "🌈",
-  "name": "Duha",
-  "source": "swypekids"
- },
- {
-  "emoji": "☀",
-  "name": "Sluníčko",
-  "source": "swypekids"
- },
- {
-  "emoji": "🌸",
-  "name": "Kytička",
-  "source": "swypekids"
- },
- {
-  "emoji": "🎂",
-  "name": "Dort",
-  "source": "swypekids"
- },
- {
-  "emoji": "🎁",
-  "name": "Dárek",
-  "source": "swypekids"
- },
- {
-  "emoji": "🎈",
-  "name": "Balónek",
-  "source": "swypekids"
- },
- {
-  "emoji": "💤",
-  "name": "Dobrou noc",
-  "source": "swypekids"
- },
- {
-  "emoji": "🐶",
-  "name": "Pejsek",
-  "source": "swypekids"
- },
- {
-  "emoji": "🐱",
-  "name": "Kočička",
-  "source": "swypekids"
- },
- {
-  "emoji": "🦊",
-  "name": "Liška",
-  "source": "swypekids"
- },
- {
-  "emoji": "🐼",
-  "name": "Panda",
-  "source": "swypekids"
- },
- {
-  "emoji": "🍕",
-  "name": "Pizza",
-  "source": "swypekids"
- },
- {
-  "emoji": "☕",
-  "name": "Kafíčko",
-  "source": "swypekids"
- },
- {
-  "emoji": "👀",
-  "name": "Koukám",
-  "source": "swypekids"
- },
- {
-  "emoji": "🤝",
-  "name": "Dohoda",
-  "source": "swypekids"
- },
- {
-  "emoji": "🏆",
-  "name": "Vítěz",
-  "source": "swypekids"
- },
- {
-  "emoji": "😍",
-  "name": "Zamilovaný",
-  "source": "generated"
- },
- {
-  "emoji": "😘",
-  "name": "Pusa",
-  "source": "generated"
- },
- {
-  "emoji": "🥰",
-  "name": "Láska",
-  "source": "generated"
- },
- {
-  "emoji": "😢",
-  "name": "Smutný",
-  "source": "generated"
- },
- {
-  "emoji": "😭",
-  "name": "Pláč",
-  "source": "generated"
- },
- {
-  "emoji": "😮",
-  "name": "Překvapení",
-  "source": "generated"
- },
- {
-  "emoji": "😴",
-  "name": "Spánek",
-  "source": "generated"
- },
- {
-  "emoji": "🤔",
-  "name": "Přemýšlím",
-  "source": "generated"
- },
- {
-  "emoji": "😎",
-  "name": "Pohoda",
-  "source": "generated"
- },
- {
-  "emoji": "🥳",
-  "name": "Oslava",
-  "source": "generated"
- },
- {
-  "emoji": "😜",
-  "name": "Legrace",
-  "source": "generated"
- },
- {
-  "emoji": "😇",
-  "name": "Andílek",
-  "source": "generated"
- },
- {
-  "emoji": "👏",
-  "name": "Potlesk",
-  "source": "generated"
- },
- {
-  "emoji": "🙏",
-  "name": "Děkuji",
-  "source": "generated"
- },
- {
-  "emoji": "💪",
-  "name": "Síla",
-  "source": "generated"
- },
- {
-  "emoji": "🎉",
-  "name": "Hurá",
-  "source": "generated"
- }
-]
+{
+ "version": 2,
+ "categories": [
+  {
+   "id": "smileys",
+   "name": {
+    "cs": "Smajlíci",
+    "en": "Smileys"
+   }
+  },
+  {
+   "id": "emotions",
+   "name": {
+    "cs": "Emoce",
+    "en": "Feelings"
+   }
+  },
+  {
+   "id": "flirt",
+   "name": {
+    "cs": "Flirtování",
+    "en": "Flirting"
+   }
+  },
+  {
+   "id": "romance",
+   "name": {
+    "cs": "Romantika",
+    "en": "Romance"
+   }
+  },
+  {
+   "id": "hands",
+   "name": {
+    "cs": "Gesta rukou",
+    "en": "Hands"
+   }
+  },
+  {
+   "id": "animals",
+   "name": {
+    "cs": "Zvířátka",
+    "en": "Animals"
+   }
+  },
+  {
+   "id": "celebration",
+   "name": {
+    "cs": "Oslavy",
+    "en": "Celebrations"
+   }
+  },
+  {
+   "id": "food",
+   "name": {
+    "cs": "Jídlo a pití",
+    "en": "Food & drink"
+   }
+  },
+  {
+   "id": "nature",
+   "name": {
+    "cs": "Příroda a počasí",
+    "en": "Nature & weather"
+   }
+  },
+  {
+   "id": "everyday",
+   "name": {
+    "cs": "Všední den",
+    "en": "Everyday"
+   }
+  }
+ ],
+ "emoji": [
+  {
+   "n": 1,
+   "id": "smile_happy",
+   "category": "smileys",
+   "emoji": "😊",
+   "name": {
+    "cs": "Úsměv",
+    "en": "Smile"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, warm closed-mouth smile, smiling closed eyes, rosy cheeks"
+  },
+  {
+   "n": 2,
+   "id": "smile_grin",
+   "category": "smileys",
+   "emoji": "😁",
+   "name": {
+    "cs": "Zubím se",
+    "en": "Grin"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, huge toothy grin, happy squinting eyes"
+  },
+  {
+   "n": 3,
+   "id": "smile_laugh",
+   "category": "smileys",
+   "emoji": "😂",
+   "name": {
+    "cs": "Smích do slz",
+    "en": "Tears of joy"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, laughing hard with open mouth, big tears of joy flying from both eyes"
+  },
+  {
+   "n": 4,
+   "id": "smile_rofl",
+   "category": "smileys",
+   "emoji": "🤣",
+   "name": {
+    "cs": "Válím se smíchy",
+    "en": "Rolling laughing"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, tilted sideways, laughing with tightly shut eyes and tears"
+  },
+  {
+   "n": 5,
+   "id": "smile_upside_down",
+   "category": "smileys",
+   "emoji": "🙃",
+   "name": {
+    "cs": "Vzhůru nohama",
+    "en": "Upside down"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, upside down with a gentle silly smile"
+  },
+  {
+   "n": 6,
+   "id": "smile_cool",
+   "category": "smileys",
+   "emoji": "😎",
+   "name": {
+    "cs": "Pohodář",
+    "en": "Cool"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, wearing black sunglasses, relaxed confident smile"
+  },
+  {
+   "n": 7,
+   "id": "smile_tongue",
+   "category": "smileys",
+   "emoji": "😜",
+   "name": {
+    "cs": "Vyplazený jazyk",
+    "en": "Cheeky"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, winking with tongue sticking out playfully"
+  },
+  {
+   "n": 8,
+   "id": "smile_zany",
+   "category": "smileys",
+   "emoji": "🤪",
+   "name": {
+    "cs": "Blázním",
+    "en": "Zany"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, one big eye and one small eye, tongue out, goofy crazy expression"
+  },
+  {
+   "n": 9,
+   "id": "smile_angel",
+   "category": "smileys",
+   "emoji": "😇",
+   "name": {
+    "cs": "Andílek",
+    "en": "Angel"
+   },
+   "motion": "float",
+   "subject": "a round yellow emoji face, shown as a head only, innocent smile with a glowing golden halo above"
+  },
+  {
+   "n": 10,
+   "id": "smile_party",
+   "category": "smileys",
+   "emoji": "🥳",
+   "name": {
+    "cs": "Slavím",
+    "en": "Party face"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, wearing a colourful party hat, blowing a party horn, confetti around"
+  },
+  {
+   "n": 11,
+   "id": "smile_nerd",
+   "category": "smileys",
+   "emoji": "🤓",
+   "name": {
+    "cs": "Chytrolín",
+    "en": "Nerd"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, wearing big round glasses, buck teeth smile"
+  },
+  {
+   "n": 12,
+   "id": "smile_star_struck",
+   "category": "smileys",
+   "emoji": "🤩",
+   "name": {
+    "cs": "Hvězdy v očích",
+    "en": "Star-struck"
+   },
+   "motion": "twinkle",
+   "subject": "a round yellow emoji face, shown as a head only, golden star-shaped eyes, wide amazed smile"
+  },
+  {
+   "n": 13,
+   "id": "smile_yum",
+   "category": "smileys",
+   "emoji": "😋",
+   "name": {
+    "cs": "Mňam",
+    "en": "Yum"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, licking its lips with the tongue, delighted closed eyes"
+  },
+  {
+   "n": 14,
+   "id": "smile_hug",
+   "category": "smileys",
+   "emoji": "🤗",
+   "name": {
+    "cs": "Objetí",
+    "en": "Hug"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face with two small open hands reaching out for a hug, warm smile"
+  },
+  {
+   "n": 15,
+   "id": "smile_thinking",
+   "category": "smileys",
+   "emoji": "🤔",
+   "name": {
+    "cs": "Přemýšlím",
+    "en": "Thinking"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face with one hand on its chin, raised eyebrow, thinking"
+  },
+  {
+   "n": 16,
+   "id": "smile_shush",
+   "category": "smileys",
+   "emoji": "🤫",
+   "name": {
+    "cs": "Pšt",
+    "en": "Shush"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face holding one finger over its lips, shushing"
+  },
+  {
+   "n": 17,
+   "id": "smile_salute",
+   "category": "smileys",
+   "emoji": "🫡",
+   "name": {
+    "cs": "Rozkaz",
+    "en": "Salute"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face doing a military salute with one hand at the brow"
+  },
+  {
+   "n": 18,
+   "id": "smile_relaxed",
+   "category": "smileys",
+   "emoji": "😌",
+   "name": {
+    "cs": "Pohoda",
+    "en": "Relaxed"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, calm relieved smile, peaceful closed eyes"
+  },
+  {
+   "n": 19,
+   "id": "smile_sleeping",
+   "category": "smileys",
+   "emoji": "😴",
+   "name": {
+    "cs": "Spím",
+    "en": "Sleeping"
+   },
+   "motion": "float",
+   "subject": "a round yellow emoji face, shown as a head only, fast asleep with closed eyes and a little drool bubble, small cloud shapes of sleep around"
+  },
+  {
+   "n": 20,
+   "id": "smile_yawn",
+   "category": "smileys",
+   "emoji": "🥱",
+   "name": {
+    "cs": "Zívám",
+    "en": "Yawn"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face yawning widely with a hand over its mouth, sleepy eyes"
+  },
+  {
+   "n": 21,
+   "id": "smile_monocle",
+   "category": "smileys",
+   "emoji": "🧐",
+   "name": {
+    "cs": "Hmm",
+    "en": "Hmm"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, wearing a monocle on one eye, raised eyebrow, inspecting"
+  },
+  {
+   "n": 22,
+   "id": "smile_cowboy",
+   "category": "smileys",
+   "emoji": "🤠",
+   "name": {
+    "cs": "Kovboj",
+    "en": "Cowboy"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, wearing a brown cowboy hat, big friendly smile"
+  },
+  {
+   "n": 23,
+   "id": "smile_ghost",
+   "category": "smileys",
+   "emoji": "👻",
+   "name": {
+    "cs": "Bubák",
+    "en": "Ghost"
+   },
+   "motion": "float",
+   "subject": "a cute white cartoon ghost with a wavy bottom, playful face sticking its tongue out"
+  },
+  {
+   "n": 24,
+   "id": "smile_robot",
+   "category": "smileys",
+   "emoji": "🤖",
+   "name": {
+    "cs": "Robot",
+    "en": "Robot"
+   },
+   "motion": "shake",
+   "subject": "a cute friendly cartoon robot head, rounded silver metal, glowing blue eyes, small antenna"
+  },
+  {
+   "n": 25,
+   "id": "feel_tear",
+   "category": "emotions",
+   "emoji": "😢",
+   "name": {
+    "cs": "Slzička",
+    "en": "Tear"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, sad face with a single tear rolling down one cheek"
+  },
+  {
+   "n": 26,
+   "id": "feel_crying",
+   "category": "emotions",
+   "emoji": "😭",
+   "name": {
+    "cs": "Brečím",
+    "en": "Crying"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, crying loudly with open mouth, streams of tears pouring from both eyes"
+  },
+  {
+   "n": 27,
+   "id": "feel_angry",
+   "category": "emotions",
+   "emoji": "😠",
+   "name": {
+    "cs": "Zlobím se",
+    "en": "Angry"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth"
+  },
+  {
+   "n": 28,
+   "id": "feel_furious",
+   "category": "emotions",
+   "emoji": "😡",
+   "name": {
+    "cs": "Zuřím",
+    "en": "Furious"
+   },
+   "motion": "shake",
+   "subject": "a round red emoji face, shown as a head only, furious, gritted teeth, puffs of steam from the top"
+  },
+  {
+   "n": 29,
+   "id": "feel_scared",
+   "category": "emotions",
+   "emoji": "😨",
+   "name": {
+    "cs": "Leknutí",
+    "en": "Scared"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, scared, wide eyes, open mouth, pale blue tint on the forehead, sweat drop"
+  },
+  {
+   "n": 30,
+   "id": "feel_scream",
+   "category": "emotions",
+   "emoji": "😱",
+   "name": {
+    "cs": "Hrůza",
+    "en": "Scream"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face screaming in horror with both hands pressed on its cheeks"
+  },
+  {
+   "n": 31,
+   "id": "feel_surprised",
+   "category": "emotions",
+   "emoji": "😮",
+   "name": {
+    "cs": "Překvapení",
+    "en": "Surprised"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, surprised, round open mouth, raised eyebrows, wide eyes"
+  },
+  {
+   "n": 32,
+   "id": "feel_embarrassed",
+   "category": "emotions",
+   "emoji": "😳",
+   "name": {
+    "cs": "Trapas",
+    "en": "Embarrassed"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, embarrassed, wide eyes, deep red flushed cheeks"
+  },
+  {
+   "n": 33,
+   "id": "feel_sad",
+   "category": "emotions",
+   "emoji": "😔",
+   "name": {
+    "cs": "Smutek",
+    "en": "Sad"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, sad pensive face, eyes looking down, small frown"
+  },
+  {
+   "n": 34,
+   "id": "feel_pleading",
+   "category": "emotions",
+   "emoji": "🥺",
+   "name": {
+    "cs": "Prosím, prosím",
+    "en": "Pleading"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, pleading with huge shiny watery eyes, small pouting mouth"
+  },
+  {
+   "n": 35,
+   "id": "feel_worn_out",
+   "category": "emotions",
+   "emoji": "😩",
+   "name": {
+    "cs": "Už nemůžu",
+    "en": "Worn out"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, exhausted and weary, scrunched eyes, open whining mouth"
+  },
+  {
+   "n": 36,
+   "id": "feel_sick",
+   "category": "emotions",
+   "emoji": "🤒",
+   "name": {
+    "cs": "Marodím",
+    "en": "Sick"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, sick with a thermometer in its mouth, droopy tired eyes"
+  },
+  {
+   "n": 37,
+   "id": "feel_dizzy",
+   "category": "emotions",
+   "emoji": "😵‍💫",
+   "name": {
+    "cs": "Točí se mi hlava",
+    "en": "Dizzy"
+   },
+   "motion": "twinkle",
+   "subject": "a round yellow emoji face, shown as a head only, dizzy with spiral eyes, little stars circling around its head"
+  },
+  {
+   "n": 38,
+   "id": "feel_mind_blown",
+   "category": "emotions",
+   "emoji": "🤯",
+   "name": {
+    "cs": "To mě odbouralo",
+    "en": "Mind blown"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, shocked, the top of its head bursting open into a small colourful puff cloud"
+  },
+  {
+   "n": 39,
+   "id": "feel_facepalm",
+   "category": "emotions",
+   "emoji": "🤦",
+   "name": {
+    "cs": "Facepalm",
+    "en": "Facepalm"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face covering its forehead with one hand, exasperated"
+  },
+  {
+   "n": 40,
+   "id": "feel_eye_roll",
+   "category": "emotions",
+   "emoji": "🙄",
+   "name": {
+    "cs": "Oči v sloup",
+    "en": "Eye roll"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, rolling its eyes upward, flat unimpressed mouth"
+  },
+  {
+   "n": 41,
+   "id": "feel_oops",
+   "category": "emotions",
+   "emoji": "😬",
+   "name": {
+    "cs": "Jejda",
+    "en": "Oops"
+   },
+   "motion": "shake",
+   "subject": "a round yellow emoji face, shown as a head only, awkward grimace showing clenched teeth, nervous eyes"
+  },
+  {
+   "n": 42,
+   "id": "feel_cold",
+   "category": "emotions",
+   "emoji": "🥶",
+   "name": {
+    "cs": "Zima",
+    "en": "Freezing"
+   },
+   "motion": "shake",
+   "subject": "a round light blue emoji face, shown as a head only, freezing, chattering teeth, small icicles hanging from the chin"
+  },
+  {
+   "n": 43,
+   "id": "feel_hot",
+   "category": "emotions",
+   "emoji": "🥵",
+   "name": {
+    "cs": "Vedro",
+    "en": "Too hot"
+   },
+   "motion": "breathe",
+   "subject": "a round red emoji face, shown as a head only, overheated, tongue hanging out, sweat drops"
+  },
+  {
+   "n": 44,
+   "id": "feel_bored",
+   "category": "emotions",
+   "emoji": "😑",
+   "name": {
+    "cs": "Nuda",
+    "en": "Bored"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, bored expressionless face, flat line eyes and flat line mouth"
+  },
+  {
+   "n": 45,
+   "id": "flirt_wink",
+   "category": "flirt",
+   "emoji": "😉",
+   "name": {
+    "cs": "Mrknutí",
+    "en": "Wink"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile"
+  },
+  {
+   "n": 46,
+   "id": "flirt_kiss",
+   "category": "flirt",
+   "emoji": "😘",
+   "name": {
+    "cs": "Posílám pusu",
+    "en": "Blowing a kiss"
+   },
+   "motion": "bounce",
+   "subject": "a round yellow emoji face, shown as a head only, blowing a kiss with puckered lips, winking, one small red heart floating from the lips"
+  },
+  {
+   "n": 47,
+   "id": "flirt_smirk",
+   "category": "flirt",
+   "emoji": "😏",
+   "name": {
+    "cs": "Šibalský úsměv",
+    "en": "Smirk"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, sly smirk with a lopsided smile, half-closed eyes looking aside"
+  },
+  {
+   "n": 48,
+   "id": "flirt_blush",
+   "category": "flirt",
+   "emoji": "☺️",
+   "name": {
+    "cs": "Červenám se",
+    "en": "Blushing"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, shy happy smile, closed eyes, strongly blushing pink cheeks"
+  },
+  {
+   "n": 49,
+   "id": "flirt_heart_eyes",
+   "category": "flirt",
+   "emoji": "😍",
+   "name": {
+    "cs": "Zamilované oči",
+    "en": "Heart eyes"
+   },
+   "motion": "pulse",
+   "subject": "a round yellow emoji face, shown as a head only, big red heart-shaped eyes, wide adoring smile"
+  },
+  {
+   "n": 50,
+   "id": "flirt_lips",
+   "category": "flirt",
+   "emoji": "💋",
+   "name": {
+    "cs": "Pusa",
+    "en": "Kiss mark"
+   },
+   "motion": "pulse",
+   "subject": "a glossy red lipstick kiss print shaped like lips"
+  },
+  {
+   "n": 51,
+   "id": "flirt_rose_teeth",
+   "category": "flirt",
+   "emoji": "🌹",
+   "name": {
+    "cs": "Růže v zubech",
+    "en": "Rose in teeth"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face, shown as a head only, holding a red rose between its teeth, flirty half-closed eyes"
+  },
+  {
+   "n": 52,
+   "id": "flirt_call_me",
+   "category": "flirt",
+   "emoji": "🤙",
+   "name": {
+    "cs": "Zavolej mi",
+    "en": "Call me"
+   },
+   "motion": "wave",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, making the call-me gesture, thumb and little finger extended, the other fingers curled"
+  },
+  {
+   "n": 53,
+   "id": "flirt_eyes",
+   "category": "flirt",
+   "emoji": "👀",
+   "name": {
+    "cs": "Koukám",
+    "en": "Looking"
+   },
+   "motion": "breathe",
+   "subject": "a pair of big cartoon eyes with white eyeballs and dark pupils, glancing to the side"
+  },
+  {
+   "n": 54,
+   "id": "flirt_spark",
+   "category": "flirt",
+   "emoji": "✨",
+   "name": {
+    "cs": "Jiskří to",
+    "en": "Sparks fly"
+   },
+   "motion": "twinkle",
+   "subject": "two small pink hearts touching, golden sparkles bursting between them"
+  },
+  {
+   "n": 55,
+   "id": "flirt_devil",
+   "category": "flirt",
+   "emoji": "😈",
+   "name": {
+    "cs": "Čertík",
+    "en": "Little devil"
+   },
+   "motion": "bounce",
+   "subject": "a round purple emoji face, shown as a head only, mischievous grin, two small horns"
+  },
+  {
+   "n": 56,
+   "id": "flirt_finger_heart",
+   "category": "flirt",
+   "emoji": "🫰",
+   "name": {
+    "cs": "Srdíčko z prstů",
+    "en": "Finger heart"
+   },
+   "motion": "pulse",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, crossing thumb and index finger to make a tiny heart sign, a small red heart above"
+  },
+  {
+   "n": 57,
+   "id": "flirt_heart_arrow",
+   "category": "flirt",
+   "emoji": "💘",
+   "name": {
+    "cs": "Amorův šíp",
+    "en": "Cupid's arrow"
+   },
+   "motion": "pulse",
+   "subject": "a red heart pierced by a golden arrow"
+  },
+  {
+   "n": 58,
+   "id": "flirt_cupid",
+   "category": "flirt",
+   "emoji": "👼",
+   "name": {
+    "cs": "Amor",
+    "en": "Cupid"
+   },
+   "motion": "float",
+   "subject": "a cute chubby baby cupid with small white wings and a halo, holding a little heart-tipped bow, fully dressed in a white tunic"
+  },
+  {
+   "n": 59,
+   "id": "flirt_love_note",
+   "category": "flirt",
+   "emoji": "💌",
+   "name": {
+    "cs": "Psaníčko",
+    "en": "Love note"
+   },
+   "motion": "bounce",
+   "subject": "a white envelope sealed with a red heart-shaped wax seal, small hearts floating out"
+  },
+  {
+   "n": 60,
+   "id": "flirt_peek",
+   "category": "flirt",
+   "emoji": "🫣",
+   "name": {
+    "cs": "Tajně koukám",
+    "en": "Peeking"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face covering its eyes with both hands and peeking through the fingers with one eye"
+  },
+  {
+   "n": 61,
+   "id": "love_heart",
+   "category": "romance",
+   "emoji": "❤️",
+   "name": {
+    "cs": "Srdce",
+    "en": "Heart"
+   },
+   "motion": "pulse",
+   "subject": "a glossy bright red heart"
+  },
+  {
+   "n": 62,
+   "id": "love_hearts",
+   "category": "romance",
+   "emoji": "💕",
+   "name": {
+    "cs": "Srdíčka",
+    "en": "Two hearts"
+   },
+   "motion": "pulse",
+   "subject": "two pink hearts, one big and one small, overlapping"
+  },
+  {
+   "n": 63,
+   "id": "love_sparkle_heart",
+   "category": "romance",
+   "emoji": "💖",
+   "name": {
+    "cs": "Zářící srdce",
+    "en": "Sparkling heart"
+   },
+   "motion": "twinkle",
+   "subject": "a pink heart with small white sparkles around it"
+  },
+  {
+   "n": 64,
+   "id": "love_broken",
+   "category": "romance",
+   "emoji": "💔",
+   "name": {
+    "cs": "Zlomené srdce",
+    "en": "Broken heart"
+   },
+   "motion": "shake",
+   "subject": "a red heart cracked in two halves with a zigzag split"
+  },
+  {
+   "n": 65,
+   "id": "love_mending",
+   "category": "romance",
+   "emoji": "❤️‍🩹",
+   "name": {
+    "cs": "Zalepené srdce",
+    "en": "Mending heart"
+   },
+   "motion": "breathe",
+   "subject": "a red heart with a white bandage plaster across it"
+  },
+  {
+   "n": 66,
+   "id": "love_fire",
+   "category": "romance",
+   "emoji": "❤️‍🔥",
+   "name": {
+    "cs": "Hořící srdce",
+    "en": "Heart on fire"
+   },
+   "motion": "pulse",
+   "subject": "a red heart wrapped in orange and yellow flames"
+  },
+  {
+   "n": 67,
+   "id": "love_smitten",
+   "category": "romance",
+   "emoji": "🥰",
+   "name": {
+    "cs": "Zamilovaně",
+    "en": "Smitten"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, blissful smile, closed eyes, three small red hearts floating around"
+  },
+  {
+   "n": 68,
+   "id": "love_hug",
+   "category": "romance",
+   "emoji": "🫂",
+   "name": {
+    "cs": "Objímám tě",
+    "en": "Big hug"
+   },
+   "motion": "breathe",
+   "subject": "two cute round blob characters, one orange and one blue, hugging each other warmly"
+  },
+  {
+   "n": 69,
+   "id": "love_heart_hands",
+   "category": "romance",
+   "emoji": "🫶",
+   "name": {
+    "cs": "Srdce z rukou",
+    "en": "Heart hands"
+   },
+   "motion": "pulse",
+   "subject": "two yellow cartoon hands forming a heart shape together with fingers and thumbs"
+  },
+  {
+   "n": 70,
+   "id": "love_ring",
+   "category": "romance",
+   "emoji": "💍",
+   "name": {
+    "cs": "Prstýnek",
+    "en": "Ring"
+   },
+   "motion": "twinkle",
+   "subject": "a gold ring with a big sparkling diamond"
+  },
+  {
+   "n": 71,
+   "id": "love_rose",
+   "category": "romance",
+   "emoji": "🌹",
+   "name": {
+    "cs": "Růže",
+    "en": "Rose"
+   },
+   "motion": "breathe",
+   "subject": "a single red rose with a green stem and two leaves"
+  },
+  {
+   "n": 72,
+   "id": "love_bouquet",
+   "category": "romance",
+   "emoji": "💐",
+   "name": {
+    "cs": "Kytice",
+    "en": "Bouquet"
+   },
+   "motion": "bounce",
+   "subject": "a colourful bouquet of flowers wrapped in pink paper with a ribbon"
+  },
+  {
+   "n": 73,
+   "id": "love_gift",
+   "category": "romance",
+   "emoji": "💝",
+   "name": {
+    "cs": "Dárek z lásky",
+    "en": "Gift of love"
+   },
+   "motion": "bounce",
+   "subject": "a red heart-shaped box tied with a pink ribbon bow"
+  },
+  {
+   "n": 74,
+   "id": "love_balloon",
+   "category": "romance",
+   "emoji": "🎈",
+   "name": {
+    "cs": "Srdíčkový balónek",
+    "en": "Heart balloon"
+   },
+   "motion": "float",
+   "subject": "a shiny red heart-shaped balloon on a curly string"
+  },
+  {
+   "n": 75,
+   "id": "love_birds",
+   "category": "romance",
+   "emoji": "🕊️",
+   "name": {
+    "cs": "Hrdličky",
+    "en": "Lovebirds"
+   },
+   "motion": "breathe",
+   "subject": "two cute small birds sitting close together, beaks touching, a small heart above them"
+  },
+  {
+   "n": 76,
+   "id": "love_moon",
+   "category": "romance",
+   "emoji": "🌙",
+   "name": {
+    "cs": "Dobrou noc, lásko",
+    "en": "Good night, love"
+   },
+   "motion": "float",
+   "subject": "a sleeping crescent moon with a gentle face, hugging a small red heart"
+  },
+  {
+   "n": 77,
+   "id": "love_miss_you",
+   "category": "romance",
+   "emoji": "🥹",
+   "name": {
+    "cs": "Chybíš mi",
+    "en": "Miss you"
+   },
+   "motion": "breathe",
+   "subject": "a round yellow emoji face, shown as a head only, touched and longing, holding back tears, trembling smile, glassy eyes"
+  },
+  {
+   "n": 78,
+   "id": "love_lock",
+   "category": "romance",
+   "emoji": "🔐",
+   "name": {
+    "cs": "Zámek lásky",
+    "en": "Love lock"
+   },
+   "motion": "nod",
+   "subject": "a heart-shaped golden padlock with a small key"
+  },
+  {
+   "n": 79,
+   "id": "hand_thumbs_up",
+   "category": "hands",
+   "emoji": "👍",
+   "name": {
+    "cs": "Palec nahoru",
+    "en": "Thumbs up"
+   },
+   "motion": "bounce",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up"
+  },
+  {
+   "n": 80,
+   "id": "hand_thumbs_down",
+   "category": "hands",
+   "emoji": "👎",
+   "name": {
+    "cs": "Palec dolů",
+    "en": "Thumbs down"
+   },
+   "motion": "nod",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight down"
+  },
+  {
+   "n": 81,
+   "id": "hand_wave",
+   "category": "hands",
+   "emoji": "👋",
+   "name": {
+    "cs": "Ahoj",
+    "en": "Hello"
+   },
+   "motion": "wave",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, open palm raised and waving, small motion lines beside it"
+  },
+  {
+   "n": 82,
+   "id": "hand_clap",
+   "category": "hands",
+   "emoji": "👏",
+   "name": {
+    "cs": "Potlesk",
+    "en": "Applause"
+   },
+   "motion": "shake",
+   "subject": "two yellow cartoon hands clapping together, small motion lines"
+  },
+  {
+   "n": 83,
+   "id": "hand_ok",
+   "category": "hands",
+   "emoji": "👌",
+   "name": {
+    "cs": "OK",
+    "en": "OK"
+   },
+   "motion": "nod",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, OK sign, thumb and index finger touching in a circle, other three fingers up"
+  },
+  {
+   "n": 84,
+   "id": "hand_peace",
+   "category": "hands",
+   "emoji": "✌️",
+   "name": {
+    "cs": "Vé",
+    "en": "Peace"
+   },
+   "motion": "wave",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, victory sign, index and middle fingers raised in a V, the rest folded"
+  },
+  {
+   "n": 85,
+   "id": "hand_crossed",
+   "category": "hands",
+   "emoji": "🤞",
+   "name": {
+    "cs": "Držím palce",
+    "en": "Fingers crossed"
+   },
+   "motion": "breathe",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, index and middle fingers crossed for good luck, other fingers folded"
+  },
+  {
+   "n": 86,
+   "id": "hand_pray",
+   "category": "hands",
+   "emoji": "🙏",
+   "name": {
+    "cs": "Prosím / Děkuji",
+    "en": "Please / Thanks"
+   },
+   "motion": "nod",
+   "subject": "two yellow cartoon hands pressed together palm to palm, fingers pointing up"
+  },
+  {
+   "n": 87,
+   "id": "hand_high_five",
+   "category": "hands",
+   "emoji": "✋",
+   "name": {
+    "cs": "Plácneme si",
+    "en": "High five"
+   },
+   "motion": "bounce",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, open raised palm facing forward, fingers together, ready for a high five"
+  },
+  {
+   "n": 88,
+   "id": "hand_fist_bump",
+   "category": "hands",
+   "emoji": "👊",
+   "name": {
+    "cs": "Ťuk",
+    "en": "Fist bump"
+   },
+   "motion": "bounce",
+   "subject": "a yellow cartoon fist punching forward toward the viewer for a fist bump"
+  },
+  {
+   "n": 89,
+   "id": "hand_flex",
+   "category": "hands",
+   "emoji": "💪",
+   "name": {
+    "cs": "Síla",
+    "en": "Strong"
+   },
+   "motion": "pulse",
+   "subject": "a yellow cartoon arm flexing a big round bicep"
+  },
+  {
+   "n": 90,
+   "id": "hand_point_you",
+   "category": "hands",
+   "emoji": "🫵",
+   "name": {
+    "cs": "Ty!",
+    "en": "You!"
+   },
+   "motion": "bounce",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, index finger pointing straight at the viewer, the rest folded"
+  },
+  {
+   "n": 91,
+   "id": "hand_point_up",
+   "category": "hands",
+   "emoji": "☝️",
+   "name": {
+    "cs": "Pozor",
+    "en": "Listen"
+   },
+   "motion": "nod",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, index finger pointing straight up, the rest folded"
+  },
+  {
+   "n": 92,
+   "id": "hand_handshake",
+   "category": "hands",
+   "emoji": "🤝",
+   "name": {
+    "cs": "Platí",
+    "en": "Deal"
+   },
+   "motion": "nod",
+   "subject": "two yellow cartoon hands shaking hands"
+  },
+  {
+   "n": 93,
+   "id": "hand_love_you",
+   "category": "hands",
+   "emoji": "🤟",
+   "name": {
+    "cs": "Miluju tě",
+    "en": "Love you"
+   },
+   "motion": "wave",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, love-you sign, thumb, index finger and little finger extended, middle and ring fingers folded"
+  },
+  {
+   "n": 94,
+   "id": "hand_shrug",
+   "category": "hands",
+   "emoji": "🤷",
+   "name": {
+    "cs": "Nevím",
+    "en": "No idea"
+   },
+   "motion": "nod",
+   "subject": "a round yellow emoji face with two open hands raised palms up beside it, shrugging, eyebrows up"
+  },
+  {
+   "n": 95,
+   "id": "hand_raised",
+   "category": "hands",
+   "emoji": "🙌",
+   "name": {
+    "cs": "Hurá",
+    "en": "Hooray"
+   },
+   "motion": "bounce",
+   "subject": "two yellow cartoon hands raised high in celebration, small sparkles"
+  },
+  {
+   "n": 96,
+   "id": "hand_pinch",
+   "category": "hands",
+   "emoji": "🤏",
+   "name": {
+    "cs": "Trošku",
+    "en": "A little"
+   },
+   "motion": "breathe",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb and index finger almost touching, showing a tiny amount"
+  },
+  {
+   "n": 97,
+   "id": "hand_writing",
+   "category": "hands",
+   "emoji": "✍️",
+   "name": {
+    "cs": "Píšu",
+    "en": "Writing"
+   },
+   "motion": "wave",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, holding a pencil and writing a squiggle line on a small paper sheet"
+  },
+  {
+   "n": 98,
+   "id": "hand_stop",
+   "category": "hands",
+   "emoji": "🤚",
+   "name": {
+    "cs": "Stop",
+    "en": "Stop"
+   },
+   "motion": "breathe",
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, raised flat palm facing forward, fingers together, a stop sign gesture"
+  },
+  {
+   "n": 99,
+   "id": "animal_dog",
+   "category": "animals",
+   "emoji": "🐶",
+   "name": {
+    "cs": "Pejsek",
+    "en": "Puppy"
+   },
+   "motion": "bounce",
+   "subject": "a cute puppy face with floppy brown ears and tongue out, happy"
+  },
+  {
+   "n": 100,
+   "id": "animal_cat",
+   "category": "animals",
+   "emoji": "🐱",
+   "name": {
+    "cs": "Kočička",
+    "en": "Kitty"
+   },
+   "motion": "breathe",
+   "subject": "a cute ginger kitten face with whiskers and a content smile"
+  },
+  {
+   "n": 101,
+   "id": "animal_cat_love",
+   "category": "animals",
+   "emoji": "😻",
+   "name": {
+    "cs": "Zamilovaná kočka",
+    "en": "Cat in love"
+   },
+   "motion": "pulse",
+   "subject": "a cute ginger kitten face with red heart-shaped eyes"
+  },
+  {
+   "n": 102,
+   "id": "animal_fox",
+   "category": "animals",
+   "emoji": "🦊",
+   "name": {
+    "cs": "Liška",
+    "en": "Fox"
+   },
+   "motion": "breathe",
+   "subject": "a cute orange fox face with a white muzzle and pointy ears, sly smile"
+  },
+  {
+   "n": 103,
+   "id": "animal_panda",
+   "category": "animals",
+   "emoji": "🐼",
+   "name": {
+    "cs": "Panda",
+    "en": "Panda"
+   },
+   "motion": "breathe",
+   "subject": "a cute panda face with black eye patches and round ears"
+  },
+  {
+   "n": 104,
+   "id": "animal_bear",
+   "category": "animals",
+   "emoji": "🧸",
+   "name": {
+    "cs": "Medvídek",
+    "en": "Teddy bear"
+   },
+   "motion": "breathe",
+   "subject": "a cute brown teddy bear sitting, stitched details, round ears"
+  },
+  {
+   "n": 105,
+   "id": "animal_bunny",
+   "category": "animals",
+   "emoji": "🐰",
+   "name": {
+    "cs": "Zajíček",
+    "en": "Bunny"
+   },
+   "motion": "bounce",
+   "subject": "a cute white bunny face with long upright pink-lined ears"
+  },
+  {
+   "n": 106,
+   "id": "animal_hedgehog",
+   "category": "animals",
+   "emoji": "🦔",
+   "name": {
+    "cs": "Ježek",
+    "en": "Hedgehog"
+   },
+   "motion": "breathe",
+   "subject": "a cute small hedgehog with soft brown spines and a friendly face"
+  },
+  {
+   "n": 107,
+   "id": "animal_owl",
+   "category": "animals",
+   "emoji": "🦉",
+   "name": {
+    "cs": "Sova",
+    "en": "Owl"
+   },
+   "motion": "nod",
+   "subject": "a cute round brown owl with huge round eyes"
+  },
+  {
+   "n": 108,
+   "id": "animal_penguin",
+   "category": "animals",
+   "emoji": "🐧",
+   "name": {
+    "cs": "Tučňák",
+    "en": "Penguin"
+   },
+   "motion": "wave",
+   "subject": "a cute round penguin waving one flipper"
+  },
+  {
+   "n": 109,
+   "id": "animal_koala",
+   "category": "animals",
+   "emoji": "🐨",
+   "name": {
+    "cs": "Koala",
+    "en": "Koala"
+   },
+   "motion": "float",
+   "subject": "a cute grey koala face with big fluffy ears and a large dark nose"
+  },
+  {
+   "n": 110,
+   "id": "animal_sloth",
+   "category": "animals",
+   "emoji": "🦥",
+   "name": {
+    "cs": "Lenochod",
+    "en": "Sloth"
+   },
+   "motion": "float",
+   "subject": "a cute smiling sloth hanging from a short branch"
+  },
+  {
+   "n": 111,
+   "id": "animal_monkey_see",
+   "category": "animals",
+   "emoji": "🙈",
+   "name": {
+    "cs": "Nevidím",
+    "en": "See no evil"
+   },
+   "motion": "breathe",
+   "subject": "a cute monkey covering its eyes with both hands"
+  },
+  {
+   "n": 112,
+   "id": "animal_monkey_hear",
+   "category": "animals",
+   "emoji": "🙉",
+   "name": {
+    "cs": "Neslyším",
+    "en": "Hear no evil"
+   },
+   "motion": "breathe",
+   "subject": "a cute monkey covering its ears with both hands"
+  },
+  {
+   "n": 113,
+   "id": "animal_monkey_speak",
+   "category": "animals",
+   "emoji": "🙊",
+   "name": {
+    "cs": "Nemluvím",
+    "en": "Speak no evil"
+   },
+   "motion": "breathe",
+   "subject": "a cute monkey covering its mouth with both hands"
+  },
+  {
+   "n": 114,
+   "id": "animal_unicorn",
+   "category": "animals",
+   "emoji": "🦄",
+   "name": {
+    "cs": "Jednorožec",
+    "en": "Unicorn"
+   },
+   "motion": "twinkle",
+   "subject": "a cute white unicorn head with a golden horn and a rainbow mane"
+  },
+  {
+   "n": 115,
+   "id": "animal_dino",
+   "category": "animals",
+   "emoji": "🦖",
+   "name": {
+    "cs": "Dinosaurus",
+    "en": "Dinosaur"
+   },
+   "motion": "shake",
+   "subject": "a cute friendly green baby dinosaur standing, small arms raised"
+  },
+  {
+   "n": 116,
+   "id": "animal_frog",
+   "category": "animals",
+   "emoji": "🐸",
+   "name": {
+    "cs": "Žabka",
+    "en": "Frog"
+   },
+   "motion": "bounce",
+   "subject": "a cute green frog face with big bulging eyes and a wide smile"
+  },
+  {
+   "n": 117,
+   "id": "animal_chick",
+   "category": "animals",
+   "emoji": "🐥",
+   "name": {
+    "cs": "Kuřátko",
+    "en": "Chick"
+   },
+   "motion": "bounce",
+   "subject": "a cute fluffy yellow chick"
+  },
+  {
+   "n": 118,
+   "id": "animal_pig",
+   "category": "animals",
+   "emoji": "🐷",
+   "name": {
+    "cs": "Prasátko",
+    "en": "Piggy"
+   },
+   "motion": "breathe",
+   "subject": "a cute pink piglet face with a round snout"
+  },
+  {
+   "n": 119,
+   "id": "animal_mouse",
+   "category": "animals",
+   "emoji": "🐭",
+   "name": {
+    "cs": "Myška",
+    "en": "Mouse"
+   },
+   "motion": "breathe",
+   "subject": "a cute grey mouse face with big round pink ears"
+  },
+  {
+   "n": 120,
+   "id": "animal_lion",
+   "category": "animals",
+   "emoji": "🦁",
+   "name": {
+    "cs": "Lev",
+    "en": "Lion"
+   },
+   "motion": "shake",
+   "subject": "a cute lion face with a fluffy orange mane"
+  },
+  {
+   "n": 121,
+   "id": "animal_turtle",
+   "category": "animals",
+   "emoji": "🐢",
+   "name": {
+    "cs": "Želva",
+    "en": "Turtle"
+   },
+   "motion": "nod",
+   "subject": "a cute green turtle with a patterned shell, smiling"
+  },
+  {
+   "n": 122,
+   "id": "animal_bee",
+   "category": "animals",
+   "emoji": "🐝",
+   "name": {
+    "cs": "Včelka",
+    "en": "Bee"
+   },
+   "motion": "float",
+   "subject": "a cute round bumblebee with yellow and black stripes and small wings"
+  },
+  {
+   "n": 123,
+   "id": "party_popper",
+   "category": "celebration",
+   "emoji": "🎉",
+   "name": {
+    "cs": "Oslava",
+    "en": "Party"
+   },
+   "motion": "bounce",
+   "subject": "a party popper cone bursting with colourful confetti and streamers"
+  },
+  {
+   "n": 124,
+   "id": "party_confetti",
+   "category": "celebration",
+   "emoji": "🎊",
+   "name": {
+    "cs": "Konfety",
+    "en": "Confetti"
+   },
+   "motion": "shake",
+   "subject": "a round confetti ball bursting open with colourful confetti"
+  },
+  {
+   "n": 125,
+   "id": "party_cake",
+   "category": "celebration",
+   "emoji": "🎂",
+   "name": {
+    "cs": "Dort",
+    "en": "Cake"
+   },
+   "motion": "breathe",
+   "subject": "a birthday cake with pink frosting and lit candles"
+  },
+  {
+   "n": 126,
+   "id": "party_gift",
+   "category": "celebration",
+   "emoji": "🎁",
+   "name": {
+    "cs": "Dárek",
+    "en": "Gift"
+   },
+   "motion": "bounce",
+   "subject": "a wrapped present box with a big ribbon bow"
+  },
+  {
+   "n": 127,
+   "id": "party_balloon",
+   "category": "celebration",
+   "emoji": "🎈",
+   "name": {
+    "cs": "Balónek",
+    "en": "Balloon"
+   },
+   "motion": "float",
+   "subject": "a shiny round red balloon on a string"
+  },
+  {
+   "n": 128,
+   "id": "party_trophy",
+   "category": "celebration",
+   "emoji": "🏆",
+   "name": {
+    "cs": "Vítěz",
+    "en": "Winner"
+   },
+   "motion": "bounce",
+   "subject": "a shiny gold trophy cup with two handles"
+  },
+  {
+   "n": 129,
+   "id": "party_medal",
+   "category": "celebration",
+   "emoji": "🥇",
+   "name": {
+    "cs": "Zlatá medaile",
+    "en": "Gold medal"
+   },
+   "motion": "wave",
+   "subject": "a plain gold medal on a red ribbon, a star embossed in the middle"
+  },
+  {
+   "n": 130,
+   "id": "party_crown",
+   "category": "celebration",
+   "emoji": "👑",
+   "name": {
+    "cs": "Koruna",
+    "en": "Crown"
+   },
+   "motion": "twinkle",
+   "subject": "a golden crown with red and blue jewels"
+  },
+  {
+   "n": 131,
+   "id": "party_fireworks",
+   "category": "celebration",
+   "emoji": "🎆",
+   "name": {
+    "cs": "Ohňostroj",
+    "en": "Fireworks"
+   },
+   "motion": "pulse",
+   "subject": "a colourful firework burst"
+  },
+  {
+   "n": 132,
+   "id": "party_sparkles",
+   "category": "celebration",
+   "emoji": "✨",
+   "name": {
+    "cs": "Třpytky",
+    "en": "Sparkles"
+   },
+   "motion": "twinkle",
+   "subject": "three golden four-pointed sparkles of different sizes"
+  },
+  {
+   "n": 133,
+   "id": "party_star",
+   "category": "celebration",
+   "emoji": "⭐",
+   "name": {
+    "cs": "Hvězda",
+    "en": "Star"
+   },
+   "motion": "twinkle",
+   "subject": "a shiny golden five-pointed star"
+  },
+  {
+   "n": 134,
+   "id": "party_disco",
+   "category": "celebration",
+   "emoji": "🪩",
+   "name": {
+    "cs": "Disko",
+    "en": "Disco"
+   },
+   "motion": "twinkle",
+   "subject": "a sparkling mirror disco ball"
+  },
+  {
+   "n": 135,
+   "id": "party_clover",
+   "category": "celebration",
+   "emoji": "🍀",
+   "name": {
+    "cs": "Štěstí",
+    "en": "Good luck"
+   },
+   "motion": "breathe",
+   "subject": "a green four-leaf clover"
+  },
+  {
+   "n": 136,
+   "id": "party_tree",
+   "category": "celebration",
+   "emoji": "🎄",
+   "name": {
+    "cs": "Vánoce",
+    "en": "Christmas"
+   },
+   "motion": "breathe",
+   "subject": "a small decorated Christmas tree with baubles and a gold star on top"
+  },
+  {
+   "n": 137,
+   "id": "food_coffee",
+   "category": "food",
+   "emoji": "☕",
+   "name": {
+    "cs": "Kafe",
+    "en": "Coffee"
+   },
+   "motion": "breathe",
+   "subject": "a cup of hot coffee on a saucer with steam rising"
+  },
+  {
+   "n": 138,
+   "id": "food_pizza",
+   "category": "food",
+   "emoji": "🍕",
+   "name": {
+    "cs": "Pizza",
+    "en": "Pizza"
+   },
+   "motion": "bounce",
+   "subject": "a slice of pizza with melted cheese and pepperoni"
+  },
+  {
+   "n": 139,
+   "id": "food_burger",
+   "category": "food",
+   "emoji": "🍔",
+   "name": {
+    "cs": "Burger",
+    "en": "Burger"
+   },
+   "motion": "bounce",
+   "subject": "a tall burger with lettuce, tomato and cheese"
+  },
+  {
+   "n": 140,
+   "id": "food_fries",
+   "category": "food",
+   "emoji": "🍟",
+   "name": {
+    "cs": "Hranolky",
+    "en": "Fries"
+   },
+   "motion": "breathe",
+   "subject": "french fries in a red carton"
+  },
+  {
+   "n": 141,
+   "id": "food_ice_cream",
+   "category": "food",
+   "emoji": "🍦",
+   "name": {
+    "cs": "Zmrzlina",
+    "en": "Ice cream"
+   },
+   "motion": "breathe",
+   "subject": "a soft-serve ice cream cone with a swirl"
+  },
+  {
+   "n": 142,
+   "id": "food_donut",
+   "category": "food",
+   "emoji": "🍩",
+   "name": {
+    "cs": "Kobliha",
+    "en": "Donut"
+   },
+   "motion": "twinkle",
+   "subject": "a donut with pink glaze and colourful sprinkles"
+  },
+  {
+   "n": 143,
+   "id": "food_cookie",
+   "category": "food",
+   "emoji": "🍪",
+   "name": {
+    "cs": "Sušenka",
+    "en": "Cookie"
+   },
+   "motion": "breathe",
+   "subject": "a round chocolate chip cookie"
+  },
+  {
+   "n": 144,
+   "id": "food_strawberry",
+   "category": "food",
+   "emoji": "🍓",
+   "name": {
+    "cs": "Jahoda",
+    "en": "Strawberry"
+   },
+   "motion": "bounce",
+   "subject": "a ripe red strawberry with green leaves"
+  },
+  {
+   "n": 145,
+   "id": "food_cherries",
+   "category": "food",
+   "emoji": "🍒",
+   "name": {
+    "cs": "Třešně",
+    "en": "Cherries"
+   },
+   "motion": "wave",
+   "subject": "two red cherries joined by their stems"
+  },
+  {
+   "n": 146,
+   "id": "food_avocado",
+   "category": "food",
+   "emoji": "🥑",
+   "name": {
+    "cs": "Avokádo",
+    "en": "Avocado"
+   },
+   "motion": "breathe",
+   "subject": "half an avocado with its round stone"
+  },
+  {
+   "n": 147,
+   "id": "food_popcorn",
+   "category": "food",
+   "emoji": "🍿",
+   "name": {
+    "cs": "Popcorn",
+    "en": "Popcorn"
+   },
+   "motion": "shake",
+   "subject": "a red and white striped bucket overflowing with popcorn"
+  },
+  {
+   "n": 148,
+   "id": "food_bubble_tea",
+   "category": "food",
+   "emoji": "🧋",
+   "name": {
+    "cs": "Bubble tea",
+    "en": "Bubble tea"
+   },
+   "motion": "breathe",
+   "subject": "a cup of bubble tea with tapioca pearls and a wide straw"
+  },
+  {
+   "n": 149,
+   "id": "nature_sun",
+   "category": "nature",
+   "emoji": "☀️",
+   "name": {
+    "cs": "Sluníčko",
+    "en": "Sunshine"
+   },
+   "motion": "twinkle",
+   "subject": "a smiling sun with rays"
+  },
+  {
+   "n": 150,
+   "id": "nature_rainbow",
+   "category": "nature",
+   "emoji": "🌈",
+   "name": {
+    "cs": "Duha",
+    "en": "Rainbow"
+   },
+   "motion": "breathe",
+   "subject": "a rainbow arc with small white clouds at both ends"
+  },
+  {
+   "n": 151,
+   "id": "nature_rain",
+   "category": "nature",
+   "emoji": "🌧️",
+   "name": {
+    "cs": "Prší",
+    "en": "Rain"
+   },
+   "motion": "float",
+   "subject": "a grey cloud with raindrops falling"
+  },
+  {
+   "n": 152,
+   "id": "nature_snowflake",
+   "category": "nature",
+   "emoji": "❄️",
+   "name": {
+    "cs": "Sněží",
+    "en": "Snow"
+   },
+   "motion": "twinkle",
+   "subject": "a light blue six-pointed snowflake"
+  },
+  {
+   "n": 153,
+   "id": "nature_moon",
+   "category": "nature",
+   "emoji": "🌙",
+   "name": {
+    "cs": "Měsíc",
+    "en": "Moon"
+   },
+   "motion": "float",
+   "subject": "a golden crescent moon with two small stars"
+  },
+  {
+   "n": 154,
+   "id": "nature_blossom",
+   "category": "nature",
+   "emoji": "🌸",
+   "name": {
+    "cs": "Kytička",
+    "en": "Blossom"
+   },
+   "motion": "breathe",
+   "subject": "a pink cherry blossom flower"
+  },
+  {
+   "n": 155,
+   "id": "nature_sunflower",
+   "category": "nature",
+   "emoji": "🌻",
+   "name": {
+    "cs": "Slunečnice",
+    "en": "Sunflower"
+   },
+   "motion": "nod",
+   "subject": "a sunflower with yellow petals and a brown centre"
+  },
+  {
+   "n": 156,
+   "id": "nature_leaf",
+   "category": "nature",
+   "emoji": "🍂",
+   "name": {
+    "cs": "Podzim",
+    "en": "Autumn"
+   },
+   "motion": "float",
+   "subject": "orange and red autumn leaves falling"
+  },
+  {
+   "n": 157,
+   "id": "nature_fire",
+   "category": "nature",
+   "emoji": "🔥",
+   "name": {
+    "cs": "Oheň",
+    "en": "Fire"
+   },
+   "motion": "pulse",
+   "subject": "a bright orange and yellow flame"
+  },
+  {
+   "n": 158,
+   "id": "nature_lightning",
+   "category": "nature",
+   "emoji": "⚡",
+   "name": {
+    "cs": "Blesk",
+    "en": "Lightning"
+   },
+   "motion": "shake",
+   "subject": "a yellow zigzag lightning bolt"
+  },
+  {
+   "n": 159,
+   "id": "day_zzz",
+   "category": "everyday",
+   "emoji": "💤",
+   "name": {
+    "cs": "Dobrou noc",
+    "en": "Good night"
+   },
+   "motion": "float",
+   "subject": "a fluffy pillow with a sleeping cap on top and small cloud puffs drifting up"
+  },
+  {
+   "n": 160,
+   "id": "day_alarm",
+   "category": "everyday",
+   "emoji": "⏰",
+   "name": {
+    "cs": "Budíček",
+    "en": "Wake up"
+   },
+   "motion": "shake",
+   "subject": "a red twin-bell alarm clock ringing, motion lines with a blank dial"
+  },
+  {
+   "n": 161,
+   "id": "day_idea",
+   "category": "everyday",
+   "emoji": "💡",
+   "name": {
+    "cs": "Nápad",
+    "en": "Idea"
+   },
+   "motion": "pulse",
+   "subject": "a glowing yellow light bulb"
+  },
+  {
+   "n": 162,
+   "id": "day_music",
+   "category": "everyday",
+   "emoji": "🎵",
+   "name": {
+    "cs": "Hudba",
+    "en": "Music"
+   },
+   "motion": "bounce",
+   "subject": "two black musical notes"
+  },
+  {
+   "n": 163,
+   "id": "day_books",
+   "category": "everyday",
+   "emoji": "📚",
+   "name": {
+    "cs": "Učím se",
+    "en": "Studying"
+   },
+   "motion": "breathe",
+   "subject": "a small stack of colourful books with plain blank covers"
+  },
+  {
+   "n": 164,
+   "id": "day_laptop",
+   "category": "everyday",
+   "emoji": "💻",
+   "name": {
+    "cs": "Pracuju",
+    "en": "Working"
+   },
+   "motion": "breathe",
+   "subject": "an open laptop with a blank glowing screen"
+  },
+  {
+   "n": 165,
+   "id": "day_phone",
+   "category": "everyday",
+   "emoji": "📱",
+   "name": {
+    "cs": "Napiš mi",
+    "en": "Text me"
+   },
+   "motion": "shake",
+   "subject": "a smartphone with a blank screen and a small speech bubble with three dots"
+  },
+  {
+   "n": 166,
+   "id": "day_plane",
+   "category": "everyday",
+   "emoji": "✈️",
+   "name": {
+    "cs": "Dovolená",
+    "en": "Holiday"
+   },
+   "motion": "float",
+   "subject": "a small white passenger plane flying"
+  },
+  {
+   "n": 167,
+   "id": "day_rocket",
+   "category": "everyday",
+   "emoji": "🚀",
+   "name": {
+    "cs": "Jdeme na to",
+    "en": "Let's go"
+   },
+   "motion": "bounce",
+   "subject": "a red and white rocket launching with a flame"
+  },
+  {
+   "n": 168,
+   "id": "day_gamepad",
+   "category": "everyday",
+   "emoji": "🎮",
+   "name": {
+    "cs": "Hraju",
+    "en": "Gaming"
+   },
+   "motion": "shake",
+   "subject": "a game controller with buttons with plain round buttons"
+  },
+  {
+   "n": 169,
+   "id": "smile_alien",
+   "category": "smileys",
+   "emoji": "👽",
+   "name": {
+    "cs": "Mimozemšťan",
+    "en": "Alien"
+   },
+   "motion": "float",
+   "subject": "a cute green alien head with big black eyes and a small smile",
+   "reserve": true
+  },
+  {
+   "n": 170,
+   "id": "animal_butterfly",
+   "category": "animals",
+   "emoji": "🦋",
+   "name": {
+    "cs": "Motýl",
+    "en": "Butterfly"
+   },
+   "motion": "float",
+   "subject": "a colourful butterfly with spread wings",
+   "reserve": true
+  },
+  {
+   "n": 171,
+   "id": "animal_ladybug",
+   "category": "animals",
+   "emoji": "🐞",
+   "name": {
+    "cs": "Beruška",
+    "en": "Ladybug"
+   },
+   "motion": "bounce",
+   "subject": "a cute red ladybug with black spots",
+   "reserve": true
+  },
+  {
+   "n": 172,
+   "id": "animal_whale",
+   "category": "animals",
+   "emoji": "🐳",
+   "name": {
+    "cs": "Velryba",
+    "en": "Whale"
+   },
+   "motion": "float",
+   "subject": "a cute blue whale spouting water",
+   "reserve": true
+  },
+  {
+   "n": 173,
+   "id": "animal_octopus",
+   "category": "animals",
+   "emoji": "🐙",
+   "name": {
+    "cs": "Chobotnice",
+    "en": "Octopus"
+   },
+   "motion": "wave",
+   "subject": "a cute pink octopus waving its tentacles",
+   "reserve": true
+  },
+  {
+   "n": 174,
+   "id": "party_pumpkin",
+   "category": "celebration",
+   "emoji": "🎃",
+   "name": {
+    "cs": "Halloween",
+    "en": "Halloween"
+   },
+   "motion": "breathe",
+   "subject": "a carved orange pumpkin with a friendly smiling face",
+   "reserve": true
+  },
+  {
+   "n": 175,
+   "id": "party_egg",
+   "category": "celebration",
+   "emoji": "🥚",
+   "name": {
+    "cs": "Velikonoce",
+    "en": "Easter"
+   },
+   "motion": "bounce",
+   "subject": "a painted Easter egg with colourful stripes and dots",
+   "reserve": true
+  },
+  {
+   "n": 176,
+   "id": "nature_mushroom",
+   "category": "nature",
+   "emoji": "🍄",
+   "name": {
+    "cs": "Houby",
+    "en": "Mushroom"
+   },
+   "motion": "breathe",
+   "subject": "a red mushroom with white spots",
+   "reserve": true
+  },
+  {
+   "n": 177,
+   "id": "food_chocolate",
+   "category": "food",
+   "emoji": "🍫",
+   "name": {
+    "cs": "Čokoláda",
+    "en": "Chocolate"
+   },
+   "motion": "breathe",
+   "subject": "a chocolate bar partly unwrapped in a plain red wrapper",
+   "reserve": true
+  },
+  {
+   "n": 178,
+   "id": "day_car",
+   "category": "everyday",
+   "emoji": "🚗",
+   "name": {
+    "cs": "Jedu",
+    "en": "On my way"
+   },
+   "motion": "shake",
+   "subject": "a small red cartoon car",
+   "reserve": true
+  },
+  {
+   "n": 179,
+   "id": "day_ball",
+   "category": "everyday",
+   "emoji": "⚽",
+   "name": {
+    "cs": "Fotbal",
+    "en": "Football"
+   },
+   "motion": "bounce",
+   "subject": "a black and white football",
+   "reserve": true
+  },
+  {
+   "n": 180,
+   "id": "day_home",
+   "category": "everyday",
+   "emoji": "🏠",
+   "name": {
+    "cs": "Doma",
+    "en": "At home"
+   },
+   "motion": "breathe",
+   "subject": "a small cosy house with a red roof",
+   "reserve": true
+  }
+ ]
+}

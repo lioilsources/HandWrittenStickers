@@ -1,6 +1,10 @@
 # Plán: vlastní sada 150+ animovaných emoji (generuje L40S)
 
-Zadání pro Opuse. Napsáno 2026-11-12, nic z něj zatím neběží. Dokument je
+Zadání pro Opuse. Napsáno 2026-11-12.
+
+**Stav 2026-11-12:** F0 a F1 hotové, F2 hotová (aplikace jede na 40
+dočasných obrázcích z `tools/emoji/legacy/`). Čeká se na I0 na L40S: push
+z L40S na naše větve povolí jen Olin v chatu L40S. Dokument je
 soběstačný: kdo ho čte, nemusí znát předchozí konverzace.
 
 **Cíl:** nahradit dnešních 40 nálepek, které jsou převzaté ze SwypeKids nebo
@@ -347,9 +351,11 @@ Tři kandidáti stylu pro zkoušku F3:
 | `paper` | cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture | Ladí s tématem papíru a samolepek. |
 | `clay` | soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture | Ladí s písmem z modelíny. Plynulé přechody se v GIFu mohou rozpadat na pruhy. |
 
-Rámování (stejné pro všechny): `single subject, centred, fills about 80
-percent of the frame, plain flat mid-grey background, no text, no letters, no
-border, no sticker outline`.
+Rámování (stejné pro všechny): `one single isolated subject shown whole,
+centred, filling about 80 percent of the frame, floating in empty space in
+front of a plain flat light grey background`. Qwen-Image zápory ignoruje
+(L40S, 12. 11.), proto rámování i `subject` popisují jen to, co na obrázku
+má být; negativní prompt se posílá pro jiné modely.
 
 Negativní prompt: `text, letters, numbers, watermark, signature, logo, frame,
 border, white sticker outline, several subjects, cropped subject, photograph,
@@ -460,6 +466,8 @@ Odhady času GPU vycházejí z měření na L40S ze 7. 11. 2026 (Qwen-Image fp8,
   kategorie a pohyb, oba názvy vyplněné a nejvýš 24 znaků, `subject` bez slov
   ze zakázaného seznamu (alkohol, značky, „sticker“, „chibi“, jména výrobců).
 - [ ] `tools/emoji/BRIEF.md` pro L40S podle oddílu 10.
+- [ ] `tools/emoji/make_jobs.py`: seznam promptů dávky I0–I3 do
+  `tools/emoji/jobs/<dávka>.json`.
 - [ ] Smazat `run_batch.py` a `prompts.json` (vedou na SPARK a na šablonu
   SwypeKids).
 
@@ -551,7 +559,7 @@ proběhl. Zadání obsahuje:
   doplnit; frontu a souběh s jinou prací si řídí L40S podle svých konvencí.
 - **Licence:** pravidlo 2 z oddílu 4. Do `manifest.json` zapsat přesný
   checkpoint, verzi, licenci a odkud je licence ověřená.
-- **Parametry:** 1024 × 1024; seed = `7000 + 10 × n + k`, kde `k` je 0–3
+- **Parametry:** 1024 × 1024; seed = `7000 + 20 × n + k`, kde `k` je 0–3
   (ruce 0–7, opravy pokračují dalšími čísly).
 - **Výřez:** PNG s průhledností, bez lemu na světlém i tmavém podkladu,
   díry uvnitř objektu zaplněné, ořez s okrajem asi 6 %, čtverec.

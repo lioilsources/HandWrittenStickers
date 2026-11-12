@@ -1,85 +1,82 @@
 #!/usr/bin/env python3
-"""Builds handwritten_stickers/assets/emoji/ from emoji_set.json:
+"""Builds handwritten_stickers/assets/emoji/ from tools/emoji/emoji_set.json
+(docs/EMOJI_SET_PLAN.md §8):
 
-  source "swypekids" → copied from ../SwypeKids/assets/emoji/<key>.webp
-                       (same sticker style, already cut out, 320 px)
-  source "generated" → cut out of out/emoji-<key>.png (run_batch.py drafts)
-                       with the SwypeKids cutout (flood fill from the edges,
-                       the white sticker outline separates the subject)
+  masters/<id>.webp  (768 px cut-outs from L40S)  →  assets/emoji/<id>.webp, 384 px
+  emoji.json         version 2: categories + emoji with id, category, emoji,
+                     name {cs, en}, file, motion
 
-Writes assets/emoji/<key>.webp and assets/emoji/emoji.json (index for the
-app; only emoji whose WebP exists). Usage: python3 build.py [--reject key,key]
-Needs Pillow with WebP."""
-import json, os, shutil, sys
-from PIL import Image, ImageChops, ImageDraw, ImageFilter
+Until the masters exist, an emoji falls back to legacy/<codepoints>.webp (the
+40 stickers the app shipped first) so the app keeps working; --no-legacy
+leaves those out. Reserve emoji are built only from a master. Every other
+*.webp in assets/emoji/ is removed.
+
+Usage: python3 build.py [--no-legacy] [--reject id,id]    Needs Pillow with WebP."""
+import json
+import os
+import sys
+
+from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 OUT = os.path.join(ROOT, 'handwritten_stickers', 'assets', 'emoji')
-SWYPE = os.path.join(os.path.dirname(ROOT), 'SwypeKids', 'assets', 'emoji')
-DRAFTS = os.path.join(HERE, 'out')
-SIZE = 320
-SENT = (1, 254, 3)
+MASTERS = os.path.join(HERE, 'masters')
+LEGACY = os.path.join(HERE, 'legacy')
+SIZE = 384
 
 
-def key_for(emoji):
-    return '-'.join(format(ord(c), 'x') for c in emoji if ord(c) != 0xFE0F)
+def legacy_key(emoji):
+    return '-'.join(format(ord(c), 'x') for c in emoji if ord(c) not in (0xFE0F, 0x200D))
 
 
-def cutout(path):
-    im = Image.open(path).convert('RGB')
-    w, h = im.size
-    work = im.copy()
-    for c in [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1),
-              (w // 2, 0), (0, h // 2), (w - 1, h // 2), (w // 2, h - 1)]:
-        if work.getpixel(c) != SENT:
-            ImageDraw.floodfill(work, c, SENT, thresh=40)
-    diff = ImageChops.difference(work, Image.new('RGB', (w, h), SENT)).convert('L')
-    alpha = (diff.point(lambda v: 255 if v > 0 else 0)
-             .filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.2)))
-    out = im.convert('RGBA')
-    out.putalpha(alpha)
-    bb = alpha.getbbox()
-    if bb is None:
-        return None
-    out = out.crop(bb)
-    s = max(out.size)
-    sq = Image.new('RGBA', (s, s), (0, 0, 0, 0))
-    sq.paste(out, ((s - out.size[0]) // 2, (s - out.size[1]) // 2))
-    return sq.resize((SIZE, SIZE), Image.LANCZOS)
+def render(src, dst):
+    im = Image.open(src).convert('RGBA')
+    if im.size != (SIZE, SIZE):
+        im = im.resize((SIZE, SIZE), Image.LANCZOS)
+    im.save(dst, 'WEBP', quality=88, method=6)
 
 
 def main():
+    use_legacy = '--no-legacy' not in sys.argv
     reject = set()
     if '--reject' in sys.argv:
         reject = set(sys.argv[sys.argv.index('--reject') + 1].split(','))
+    with open(os.path.join(HERE, 'emoji_set.json')) as f:
+        data = json.load(f)
     os.makedirs(OUT, exist_ok=True)
-    index = []
-    for item in json.load(open(os.path.join(HERE, 'emoji_set.json'))):
-        key = key_for(item['emoji'])
-        dst = os.path.join(OUT, key + '.webp')
-        if key in reject:
-            if os.path.exists(dst):
-                os.remove(dst)
+
+    index, used_legacy, missing = [], set(), []
+    for item in data['emoji']:
+        if item['id'] in reject:
             continue
-        if item['source'] == 'swypekids':
-            src = os.path.join(SWYPE, key + '.webp')
-            if os.path.exists(src):
-                shutil.copyfile(src, dst)
+        dst = os.path.join(OUT, item['id'] + '.webp')
+        master = os.path.join(MASTERS, item['id'] + '.webp')
+        old = os.path.join(LEGACY, legacy_key(item['emoji']) + '.webp')
+        if os.path.exists(master):
+            render(master, dst)
+        elif use_legacy and not item.get('reserve') and os.path.exists(old) and old not in used_legacy:
+            used_legacy.add(old)
+            render(old, dst)
         else:
-            src = os.path.join(DRAFTS, f'emoji-{key}.png')
-            if os.path.exists(src):
-                img = cutout(src)
-                if img is not None:
-                    img.save(dst, 'WEBP', quality=88, method=6)
-        if os.path.exists(dst):
-            index.append({'emoji': item['emoji'], 'name': item['name'], 'file': key + '.webp'})
-        else:
-            print(f'missing {item["emoji"]} ({key})')
+            if not item.get('reserve'):
+                missing.append(item['id'])
+            continue
+        index.append({'id': item['id'], 'category': item['category'], 'emoji': item['emoji'],
+                      'name': item['name'], 'file': item['id'] + '.webp', 'motion': item['motion']})
+
+    keep = {e['file'] for e in index}
+    for f in os.listdir(OUT):
+        if f.endswith('.webp') and f not in keep:
+            os.remove(os.path.join(OUT, f))
+
+    cats = {e['category'] for e in index}
     with open(os.path.join(OUT, 'emoji.json'), 'w') as f:
-        json.dump({'version': 1, 'emoji': index}, f, ensure_ascii=False, indent=1)
+        json.dump({'version': 2,
+                   'categories': [c for c in data['categories'] if c['id'] in cats],
+                   'emoji': index}, f, ensure_ascii=False, indent=1)
         f.write('\n')
-    print(f'{len(index)} emoji → {OUT}')
+    print(f'{len(index)} emoji → {OUT} ({len(used_legacy)} from legacy, {len(missing)} core still missing)')
 
 
 if __name__ == '__main__':

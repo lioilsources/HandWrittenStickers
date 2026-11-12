@@ -55,6 +55,22 @@ void main() {
 
     PresetStore store() => PresetStore(directory: () async => dir);
 
+    test('remembers recently used emoji, newest first, capped', () async {
+      final a = store();
+      await a.load();
+      expect(a.recentEmoji, isEmpty);
+      for (var i = 0; i < PresetStore.maxRecentEmoji + 3; i++) {
+        await a.noteEmojiUsed('e$i');
+      }
+      await a.noteEmojiUsed('e5');
+      final b = store();
+      await b.load();
+      expect(b.recentEmoji.first, 'e5');
+      expect(b.recentEmoji, hasLength(PresetStore.maxRecentEmoji));
+      expect(b.recentEmoji.where((e) => e == 'e5'), hasLength(1));
+      expect(b.recentEmoji, isNot(contains('e0')));
+    });
+
     test('saves, reloads, renames, overwrites and deletes', () async {
       final a = store();
       await a.load();
