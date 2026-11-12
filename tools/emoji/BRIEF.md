@@ -46,7 +46,7 @@ Rozměr 1024 × 1024.
 
 `icons.py` s `--fill-all`: PNG RGBA, díry uvnitř objektu zaplněné, bez světlého ani tmavého lemu
 (zkontrolovat na světlém i tmavém podkladu), ořez na objekt s okrajem asi 6 %, doplnit na čtverec.
-Pozadí v promptu je světle šedé; když ho BiRefNet nechá v mezerách (mezi prsty, v uchu hrnku),
+Pozadí v promptu je středně šedé (bílé plochy jako liščí čenich se se světlým pozadím slévaly); když ho BiRefNet nechá v mezerách (mezi prsty, v uchu hrnku),
 napiš to.
 
 ## 5. Co odevzdat

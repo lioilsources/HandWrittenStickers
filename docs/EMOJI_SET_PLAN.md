@@ -353,7 +353,7 @@ Tři kandidáti stylu pro zkoušku F3:
 
 Rámování (stejné pro všechny): `one single isolated subject shown whole,
 centred, filling about 80 percent of the frame, floating in empty space in
-front of a plain flat light grey background`. Qwen-Image zápory ignoruje
+front of a plain flat medium grey background`. Qwen-Image zápory ignoruje
 (L40S, 12. 11.), proto rámování i `subject` popisují jen to, co na obrázku
 má být; negativní prompt se posílá pro jiné modely.
 

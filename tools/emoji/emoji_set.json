@@ -395,7 +395,7 @@
     "en": "Angry"
    },
    "motion": "shake",
-   "subject": "a round yellow emoji face, shown as a head only, angry frown, furrowed eyebrows, pouting mouth"
+   "subject": "a round yellow emoji face shown as a head only, angry frown, sharply furrowed eyebrows, mouth pressed into a tight downturned line"
   },
   {
    "n": 28,
@@ -611,7 +611,7 @@
     "en": "Wink"
    },
    "motion": "nod",
-   "subject": "a round yellow emoji face, shown as a head only, playful wink with one eye closed, charming smile"
+   "subject": "a round yellow emoji face shown as a head only, the left eye wide open and the right eye closed in a playful wink, charming smile"
   },
   {
    "n": 46,
@@ -1019,7 +1019,7 @@
     "en": "Thumbs up"
    },
    "motion": "bounce",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight up"
+   "subject": "a single yellow cartoon hand with a short wrist giving a thumbs up: the thumb points straight up and all four fingers are curled tightly into the palm"
   },
   {
    "n": 80,
@@ -1031,7 +1031,7 @@
     "en": "Thumbs down"
    },
    "motion": "nod",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, closed fist with the thumb pointing straight down"
+   "subject": "a single yellow cartoon hand with a short wrist giving a thumbs down: the thumb points straight down and all four fingers are curled tightly into the palm"
   },
   {
    "n": 81,
@@ -1547,7 +1547,7 @@
     "en": "Party"
    },
    "motion": "bounce",
-   "subject": "a party popper cone bursting with colourful confetti and streamers"
+   "subject": "a cone-shaped paper party popper held at an angle, shooting out colourful confetti and curly streamers from its open end, an object only"
   },
   {
    "n": 124,
