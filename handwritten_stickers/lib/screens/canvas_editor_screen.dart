@@ -215,6 +215,18 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     }
   }
 
+  /// The sticker the empty emoji spot shows, faded, as the add button: a
+  /// smiley if the index has one.
+  EmojiTag? get _placeholderEmoji {
+    final tags = _emojiIndex?.tags ?? const <EmojiTag>[];
+    for (final e in const ['😊', '🙂', '😀', '😄']) {
+      for (final t in tags) {
+        if (t.emoji == e) return t;
+      }
+    }
+    return tags.isEmpty ? null : tags.first;
+  }
+
   Future<void> _pickEmoji() async {
     final index = _emojiIndex;
     if (index == null) return;
@@ -535,8 +547,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Widget _buildPreview() {
     return LayoutBuilder(
       builder: (context, box) {
-        // Same geometry as the export, so the emoji sits where it will.
-        final layout = StickerLayout.of(_glyphs, withEmoji: _emoji != null);
+        // Same geometry as the export, so the emoji sits where it will. With
+        // no emoji yet the spot still shows, holding the add button.
+        final layout = StickerLayout.of(
+          _glyphs,
+          withEmoji: _emoji != null || _placeholderEmoji != null,
+        );
         const inset = 8.0;
         final zoom = [
           _maxPreviewZoom,
@@ -563,17 +579,37 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                         style: _styleParams,
                       ),
                     ),
-                    // The tag rides along beside the text; tap to change.
+                    // The tag rides along beside the text, bottom right;
+                    // tap to change. Without one, the same spot adds it.
                     if (_emoji != null)
                       Positioned(
                         left: layout.badgeOrigin.dx,
                         top: layout.badgeOrigin.dy,
-                        child: GestureDetector(
-                          onTap: _pickEmoji,
-                          child: AnimatedEmojiSticker(
-                            key: const ValueKey('emoji-badge'),
-                            tag: _emoji!,
-                            size: layout.badge,
+                        child: Tooltip(
+                          message: context.l10n.emojiTag,
+                          child: GestureDetector(
+                            onTap: _pickEmoji,
+                            child: AnimatedEmojiSticker(
+                              key: const ValueKey('emoji-badge'),
+                              tag: _emoji!,
+                              size: layout.badge,
+                            ),
+                          ),
+                        ),
+                      )
+                    else if (_placeholderEmoji case final hint?)
+                      Positioned(
+                        left: layout.badgeOrigin.dx,
+                        top: layout.badgeOrigin.dy,
+                        width: layout.badge,
+                        height: layout.badge,
+                        child: Tooltip(
+                          message: context.l10n.emojiTag,
+                          child: GestureDetector(
+                            key: const ValueKey('emoji-add'),
+                            behavior: HitTestBehavior.opaque,
+                            onTap: _pickEmoji,
+                            child: _EmojiAddHint(tag: hint, size: layout.badge),
                           ),
                         ),
                       ),
@@ -592,12 +628,20 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        // Five actions leave little room on a narrow phone: shrink the
-        // title rather than cut it off.
-        title: FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: AlignmentDirectional.centerStart,
-          child: Text(l10n.editorTitle),
+        // The app icon instead of a title: four actions and a name do not
+        // fit a narrow phone.
+        title: Semantics(
+          label: l10n.editorTitle,
+          child: ClipRRect(
+            key: const ValueKey('app-icon'),
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              'assets/brand/app_icon.png',
+              width: 36,
+              height: 36,
+              excludeFromSemantics: true,
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -615,16 +659,6 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
             ),
             tooltip: l10n.aboutAndLicences,
           ),
-          if (_emojiIndex != null)
-            IconButton(
-              icon: Icon(
-                _emoji == null
-                    ? Icons.add_reaction_outlined
-                    : Icons.add_reaction,
-              ),
-              onPressed: _pickEmoji,
-              tooltip: l10n.emojiTag,
-            ),
           if (_exporting)
             const Padding(
               padding: EdgeInsets.all(12),
@@ -837,6 +871,44 @@ class _LockedBadge extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// The add-emoji button in the preview: a faded, still sticker with a "+"
+/// at its corner, in the spot the chosen emoji will take.
+class _EmojiAddHint extends StatelessWidget {
+  final EmojiTag tag;
+  final double size;
+
+  const _EmojiAddHint({required this.tag, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final plus = size * 0.36;
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Opacity(
+          opacity: 0.35,
+          child: AnimatedEmojiSticker(tag: tag, size: size, animate: false),
+        ),
+        Positioned(
+          right: 0,
+          bottom: 0,
+          child: Container(
+            width: plus,
+            height: plus,
+            decoration: BoxDecoration(
+              color: scheme.primary,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: plus * 0.1),
+            ),
+            child: Icon(Icons.add, size: plus * 0.7, color: scheme.onPrimary),
+          ),
+        ),
+      ],
     );
   }
 }
