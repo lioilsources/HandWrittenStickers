@@ -34,10 +34,10 @@
  "_ship": "Styles the app shows, in picker order; the first is the default and free. pack = id in handwritten_stickers/assets/packs/packs.json.",
  "styles": {
   "marker": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes",
-  "paper": "paper-craft illustration, the subject itself built from a few hand-cut coloured paper pieces glued onto each other, clean scissor-cut edges that follow the subject's own outline, soft shadow under each piece, light gouache texture",
-  "clay": "soft 3D clay figure, rounded smooth plasticine shapes with a satin finish, gentle studio light, vivid colours"
+  "paper": "flat paper-craft illustration: the subject alone, cut out of coloured paper as a few pieces that stay inside its own outline, clean scissor-cut edges, soft shadow under each piece, light gouache texture, nothing behind the subject: no stack of paper sheets, no backing card, no human silhouettes",
+  "clay": "soft 3D clay model, rounded smooth plasticine shapes with a satin finish, gentle studio light, vivid colours; an object is modelled as the plain object itself, never turned into a character or mascot, with no added body, arms or legs"
  },
- "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat medium grey background",
+ "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat medium grey background, with no ground shadow and nothing under it",
  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers",
  "size": 1024,
  "seed": {

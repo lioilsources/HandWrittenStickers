@@ -5,6 +5,7 @@
   python3 make_jobs.py I1                    # pilot: 2 emoji per category
   python3 make_jobs.py I2                    # the rest of the set
   python3 make_jobs.py I3 --ids a,b --from-k 4 --count 6   # retries
+  python3 make_jobs.py I2 --styles clay --retry love_ring,party_crown  # + pilot redo
 
 Output: tools/emoji/jobs/<batch>.json, a list of
 {file, id, style, seed, size, prompt, negative}. `file` is the name the
@@ -54,6 +55,7 @@ def main():
     ap.add_argument('--from-k', type=int, default=0)
     ap.add_argument('--count', type=int, default=6)
     ap.add_argument('--styles', help='comma-separated styles (default: selected)')
+    ap.add_argument('--retry', help='I2: also these pilot ids again, with the next seeds')
     a = ap.parse_args()
 
     data, styles = load('emoji_set.json'), load('styles.json')
@@ -84,6 +86,12 @@ def main():
             for id_ in ids:
                 item = by_id[id_]
                 for seed in seeds(styles, item, ks or default_ks(item)):
+                    jobs.append(job(styles, item, style, seed))
+            # Pilot ids without a usable seed: the next block of seeds.
+            for id_ in (a.retry.split(',') if a.retry and a.batch == 'I2' else []):
+                item = by_id[id_]
+                n = len(default_ks(item))
+                for seed in seeds(styles, item, range(n, 2 * n)):
                     jobs.append(job(styles, item, style, seed))
 
     os.makedirs(os.path.join(HERE, 'jobs'), exist_ok=True)
