@@ -13,15 +13,520 @@
   "clay": "nicely 3D, but fingerprint texture on every surface and one wrong subject (party_popper)"
  },
  "ids": {
-  "smile_laugh":    {"seeds": [7060, 7061], "pick": {"marker": 7060, "paper": 7061, "clay": 7060}, "notes": "all fine"},
-  "flirt_wink":     {"seeds": [7900, 7901], "pick": {"marker": 7900, "paper": 7900, "clay": 7900}, "notes": "seed 7901 paper and clay: both eyes closed, no wink"},
-  "love_heart":     {"seeds": [8220, 8221], "pick": {"marker": 8220, "paper": 8220, "clay": 8221}, "notes": "fine; clay has a visible fingerprint in the middle"},
-  "hand_thumbs_up": {"seeds": [8580, 8581], "pick": null, "notes": "WRONG GESTURE in all 6: index finger pointing up, thumb tucked in; prompt needs rework (e.g. describe the thumb pointing up and the four fingers curled into the palm)"},
-  "hand_peace":     {"seeds": [8680, 8681], "pick": {"marker": 8681, "paper": 8681, "clay": 8680}, "notes": "gesture right, fingers countable at 256 px"},
-  "animal_fox":     {"seeds": [9040, 9041], "pick": {"marker": 9040, "paper": 9041, "clay": 9040}, "notes": "marker 9041: white muzzle cut out as background (transparent hole); white areas touching the grey background are a cutout risk"},
-  "party_popper":   {"seeds": [9460, 9461], "pick": {"marker": 9461, "paper": 9461, "clay": null}, "notes": "clay both seeds: a little clay figure wearing a party hat, not a popper; marker 9460 has a stray stroke under the cone"},
-  "feel_angry":     {"seeds": [7540, 7541], "pick": {"marker": 7541, "paper": 7540, "clay": 7540}, "notes": "marker 7540: tongue out, reads as cheeky rather than angry"}
+  "smile_laugh": {
+   "seeds": [
+    7060,
+    7061
+   ],
+   "pick": {
+    "marker": 7060,
+    "paper": 7061,
+    "clay": 7060
+   },
+   "notes": "all fine"
+  },
+  "flirt_wink": {
+   "seeds": [
+    7900,
+    7901
+   ],
+   "pick": {
+    "marker": 7900,
+    "paper": 7900,
+    "clay": 7900
+   },
+   "notes": "seed 7901 paper and clay: both eyes closed, no wink"
+  },
+  "love_heart": {
+   "seeds": [
+    8220,
+    8221
+   ],
+   "pick": {
+    "marker": 8220,
+    "paper": 8220,
+    "clay": 8221
+   },
+   "notes": "fine; clay has a visible fingerprint in the middle"
+  },
+  "hand_thumbs_up": {
+   "seeds": [
+    8580,
+    8581
+   ],
+   "pick": null,
+   "notes": "WRONG GESTURE in all 6: index finger pointing up, thumb tucked in; prompt needs rework (e.g. describe the thumb pointing up and the four fingers curled into the palm)"
+  },
+  "hand_peace": {
+   "seeds": [
+    8680,
+    8681
+   ],
+   "pick": {
+    "marker": 8681,
+    "paper": 8681,
+    "clay": 8680
+   },
+   "notes": "gesture right, fingers countable at 256 px"
+  },
+  "animal_fox": {
+   "seeds": [
+    9040,
+    9041
+   ],
+   "pick": {
+    "marker": 9040,
+    "paper": 9041,
+    "clay": 9040
+   },
+   "notes": "marker 9041: white muzzle cut out as background (transparent hole); white areas touching the grey background are a cutout risk"
+  },
+  "party_popper": {
+   "seeds": [
+    9460,
+    9461
+   ],
+   "pick": {
+    "marker": 9461,
+    "paper": 9461,
+    "clay": null
+   },
+   "notes": "clay both seeds: a little clay figure wearing a party hat, not a popper; marker 9460 has a stray stroke under the cone"
+  },
+  "feel_angry": {
+   "seeds": [
+    7540,
+    7541
+   ],
+   "pick": {
+    "marker": 7541,
+    "paper": 7540,
+    "clay": 7540
+   },
+   "notes": "marker 7540: tongue out, reads as cheeky rather than angry"
+  }
  },
  "text_in_image": "none in 48/48",
- "cutout_check": "checked on checkerboard and dark background: no light or dark halo; no EDGE or EMPTY warnings"
+ "cutout_check": "checked on checkerboard and dark background: no light or dark halo; no EDGE or EMPTY warnings",
+ "I1": {
+  "batch": "I1",
+  "images": 386,
+  "failed": 0,
+  "review": "by eye on the 30 sheets; pick null = no usable seed",
+  "styles": {
+   "marker": "clean; some seeds have a floating cast-shadow stroke under the object (prompt: drop the ground shadow)",
+   "paper": "the coloured paper stack behind the subject is still there on most seeds; objects get cut-out human silhouettes (ring, crown, coffee, laptop)",
+   "clay": "no fingerprints any more; objects turn into mascot characters (ring, crown, confetti, popper, heart, coffee, laptop, eyes) -> object-only wording needed"
+  },
+  "ids": {
+   "smile_happy": {
+    "seeds": [
+     7020,
+     7021,
+     7022,
+     7023
+    ],
+    "pick": {
+     "marker": 7020,
+     "paper": 7023,
+     "clay": 7022
+    },
+    "notes": "all fine; paper: coloured paper stack behind the face on every seed"
+   },
+   "smile_yum": {
+    "seeds": [
+     7260,
+     7261,
+     7262,
+     7263
+    ],
+    "pick": {
+     "marker": 7260,
+     "paper": 7262,
+     "clay": 7260
+    },
+    "notes": "marker 7262: stray shadow stroke under the face"
+   },
+   "feel_tear": {
+    "seeds": [
+     7500,
+     7501,
+     7502,
+     7503
+    ],
+    "pick": {
+     "marker": 7500,
+     "paper": 7502,
+     "clay": 7500
+    },
+    "notes": "all fine"
+   },
+   "feel_worn_out": {
+    "seeds": [
+     7700,
+     7701,
+     7702,
+     7703
+    ],
+    "pick": {
+     "marker": 7702,
+     "paper": 7701,
+     "clay": 7701
+    },
+    "notes": "marker 7701: smaller face plus stray shadow stroke"
+   },
+   "flirt_kiss": {
+    "seeds": [
+     7920,
+     7921,
+     7922,
+     7923
+    ],
+    "pick": {
+     "marker": 7922,
+     "paper": 7922,
+     "clay": 7920
+    },
+    "notes": "marker 7921 and paper 7921: winks with both eyes; clay 7921: red lips instead of a kiss"
+   },
+   "flirt_eyes": {
+    "seeds": [
+     8060,
+     8061,
+     8062,
+     8063
+    ],
+    "pick": {
+     "marker": 8061,
+     "paper": 8062,
+     "clay": null
+    },
+    "notes": "marker: scribbled dark blob around the eyes; paper: eyes on a paper stack; clay: turns into a pink creature with a body on every seed -> reprompt (eyes only)"
+   },
+   "love_hearts": {
+    "seeds": [
+     8240,
+     8241,
+     8242,
+     8243
+    ],
+    "pick": {
+     "marker": 8241,
+     "paper": 8242,
+     "clay": 8240
+    },
+    "notes": "paper 8241: human silhouette cut into the heart"
+   },
+   "love_ring": {
+    "seeds": [
+     8400,
+     8401,
+     8402,
+     8403
+    ],
+    "pick": {
+     "marker": 8402,
+     "paper": null,
+     "clay": null
+    },
+    "notes": "paper: ring on a stack with human silhouettes; clay: ring worn by a mascot on every seed -> reprompt both (object only)"
+   },
+   "hand_thumbs_down": {
+    "seeds": [
+     8600,
+     8601,
+     8602,
+     8603,
+     8604,
+     8605,
+     8606,
+     8607
+    ],
+    "pick": {
+     "marker": 8602,
+     "paper": 8602,
+     "clay": 8600
+    },
+    "notes": "thumb points up on most seeds: marker only 8602, paper 8600/8602/8603, clay 8600/8602 point down -> reprompt or more seeds"
+   },
+   "hand_point_you": {
+    "seeds": [
+     8800,
+     8801,
+     8802,
+     8803,
+     8804,
+     8805,
+     8806,
+     8807
+    ],
+    "pick": {
+     "marker": 8801,
+     "paper": 8801,
+     "clay": 8801
+    },
+    "notes": "points up, not at the viewer, in all styles (8803 clay: open hand, paper 8804 sideways); paper 8805 on a stack"
+   },
+   "animal_dog": {
+    "seeds": [
+     8980,
+     8981,
+     8982,
+     8983
+    ],
+    "pick": {
+     "marker": 8980,
+     "paper": 8981,
+     "clay": 8982
+    },
+    "notes": "clay 8981 and marker 8983: body visible (head-only otherwise); paper 8983: coloured collar shapes"
+   },
+   "animal_monkey_see": {
+    "seeds": [
+     9220,
+     9221,
+     9222,
+     9223
+    ],
+    "pick": {
+     "marker": 9222,
+     "paper": 9223,
+     "clay": 9220
+    },
+    "notes": "paper 9220/9222: coloured patchwork chest"
+   },
+   "party_confetti": {
+    "seeds": [
+     9480,
+     9481,
+     9482,
+     9483
+    ],
+    "pick": {
+     "marker": 9482,
+     "paper": 9483,
+     "clay": null
+    },
+    "notes": "marker 9481/9483: floating shadow stroke; paper 9481: no confetti; clay: confetti ball held by a mascot on every seed -> reprompt"
+   },
+   "party_crown": {
+    "seeds": [
+     9600,
+     9601,
+     9602,
+     9603
+    ],
+    "pick": {
+     "marker": 9601,
+     "paper": null,
+     "clay": null
+    },
+    "notes": "marker: floating shadow strokes; paper: crown on a paper bust on every seed; clay: crown worn by a mascot on every seed -> reprompt both"
+   },
+   "food_coffee": {
+    "seeds": [
+     9740,
+     9741,
+     9742,
+     9743
+    ],
+    "pick": {
+     "marker": 9742,
+     "paper": 9743,
+     "clay": 9740
+    },
+    "notes": "paper 9741/9742: human silhouette next to the cup; clay 9741/9743: mascot, 9742 cup with a face"
+   },
+   "food_cookie": {
+    "seeds": [
+     9860,
+     9861,
+     9862,
+     9863
+    ],
+    "pick": {
+     "marker": 9861,
+     "paper": 9861,
+     "clay": 9861
+    },
+    "notes": "paper: stack behind except 9861; clay 9860/9862: arms on the cookie"
+   },
+   "nature_sun": {
+    "seeds": [
+     9980,
+     9981,
+     9982,
+     9983
+    ],
+    "pick": {
+     "marker": 9980,
+     "paper": 9981,
+     "clay": 9981
+    },
+    "notes": "all fine"
+   },
+   "nature_blossom": {
+    "seeds": [
+     10080,
+     10081,
+     10082,
+     10083
+    ],
+    "pick": {
+     "marker": 10082,
+     "paper": 10080,
+     "clay": 10080
+    },
+    "notes": "clay 10081: cherry in the middle"
+   },
+   "day_zzz": {
+    "seeds": [
+     10180,
+     10181,
+     10182,
+     10183
+    ],
+    "pick": {
+     "marker": 10180,
+     "paper": 10180,
+     "clay": 10182
+    },
+    "notes": "marker 10181-10183: floating shadow strokes; marker draws a cap on a pillow (no sleeper), clay/paper a sleeping kid"
+   },
+   "day_laptop": {
+    "seeds": [
+     10280,
+     10281,
+     10282,
+     10283
+    ],
+    "pick": {
+     "marker": 10280,
+     "paper": 10283,
+     "clay": 10282
+    },
+    "notes": "screens blank, no text; paper 10281/10282: human silhouette; clay 10281/10283: mascot"
+   },
+   "smile_laugh": {
+    "seeds": [
+     7060,
+     7061,
+     7062,
+     7063
+    ],
+    "pick": {
+     "marker": 7060,
+     "paper": 7062,
+     "clay": 7061
+    },
+    "notes": "all fine"
+   },
+   "flirt_wink": {
+    "seeds": [
+     7900,
+     7901,
+     7902,
+     7903
+    ],
+    "pick": {
+     "marker": 7900,
+     "paper": 7902,
+     "clay": 7902
+    },
+    "notes": "paper 7901: brighter yellow, off-palette"
+   },
+   "love_heart": {
+    "seeds": [
+     8220,
+     8221,
+     8222,
+     8223
+    ],
+    "pick": {
+     "marker": 8222,
+     "paper": 8220,
+     "clay": 8220
+    },
+    "notes": "clay 8221-8223: heart grows arms and legs -> only 8220 usable"
+   },
+   "hand_thumbs_up": {
+    "seeds": [
+     8580,
+     8581,
+     8582,
+     8583,
+     8584,
+     8585,
+     8586,
+     8587
+    ],
+    "pick": {
+     "marker": 8582,
+     "paper": 8585,
+     "clay": 8583
+    },
+    "notes": "all fine"
+   },
+   "hand_peace": {
+    "seeds": [
+     8680,
+     8681,
+     8682,
+     8683,
+     8684,
+     8685,
+     8686,
+     8687
+    ],
+    "pick": {
+     "marker": 8682,
+     "paper": 8680,
+     "clay": 8681
+    },
+    "notes": "paper 8684: three fingers"
+   },
+   "animal_fox": {
+    "seeds": [
+     9040,
+     9041,
+     9042,
+     9043
+    ],
+    "pick": {
+     "marker": 9041,
+     "paper": 9042,
+     "clay": 9041
+    },
+    "notes": "white muzzle OK in all styles; marker 9043 cropped at the bottom (EDGE)"
+   },
+   "party_popper": {
+    "seeds": [
+     9460,
+     9461,
+     9462,
+     9463
+    ],
+    "pick": {
+     "marker": 9461,
+     "paper": 9461,
+     "clay": null
+    },
+    "notes": "clay: popper held by a mascot on every seed -> reprompt"
+   },
+   "feel_angry": {
+    "seeds": [
+     7540,
+     7541,
+     7542,
+     7543
+    ],
+    "pick": {
+     "marker": 7542,
+     "paper": 7541,
+     "clay": 7543
+    },
+    "notes": "paper 7540: folded corner on the face"
+   }
+  }
+ }
 }
