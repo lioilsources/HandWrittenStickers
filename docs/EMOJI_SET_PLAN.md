@@ -56,7 +56,7 @@ generovat znovu.
 | # | Rozhodnutí | Výchozí volba | Proč |
 |---|---|---|---|
 | D1 | Jak se emoji hýbe | Kódem, osm pohybů přiřazených po položkách. Žádné video modely. | Drží shodu náhledu s GIFem, 150 obrázků má pod 6 MB a celá sada stojí asi 6 hodin GPU. Video by znamenalo odstranění pozadí po snímcích, hledání švu smyčky a desítky MB. |
-| D2 | Zdarma, nebo placené | Všech 150+ zdarma. | Placený balíček by chtěl nový produkt v obou obchodech. Jde přidat později klíčem `pack` jako u písem. |
+| D2 | Zdarma, nebo placené | **Změněno 2026-11-13 (uživatel):** všechny tři styly. Papír zdarma, fix a modelína každý jako balíček za 0,99 USD (`pack` jako u písem, součást `all`). | Stejná sada 180 emoji ve třech stylech; v pickeru přepínač stylu, zamčený styl jde vyzkoušet, export otevře paywall. |
 | D3 | Velikost | 384 px WebP, kvalita 88, nejvýš 40 kB na kus. | Odznak v exportu mívá 230–430 px, dnešních 320 px se u krátkých textů zvětšuje. |
 | D4 | Bílý samolepkový okraj | Bez okraje. | Je to poznávací znak SwypeKids a na bílém pozadí samolepky stejně není vidět. |
 | D5 | Ruce a obličeje | Neutrální žlutá jako u běžných emoji, pět prstů. | Bez voleb odstínu pleti, jedna sada. |
@@ -64,7 +64,7 @@ generovat znovu.
 
 Blokující body, kde se čeká na uživatele:
 
-- **B1 (po F3):** výběr jednoho ze tří stylů ze zkušebních archů.
+- **B1 (po F3):** ~~výběr jednoho ze tří stylů~~ Rozhodnuto 2026-11-13: všechny tři (`styles.json` `selected` = seznam, `free` = paper).
 - **B2 (po F6):** schválení archů všech kategorií před sloučením do `main`.
 
 ## 4. Pravidla
@@ -501,8 +501,8 @@ Vyvíjí se proti zkušebním obrázkům z F4; do té doby proti dočasným make
 - [ ] L40S pošle tři archy (jeden na styl) s výřezy na světlém i tmavém
   podkladu, vždy i ve zmenšení na 64 px.
 - [ ] Opus z každého stylu vyexportuje jeden GIF z appky a přiloží ho.
-- [ ] **B1: uživatel vybere styl.** Vybraný blok se zapíše do `styles.json`
-  jako `selected`; ostatní zůstanou pro záznam.
+- [x] **B1:** všechny tři styly, papír zdarma (2026-11-13). Prompty papíru a modelíny
+  upravené po I0 (stoh papíru, otisky prstů); I1 je ověří na emoji z I0.
 
 ### F4: pilot I1 (L40S, asi 30 minut GPU)
 

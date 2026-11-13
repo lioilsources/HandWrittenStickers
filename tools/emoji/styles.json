@@ -1,10 +1,15 @@
 {
- "_comment": "Prompt = styles[selected or candidate] + ', ' + subject + ', ' + framing. Qwen-Image ignores negatives (L40S, 2026-11-12), so framing describes what we want; negative is still sent for models that use it. See docs/EMOJI_SET_PLAN.md §6.",
- "selected": null,
+ "_comment": "Prompt = styles[style] + ', ' + subject + ', ' + framing. Qwen-Image ignores negatives (L40S, 2026-11-12), so styles and framing describe what we want; negative is still sent for models that use it. All three styles ship (2026-11-13): paper is free, marker and clay are in-app packs. See docs/EMOJI_SET_PLAN.md §6.",
+ "selected": [
+  "paper",
+  "marker",
+  "clay"
+ ],
+ "free": "paper",
  "styles": {
   "marker": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes",
-  "paper": "cut-paper collage illustration, layered coloured paper shapes, slightly rough hand-cut edges, soft shadow between the layers, gouache texture",
-  "clay": "soft 3D clay figure, rounded matte plasticine shapes, gentle studio light, vivid colours, subtle fingerprint texture"
+  "paper": "paper-craft illustration, the subject itself built from a few hand-cut coloured paper pieces glued onto each other, clean scissor-cut edges that follow the subject's own outline, soft shadow under each piece, light gouache texture",
+  "clay": "soft 3D clay figure, rounded smooth plasticine shapes with a satin finish, gentle studio light, vivid colours"
  },
  "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat medium grey background",
  "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers",

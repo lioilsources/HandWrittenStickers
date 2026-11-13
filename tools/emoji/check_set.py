@@ -71,8 +71,9 @@ def check_styles(styles, errors):
         m = BANNED.search(block)
         if m:
             errors.append(f'style {name} contains "{m.group(0)}"')
-    if styles['selected'] not in (None, *styles['styles']):
-        errors.append(f'selected style {styles["selected"]} does not exist')
+    for s in [*(styles['selected'] or []), styles.get('free')]:
+        if s is not None and s not in styles['styles']:
+            errors.append(f'style {s} does not exist')
 
 
 def check_assets(data, errors):

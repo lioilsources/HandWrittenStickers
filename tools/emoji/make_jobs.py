@@ -8,8 +8,9 @@
 
 Output: tools/emoji/jobs/<batch>.json, a list of
 {file, id, style, seed, size, prompt, negative}. `file` is the name the
-draft PNG gets (<id>__<style>__<seed>.png). I1–I3 need styles.json
-`selected`."""
+draft PNG gets (<id>__<style>__<seed>.png). I1–I3 run every style in
+styles.json `selected`; I1 is the pilot plus the style-test emoji (to check the
+prompt fixes after I0), I2 the rest. `--styles` narrows any batch."""
 import argparse
 import json
 import os
@@ -52,6 +53,7 @@ def main():
     ap.add_argument('--ids', help='comma-separated ids (I3)')
     ap.add_argument('--from-k', type=int, default=0)
     ap.add_argument('--count', type=int, default=6)
+    ap.add_argument('--styles', help='comma-separated styles (default: selected)')
     a = ap.parse_args()
 
     data, styles = load('emoji_set.json'), load('styles.json')
@@ -64,10 +66,10 @@ def main():
                 for seed in seeds(styles, by_id[id_], range(test['seeds_per_item'])):
                     jobs.append(job(styles, by_id[id_], style, seed))
     else:
-        style = styles['selected']
-        if not style:
-            raise SystemExit('styles.json has no selected style yet (decision B1)')
-        pilot = pilot_ids(data, set(test['ids']))
+        chosen = a.styles.split(',') if a.styles else styles['selected']
+        if not chosen:
+            raise SystemExit('styles.json has no selected styles yet (decision B1)')
+        pilot = pilot_ids(data, set(test['ids'])) + test['ids']
         if a.batch == 'I1':
             ids, ks = pilot, None
         elif a.batch == 'I2':
@@ -77,10 +79,12 @@ def main():
             if not a.ids:
                 raise SystemExit('I3 needs --ids')
             ids, ks = a.ids.split(','), range(a.from_k, a.from_k + a.count)
-        for id_ in ids:
-            item = by_id[id_]
-            for seed in seeds(styles, item, ks or default_ks(item)):
-                jobs.append(job(styles, item, style, seed))
+        # Style-major, so L40S can stop after one style and still have a complete set.
+        for style in chosen:
+            for id_ in ids:
+                item = by_id[id_]
+                for seed in seeds(styles, item, ks or default_ks(item)):
+                    jobs.append(job(styles, item, style, seed))
 
     os.makedirs(os.path.join(HERE, 'jobs'), exist_ok=True)
     path = os.path.join(HERE, 'jobs', f'{a.batch}.json')

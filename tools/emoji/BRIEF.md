@@ -35,9 +35,13 @@ Posílej dávku najednou (jinak se model přenačítá).
 | Dávka | Obsah | Obrázků | Pak |
 |---|---|---|---|
 | **I0** | 8 emoji × 3 styly × 2 seedy | 48 | **stop**, uživatel vybírá styl |
-| **I1** | pilot, 2 emoji z každé kategorie, 4 seedy (ruce 8) | 88 | **stop**, čekej na pokyn |
-| **I2** | zbytek sady | ~700 | hlášení |
+| **I1** | pilot: 2 emoji z každé kategorie + 8 emoji z I0, 4 seedy (ruce 8), **všechny 3 styly** | 384 | **stop**, čekej na pokyn |
+| **I2** | zbytek sady, všechny 3 styly | ~2000 | hlášení po každém stylu |
 | **I3** | opravy podle seznamu od Stickers | podle potřeby | hlášení |
+
+Od I1 se generují **všechny tři styly** (uživatel 2026-11-13: papír zdarma, fix a modelína jako
+placené balíčky). Joby jsou seřazené po stylech: papír, fix, modelína. Prompty papíru a modelíny
+jsou po I0 upravené (bez stohu papíru za objektem, bez otisků prstů).
 
 Seed: `7000 + 20 × n + k` (`n` z `emoji_set.json`), už spočítaný v `jobs/*.json`.
 Rozměr 1024 × 1024.
@@ -57,7 +61,7 @@ v tvém chatu. Po souhlasu:
 Na větev **`emoji-drafts`** (nikdy se neslučuje):
 
 ```
-tools/emoji/drafts/sheets/<dávka>_<kategorie>.jpg   # řádek = emoji, sloupec = seed (u I0 styl × seed),
+tools/emoji/drafts/sheets/<dávka>_<styl>_<kategorie>.jpg   # řádek = emoji, sloupec = seed (u I0 styl × seed),
                                                     # buňka 256 px na šachovnici, pod buňkou seed,
                                                     # JPEG do 1,5 MB; u I0 navíc pás 64 px
 tools/emoji/drafts/manifest.json                    # backend; u každého id: seeds, pick, notes
@@ -68,7 +72,7 @@ tools/emoji/drafts/manifest.json                    # backend; u každého id: s
 Na větev **`emoji-own-set`** až po výběru (seznam pošle Stickers):
 
 ```
-tools/emoji/masters/<id>.webp    # vybraný výřez, 768 px, bezztrátový WebP s alfou, do 150 kB
+tools/emoji/masters/<styl>/<id>.webp    # vybraný výřez, 768 px, bezztrátový WebP s alfou, do 150 kB
 ```
 
 Zmenšení do aplikace, testy a zapojení dělá Stickers na Macu.
