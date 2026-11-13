@@ -182,7 +182,7 @@ ids, so Play sells the lowercase form (`com.ol1n.handwrittenstickers.pack.kids`)
 match `assets/packs/packs.json`. The limits here are kept short enough for
 both stores.
 
-Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč). The two emoji style packs (paper emoji stay free) are not created in App Store Connect or Play Console yet; they ship with the own emoji set (docs/EMOJI_SET_PLAN.md).
+Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč). The two emoji style packs (paper emoji stay free) were created on 2026-11-13: App Store Connect with texts, USD + CZK price and availability, still without the review screenshot (taken once the emoji set is in the app); Play active. They ship with the own emoji set (docs/EMOJI_SET_PLAN.md).
 
 | Product id | Name en (≤30) | Description en (≤45) | Name cs (≤30) | Description cs (≤45) |
 |---|---|---|---|---|
