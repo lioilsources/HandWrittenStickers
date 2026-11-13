@@ -145,7 +145,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   /// Pack the current look needs and the user does not own: the sheet's,
-  /// else that of the applied (unchanged) preset.
+  /// else that of the applied (unchanged) preset, else the emoji style's.
   ContentPack? get _lockedPack {
     final sheet = _sheet;
     if (sheet != null && !_entitlements.canUseSheet(sheet)) {
@@ -154,6 +154,10 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final preset = _appliedPreset;
     if (preset != null && !_modified && !_entitlements.canUsePreset(preset)) {
       return _entitlements.packs.byId(preset.pack);
+    }
+    final style = _emojiIndex?.styleById(_emoji?.style);
+    if (style != null && !_entitlements.ownsPack(style.pack)) {
+      return _entitlements.packs.byId(style.pack);
     }
     return null;
   }
@@ -171,6 +175,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
         pack,
         sheets: _sheetIndex?.sheets ?? const [],
         presets: _presets.builtIns,
+        emoji: _emojiIndex,
       ),
       loaderFor: _sampleLoader,
     );
@@ -200,6 +205,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
           entitlements: _entitlements,
           sheets: _sheetIndex?.sheets ?? const [],
           presets: _presets.builtIns,
+          emoji: _emojiIndex,
           loaderFor: _sampleLoader,
         ),
       ),
@@ -222,11 +228,13 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       context,
       index: index,
       selected: _emoji,
-      recent: [for (final id in _presets.recentEmoji) ?index.byId(id)],
+      recentIds: _presets.recentEmoji,
+      style: _presets.emojiStyle,
+      isLocked: (s) => !_entitlements.ownsPack(s.pack),
     );
     if (!mounted) return;
     setState(() => _emoji = tag);
-    if (tag != null) _presets.noteEmojiUsed(tag.id);
+    if (tag != null) _presets.noteEmojiUsed(tag.id, style: tag.style);
   }
 
   Future<void> _initializeSheets() async {

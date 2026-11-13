@@ -113,12 +113,20 @@
   "gridDragHint": "Drag the 4 corners to align the grid on the photo,\nthen export the perspective-corrected image.",
   "sheetCount": "{count, plural, =1{1 font} other{{count} fonts}}",
   "presetCount": "{count, plural, =1{1 preset} other{{count} presets}}",
+  "emojiCount": "{count, plural, =1{1 emoji} other{{count} emoji}}",
   "presetsList": "Presets: {names}",
   "unlimitedPresets": "Unlimited presets of your own",
   "buyOnceKeepForever": "Buy once, keep forever, on your other devices too",
   "featuresStayFree": "Every feature of the app stays free",
   "loadingPrice": "Loading price…",
   "@sheetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@emojiCount": {
     "placeholders": {
       "count": {
         "type": "int"

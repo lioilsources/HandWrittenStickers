@@ -31,6 +31,7 @@ class PresetStore extends ChangeNotifier {
   List<Preset> _user = [];
   EditorState? _lastState;
   List<String> _recentEmoji = [];
+  String? _emojiStyle;
   Directory? _dir;
   bool _loaded = false;
 
@@ -70,6 +71,9 @@ class PresetStore extends ChangeNotifier {
 
   /// Ids of the emoji tags used last, most recent first.
   List<String> get recentEmoji => List.unmodifiable(_recentEmoji);
+
+  /// Emoji art style picked last, null before the first pick.
+  String? get emojiStyle => _emojiStyle;
 
   Preset? byId(String? id) {
     if (id == null) return null;
@@ -117,6 +121,9 @@ class PresetStore extends ChangeNotifier {
         for (final id in recent['emoji'] as List)
           if (id is String) id,
     ].take(maxRecentEmoji).toList();
+    _emojiStyle = recent is Map && recent['style'] is String
+        ? recent['style'] as String
+        : null;
     _loaded = true;
     notifyListeners();
   }
@@ -175,14 +182,25 @@ class PresetStore extends ChangeNotifier {
     await _writeJson(editorStateFile, state.toJson());
   }
 
-  /// Moves [id] to the front of [recentEmoji]. Does not notify.
-  Future<void> noteEmojiUsed(String id) async {
-    if (_recentEmoji.isNotEmpty && _recentEmoji.first == id) return;
+  /// Moves [id] to the front of [recentEmoji] and remembers [style] as
+  /// [emojiStyle]. Does not notify.
+  Future<void> noteEmojiUsed(String id, {String? style}) async {
+    style ??= _emojiStyle;
+    if (_recentEmoji.isNotEmpty &&
+        _recentEmoji.first == id &&
+        style == _emojiStyle) {
+      return;
+    }
+    _emojiStyle = style;
     _recentEmoji = [
       id,
       ..._recentEmoji.where((e) => e != id),
     ].take(maxRecentEmoji).toList();
-    await _writeJson(recentEmojiFile, {'version': 1, 'emoji': _recentEmoji});
+    await _writeJson(recentEmojiFile, {
+      'version': 1,
+      'emoji': _recentEmoji,
+      'style': ?_emojiStyle,
+    });
   }
 
   static final math.Random _random = math.Random();

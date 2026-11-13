@@ -69,6 +69,16 @@ void main() {
       expect(b.recentEmoji, hasLength(PresetStore.maxRecentEmoji));
       expect(b.recentEmoji.where((e) => e == 'e5'), hasLength(1));
       expect(b.recentEmoji, isNot(contains('e0')));
+      expect(b.emojiStyle, isNull);
+
+      // The style picked last survives a restart; a pick without one
+      // keeps it.
+      await b.noteEmojiUsed('e1', style: 'marker');
+      await b.noteEmojiUsed('e2');
+      final c = store();
+      await c.load();
+      expect(c.emojiStyle, 'marker');
+      expect(c.recentEmoji.take(2), ['e2', 'e1']);
     });
 
     test('saves, reloads, renames, overwrites and deletes', () async {

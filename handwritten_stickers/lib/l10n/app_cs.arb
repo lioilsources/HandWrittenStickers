@@ -65,6 +65,7 @@
   "gridDragHint": "Přetáhni 4 rohy tak, aby mřížka seděla na fotku,\npak exportuj obrázek s opravenou perspektivou.",
   "sheetCount": "{count, plural, =1{1 písmo} few{{count} písma} other{{count} písem}}",
   "presetCount": "{count, plural, =1{1 preset} few{{count} presety} other{{count} presetů}}",
+  "emojiCount": "{count, plural, =1{1 emoji} few{{count} emoji} other{{count} emoji}}",
   "presetsList": "Presety: {names}",
   "unlimitedPresets": "Neomezeně vlastních presetů",
   "buyOnceKeepForever": "Jednou koupíš, máš navždy, i na dalších zařízeních",

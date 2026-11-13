@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
@@ -55,6 +56,33 @@ List<Offset> _subjectCorners(StickerLayout layout, EmojiPose pose) {
     ])
       centre + MatrixUtils.transformPoint(m, c),
   ];
+}
+
+/// The bundled index with a second, paid style that reuses the paper art
+/// (real asset paths, so images still load).
+class _TwoStyleBundle extends CachingAssetBundle {
+  @override
+  Future<ByteData> load(String key) => rootBundle.load(key);
+
+  @override
+  Future<String> loadString(String key, {bool cache = true}) async {
+    final text = await rootBundle.loadString(key);
+    if (key != EmojiIndex.assetPath) return text;
+    final data = json.decode(text) as Map<String, dynamic>;
+    final first = (data['styles'] as List).first['id'] as String;
+    (data['styles'] as List).add({
+      'id': 'marker',
+      'name': {'cs': 'Fix', 'en': 'Marker'},
+      'pack': 'emoji_marker',
+    });
+    // Marker has every other emoji, so categories differ between styles.
+    var i = 0;
+    for (final e in data['emoji'] as List) {
+      final files = e['files'] as Map;
+      if ((i++).isEven) files['marker'] = files[first];
+    }
+    return json.encode(data);
+  }
 }
 
 void main() {
@@ -185,6 +213,7 @@ void main() {
       final base = index.tags.first;
       final tag = EmojiTag(
         id: base.id,
+        style: base.style,
         emoji: base.emoji,
         name: base.name,
         asset: base.asset,
@@ -212,6 +241,7 @@ void main() {
     await tester.runAsync(() async => index = await EmojiIndex.load());
     addTearDown(rootBundle.clear);
     final recent = [index.tags.last];
+    final recentIds = [for (final t in recent) t.id];
     EmojiTag? picked;
     await tester.pumpWidget(
       MaterialApp(
@@ -223,7 +253,7 @@ void main() {
             onPressed: () async => picked = await showEmojiPicker(
               context,
               index: index,
-              recent: recent,
+              recentIds: recentIds,
             ),
             child: const Text('open'),
           ),
@@ -246,5 +276,68 @@ void main() {
     await tester.tap(find.byKey(ValueKey('emoji-${first.id}')));
     await tester.pumpAndSettle();
     expect(picked, first);
+  });
+
+  test('styles: the first is free, each emoji knows its style', () async {
+    final index = await EmojiIndex.load(bundle: _TwoStyleBundle());
+    expect(index.styles.map((s) => s.id), ['paper', 'marker']);
+    expect(index.defaultStyle.pack, isNull);
+    expect(index.styleById('marker')?.pack, 'emoji_marker');
+    final paper = index.inStyle('paper'), marker = index.inStyle('marker');
+    expect(marker.length, (paper.length + 1) ~/ 2);
+    expect(index.tags, paper);
+    final id = marker.first.id;
+    expect(index.byId(id)?.style, 'paper');
+    expect(index.byId(id, style: 'marker')?.style, 'marker');
+    // Same emoji, other style: a different tag.
+    expect(index.byId(id), isNot(index.byId(id, style: 'marker')));
+    expect(index.byId(paper[1].id, style: 'marker'), isNull);
+  });
+
+  testWidgets('the picker switches styles and marks locked ones', (
+    tester,
+  ) async {
+    late EmojiIndex index;
+    await tester.runAsync(
+      () async => index = await EmojiIndex.load(bundle: _TwoStyleBundle()),
+    );
+    addTearDown(rootBundle.clear);
+    final paper = index.tags;
+    EmojiTag? picked;
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('cs'),
+        home: Builder(
+          builder: (context) => TextButton(
+            onPressed: () async => picked = await showEmojiPicker(
+              context,
+              index: index,
+              // An odd one: not drawn in marker, so Recent empties there.
+              recentIds: [paper[1].id],
+              style: 'paper',
+              isLocked: (s) => s.pack != null,
+            ),
+            child: const Text('open'),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('open'));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('emoji-styles')), findsOneWidget);
+    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
+    expect(find.byKey(ValueKey('emoji-${paper[1].id}')), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('emoji-style-marker')));
+    await tester.pumpAndSettle();
+    // Recent has nothing in marker: the first marker category opens.
+    expect(find.byKey(const ValueKey('emoji-cat-recent')), findsNothing);
+    final first = index.inStyle('marker').first;
+    await tester.tap(find.byKey(ValueKey('emoji-${first.id}')));
+    await tester.pumpAndSettle();
+    expect(picked, first);
+    expect(picked?.style, 'marker');
   });
 }

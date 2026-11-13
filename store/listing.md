@@ -182,7 +182,7 @@ ids, so Play sells the lowercase form (`com.ol1n.handwrittenstickers.pack.kids`)
 match `assets/packs/packs.json`. The limits here are kept short enough for
 both stores.
 
-Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč).
+Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč). The two emoji style packs (paper emoji stay free) are not created in App Store Connect or Play Console yet; they ship with the own emoji set (docs/EMOJI_SET_PLAN.md).
 
 | Product id | Name en (≤30) | Description en (≤45) | Name cs (≤30) | Description cs (≤45) |
 |---|---|---|---|---|
@@ -191,6 +191,8 @@ Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč).
 | `com.ol1n.handwrittenStickers.pack.poster` | Posters & signs | 19 bold and historic typefaces | Plakát a nápisy | 19 výrazných a historických písem |
 | `com.ol1n.handwrittenStickers.pack.kids` | For kids | 7 colourful bubble and playful fonts | Pro děti | 7 barevných a hravých dětských písem |
 | `com.ol1n.handwrittenStickers.pack.materials` | Materials | Gingerbread, neon and plasticine letters | Materiály | Písmena z perníku, neonu a modelíny |
+| `com.ol1n.handwrittenStickers.pack.emoji_marker` | Marker emoji | Every emoji drawn in marker and pencil | Emoji fixou | Všechna emoji kreslená fixou |
+| `com.ol1n.handwrittenStickers.pack.emoji_clay` | Clay emoji | Every emoji modelled in soft clay | Emoji z modelíny | Všechna emoji z modelíny |
 | `com.ol1n.handwrittenStickers.pack.presets` | Your presets | Save your own font and style combinations | Vlastní presety | Ukládej si vlastní kombinace písma a stylu |
 | `com.ol1n.handwrittenStickers.pack.all` | Everything | All packs at once | Komplet | Všechny balíčky najednou |
 

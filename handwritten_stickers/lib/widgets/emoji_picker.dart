@@ -5,21 +5,31 @@ import '../models/emoji_tag.dart';
 import 'emoji_sticker.dart';
 
 /// Bottom sheet for tagging the message with one animated emoji: a row of
-/// categories (plus "Recent" when [recent] is not empty) over a grid of the
-/// chosen one. Resolves to the chosen tag, `null` for "no emoji", or the
+/// art styles (when the index has more than one), a row of categories (plus
+/// "Recent" when [recentIds] has any) and a grid of the chosen one. Opens in
+/// the style of [selected], else [style], else the default style. Locked
+/// styles ([isLocked]) can be browsed and picked; the editor asks for the
+/// pack on export. Resolves to the chosen tag, `null` for "no emoji", or the
 /// current [selected] when dismissed.
 Future<EmojiTag?> showEmojiPicker(
   BuildContext context, {
   required EmojiIndex index,
   EmojiTag? selected,
-  List<EmojiTag> recent = const [],
+  List<String> recentIds = const [],
+  String? style,
+  bool Function(EmojiStyle style)? isLocked,
 }) async {
   final result = await showModalBottomSheet<_Pick>(
     context: context,
     showDragHandle: true,
     isScrollControlled: true,
-    builder: (context) =>
-        _EmojiPickerSheet(index: index, selected: selected, recent: recent),
+    builder: (context) => _EmojiPickerSheet(
+      index: index,
+      selected: selected,
+      recentIds: recentIds,
+      style: style,
+      isLocked: isLocked ?? (_) => false,
+    ),
   );
   if (result == null) return selected; // dismissed
   return result.tag;
@@ -33,12 +43,16 @@ class _Pick {
 class _EmojiPickerSheet extends StatefulWidget {
   final EmojiIndex index;
   final EmojiTag? selected;
-  final List<EmojiTag> recent;
+  final List<String> recentIds;
+  final String? style;
+  final bool Function(EmojiStyle style) isLocked;
 
   const _EmojiPickerSheet({
     required this.index,
     required this.selected,
-    required this.recent,
+    required this.recentIds,
+    required this.style,
+    required this.isLocked,
   });
 
   @override
@@ -48,31 +62,60 @@ class _EmojiPickerSheet extends StatefulWidget {
 class _EmojiPickerSheetState extends State<_EmojiPickerSheet> {
   static const String _recentId = 'recent';
 
+  late String _style = _initialStyle();
   late String _category = _initialCategory();
+
+  String _initialStyle() {
+    final index = widget.index;
+    for (final id in [widget.selected?.style, widget.style]) {
+      if (index.styleById(id) != null) return id!;
+    }
+    return index.defaultStyle.id;
+  }
 
   String _initialCategory() {
     final sel = widget.selected?.category;
-    if (sel != null && widget.index.categories.any((c) => c.id == sel)) {
-      return sel;
-    }
-    if (widget.recent.isNotEmpty) return _recentId;
-    return widget.index.categories.isEmpty
-        ? ''
-        : widget.index.categories.first.id;
+    if (sel != null && _categories.any((c) => c.id == sel)) return sel;
+    if (_recent.isNotEmpty) return _recentId;
+    return _categories.isEmpty ? '' : _categories.first.id;
   }
 
+  /// Recent emoji, drawn in the current style.
+  List<EmojiTag> get _recent => [
+    for (final id in widget.recentIds) ?widget.index.byId(id, style: _style),
+  ];
+
+  /// Categories that have emoji in the current style.
+  List<EmojiCategory> get _categories => [
+    for (final c in widget.index.categories)
+      if (widget.index.inCategory(c.id, style: _style).isNotEmpty) c,
+  ];
+
   List<EmojiTag> get _tags {
-    if (_category == _recentId) return widget.recent;
+    if (_category == _recentId) return _recent;
     // An index without categories (old format) shows everything.
-    if (widget.index.categories.isEmpty) return widget.index.tags;
-    return widget.index.inCategory(_category);
+    if (widget.index.categories.isEmpty) return widget.index.inStyle(_style);
+    return widget.index.inCategory(_category, style: _style);
   }
+
+  void _setStyle(String style) => setState(() {
+    _style = style;
+    // Keep the category when the new style has it.
+    if (_category == _recentId ? _recent.isEmpty : _tags.isEmpty) {
+      _category = _recent.isNotEmpty
+          ? _recentId
+          : (_categories.isEmpty ? '' : _categories.first.id);
+    }
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = context.l10n;
     final tags = _tags;
+    final recent = _recent;
+    final categories = _categories;
+    final styles = widget.index.styles;
     final dpr = MediaQuery.of(context).devicePixelRatio;
     return SafeArea(
       child: ConstrainedBox(
@@ -102,17 +145,39 @@ class _EmojiPickerSheetState extends State<_EmojiPickerSheet> {
                 ],
               ),
             ),
-            if (widget.index.categories.isNotEmpty)
+            if (styles.length > 1)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
+                child: SegmentedButton<String>(
+                  key: const ValueKey('emoji-styles'),
+                  showSelectedIcon: false,
+                  segments: [
+                    for (final s in styles)
+                      ButtonSegment(
+                        value: s.id,
+                        label: Text(
+                          s.name,
+                          key: ValueKey('emoji-style-${s.id}'),
+                        ),
+                        icon: widget.isLocked(s)
+                            ? const Icon(Icons.lock_outline, size: 16)
+                            : null,
+                      ),
+                  ],
+                  selected: {_style},
+                  onSelectionChanged: (s) => _setStyle(s.first),
+                ),
+              ),
+            if (categories.isNotEmpty)
               SizedBox(
                 height: 48,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   children: [
-                    if (widget.recent.isNotEmpty)
+                    if (recent.isNotEmpty)
                       _chip(_recentId, l10n.emojiRecent, Icons.history),
-                    for (final c in widget.index.categories)
-                      _chip(c.id, c.name),
+                    for (final c in categories) _chip(c.id, c.name),
                   ],
                 ),
               ),

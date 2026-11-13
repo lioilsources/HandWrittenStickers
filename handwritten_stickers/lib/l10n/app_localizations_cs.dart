@@ -237,6 +237,18 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
+  String emojiCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count emoji',
+      few: '$count emoji',
+      one: '1 emoji',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String presetsList(String names) {
     return 'Presety: $names';
   }

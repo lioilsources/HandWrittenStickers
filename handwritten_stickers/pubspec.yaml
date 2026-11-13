@@ -67,6 +67,7 @@ flutter:
 
   assets:
     - assets/emoji/
+    - assets/emoji/paper/
     - assets/presets/
     - assets/packs/
     - assets/glyphs/

@@ -109,6 +109,8 @@ class EntitlementService extends ChangeNotifier {
     'com.ol1n.handwrittenStickers.pack.poster': '25 Kč',
     'com.ol1n.handwrittenStickers.pack.kids': '25 Kč',
     'com.ol1n.handwrittenStickers.pack.materials': '25 Kč',
+    'com.ol1n.handwrittenStickers.pack.emoji_marker': '25 Kč',
+    'com.ol1n.handwrittenStickers.pack.emoji_clay': '25 Kč',
     'com.ol1n.handwrittenStickers.pack.presets': '25 Kč',
     'com.ol1n.handwrittenStickers.pack.all': '99 Kč',
   };

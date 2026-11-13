@@ -488,6 +488,12 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 preset} other{{count} presets}}'**
   String presetCount(int count);
 
+  /// No description provided for @emojiCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 emoji} other{{count} emoji}}'**
+  String emojiCount(int count);
+
   /// No description provided for @presetsList.
   ///
   /// In en, this message translates to:

@@ -20,15 +20,18 @@ enum EmojiMotionKind {
   );
 }
 
-/// One animated emoji sticker a message can be tagged with.
+/// One animated emoji sticker a message can be tagged with, in one style.
 ///
-/// The artwork is one cut-out image (`assets/emoji/<id>.webp`); the
+/// The artwork is one cut-out image (`assets/emoji/<style>/<id>.webp`); the
 /// animation is code ([EmojiMotion]), so preview and GIF export move
 /// identically.
 class EmojiTag {
-  /// Stable key, e.g. `hand_thumbs_up`.
+  /// Stable key, e.g. `hand_thumbs_up`; the same in every style.
   final String id;
   final String category;
+
+  /// Id of the [EmojiStyle] this artwork is drawn in ('' = the only one).
+  final String style;
 
   /// Unicode emoji the sticker stands for (fallback text, semantics).
   final String emoji;
@@ -46,14 +49,16 @@ class EmojiTag {
     required this.name,
     required this.asset,
     this.category = '',
+    this.style = '',
     this.motion = EmojiMotionKind.breathe,
   });
 
   @override
-  bool operator ==(Object other) => other is EmojiTag && other.id == id;
+  bool operator ==(Object other) =>
+      other is EmojiTag && other.id == id && other.style == style;
 
   @override
-  int get hashCode => id.hashCode;
+  int get hashCode => Object.hash(id, style);
 }
 
 /// A group of emoji in the picker.
@@ -64,16 +69,45 @@ class EmojiCategory {
   const EmojiCategory(this.id, this.name);
 }
 
+/// One art style the whole set is drawn in (paper, marker, clay). A style
+/// with a [pack] needs that content pack for export, like a paid sheet.
+class EmojiStyle {
+  final String id;
+  final String name;
+
+  /// Content pack (`packs.json`) the style belongs to; null = free.
+  final String? pack;
+
+  const EmojiStyle(this.id, this.name, {this.pack});
+
+  @override
+  bool operator ==(Object other) => other is EmojiStyle && other.id == id;
+
+  @override
+  int get hashCode => id.hashCode;
+}
+
 /// Index of bundled emoji stickers, read from `assets/emoji/emoji.json`
-/// (written by `tools/emoji/build.py`).
+/// (written by `tools/emoji/build.py`). Version 3 lists [styles] and a file
+/// per style for each emoji; version 2 (one `file`) is a single unnamed
+/// style.
 class EmojiIndex {
   static const String dir = 'assets/emoji/';
   static const String assetPath = '${dir}emoji.json';
 
   final List<EmojiCategory> categories;
-  final List<EmojiTag> tags;
 
-  const EmojiIndex(this.tags, {this.categories = const []});
+  /// Styles in display order; the first is the default (free) one.
+  final List<EmojiStyle> styles;
+
+  /// Every emoji in every style it is drawn in.
+  final List<EmojiTag> all;
+
+  EmojiIndex(
+    this.all, {
+    this.categories = const [],
+    List<EmojiStyle> styles = const [],
+  }) : styles = styles.isEmpty ? const [EmojiStyle('', '')] : styles;
 
   static Future<EmojiIndex> load({
     AssetBundle? bundle,
@@ -87,18 +121,38 @@ class EmojiIndex {
       return v as String;
     }
 
-    return EmojiIndex(
-      [
-        for (final e in data['emoji'] as List)
+    final styles = [
+      for (final s in data['styles'] as List? ?? const [])
+        EmojiStyle(
+          s['id'] as String,
+          text(s['name']),
+          pack: s['pack'] as String?,
+        ),
+    ];
+    final order = {for (final (i, s) in styles.indexed) s.id: i};
+    final all = <EmojiTag>[];
+    for (final e in data['emoji'] as List) {
+      final files = e['files'] is Map
+          ? (e['files'] as Map).cast<String, String>()
+          : {'': e['file'] as String};
+      for (final MapEntry(key: style, value: file) in files.entries) {
+        if (styles.isNotEmpty && !order.containsKey(style)) continue;
+        all.add(
           EmojiTag(
             id: e['id'] as String,
             category: e['category'] as String? ?? '',
+            style: style,
             emoji: e['emoji'] as String,
             name: text(e['name']),
-            asset: '$dir${e['file']}',
+            asset: '$dir$file',
             motion: EmojiMotionKind.parse(e['motion']),
           ),
-      ],
+        );
+      }
+    }
+    return EmojiIndex(
+      all,
+      styles: styles,
       categories: [
         for (final c in data['categories'] as List? ?? const [])
           EmojiCategory(c['id'] as String, text(c['name'])),
@@ -106,17 +160,40 @@ class EmojiIndex {
     );
   }
 
-  EmojiTag? byId(String? id) {
-    for (final t in tags) {
-      if (t.id == id) return t;
+  /// The default style, shown first and free.
+  EmojiStyle get defaultStyle => styles.first;
+
+  EmojiStyle? styleById(String? id) {
+    for (final s in styles) {
+      if (s.id == id) return s;
     }
     return null;
   }
 
-  List<EmojiTag> inCategory(String category) => [
-    for (final t in tags)
-      if (t.category == category) t,
+  /// Emoji of the default style.
+  List<EmojiTag> get tags => inStyle(defaultStyle.id);
+
+  List<EmojiTag> inStyle(String style) => [
+    for (final t in all)
+      if (t.style == style) t,
   ];
+
+  /// [id] drawn in [style] (default: the default style).
+  EmojiTag? byId(String? id, {String? style}) {
+    style ??= defaultStyle.id;
+    for (final t in all) {
+      if (t.id == id && t.style == style) return t;
+    }
+    return null;
+  }
+
+  List<EmojiTag> inCategory(String category, {String? style}) {
+    style ??= defaultStyle.id;
+    return [
+      for (final t in all)
+        if (t.category == category && t.style == style) t,
+    ];
+  }
 }
 
 /// The sticker's transform at one moment of its loop. Offsets are fractions

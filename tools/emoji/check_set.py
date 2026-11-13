@@ -74,67 +74,83 @@ def check_styles(styles, errors):
     for s in [*(styles['selected'] or []), styles.get('free')]:
         if s is not None and s not in styles['styles']:
             errors.append(f'style {s} does not exist')
+    with open(os.path.join(ROOT, 'handwritten_stickers', 'assets', 'packs', 'packs.json')) as f:
+        packs = {p['id'] for p in json.load(f)['packs']}
+    for i, s in enumerate(styles['ship']):
+        if s['id'] not in styles['styles']:
+            errors.append(f'shipped style {s["id"]} does not exist')
+        if (i == 0) != ('pack' not in s):
+            errors.append(f'shipped style {s["id"]}: only the first style is free')
+        if 'pack' in s and s['pack'] not in packs:
+            errors.append(f'shipped style {s["id"]}: pack {s["pack"]} not in packs.json')
 
 
-def check_assets(data, errors):
+def check_assets(data, ship, errors):
+    """Every shipped style must be complete enough on its own: it is a whole
+    set the user can pick, and two of them are sold."""
     from PIL import Image
 
     with open(os.path.join(ASSETS, 'emoji.json')) as f:
         index = json.load(f)
-    if index.get('version') != 2:
-        errors.append('assets/emoji/emoji.json is not version 2')
+    if index.get('version') != 3:
+        errors.append('assets/emoji/emoji.json is not version 3')
         return
-    files = {e['file'] for e in index['emoji']}
-    on_disk = {f for f in os.listdir(ASSETS) if f.endswith('.webp')}
-    for f in sorted(files - on_disk):
-        errors.append(f'index names missing file {f}')
-    for f in sorted(on_disk - files):
-        errors.append(f'file not in index: {f}')
-    total = 0
-    for f in sorted(files & on_disk):
-        path = os.path.join(ASSETS, f)
-        size = os.path.getsize(path)
-        total += size
-        if size > 40_000:
-            errors.append(f'{f}: {size} B over 40 kB')
-        im = Image.open(path).convert('RGBA')
-        if im.size != (384, 384):
-            errors.append(f'{f}: {im.size} is not 384×384')
-            continue
-        a = im.getchannel('A')
-        w, h = im.size
-        edge = [a.getpixel((x, 0)) for x in range(w)] + [a.getpixel((x, h - 1)) for x in range(w)] \
-            + [a.getpixel((0, y)) for y in range(h)] + [a.getpixel((w - 1, y)) for y in range(h)]
-        if max(edge) > 16:
-            errors.append(f'{f}: opaque pixels on the edge (cut failed or subject cropped)')
-        bb = a.point(lambda v: 255 if v > 16 else 0).getbbox()
-        if bb is None:
-            errors.append(f'{f}: empty image')
-            continue
-        fill = max(bb[2] - bb[0], bb[3] - bb[1]) / w
-        if not 0.55 <= fill <= 0.95:
-            errors.append(f'{f}: subject fills {fill:.0%} of the side (want 55–95 %)')
-    if total > 6_000_000:
-        errors.append(f'emoji assets {total} B over 6 MB')
-    by_cat = {}
-    for e in index['emoji']:
-        by_cat.setdefault(e['category'], set()).add(e['id'])
-    for c in data['categories']:
-        core = {e['id'] for e in data['emoji'] if e['category'] == c['id'] and not e.get('reserve')}
-        have = by_cat.get(c['id'], set())
-        if len(have) < MIN_SHARE * len(core):
-            errors.append(f'category {c["id"]}: {len(have)} of {len(core)} built')
-    if len(index['emoji']) < MIN_TOTAL:
-        errors.append(f'only {len(index["emoji"])} emoji built, need {MIN_TOTAL}')
+    built_styles = [s['id'] for s in index['styles']]
+    for s in ship:
+        if s['id'] not in built_styles:
+            errors.append(f'style {s["id"]} has no emoji built')
+    for style in built_styles:
+        files = {e['files'][style] for e in index['emoji'] if style in e['files']}
+        folder = os.path.join(ASSETS, style)
+        on_disk = {f'{style}/{f}' for f in os.listdir(folder) if f.endswith('.webp')}
+        for f in sorted(files - on_disk):
+            errors.append(f'index names missing file {f}')
+        for f in sorted(on_disk - files):
+            errors.append(f'file not in index: {f}')
+        total = 0
+        for f in sorted(files & on_disk):
+            path = os.path.join(ASSETS, f)
+            size = os.path.getsize(path)
+            total += size
+            if size > 40_000:
+                errors.append(f'{f}: {size} B over 40 kB')
+            im = Image.open(path).convert('RGBA')
+            if im.size != (384, 384):
+                errors.append(f'{f}: {im.size} is not 384×384')
+                continue
+            a = im.getchannel('A')
+            w, h = im.size
+            edge = [a.getpixel((x, 0)) for x in range(w)] + [a.getpixel((x, h - 1)) for x in range(w)] \
+                + [a.getpixel((0, y)) for y in range(h)] + [a.getpixel((w - 1, y)) for y in range(h)]
+            if max(edge) > 16:
+                errors.append(f'{f}: opaque pixels on the edge (cut failed or subject cropped)')
+            bb = a.point(lambda v: 255 if v > 16 else 0).getbbox()
+            if bb is None:
+                errors.append(f'{f}: empty image')
+                continue
+            fill = max(bb[2] - bb[0], bb[3] - bb[1]) / w
+            if not 0.55 <= fill <= 0.95:
+                errors.append(f'{f}: subject fills {fill:.0%} of the side (want 55–95 %)')
+        if total > 6_000_000:
+            errors.append(f'{style}: emoji assets {total} B over 6 MB')
+        have = {e['id'] for e in index['emoji'] if style in e['files']}
+        for c in data['categories']:
+            core = {e['id'] for e in data['emoji'] if e['category'] == c['id'] and not e.get('reserve')}
+            n = len(have & core)
+            if n < MIN_SHARE * len(core):
+                errors.append(f'{style}: category {c["id"]}: {n} of {len(core)} built')
+        if len(have) < MIN_TOTAL:
+            errors.append(f'{style}: only {len(have)} emoji built, need {MIN_TOTAL}')
 
 
 def main():
     errors = []
     data = load('emoji_set.json')
     check_set(data, errors)
-    check_styles(load('styles.json'), errors)
+    styles = load('styles.json')
+    check_styles(styles, errors)
     if '--assets' in sys.argv:
-        check_assets(data, errors)
+        check_assets(data, styles['ship'], errors)
     for e in errors:
         print('FAIL', e)
     core = sum(1 for e in data['emoji'] if not e.get('reserve'))

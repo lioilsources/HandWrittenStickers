@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
 import '../models/content_pack.dart';
+import '../models/emoji_tag.dart';
 import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
 import '../services/entitlement_service.dart';
 import '../services/glyph_loader.dart';
+import 'emoji_sticker.dart';
 import 'sheet_sample.dart';
 
 /// What a pack contains, for the paywall and the pack list.
@@ -13,15 +15,31 @@ class PackContents {
   final List<GlyphSheet> sheets;
   final List<Preset> presets;
 
-  const PackContents({this.sheets = const [], this.presets = const []});
+  /// Emoji drawn in the pack's styles (one entry per emoji and style).
+  final List<EmojiTag> emoji;
+
+  const PackContents({
+    this.sheets = const [],
+    this.presets = const [],
+    this.emoji = const [],
+  });
 
   static PackContents of(
     ContentPack pack, {
     required List<GlyphSheet> sheets,
     required List<Preset> presets,
+    EmojiIndex? emoji,
   }) {
     bool inPack(String? id) => pack.includesAll ? id != null : id == pack.id;
+    final styles = {
+      for (final s in emoji?.styles ?? const <EmojiStyle>[])
+        if (inPack(s.pack)) s.id,
+    };
     return PackContents(
+      emoji: [
+        for (final t in emoji?.all ?? const <EmojiTag>[])
+          if (styles.contains(t.style)) t,
+      ],
       sheets: [
         for (final s in sheets)
           if (inPack(s.pack)) s,
@@ -29,6 +47,43 @@ class PackContents {
       presets: [
         for (final p in presets)
           if (inPack(p.pack)) p,
+      ],
+    );
+  }
+}
+
+extension PackContentsEmoji on PackContents {
+  bool get isEmpty => sheets.isEmpty && presets.isEmpty && emoji.isEmpty;
+
+  /// Distinct emoji (a style pack draws each emoji once).
+  int get emojiCount => {for (final t in emoji) t.id}.length;
+}
+
+/// A few emoji of a pack, still, in one row.
+class EmojiSampleRow extends StatelessWidget {
+  final List<EmojiTag> emoji;
+  final double size;
+
+  const EmojiSampleRow({super.key, required this.emoji, this.size = 48});
+
+  @override
+  Widget build(BuildContext context) {
+    // One per category reads as variety rather than six faces.
+    final seen = <String>{};
+    final picks = [
+      for (final t in emoji)
+        if (seen.add(t.category)) t,
+    ].take(6);
+    return Wrap(
+      spacing: 8,
+      children: [
+        for (final t in picks)
+          AnimatedEmojiSticker(
+            tag: t,
+            size: size,
+            animate: false,
+            cacheWidth: (size * MediaQuery.of(context).devicePixelRatio).ceil(),
+          ),
       ],
     );
   }
@@ -173,9 +228,15 @@ class _PaywallSheetState extends State<PaywallSheet> {
                   ),
                 ),
             ],
+            if (contents.emoji.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              EmojiSampleRow(emoji: contents.emoji),
+            ],
             const SizedBox(height: 16),
             if (contents.sheets.isNotEmpty)
               _Bullet(l10n.sheetCount(contents.sheets.length)),
+            if (contents.emoji.isNotEmpty)
+              _Bullet(l10n.emojiCount(contents.emojiCount)),
             if (contents.presets.isNotEmpty)
               _Bullet(
                 l10n.presetsList(

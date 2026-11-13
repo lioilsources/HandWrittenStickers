@@ -1,5 +1,14 @@
 {
- "version": 2,
+ "version": 3,
+ "styles": [
+  {
+   "id": "paper",
+   "name": {
+    "cs": "Papír",
+    "en": "Paper"
+   }
+  }
+ ],
  "categories": [
   {
    "id": "smileys",
@@ -81,8 +90,10 @@
     "cs": "Úsměv",
     "en": "Smile"
    },
-   "file": "smile_happy.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_happy.webp"
+   }
   },
   {
    "id": "smile_laugh",
@@ -92,8 +103,10 @@
     "cs": "Smích do slz",
     "en": "Tears of joy"
    },
-   "file": "smile_laugh.webp",
-   "motion": "shake"
+   "motion": "shake",
+   "files": {
+    "paper": "paper/smile_laugh.webp"
+   }
   },
   {
    "id": "smile_cool",
@@ -103,8 +116,10 @@
     "cs": "Pohodář",
     "en": "Cool"
    },
-   "file": "smile_cool.webp",
-   "motion": "nod"
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_cool.webp"
+   }
   },
   {
    "id": "smile_tongue",
@@ -114,8 +129,10 @@
     "cs": "Vyplazený jazyk",
     "en": "Cheeky"
    },
-   "file": "smile_tongue.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/smile_tongue.webp"
+   }
   },
   {
    "id": "smile_angel",
@@ -125,8 +142,10 @@
     "cs": "Andílek",
     "en": "Angel"
    },
-   "file": "smile_angel.webp",
-   "motion": "float"
+   "motion": "float",
+   "files": {
+    "paper": "paper/smile_angel.webp"
+   }
   },
   {
    "id": "smile_party",
@@ -136,8 +155,10 @@
     "cs": "Slavím",
     "en": "Party face"
    },
-   "file": "smile_party.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/smile_party.webp"
+   }
   },
   {
    "id": "smile_thinking",
@@ -147,8 +168,10 @@
     "cs": "Přemýšlím",
     "en": "Thinking"
    },
-   "file": "smile_thinking.webp",
-   "motion": "nod"
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_thinking.webp"
+   }
   },
   {
    "id": "smile_sleeping",
@@ -158,8 +181,10 @@
     "cs": "Spím",
     "en": "Sleeping"
    },
-   "file": "smile_sleeping.webp",
-   "motion": "float"
+   "motion": "float",
+   "files": {
+    "paper": "paper/smile_sleeping.webp"
+   }
   },
   {
    "id": "feel_tear",
@@ -169,8 +194,10 @@
     "cs": "Slzička",
     "en": "Tear"
    },
-   "file": "feel_tear.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_tear.webp"
+   }
   },
   {
    "id": "feel_crying",
@@ -180,8 +207,10 @@
     "cs": "Brečím",
     "en": "Crying"
    },
-   "file": "feel_crying.webp",
-   "motion": "shake"
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_crying.webp"
+   }
   },
   {
    "id": "feel_angry",
@@ -191,8 +220,10 @@
     "cs": "Zlobím se",
     "en": "Angry"
    },
-   "file": "feel_angry.webp",
-   "motion": "shake"
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_angry.webp"
+   }
   },
   {
    "id": "feel_scared",
@@ -202,8 +233,10 @@
     "cs": "Leknutí",
     "en": "Scared"
    },
-   "file": "feel_scared.webp",
-   "motion": "shake"
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_scared.webp"
+   }
   },
   {
    "id": "feel_surprised",
@@ -213,8 +246,10 @@
     "cs": "Překvapení",
     "en": "Surprised"
    },
-   "file": "feel_surprised.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/feel_surprised.webp"
+   }
   },
   {
    "id": "flirt_kiss",
@@ -224,8 +259,10 @@
     "cs": "Posílám pusu",
     "en": "Blowing a kiss"
    },
-   "file": "flirt_kiss.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/flirt_kiss.webp"
+   }
   },
   {
    "id": "flirt_heart_eyes",
@@ -235,8 +272,10 @@
     "cs": "Zamilované oči",
     "en": "Heart eyes"
    },
-   "file": "flirt_heart_eyes.webp",
-   "motion": "pulse"
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/flirt_heart_eyes.webp"
+   }
   },
   {
    "id": "flirt_eyes",
@@ -246,8 +285,10 @@
     "cs": "Koukám",
     "en": "Looking"
    },
-   "file": "flirt_eyes.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/flirt_eyes.webp"
+   }
   },
   {
    "id": "love_heart",
@@ -257,8 +298,10 @@
     "cs": "Srdce",
     "en": "Heart"
    },
-   "file": "love_heart.webp",
-   "motion": "pulse"
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/love_heart.webp"
+   }
   },
   {
    "id": "love_smitten",
@@ -268,8 +311,10 @@
     "cs": "Zamilovaně",
     "en": "Smitten"
    },
-   "file": "love_smitten.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_smitten.webp"
+   }
   },
   {
    "id": "love_balloon",
@@ -279,8 +324,10 @@
     "cs": "Srdíčkový balónek",
     "en": "Heart balloon"
    },
-   "file": "love_balloon.webp",
-   "motion": "float"
+   "motion": "float",
+   "files": {
+    "paper": "paper/love_balloon.webp"
+   }
   },
   {
    "id": "hand_thumbs_up",
@@ -290,8 +337,10 @@
     "cs": "Palec nahoru",
     "en": "Thumbs up"
    },
-   "file": "hand_thumbs_up.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/hand_thumbs_up.webp"
+   }
   },
   {
    "id": "hand_wave",
@@ -301,8 +350,10 @@
     "cs": "Ahoj",
     "en": "Hello"
    },
-   "file": "hand_wave.webp",
-   "motion": "wave"
+   "motion": "wave",
+   "files": {
+    "paper": "paper/hand_wave.webp"
+   }
   },
   {
    "id": "hand_clap",
@@ -312,8 +363,10 @@
     "cs": "Potlesk",
     "en": "Applause"
    },
-   "file": "hand_clap.webp",
-   "motion": "shake"
+   "motion": "shake",
+   "files": {
+    "paper": "paper/hand_clap.webp"
+   }
   },
   {
    "id": "hand_flex",
@@ -323,8 +376,10 @@
     "cs": "Síla",
     "en": "Strong"
    },
-   "file": "hand_flex.webp",
-   "motion": "pulse"
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/hand_flex.webp"
+   }
   },
   {
    "id": "hand_handshake",
@@ -334,8 +389,10 @@
     "cs": "Platí",
     "en": "Deal"
    },
-   "file": "hand_handshake.webp",
-   "motion": "nod"
+   "motion": "nod",
+   "files": {
+    "paper": "paper/hand_handshake.webp"
+   }
   },
   {
    "id": "animal_dog",
@@ -345,8 +402,10 @@
     "cs": "Pejsek",
     "en": "Puppy"
    },
-   "file": "animal_dog.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/animal_dog.webp"
+   }
   },
   {
    "id": "animal_cat",
@@ -356,8 +415,10 @@
     "cs": "Kočička",
     "en": "Kitty"
    },
-   "file": "animal_cat.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_cat.webp"
+   }
   },
   {
    "id": "animal_fox",
@@ -367,8 +428,10 @@
     "cs": "Liška",
     "en": "Fox"
    },
-   "file": "animal_fox.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_fox.webp"
+   }
   },
   {
    "id": "animal_panda",
@@ -378,8 +441,10 @@
     "cs": "Panda",
     "en": "Panda"
    },
-   "file": "animal_panda.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_panda.webp"
+   }
   },
   {
    "id": "party_popper",
@@ -389,8 +454,10 @@
     "cs": "Oslava",
     "en": "Party"
    },
-   "file": "party_popper.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_popper.webp"
+   }
   },
   {
    "id": "party_cake",
@@ -400,8 +467,10 @@
     "cs": "Dort",
     "en": "Cake"
    },
-   "file": "party_cake.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/party_cake.webp"
+   }
   },
   {
    "id": "party_gift",
@@ -411,8 +480,10 @@
     "cs": "Dárek",
     "en": "Gift"
    },
-   "file": "party_gift.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_gift.webp"
+   }
   },
   {
    "id": "party_trophy",
@@ -422,8 +493,10 @@
     "cs": "Vítěz",
     "en": "Winner"
    },
-   "file": "party_trophy.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_trophy.webp"
+   }
   },
   {
    "id": "party_star",
@@ -433,8 +506,10 @@
     "cs": "Hvězda",
     "en": "Star"
    },
-   "file": "party_star.webp",
-   "motion": "twinkle"
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/party_star.webp"
+   }
   },
   {
    "id": "food_coffee",
@@ -444,8 +519,10 @@
     "cs": "Kafe",
     "en": "Coffee"
    },
-   "file": "food_coffee.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_coffee.webp"
+   }
   },
   {
    "id": "food_pizza",
@@ -455,8 +532,10 @@
     "cs": "Pizza",
     "en": "Pizza"
    },
-   "file": "food_pizza.webp",
-   "motion": "bounce"
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/food_pizza.webp"
+   }
   },
   {
    "id": "nature_sun",
@@ -466,8 +545,10 @@
     "cs": "Sluníčko",
     "en": "Sunshine"
    },
-   "file": "nature_sun.webp",
-   "motion": "twinkle"
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/nature_sun.webp"
+   }
   },
   {
    "id": "nature_rainbow",
@@ -477,8 +558,10 @@
     "cs": "Duha",
     "en": "Rainbow"
    },
-   "file": "nature_rainbow.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/nature_rainbow.webp"
+   }
   },
   {
    "id": "nature_blossom",
@@ -488,8 +571,10 @@
     "cs": "Kytička",
     "en": "Blossom"
    },
-   "file": "nature_blossom.webp",
-   "motion": "breathe"
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/nature_blossom.webp"
+   }
   },
   {
    "id": "nature_fire",
@@ -499,8 +584,10 @@
     "cs": "Oheň",
     "en": "Fire"
    },
-   "file": "nature_fire.webp",
-   "motion": "pulse"
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/nature_fire.webp"
+   }
   },
   {
    "id": "day_zzz",
@@ -510,8 +597,10 @@
     "cs": "Dobrou noc",
     "en": "Good night"
    },
-   "file": "day_zzz.webp",
-   "motion": "float"
+   "motion": "float",
+   "files": {
+    "paper": "paper/day_zzz.webp"
+   }
   }
  ]
 }

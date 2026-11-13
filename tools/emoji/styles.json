@@ -6,6 +6,32 @@
   "clay"
  ],
  "free": "paper",
+ "ship": [
+  {
+   "id": "paper",
+   "name": {
+    "cs": "Papír",
+    "en": "Paper"
+   }
+  },
+  {
+   "id": "marker",
+   "name": {
+    "cs": "Fix",
+    "en": "Marker"
+   },
+   "pack": "emoji_marker"
+  },
+  {
+   "id": "clay",
+   "name": {
+    "cs": "Modelína",
+    "en": "Clay"
+   },
+   "pack": "emoji_clay"
+  }
+ ],
+ "_ship": "Styles the app shows, in picker order; the first is the default and free. pack = id in handwritten_stickers/assets/packs/packs.json.",
  "styles": {
   "marker": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes",
   "paper": "paper-craft illustration, the subject itself built from a few hand-cut coloured paper pieces glued onto each other, clean scissor-cut edges that follow the subject's own outline, soft shadow under each piece, light gouache texture",

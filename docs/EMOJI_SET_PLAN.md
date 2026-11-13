@@ -56,7 +56,7 @@ generovat znovu.
 | # | Rozhodnutí | Výchozí volba | Proč |
 |---|---|---|---|
 | D1 | Jak se emoji hýbe | Kódem, osm pohybů přiřazených po položkách. Žádné video modely. | Drží shodu náhledu s GIFem, 150 obrázků má pod 6 MB a celá sada stojí asi 6 hodin GPU. Video by znamenalo odstranění pozadí po snímcích, hledání švu smyčky a desítky MB. |
-| D2 | Zdarma, nebo placené | **Změněno 2026-11-13 (uživatel):** všechny tři styly. Papír zdarma, fix a modelína každý jako balíček za 0,99 USD (`pack` jako u písem, součást `all`). | Stejná sada 180 emoji ve třech stylech; v pickeru přepínač stylu, zamčený styl jde vyzkoušet, export otevře paywall. |
+| D2 | Zdarma, nebo placené | **Změněno 2026-11-13 (uživatel), v aplikaci hotovo (emoji.json v3, přepínač stylu, balíčky `emoji_marker`/`emoji_clay`; produkty v obchodech ještě nezaložené):** všechny tři styly. Papír zdarma, fix a modelína každý jako balíček za 0,99 USD (`pack` jako u písem, součást `all`). | Stejná sada 180 emoji ve třech stylech; v pickeru přepínač stylu, zamčený styl jde vyzkoušet, export otevře paywall. |
 | D3 | Velikost | 384 px WebP, kvalita 88, nejvýš 40 kB na kus. | Odznak v exportu mívá 230–430 px, dnešních 320 px se u krátkých textů zvětšuje. |
 | D4 | Bílý samolepkový okraj | Bez okraje. | Je to poznávací znak SwypeKids a na bílém pozadí samolepky stejně není vidět. |
 | D5 | Ruce a obličeje | Neutrální žlutá jako u běžných emoji, pět prstů. | Bez voleb odstínu pleti, jedna sada. |
@@ -435,7 +435,7 @@ seznamem kategorií a u každé položky `id`, `category`, `emoji`, `name`
 `{cs, en}`, `file` (`<id>.webp`) a `motion`. `subject` a `n` se do appky
 nekopírují.
 
-`tools/emoji/masters/<id>.webp`: vybraný výřez, 768 px, bezztrátový WebP
+`tools/emoji/masters/<styl>/<id>.webp`: vybraný výřez, 768 px, bezztrátový WebP
 s průhledností, objekt oříznutý s okrajem asi 6 % a vystředěný ve čtverci.
 Nejvýš 150 kB na kus, celá složka do 20 MB. Tohle je jediná kopie obrázků,
 která přežije konec L40S, proto je v gitu.
@@ -525,7 +525,7 @@ Vyvíjí se proti zkušebním obrázkům z F4; do té doby proti dočasným make
 ### F6: výběr, sestavení a kontrola (Opus, půl dne), pak B2
 
 - [ ] Projít návrhy L40S na arších kategorií, potvrdit nebo změnit `pick`.
-- [ ] L40S pushne vybrané mastery do `tools/emoji/masters/` na větvi
+- [ ] L40S pushne vybrané mastery do `tools/emoji/masters/<styl>/` na větvi
   `emoji-own-set`.
 - [ ] Nový `build.py`: z masterů 384 px WebP a `emoji.json` verze 2; bez
   kopírování ze SwypeKids a bez výřezu podle bílého okraje.
