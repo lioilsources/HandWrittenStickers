@@ -1,0 +1,27 @@
+{
+ "batch": "I0",
+ "backend": {
+  "model": "Qwen-Image fp8: qwen_image_fp8_e4m3fn.safetensors, text encoder qwen_2.5_vl_7b_fp8_scaled.safetensors, qwen_image_vae.safetensors",
+  "licence": "Apache-2.0 (Qwen/Qwen-Image model card on Hugging Face; fp8 repack Comfy-Org/Qwen-Image_ComfyUI, same licence)",
+  "sampler": "ComfyUI KSampler euler/simple, 20 steps, cfg 2.5, ModelSamplingAuraFlow shift 3.1, 1024x1024",
+  "cutout": "BiRefNet ZhengPeng7/BiRefNet (MIT), tmobile-sandbox uc28/icons.py cut --fill-all --bg auto (edge colour un-mixed from the light grey background)",
+  "speed": "20.6 s/img warm on L40S 48 GB"
+ },
+ "styles": {
+  "marker": "closest to the brief: clean outline, flat colour, reads well at 64 px",
+  "paper": "the model adds a stack of torn coloured paper behind most subjects; it becomes part of the cutout and the silhouette is not the object",
+  "clay": "nicely 3D, but fingerprint texture on every surface and one wrong subject (party_popper)"
+ },
+ "ids": {
+  "smile_laugh":    {"seeds": [7060, 7061], "pick": {"marker": 7060, "paper": 7061, "clay": 7060}, "notes": "all fine"},
+  "flirt_wink":     {"seeds": [7900, 7901], "pick": {"marker": 7900, "paper": 7900, "clay": 7900}, "notes": "seed 7901 paper and clay: both eyes closed, no wink"},
+  "love_heart":     {"seeds": [8220, 8221], "pick": {"marker": 8220, "paper": 8220, "clay": 8221}, "notes": "fine; clay has a visible fingerprint in the middle"},
+  "hand_thumbs_up": {"seeds": [8580, 8581], "pick": null, "notes": "WRONG GESTURE in all 6: index finger pointing up, thumb tucked in; prompt needs rework (e.g. describe the thumb pointing up and the four fingers curled into the palm)"},
+  "hand_peace":     {"seeds": [8680, 8681], "pick": {"marker": 8681, "paper": 8681, "clay": 8680}, "notes": "gesture right, fingers countable at 256 px"},
+  "animal_fox":     {"seeds": [9040, 9041], "pick": {"marker": 9040, "paper": 9041, "clay": 9040}, "notes": "marker 9041: white muzzle cut out as background (transparent hole); white areas touching the grey background are a cutout risk"},
+  "party_popper":   {"seeds": [9460, 9461], "pick": {"marker": 9461, "paper": 9461, "clay": null}, "notes": "clay both seeds: a little clay figure wearing a party hat, not a popper; marker 9460 has a stray stroke under the cone"},
+  "feel_angry":     {"seeds": [7540, 7541], "pick": {"marker": 7541, "paper": 7540, "clay": 7540}, "notes": "marker 7540: tongue out, reads as cheeky rather than angry"}
+ },
+ "text_in_image": "none in 48/48",
+ "cutout_check": "checked on checkerboard and dark background: no light or dark halo; no EDGE or EMPTY warnings"
+}
