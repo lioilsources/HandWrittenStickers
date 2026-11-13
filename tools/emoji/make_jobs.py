@@ -87,7 +87,9 @@ def main():
                     jobs.append(job(styles, item, style, seed))
 
     os.makedirs(os.path.join(HERE, 'jobs'), exist_ok=True)
-    path = os.path.join(HERE, 'jobs', f'{a.batch}.json')
+    # A batch narrowed to some styles gets its own file (I2_marker.json).
+    suffix = '_' + '_'.join(a.styles.split(',')) if a.styles and a.batch != 'I0' else ''
+    path = os.path.join(HERE, 'jobs', f'{a.batch}{suffix}.json')
     with open(path, 'w') as f:
         json.dump(jobs, f, ensure_ascii=False, indent=1)
         f.write('\n')
