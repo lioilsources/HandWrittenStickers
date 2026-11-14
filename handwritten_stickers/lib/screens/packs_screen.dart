@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../l10n/l10n.dart';
 import '../models/content_pack.dart';
@@ -34,6 +35,7 @@ class PacksScreen extends StatelessWidget {
       entitlements: entitlements,
       pack: pack,
       contents: _contents(pack),
+      source: 'packs',
       loaderFor: loaderFor,
     );
   }
@@ -49,6 +51,10 @@ class PacksScreen extends StatelessWidget {
             key: const ValueKey('packs-restore'),
             onPressed: () async {
               await entitlements.restore();
+              Telemetry.track('purchases_restore', {
+                'from': 'packs',
+                'owned': entitlements.ownedPacks.length.clamp(0, 100),
+              });
               if (!context.mounted) return;
               ScaffoldMessenger.of(
                 context,

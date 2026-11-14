@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../l10n/l10n.dart';
 import '../models/content_pack.dart';
@@ -15,6 +16,7 @@ import '../services/glyph_loader.dart';
 import '../services/glyph_renderer.dart';
 import '../services/image_exporter.dart';
 import '../services/preset_store.dart';
+import '../telemetry/telemetry_dictionary.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/emoji_sticker.dart';
 import 'packs_screen.dart';
@@ -161,12 +163,14 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Future<GlyphLoader> _sampleLoader(GlyphSheet sheet) async =>
       _loaderFor(sheet);
 
-  /// Offers [pack]; true once the user owns it.
-  Future<bool> _offerPack(ContentPack pack) async {
+  /// Offers [pack]; true once the user owns it. [source] says what opened
+  /// the offer (anonymous statistics).
+  Future<bool> _offerPack(ContentPack pack, {required String source}) async {
     final owned = await showPaywall(
       context,
       entitlements: _entitlements,
       pack: pack,
+      source: source,
       contents: PackContents.of(
         pack,
         sheets: _sheetIndex?.sheets ?? const [],
@@ -182,7 +186,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Future<bool> _ensureOwned() async {
     final pack = _lockedPack;
     if (pack == null) return true;
-    return _offerPack(pack);
+    return _offerPack(pack, source: 'export');
   }
 
   /// Saving the user's own presets is the `presets` pack.
@@ -190,12 +194,19 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     if (_entitlements.canSavePresets) return true;
     final pack = _entitlements.packs.forFeature(ContentPack.savePresetsFeature);
     if (pack == null) return true;
-    return _offerPack(pack);
+    return _offerPack(pack, source: 'preset_save');
+  }
+
+  /// A tap on a sheet or preset from a pack the user does not own.
+  void _reportLocked(String? packId) {
+    if (kPackIds.contains(packId)) Telemetry.lockedTap(packId!);
   }
 
   void _openPacks() {
+    Telemetry.feature('packs_open');
     Navigator.of(context).push(
       MaterialPageRoute<void>(
+        settings: const RouteSettings(name: '/packs'),
         builder: (_) => PacksScreen(
           entitlements: _entitlements,
           sheets: _sheetIndex?.sheets ?? const [],
@@ -219,6 +230,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final index = _emojiIndex;
     if (index == null) return;
     final tag = await showEmojiPicker(context, index: index, selected: _emoji);
+    if (tag != null && tag != _emoji) Telemetry.feature('emoji');
     if (mounted) setState(() => _emoji = tag);
   }
 
@@ -272,6 +284,8 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
   Future<void> _onSheetChanged(GlyphSheet sheet) async {
     if (sheet == _sheet) return;
+    Telemetry.feature('sheet_change');
+    if (!_entitlements.canUseSheet(sheet)) _reportLocked(sheet.pack);
     final loader = await _prepareLoader(sheet, _sheetIndex);
     if (!mounted) return;
     setState(() {
@@ -329,9 +343,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Future<void> _applyPreset(Preset preset) async {
     final index = _sheetIndex;
     if (index == null) return;
+    Telemetry.feature('preset_apply');
+    if (!_entitlements.canUsePreset(preset)) _reportLocked(preset.pack);
     var sheet = index.byId(preset.sheetId);
     if (sheet == null) {
       sheet = index.defaultSheet;
+      Telemetry.errorShown('preset_sheet');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -373,6 +390,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       sheetId: sheet.id,
       style: _styleParams,
     );
+    Telemetry.feature('preset_save');
     if (!mounted) return;
     setState(() => _appliedPreset = preset);
     _scheduleSaveState();
@@ -461,6 +479,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   void _onStyleParamsChanged(StyleParams params) {
+    Telemetry.feature('style_adjust');
     setState(() {
       _styleParams = params;
     });
@@ -479,8 +498,30 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     }
   }
 
+  /// An export flow with what the sticker is made of: catalogue ids and
+  /// counts only, never the text itself.
+  TelemetryFlow _exportFlow(String target) {
+    final sheet = _sheet;
+    final preset = _appliedPreset;
+    final end = {'target': target, 'animated': _emoji != null};
+    return Telemetry.flow('export', {
+      ...end,
+      'sheet': telemetrySheet(sheet?.id),
+      'category': sheet?.category.name ?? 'handwriting',
+      'pack': telemetryPack(sheet?.pack),
+      'preset': telemetryPreset(
+        id: preset?.id,
+        builtIn: preset?.builtIn ?? false,
+      ),
+      'modified': _modified,
+      'chars': _textController.text.characters.length.clamp(0, 10000),
+    }, () => end);
+  }
+
   Future<void> _exportImage() async {
     if (!await _ensureOwned() || !mounted) return;
+    Telemetry.feature('save_gallery');
+    final flow = _exportFlow('gallery');
     final success = await _withExport(
       () => ImageExporter.saveToGallery(
         glyphs: _glyphs,
@@ -489,6 +530,16 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
       ),
     );
 
+    final end = {'target': 'gallery', 'animated': _emoji != null};
+    if (success == null) {
+      flow.end('cancel', end); // another export was running
+    } else if (success) {
+      flow.end('ok', end);
+      Telemetry.activation();
+    } else {
+      flow.end('error', end);
+      Telemetry.errorShown('save');
+    }
     if (!mounted || success == null) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -510,22 +561,88 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final origin = box == null
         ? null
         : box.localToGlobal(Offset.zero) & box.size;
+    Telemetry.feature('share');
+    final flow = _exportFlow('share');
+    final end = {'target': 'share', 'animated': _emoji != null};
     try {
-      await _withExport(
-        () => ImageExporter.shareImage(
+      final done = await _withExport(() async {
+        await ImageExporter.shareImage(
           glyphs: _glyphs,
           style: _styleParams,
           emoji: _emoji,
           origin: origin,
-        ),
-      );
+        );
+        return true;
+      });
+      if (done == null) {
+        flow.end('cancel', end); // another export was running
+      } else {
+        flow.end('ok', end);
+        Telemetry.activation();
+      }
     } catch (e) {
       debugPrint('CanvasEditor: share failed ($e)');
+      flow.end('error', end);
+      Telemetry.errorShown('share');
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(context.l10n.shareFailed)));
     }
+  }
+
+  void _openLicences() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        settings: const RouteSettings(name: '/licences'),
+        builder: (_) =>
+            const LicensePage(applicationName: 'Handwritten Stickers'),
+      ),
+    );
+  }
+
+  /// Licences, plus the statistics switch when the build can send any.
+  void _openAbout() {
+    if (!Telemetry.isConfigured) {
+      _openLicences();
+      return;
+    }
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        child: StatefulBuilder(
+          builder: (context, setSheetState) {
+            final l10n = context.l10n;
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  key: const ValueKey('about-licences'),
+                  leading: const Icon(Icons.description_outlined),
+                  title: Text(l10n.aboutAndLicences),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _openLicences();
+                  },
+                ),
+                SwitchListTile(
+                  key: const ValueKey('about-stats'),
+                  secondary: const Icon(Icons.insights_outlined),
+                  title: Text(l10n.statsToggle),
+                  subtitle: Text(l10n.statsToggleSubtitle),
+                  value: Telemetry.isEnabled,
+                  onChanged: (on) async {
+                    await Telemetry.setEnabled(on);
+                    setSheetState(() {});
+                  },
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 
   /// The sticker scaled to fit the preview box, never past [_maxPreviewZoom]
@@ -609,10 +726,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
           IconButton(
             key: const ValueKey('open-about'),
             icon: const Icon(Icons.info_outline),
-            onPressed: () => showLicensePage(
-              context: context,
-              applicationName: 'Handwritten Stickers',
-            ),
+            onPressed: _openAbout,
             tooltip: l10n.aboutAndLicences,
           ),
           if (_emojiIndex != null)
@@ -691,7 +805,10 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                                 right: 6,
                                 child: _LockedBadge(
                                   pack: _lockedPack!,
-                                  onTap: () => _offerPack(_lockedPack!),
+                                  onTap: () {
+                                    _reportLocked(_lockedPack!.id);
+                                    _offerPack(_lockedPack!, source: 'badge');
+                                  },
                                 ),
                               ),
                           ],

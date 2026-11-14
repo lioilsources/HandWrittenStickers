@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../l10n/l10n.dart';
 import '../models/content_pack.dart';
@@ -6,6 +7,7 @@ import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
 import '../services/entitlement_service.dart';
 import '../services/glyph_loader.dart';
+import '../telemetry/telemetry_dictionary.dart';
 import 'sheet_sample.dart';
 
 /// What a pack contains, for the paywall and the pack list.
@@ -35,15 +37,19 @@ class PackContents {
 }
 
 /// Offers [pack] for sale. Completes with true once the user owns it
-/// (bought or restored), false or null otherwise.
+/// (bought or restored), false or null otherwise. [source] (one of
+/// [kPaywallSources]) says what opened it, for anonymous statistics.
 Future<bool?> showPaywall(
   BuildContext context, {
   required EntitlementService entitlements,
   required ContentPack pack,
   required PackContents contents,
+  required String source,
   Future<GlyphLoader> Function(GlyphSheet sheet)? loaderFor,
-}) {
-  return showModalBottomSheet<bool>(
+}) async {
+  final props = {'pack': _packValue(pack.id), 'source': source};
+  final flow = Telemetry.flow('paywall', props, () => props);
+  final owned = await showModalBottomSheet<bool>(
     context: context,
     isScrollControlled: true,
     showDragHandle: true,
@@ -54,7 +60,11 @@ Future<bool?> showPaywall(
       loaderFor: loaderFor,
     ),
   );
+  flow.end(owned == true ? 'ok' : 'cancel', props);
+  return owned;
 }
+
+String _packValue(String id) => kPackIds.contains(id) ? id : 'other';
 
 class PaywallSheet extends StatefulWidget {
   final EntitlementService entitlements;
@@ -110,7 +120,20 @@ class _PaywallSheetState extends State<PaywallSheet> {
 
   Future<void> _buy(String packId) async {
     setState(() => _busy = true);
+    final props = {'pack': _packValue(packId)};
+    final flow = Telemetry.flow('purchase', props, () => props);
     final outcome = await _e.buy(packId);
+    flow.end(switch (outcome) {
+      PurchaseOutcome.purchased => 'ok',
+      PurchaseOutcome.pending => 'pending',
+      PurchaseOutcome.cancelled => 'cancel',
+      PurchaseOutcome.error => 'error',
+      PurchaseOutcome.unavailable => 'unavailable',
+    }, props);
+    if (outcome == PurchaseOutcome.error ||
+        outcome == PurchaseOutcome.unavailable) {
+      Telemetry.errorShown('purchase');
+    }
     if (!mounted) return;
     setState(() => _busy = false);
     final messenger = ScaffoldMessenger.of(context);
@@ -131,6 +154,10 @@ class _PaywallSheetState extends State<PaywallSheet> {
   Future<void> _restore() async {
     setState(() => _busy = true);
     await _e.restore();
+    Telemetry.track('purchases_restore', {
+      'from': 'paywall',
+      'owned': _e.ownedPacks.length.clamp(0, 100),
+    });
     if (!mounted || _closed) return;
     setState(() => _busy = false);
     ScaffoldMessenger.of(context).showSnackBar(

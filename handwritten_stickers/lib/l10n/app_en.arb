@@ -137,5 +137,7 @@
         "type": "String"
       }
     }
-  }
+  },
+  "statsToggle": "Anonymous usage statistics",
+  "statsToggleSubtitle": "Which screens and features get used, so the app can get better. Never what you type, no account, no identifier."
 }

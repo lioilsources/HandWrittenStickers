@@ -250,4 +250,11 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get loadingPrice => 'Načítám cenu…';
+
+  @override
+  String get statsToggle => 'Anonymní statistiky používání';
+
+  @override
+  String get statsToggleSubtitle =>
+      'Které obrazovky a funkce se používají, aby se aplikace mohla zlepšovat. Nikdy to, co napíšeš, bez účtu a bez identifikátoru.';
 }

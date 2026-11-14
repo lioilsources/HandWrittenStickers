@@ -511,6 +511,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading price…'**
   String get loadingPrice;
+
+  /// No description provided for @statsToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous usage statistics'**
+  String get statsToggle;
+
+  /// No description provided for @statsToggleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which screens and features get used, so the app can get better. Never what you type, no account, no identifier.'**
+  String get statsToggleSubtitle;
 }
 
 class _AppLocalizationsDelegate

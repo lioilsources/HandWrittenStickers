@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../l10n/l10n.dart';
 import 'canvas_editor_screen.dart';
@@ -36,9 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (index) {
+          if (index == _selectedIndex) return;
           setState(() {
             _selectedIndex = index;
           });
+          // A tab, not a route: report the screen by hand.
+          Telemetry.screen(index == 1 ? 'grid' : 'editor');
+          if (index == 1) Telemetry.feature('grid_tool');
         },
         destinations: [
           NavigationDestination(
