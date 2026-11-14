@@ -68,5 +68,7 @@
   "unlimitedPresets": "Neomezeně vlastních presetů",
   "buyOnceKeepForever": "Jednou koupíš, máš navždy, i na dalších zařízeních",
   "featuresStayFree": "Všechny funkce aplikace zůstávají zdarma",
-  "loadingPrice": "Načítám cenu…"
+  "loadingPrice": "Načítám cenu…",
+  "statsToggle": "Anonymní statistiky používání",
+  "statsToggleSubtitle": "Které obrazovky a funkce se používají, aby se aplikace mohla zlepšovat. Nikdy to, co napíšeš, bez účtu a bez identifikátoru."
 }

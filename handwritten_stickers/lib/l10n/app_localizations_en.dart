@@ -250,4 +250,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loadingPrice => 'Loading price…';
+
+  @override
+  String get statsToggle => 'Anonymous usage statistics';
+
+  @override
+  String get statsToggleSubtitle =>
+      'Which screens and features get used, so the app can get better. Never what you type, no account, no identifier.';
 }
