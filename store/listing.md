@@ -19,7 +19,7 @@ URLs (live once `site/` is published with GitHub Pages):
 | Category | Graphics & Design, secondary Utilities | Art & Design |
 | Price | Free, in-app purchases | Free, in-app purchases |
 | Age | 4+ | Everyone; target audience 13+ (see note) |
-| Privacy | Data Not Collected | Data safety: nothing collected, nothing shared |
+| Privacy | Product Interaction, Performance Data, Coarse Location; not linked, no tracking (`store/privacy-answers.md`) | Data safety: App interactions, Diagnostics, Approximate location; collected, not shared, optional (`store/privacy-answers.md`) |
 | Encryption | None (`ITSAppUsesNonExemptEncryption` = NO is in Info.plist) | – |
 | Ads | No | No |
 | Sign-in | None | None |
@@ -93,7 +93,7 @@ One-time purchases, no subscription. Try any pack in the editor first; you only 
 • Everything: all packs at once
 
 PRIVATE
-No account, no ads, no tracking. What you type stays on your device until you share it.
+No account, no ads, no third-party analytics. What you type stays on your device until you share it. Anonymous usage statistics, which never include your text, can be turned off in the app.
 
 The fonts are licensed under the SIL Open Font License. Their authors are credited in the app.
 ```
@@ -163,7 +163,7 @@ Jednorázové nákupy, žádné předplatné. Každý balíček si nejdřív vyz
 • Komplet: všechny balíčky najednou
 
 SOUKROMÍ
-Žádný účet, žádná reklama, žádné sledování. Co napíšeš, zůstává v zařízení, dokud to nenasdílíš.
+Žádný účet, žádná reklama, žádná analytika třetích stran. Co napíšeš, zůstává v zařízení, dokud to nenasdílíš. Anonymní statistiky používání, které nikdy neobsahují tvůj text, jdou v aplikaci vypnout.
 
 Písma mají licenci SIL Open Font License. Jejich autory najdeš v aplikaci.
 ```
@@ -203,5 +203,5 @@ All features are free. In-app purchases are non-consumable content packs (fonts 
 
 To see all packs: tap the shop icon in the top bar. "Restore purchases" is on that screen and on every purchase sheet.
 
-The app makes no network requests of its own and collects no data.
+The app sends anonymous usage statistics (no identifiers, never the text the user types) to the developer's own server; they can be turned off under the info button in the editor. Apart from that and the store's purchase APIs it makes no network requests of its own.
 ```
