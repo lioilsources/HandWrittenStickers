@@ -48,7 +48,7 @@ Rozměr 1024 × 1024.
 
 ## 4. Výřez
 
-`icons.py` s `--fill-all`: PNG RGBA, díry uvnitř objektu zaplněné, bez světlého ani tmavého lemu
+`icons.py` s `--fill-all --clear-bg-holes` (od 15. 11. výchozí): PNG RGBA, díry uvnitř objektu zaplněné, uzavřené šedé otvory (donut, ouško, uzávěr zámku) průhledné; šedé detaily objektu hlídat v sheetech, bez světlého ani tmavého lemu
 (zkontrolovat na světlém i tmavém podkladu), ořez na objekt s okrajem asi 6 %, doplnit na čtverec.
 Pozadí v promptu je středně šedé (bílé plochy jako liščí čenich se se světlým pozadím slévaly); když ho BiRefNet nechá v mezerách (mezi prsty, v uchu hrnku),
 napiš to.

@@ -353,9 +353,13 @@ Tři kandidáti stylu pro zkoušku F3:
 
 Rámování (stejné pro všechny): `one single isolated subject shown whole,
 centred, filling about 80 percent of the frame, floating in empty space in
-front of a plain flat medium grey background`. Qwen-Image zápory ignoruje
-(L40S, 12. 11.), proto rámování i `subject` popisují jen to, co na obrázku
-má být; negativní prompt se posílá pro jiné modely.
+front of a plain flat medium grey background`. Prompt popisuje jen to, co na
+obrázku má být: věta „bez lidských postav / bez rukou“ v I1 a I2 tu věc naopak
+přidávala. Vyloučení jdou do negativního promptu, který se při cfg 2,5 uplatní
+(CLIPTextEncode, ověřila L40S 15. 11.). Skládá ho `make_jobs.py` z `negative`,
+`negative_style` a podle druhu emoji `negative_object` / `negative_head` /
+`negative_hand` / `negative_face`. Předměty (`object: true` v `emoji_set.json`)
+mají vlastní text stylu `objects`. Aktuální znění je v `styles.json`.
 
 Negativní prompt: `text, letters, numbers, watermark, signature, logo, frame,
 border, white sticker outline, several subjects, cropped subject, photograph,
