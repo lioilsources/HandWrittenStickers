@@ -131,7 +131,7 @@
     "en": "Upside down"
    },
    "motion": "breathe",
-   "subject": "a round yellow emoji face, shown as a head only, upside down with a gentle silly smile"
+   "subject": "a round yellow emoji face, shown as a head only, turned upside down: the gentle silly smile is at the top of the face and the two eyes are below it near the bottom"
   },
   {
    "n": 6,
@@ -551,7 +551,7 @@
     "en": "Eye roll"
    },
    "motion": "breathe",
-   "subject": "a round yellow emoji face, shown as a head only, rolling its eyes upward, flat unimpressed mouth"
+   "subject": "a round yellow emoji face, shown as a head only, both eyes open with the pupils pushed up to the very top of the eyes, straight flat mouth"
   },
   {
    "n": 41,
@@ -563,7 +563,7 @@
     "en": "Oops"
    },
    "motion": "shake",
-   "subject": "a round yellow emoji face, shown as a head only, awkward grimace showing clenched teeth, nervous eyes"
+   "subject": "a round yellow emoji face, shown as a head only, awkward embarrassed grimace, wide mouth showing two rows of clenched teeth, eyebrows raised and worried"
   },
   {
    "n": 42,
@@ -599,7 +599,7 @@
     "en": "Bored"
    },
    "motion": "breathe",
-   "subject": "a round yellow emoji face, shown as a head only, bored expressionless face, flat line eyes and flat line mouth"
+   "subject": "a round yellow emoji face, shown as a head only, blank neutral expression: two short straight horizontal line eyes and one straight horizontal line mouth"
   },
   {
    "n": 45,
@@ -635,7 +635,7 @@
     "en": "Smirk"
    },
    "motion": "breathe",
-   "subject": "a round yellow emoji face, shown as a head only, sly smirk with a lopsided smile, half-closed eyes looking aside"
+   "subject": "a round yellow emoji face, shown as a head only, both eyes half-closed with heavy lids glancing to one side, one corner of the mouth raised in a lopsided smirk"
   },
   {
    "n": 48,
@@ -695,7 +695,7 @@
     "en": "Call me"
    },
    "motion": "wave",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, making the call-me gesture, thumb and little finger extended, the other fingers curled"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb and little finger stretched out wide like a telephone handset, index, middle and ring fingers curled tightly into the palm"
   },
   {
    "n": 53,
@@ -803,7 +803,8 @@
     "en": "Heart"
    },
    "motion": "pulse",
-   "subject": "a glossy bright red heart"
+   "subject": "a glossy bright red heart",
+   "object": true
   },
   {
    "n": 62,
@@ -815,7 +816,8 @@
     "en": "Two hearts"
    },
    "motion": "pulse",
-   "subject": "two pink hearts, one big and one small, overlapping"
+   "subject": "two pink hearts, one big and one small, overlapping",
+   "object": true
   },
   {
    "n": 63,
@@ -827,7 +829,8 @@
     "en": "Sparkling heart"
    },
    "motion": "twinkle",
-   "subject": "a pink heart with small white sparkles around it"
+   "subject": "a pink heart with small white sparkles around it",
+   "object": true
   },
   {
    "n": 64,
@@ -839,7 +842,8 @@
     "en": "Broken heart"
    },
    "motion": "shake",
-   "subject": "a red heart cracked in two halves with a zigzag split"
+   "subject": "a red heart cracked in two halves with a zigzag split",
+   "object": true
   },
   {
    "n": 65,
@@ -851,7 +855,8 @@
     "en": "Mending heart"
    },
    "motion": "breathe",
-   "subject": "a red heart with a white bandage plaster across it"
+   "subject": "a red heart with a white bandage plaster across it",
+   "object": true
   },
   {
    "n": 66,
@@ -863,7 +868,8 @@
     "en": "Heart on fire"
    },
    "motion": "pulse",
-   "subject": "a red heart wrapped in orange and yellow flames"
+   "subject": "a red heart wrapped in orange and yellow flames",
+   "object": true
   },
   {
    "n": 67,
@@ -911,7 +917,8 @@
     "en": "Ring"
    },
    "motion": "twinkle",
-   "subject": "a gold ring with a big sparkling diamond"
+   "subject": "a gold ring with a big sparkling diamond",
+   "object": true
   },
   {
    "n": 71,
@@ -923,7 +930,8 @@
     "en": "Rose"
    },
    "motion": "breathe",
-   "subject": "a single red rose with a green stem and two leaves"
+   "subject": "a single red rose with a green stem and two leaves",
+   "object": true
   },
   {
    "n": 72,
@@ -935,7 +943,8 @@
     "en": "Bouquet"
    },
    "motion": "bounce",
-   "subject": "a colourful bouquet of flowers wrapped in pink paper with a ribbon"
+   "subject": "a colourful bouquet of flowers wrapped in pink paper with a ribbon",
+   "object": true
   },
   {
    "n": 73,
@@ -947,7 +956,8 @@
     "en": "Gift of love"
    },
    "motion": "bounce",
-   "subject": "a red heart-shaped box tied with a pink ribbon bow"
+   "subject": "a red heart-shaped box tied with a pink ribbon bow",
+   "object": true
   },
   {
    "n": 74,
@@ -959,7 +969,8 @@
     "en": "Heart balloon"
    },
    "motion": "float",
-   "subject": "a shiny red heart-shaped balloon on a curly string"
+   "subject": "a shiny red heart-shaped balloon on a curly string",
+   "object": true
   },
   {
    "n": 75,
@@ -995,7 +1006,7 @@
     "en": "Miss you"
    },
    "motion": "breathe",
-   "subject": "a round yellow emoji face, shown as a head only, touched and longing, holding back tears, trembling smile, glassy eyes"
+   "subject": "a round yellow emoji face, shown as a head only, glassy shiny eyes with one small tear resting in the corner of one eye, small wobbly smile"
   },
   {
    "n": 78,
@@ -1007,7 +1018,8 @@
     "en": "Love lock"
    },
    "motion": "nod",
-   "subject": "a heart-shaped golden padlock with a small key"
+   "subject": "a heart-shaped golden padlock with a small key",
+   "object": true
   },
   {
    "n": 79,
@@ -1103,7 +1115,7 @@
     "en": "Please / Thanks"
    },
    "motion": "nod",
-   "subject": "two yellow cartoon hands pressed together palm to palm, fingers pointing up"
+   "subject": "two yellow cartoon hands pressed flat together palm to palm, all ten fingers straight and lying flat against each other, fingertips pointing up"
   },
   {
    "n": 87,
@@ -1139,7 +1151,7 @@
     "en": "Strong"
    },
    "motion": "pulse",
-   "subject": "a yellow cartoon arm flexing a big round bicep"
+   "subject": "a single yellow cartoon arm alone, cut off cleanly at the shoulder, bent at the elbow and flexing a big round bicep, the fist up"
   },
   {
    "n": 90,
@@ -1151,7 +1163,7 @@
     "en": "You!"
    },
    "motion": "bounce",
-   "subject": "a single yellow cartoon fist seen from the front with only the index finger poking straight out toward the viewer, the fingertip big and close in strong foreshortening, the folded fingers and thumb behind it, five fingers in total"
+   "subject": "a yellow cartoon hand pointing straight at the viewer, seen head-on: the round tip of the index finger is big and close in the centre of the picture and the curled fist with the thumb sits behind it, five fingers in total"
   },
   {
    "n": 91,
@@ -1187,7 +1199,7 @@
     "en": "Love you"
    },
    "motion": "wave",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, love-you sign, thumb, index finger and little finger extended, middle and ring fingers folded"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb, index finger and little finger stretched straight out, middle and ring fingers folded down onto the palm"
   },
   {
    "n": 94,
@@ -1223,7 +1235,7 @@
     "en": "A little"
    },
    "motion": "breathe",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb and index finger almost touching, showing a tiny amount"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, seen from the side, thumb and index finger held a tiny gap apart, the other three fingers curled into the palm"
   },
   {
    "n": 97,
@@ -1547,7 +1559,8 @@
     "en": "Party"
    },
    "motion": "bounce",
-   "subject": "a cone-shaped paper party popper held at an angle, shooting out colourful confetti and curly streamers from its open end, an object only"
+   "subject": "a cone-shaped paper party popper held at an angle, shooting out colourful confetti and curly streamers from its open end, an object only",
+   "object": true
   },
   {
    "n": 124,
@@ -1559,7 +1572,8 @@
     "en": "Confetti"
    },
    "motion": "shake",
-   "subject": "a round confetti ball bursting open with colourful confetti"
+   "subject": "a round confetti ball bursting open with colourful confetti",
+   "object": true
   },
   {
    "n": 125,
@@ -1571,7 +1585,8 @@
     "en": "Cake"
    },
    "motion": "breathe",
-   "subject": "a birthday cake with pink frosting and lit candles"
+   "subject": "a birthday cake with pink frosting and lit candles",
+   "object": true
   },
   {
    "n": 126,
@@ -1583,7 +1598,8 @@
     "en": "Gift"
    },
    "motion": "bounce",
-   "subject": "a wrapped present box with a big ribbon bow"
+   "subject": "a wrapped present box with a big ribbon bow",
+   "object": true
   },
   {
    "n": 127,
@@ -1595,7 +1611,8 @@
     "en": "Balloon"
    },
    "motion": "float",
-   "subject": "a shiny round red balloon on a string"
+   "subject": "a shiny round red balloon on a string",
+   "object": true
   },
   {
    "n": 128,
@@ -1607,7 +1624,8 @@
     "en": "Winner"
    },
    "motion": "bounce",
-   "subject": "a shiny gold trophy cup with two handles"
+   "subject": "a shiny gold trophy cup with two handles",
+   "object": true
   },
   {
    "n": 129,
@@ -1619,7 +1637,8 @@
     "en": "Gold medal"
    },
    "motion": "wave",
-   "subject": "a plain gold medal on a red ribbon, a star embossed in the middle"
+   "subject": "a plain gold medal on a red ribbon, a star embossed in the middle",
+   "object": true
   },
   {
    "n": 130,
@@ -1631,7 +1650,8 @@
     "en": "Crown"
    },
    "motion": "twinkle",
-   "subject": "a golden crown with red and blue jewels"
+   "subject": "a golden crown with red and blue jewels",
+   "object": true
   },
   {
    "n": 131,
@@ -1643,7 +1663,8 @@
     "en": "Fireworks"
    },
    "motion": "pulse",
-   "subject": "a colourful firework burst"
+   "subject": "a colourful firework burst",
+   "object": true
   },
   {
    "n": 132,
@@ -1655,7 +1676,8 @@
     "en": "Sparkles"
    },
    "motion": "twinkle",
-   "subject": "three golden four-pointed sparkles of different sizes"
+   "subject": "three golden four-pointed sparkles of different sizes",
+   "object": true
   },
   {
    "n": 133,
@@ -1667,7 +1689,8 @@
     "en": "Star"
    },
    "motion": "twinkle",
-   "subject": "a shiny golden five-pointed star"
+   "subject": "a shiny golden five-pointed star",
+   "object": true
   },
   {
    "n": 134,
@@ -1679,7 +1702,8 @@
     "en": "Disco"
    },
    "motion": "twinkle",
-   "subject": "a sparkling mirror disco ball"
+   "subject": "a sparkling mirror disco ball",
+   "object": true
   },
   {
    "n": 135,
@@ -1691,7 +1715,8 @@
     "en": "Good luck"
    },
    "motion": "breathe",
-   "subject": "a green four-leaf clover"
+   "subject": "a green four-leaf clover with exactly four heart-shaped leaves and a short stem",
+   "object": true
   },
   {
    "n": 136,
@@ -1703,7 +1728,8 @@
     "en": "Christmas"
    },
    "motion": "breathe",
-   "subject": "a small decorated Christmas tree with baubles and a gold star on top"
+   "subject": "a small decorated Christmas tree with baubles and a gold star on top",
+   "object": true
   },
   {
    "n": 137,
@@ -1715,7 +1741,8 @@
     "en": "Coffee"
    },
    "motion": "breathe",
-   "subject": "a cup of hot coffee on a saucer with steam rising"
+   "subject": "a cup of hot coffee on a saucer with steam rising",
+   "object": true
   },
   {
    "n": 138,
@@ -1727,7 +1754,8 @@
     "en": "Pizza"
    },
    "motion": "bounce",
-   "subject": "a slice of pizza with melted cheese and pepperoni"
+   "subject": "a slice of pizza with melted cheese and pepperoni",
+   "object": true
   },
   {
    "n": 139,
@@ -1739,7 +1767,8 @@
     "en": "Burger"
    },
    "motion": "bounce",
-   "subject": "a tall burger with lettuce, tomato and cheese"
+   "subject": "a tall burger with lettuce, tomato and cheese",
+   "object": true
   },
   {
    "n": 140,
@@ -1751,7 +1780,8 @@
     "en": "Fries"
    },
    "motion": "breathe",
-   "subject": "french fries in a red carton"
+   "subject": "french fries in a red carton",
+   "object": true
   },
   {
    "n": 141,
@@ -1763,7 +1793,8 @@
     "en": "Ice cream"
    },
    "motion": "breathe",
-   "subject": "a soft-serve ice cream cone with a swirl"
+   "subject": "a soft-serve ice cream cone with a swirl",
+   "object": true
   },
   {
    "n": 142,
@@ -1775,7 +1806,8 @@
     "en": "Donut"
    },
    "motion": "twinkle",
-   "subject": "a donut with pink glaze and colourful sprinkles"
+   "subject": "a donut with pink glaze and colourful sprinkles",
+   "object": true
   },
   {
    "n": 143,
@@ -1787,7 +1819,8 @@
     "en": "Cookie"
    },
    "motion": "breathe",
-   "subject": "a round chocolate chip cookie"
+   "subject": "a round chocolate chip cookie",
+   "object": true
   },
   {
    "n": 144,
@@ -1799,7 +1832,8 @@
     "en": "Strawberry"
    },
    "motion": "bounce",
-   "subject": "a ripe red strawberry with green leaves"
+   "subject": "a ripe red strawberry with green leaves",
+   "object": true
   },
   {
    "n": 145,
@@ -1811,7 +1845,8 @@
     "en": "Cherries"
    },
    "motion": "wave",
-   "subject": "two red cherries joined by their stems"
+   "subject": "two red cherries joined by their stems",
+   "object": true
   },
   {
    "n": 146,
@@ -1823,7 +1858,8 @@
     "en": "Avocado"
    },
    "motion": "breathe",
-   "subject": "half an avocado with its round stone"
+   "subject": "half an avocado with its round stone",
+   "object": true
   },
   {
    "n": 147,
@@ -1835,7 +1871,8 @@
     "en": "Popcorn"
    },
    "motion": "shake",
-   "subject": "a red and white striped bucket overflowing with popcorn"
+   "subject": "a red and white striped bucket overflowing with popcorn",
+   "object": true
   },
   {
    "n": 148,
@@ -1847,7 +1884,8 @@
     "en": "Bubble tea"
    },
    "motion": "breathe",
-   "subject": "a cup of bubble tea with tapioca pearls and a wide straw"
+   "subject": "a cup of bubble tea with tapioca pearls and a wide straw",
+   "object": true
   },
   {
    "n": 149,
@@ -1871,7 +1909,8 @@
     "en": "Rainbow"
    },
    "motion": "breathe",
-   "subject": "a rainbow arc with small white clouds at both ends"
+   "subject": "a rainbow arc with small white clouds at both ends",
+   "object": true
   },
   {
    "n": 151,
@@ -1883,7 +1922,8 @@
     "en": "Rain"
    },
    "motion": "float",
-   "subject": "a grey cloud with raindrops falling"
+   "subject": "a grey cloud with raindrops falling",
+   "object": true
   },
   {
    "n": 152,
@@ -1895,7 +1935,8 @@
     "en": "Snow"
    },
    "motion": "twinkle",
-   "subject": "a light blue six-pointed snowflake"
+   "subject": "a light blue six-pointed snowflake",
+   "object": true
   },
   {
    "n": 153,
@@ -1907,7 +1948,8 @@
     "en": "Moon"
    },
    "motion": "float",
-   "subject": "a golden crescent moon with two small stars"
+   "subject": "a golden crescent moon with two small stars",
+   "object": true
   },
   {
    "n": 154,
@@ -1919,7 +1961,8 @@
     "en": "Blossom"
    },
    "motion": "breathe",
-   "subject": "a pink cherry blossom flower"
+   "subject": "a pink cherry blossom flower",
+   "object": true
   },
   {
    "n": 155,
@@ -1931,7 +1974,8 @@
     "en": "Sunflower"
    },
    "motion": "nod",
-   "subject": "a sunflower with yellow petals and a brown centre"
+   "subject": "a sunflower with yellow petals and a brown centre",
+   "object": true
   },
   {
    "n": 156,
@@ -1943,7 +1987,8 @@
     "en": "Autumn"
    },
    "motion": "float",
-   "subject": "orange and red autumn leaves falling"
+   "subject": "orange and red autumn leaves falling",
+   "object": true
   },
   {
    "n": 157,
@@ -1955,7 +2000,8 @@
     "en": "Fire"
    },
    "motion": "pulse",
-   "subject": "a bright orange and yellow flame"
+   "subject": "a bright orange and yellow flame",
+   "object": true
   },
   {
    "n": 158,
@@ -1967,7 +2013,8 @@
     "en": "Lightning"
    },
    "motion": "shake",
-   "subject": "a yellow zigzag lightning bolt"
+   "subject": "a yellow zigzag lightning bolt",
+   "object": true
   },
   {
    "n": 159,
@@ -1991,7 +2038,8 @@
     "en": "Wake up"
    },
    "motion": "shake",
-   "subject": "a red twin-bell alarm clock ringing, motion lines with a blank dial"
+   "subject": "a red twin-bell alarm clock ringing, motion lines with a blank dial",
+   "object": true
   },
   {
    "n": 161,
@@ -2003,7 +2051,8 @@
     "en": "Idea"
    },
    "motion": "pulse",
-   "subject": "a glowing yellow light bulb"
+   "subject": "a glowing yellow light bulb",
+   "object": true
   },
   {
    "n": 162,
@@ -2015,7 +2064,8 @@
     "en": "Music"
    },
    "motion": "bounce",
-   "subject": "two black musical notes"
+   "subject": "two black musical notes",
+   "object": true
   },
   {
    "n": 163,
@@ -2027,7 +2077,8 @@
     "en": "Studying"
    },
    "motion": "breathe",
-   "subject": "a small stack of colourful books with plain blank covers"
+   "subject": "a small stack of colourful books with plain blank covers",
+   "object": true
   },
   {
    "n": 164,
@@ -2039,7 +2090,8 @@
     "en": "Working"
    },
    "motion": "breathe",
-   "subject": "an open laptop with a blank glowing screen"
+   "subject": "an open laptop with a blank glowing screen",
+   "object": true
   },
   {
    "n": 165,
@@ -2051,7 +2103,8 @@
     "en": "Text me"
    },
    "motion": "shake",
-   "subject": "a smartphone with a blank screen and a small speech bubble with three dots"
+   "subject": "a smartphone with a blank screen and a small speech bubble with three dots",
+   "object": true
   },
   {
    "n": 166,
@@ -2063,7 +2116,8 @@
     "en": "Holiday"
    },
    "motion": "float",
-   "subject": "a small white passenger plane flying"
+   "subject": "a small white passenger plane flying",
+   "object": true
   },
   {
    "n": 167,
@@ -2075,7 +2129,8 @@
     "en": "Let's go"
    },
    "motion": "bounce",
-   "subject": "a red and white rocket launching with a flame"
+   "subject": "a red and white rocket launching with a flame",
+   "object": true
   },
   {
    "n": 168,
@@ -2087,7 +2142,8 @@
     "en": "Gaming"
    },
    "motion": "shake",
-   "subject": "a game controller with buttons with plain round buttons"
+   "subject": "a game controller with buttons with plain round buttons",
+   "object": true
   },
   {
    "n": 169,
@@ -2178,7 +2234,8 @@
    },
    "motion": "bounce",
    "subject": "a painted Easter egg with colourful stripes and dots",
-   "reserve": true
+   "reserve": true,
+   "object": true
   },
   {
    "n": 176,
@@ -2191,7 +2248,8 @@
    },
    "motion": "breathe",
    "subject": "a red mushroom with white spots",
-   "reserve": true
+   "reserve": true,
+   "object": true
   },
   {
    "n": 177,
@@ -2204,7 +2262,8 @@
    },
    "motion": "breathe",
    "subject": "a chocolate bar partly unwrapped in a plain red wrapper",
-   "reserve": true
+   "reserve": true,
+   "object": true
   },
   {
    "n": 178,
@@ -2217,7 +2276,8 @@
    },
    "motion": "shake",
    "subject": "a small red cartoon car",
-   "reserve": true
+   "reserve": true,
+   "object": true
   },
   {
    "n": 179,
@@ -2230,7 +2290,8 @@
    },
    "motion": "bounce",
    "subject": "a black and white football",
-   "reserve": true
+   "reserve": true,
+   "object": true
   },
   {
    "n": 180,
@@ -2243,7 +2304,8 @@
    },
    "motion": "breathe",
    "subject": "a small cosy house with a red roof",
-   "reserve": true
+   "reserve": true,
+   "object": true
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "_comment": "Prompt = styles[style] + ', ' + subject + ', ' + framing. Qwen-Image ignores negatives (L40S, 2026-11-12), so styles and framing describe what we want; negative is still sent for models that use it. All three styles ship (2026-11-13): paper is free, marker and clay are in-app packs. See docs/EMOJI_SET_PLAN.md §6.",
+ "_comment": "Prompt = styles[style] (objects[style] for emoji marked object) + ', ' + subject + ', ' + framing. Positive text only describes what we want: in I1/I2 Qwen-Image drew the very things a 'no ...' phrase named (human silhouettes, limbs). Exclusions go to negative + negative_style[style] + negative_object (objects) or negative_head (subjects 'shown as a head only'); they act because cfg 2.5 > 1. All three styles ship (2026-11-13): paper is free, marker and clay are in-app packs. See docs/EMOJI_SET_PLAN.md §6.",
  "selected": [
   "paper",
   "marker",
@@ -34,11 +34,22 @@
  "_ship": "Styles the app shows, in picker order; the first is the default and free. pack = id in handwritten_stickers/assets/packs/packs.json.",
  "styles": {
   "marker": "hand-drawn illustration in felt-tip marker and coloured pencil, confident visible strokes, slightly uneven dark brown ink outline, bold flat colours with light paper grain inside the shapes",
-  "paper": "flat paper-craft illustration: the subject alone, cut out of coloured paper as a few pieces that stay inside its own outline, clean scissor-cut edges, soft shadow under each piece, light gouache texture, nothing behind the subject: no stack of paper sheets, no backing card, no human silhouettes",
-  "clay": "soft 3D clay model, rounded smooth plasticine shapes with a satin finish, gentle studio light, vivid colours; an object is modelled as the plain object itself, never turned into a character or mascot, with no added body, arms or legs"
+  "paper": "flat paper-craft illustration: one main piece of coloured paper cut to the exact outline of the subject, with the smaller details cut from paper and glued on top of it, clean scissor-cut edges, a thin soft shadow under each detail, light gouache texture, the cut-out edge of the main piece is the outer edge of the whole picture",
+  "clay": "soft 3D clay model, rounded smooth plasticine shapes with a satin finish, gentle studio light, vivid colours"
  },
- "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating in empty space in front of a plain flat medium grey background, with no ground shadow and nothing under it",
- "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers",
+ "objects": {
+  "clay": "a small handmade plasticine object on its own, like a studio product shot, smooth rounded shapes with a satin finish, gentle studio light, vivid colours, the plain object exactly as it is in real life",
+  "paper": "flat paper-craft illustration of a single object: one main piece of coloured paper cut to the exact outline of the object, with the smaller details cut from paper and glued on top of it, clean scissor-cut edges, a thin soft shadow under each detail, light gouache texture, the cut-out edge of the main piece is the outer edge of the whole picture"
+ },
+ "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating freely in empty space in front of a plain flat medium grey background",
+ "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers, ground shadow, floor, pedestal",
+ "negative_style": {
+  "paper": "person, people, human figure, human silhouette, stack of paper, stacked paper squares, coloured paper layers behind the subject, square background, backing card, mounting board, white rim",
+  "clay": "fingerprints",
+  "marker": ""
+ },
+ "negative_object": "face, eyes, mouth, arms, legs, feet, hands, body, mascot, cartoon character, person, figure holding it",
+ "negative_head": "arms, hands, legs, feet, body, torso",
  "size": 1024,
  "seed": {
   "base": 7000,
@@ -57,5 +68,7 @@
    "feel_angry"
   ],
   "seeds_per_item": 2
- }
+ },
+ "negative_hand": "face, eyes, mouth, text, letters, sleeve, shirt, torso, person, character body",
+ "negative_face": "torso, shoulders, sleeve, shirt, legs, feet, body"
 }

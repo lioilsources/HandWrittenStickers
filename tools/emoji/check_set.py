@@ -67,10 +67,14 @@ def check_set(data, errors):
 
 
 def check_styles(styles, errors):
-    for name, block in styles['styles'].items():
+    blocks = [*styles['styles'].items(), *((f'{k} (objects)', v) for k, v in styles.get('objects', {}).items())]
+    for name, block in blocks:
         m = BANNED.search(block)
         if m:
             errors.append(f'style {name} contains "{m.group(0)}"')
+    for name in styles.get('objects', {}):
+        if name not in styles['styles']:
+            errors.append(f'objects: style {name} does not exist')
     for s in [*(styles['selected'] or []), styles.get('free')]:
         if s is not None and s not in styles['styles']:
             errors.append(f'style {s} does not exist')

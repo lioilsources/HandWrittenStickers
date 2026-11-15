@@ -1,0 +1,823 @@
+{
+ "animal_cat": {
+  "pick": 9002,
+  "alt": 9001
+ },
+ "animal_cat_love": {
+  "pick": 9023,
+  "alt": 9020
+ },
+ "animal_panda": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "animal_bear": {
+  "pick": 9081,
+  "alt": 9083
+ },
+ "animal_bunny": {
+  "pick": 9100,
+  "alt": 9102
+ },
+ "animal_hedgehog": {
+  "pick": 9121,
+  "alt": 9123
+ },
+ "animal_owl": {
+  "pick": 9141,
+  "alt": 9143
+ },
+ "animal_penguin": {
+  "pick": 9160,
+  "alt": 9162
+ },
+ "animal_koala": {
+  "pick": 9181,
+  "alt": 9180
+ },
+ "animal_sloth": {
+  "pick": 9200,
+  "alt": 9201,
+  "notes": "small grey gap under branch"
+ },
+ "animal_monkey_hear": {
+  "pick": 9240,
+  "alt": 9242,
+  "notes": "hands sit at sides of head, close to cheeks"
+ },
+ "animal_monkey_speak": {
+  "pick": 9260,
+  "alt": 9263
+ },
+ "animal_unicorn": {
+  "pick": 9281,
+  "alt": 9283
+ },
+ "animal_dino": {
+  "pick": 9300,
+  "alt": 9303
+ },
+ "animal_frog": {
+  "pick": 9320,
+  "alt": 9323
+ },
+ "animal_chick": {
+  "pick": 9341,
+  "alt": 9343
+ },
+ "animal_pig": {
+  "pick": 9362,
+  "alt": 9360,
+  "notes": "whole piglet body, not face only"
+ },
+ "animal_mouse": {
+  "pick": 9383,
+  "alt": 9382
+ },
+ "animal_lion": {
+  "pick": 9401,
+  "alt": 9400
+ },
+ "animal_turtle": {
+  "pick": 9421,
+  "alt": 9420
+ },
+ "animal_bee": {
+  "pick": 9441,
+  "alt": 9440
+ },
+ "animal_butterfly": {
+  "pick": 10401,
+  "alt": 10403
+ },
+ "animal_ladybug": {
+  "pick": 10420,
+  "alt": 10423
+ },
+ "animal_whale": {
+  "pick": 10441,
+  "alt": 10443
+ },
+ "animal_octopus": {
+  "pick": 10460,
+  "alt": 10463
+ },
+ "animal_dog": {
+  "pick": 8985,
+  "alt": 8986
+ },
+ "animal_monkey_see": {
+  "pick": 9226,
+  "alt": 9224
+ },
+ "animal_fox": {
+  "pick": 9044,
+  "alt": 9046
+ },
+ "day_alarm": {
+  "pick": 10201,
+  "alt": 10203
+ },
+ "day_idea": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed / paper stack"
+ },
+ "day_music": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "day_books": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "day_phone": {
+  "pick": null,
+  "alt": null,
+  "notes": "figure on screen or paper stack behind"
+ },
+ "day_plane": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "day_rocket": {
+  "pick": 10340,
+  "alt": 10343
+ },
+ "day_gamepad": {
+  "pick": 10363,
+  "alt": 10360
+ },
+ "day_car": {
+  "pick": 10560,
+  "alt": 10563,
+  "notes": "tiny passenger silhouettes in windows"
+ },
+ "day_ball": {
+  "pick": null,
+  "alt": 10580,
+  "notes": "figures/stacks; 10580 has a small figure printed on the ball"
+ },
+ "day_home": {
+  "pick": 10603,
+  "alt": null
+ },
+ "day_zzz": {
+  "pick": 10187,
+  "alt": 10186
+ },
+ "day_laptop": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed + paper stack"
+ },
+ "feel_crying": {
+  "pick": 7521,
+  "alt": 7523,
+  "notes": "alt has layers at right edge"
+ },
+ "feel_furious": {
+  "pick": null,
+  "alt": 7561,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_scared": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_scream": {
+  "pick": 7602,
+  "alt": 7600,
+  "notes": "white rim around face"
+ },
+ "feel_surprised": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_embarrassed": {
+  "pick": 7642,
+  "alt": 7640,
+  "notes": "face cut into blocky pieces, not quite round"
+ },
+ "feel_sad": {
+  "pick": null,
+  "alt": 7663,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_pleading": {
+  "pick": 7681,
+  "alt": null,
+  "notes": "white rim, tears instead of watery eyes"
+ },
+ "feel_sick": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_dizzy": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_mind_blown": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_facepalm": {
+  "pick": null,
+  "alt": null,
+  "notes": "arm with sleeve/torso or paper stack"
+ },
+ "feel_eye_roll": {
+  "pick": null,
+  "alt": null,
+  "notes": "wrong expression (>< eyes) and stacks; 7801 right eyes but stacked"
+ },
+ "feel_oops": {
+  "pick": null,
+  "alt": null,
+  "notes": "angry expression instead of awkward grimace, stacks"
+ },
+ "feel_cold": {
+  "pick": 7843,
+  "alt": 7841,
+  "notes": "fangs rather than chattering teeth"
+ },
+ "feel_hot": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_bored": {
+  "pick": null,
+  "alt": null,
+  "notes": "sad expression instead of flat, stacks"
+ },
+ "feel_tear": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_worn_out": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "feel_angry": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "flirt_smirk": {
+  "pick": null,
+  "alt": null,
+  "notes": "wink instead of smirk, stacks"
+ },
+ "flirt_blush": {
+  "pick": null,
+  "alt": 7961,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "flirt_heart_eyes": {
+  "pick": 7983,
+  "alt": 7982
+ },
+ "flirt_lips": {
+  "pick": 8003,
+  "alt": 8002
+ },
+ "flirt_rose_teeth": {
+  "pick": 8022,
+  "alt": 8021,
+  "notes": "rose beside open grin, not between teeth"
+ },
+ "flirt_call_me": {
+  "pick": null,
+  "alt": null,
+  "notes": "index finger up instead of thumb+pinky"
+ },
+ "flirt_spark": {
+  "pick": null,
+  "alt": null,
+  "notes": "two human figures in every seed"
+ },
+ "flirt_devil": {
+  "pick": null,
+  "alt": 8102,
+  "notes": "stacks/backing card or paper base"
+ },
+ "flirt_finger_heart": {
+  "pick": 8121,
+  "alt": 8120
+ },
+ "flirt_heart_arrow": {
+  "pick": 8142,
+  "alt": null,
+  "notes": "cream backing heart rim; others have figures"
+ },
+ "flirt_cupid": {
+  "pick": 8160,
+  "alt": 8162
+ },
+ "flirt_love_note": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "flirt_peek": {
+  "pick": 8202,
+  "alt": 8200,
+  "notes": "hands over eyes but no peeking eye; alt peeks but stacked"
+ },
+ "flirt_kiss": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "flirt_eyes": {
+  "pick": 8064,
+  "alt": null,
+  "notes": "eyes on pink/peach paper patches; others are heads"
+ },
+ "flirt_wink": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "hand_wave": {
+  "pick": 8627,
+  "alt": 8626
+ },
+ "hand_clap": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figures or backing"
+ },
+ "hand_ok": {
+  "pick": 8666,
+  "alt": 8661
+ },
+ "hand_crossed": {
+  "pick": 8704,
+  "alt": 8701
+ },
+ "hand_pray": {
+  "pick": null,
+  "alt": 8724,
+  "notes": "wrong pose/backing; 8724 has grey gap between palms"
+ },
+ "hand_high_five": {
+  "pick": 8746,
+  "alt": 8741,
+  "notes": "fingers spread, not together"
+ },
+ "hand_fist_bump": {
+  "pick": 8767,
+  "alt": 8762,
+  "notes": "front-view fist, not punching toward viewer"
+ },
+ "hand_flex": {
+  "pick": null,
+  "alt": null,
+  "notes": "full human torso in every seed"
+ },
+ "hand_point_up": {
+  "pick": 8824,
+  "alt": 8822
+ },
+ "hand_handshake": {
+  "pick": 8842,
+  "alt": 8843
+ },
+ "hand_love_you": {
+  "pick": null,
+  "alt": null,
+  "notes": "'love-you' text on wrist, wrong gesture"
+ },
+ "hand_shrug": {
+  "pick": 8882,
+  "alt": 8881,
+  "notes": "face cut into wedges"
+ },
+ "hand_raised": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "hand_pinch": {
+  "pick": null,
+  "alt": null,
+  "notes": "open palm/pointing, no pinch"
+ },
+ "hand_writing": {
+  "pick": 8941,
+  "alt": 8945
+ },
+ "hand_stop": {
+  "pick": 8962,
+  "alt": 8964
+ },
+ "hand_thumbs_down": {
+  "pick": 8614,
+  "alt": 8608,
+  "notes": "most seeds show thumbs up"
+ },
+ "hand_point_you": {
+  "pick": null,
+  "alt": null,
+  "notes": "index points up, no foreshortening toward viewer"
+ },
+ "hand_thumbs_up": {
+  "pick": 8589,
+  "alt": 8594
+ },
+ "hand_peace": {
+  "pick": 8690,
+  "alt": 8688
+ },
+ "love_sparkle_heart": {
+  "pick": null,
+  "alt": 8261,
+  "notes": "figures; 8261 faint figure ghost"
+ },
+ "love_broken": {
+  "pick": 8280,
+  "alt": null,
+  "notes": "cream rim behind"
+ },
+ "love_mending": {
+  "pick": 8302,
+  "alt": 8301
+ },
+ "love_fire": {
+  "pick": 8320,
+  "alt": null
+ },
+ "love_smitten": {
+  "pick": 8341,
+  "alt": 8342,
+  "notes": "thin layer under face"
+ },
+ "love_hug": {
+  "pick": 8362,
+  "alt": 8363
+ },
+ "love_heart_hands": {
+  "pick": null,
+  "alt": 8382,
+  "notes": "heart backing; 8382 grey left in heart gap"
+ },
+ "love_rose": {
+  "pick": 8421,
+  "alt": 8423
+ },
+ "love_bouquet": {
+  "pick": 8442,
+  "alt": 8441
+ },
+ "love_gift": {
+  "pick": 8461,
+  "alt": 8460
+ },
+ "love_balloon": {
+  "pick": 8483,
+  "alt": null,
+  "notes": "faint pink backing behind heart"
+ },
+ "love_birds": {
+  "pick": 8503,
+  "alt": 8502
+ },
+ "love_moon": {
+  "pick": 8520,
+  "alt": 8522
+ },
+ "love_miss_you": {
+  "pick": 8540,
+  "alt": 8543,
+  "notes": "open crying, more than holding back tears"
+ },
+ "love_lock": {
+  "pick": 8560,
+  "alt": 8563,
+  "notes": "padlock not heart-shaped"
+ },
+ "love_hearts": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "love_ring": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed + paper stack"
+ },
+ "love_heart": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "nature_rainbow": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "nature_rain": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed + paper stack"
+ },
+ "nature_snowflake": {
+  "pick": 10041,
+  "alt": 10043
+ },
+ "nature_moon": {
+  "pick": null,
+  "alt": null,
+  "notes": "figures/paper stack"
+ },
+ "nature_sunflower": {
+  "pick": 10100,
+  "alt": 10101
+ },
+ "nature_leaf": {
+  "pick": 10123,
+  "alt": null,
+  "notes": "single leaf with tiny falling bits"
+ },
+ "nature_fire": {
+  "pick": 10140,
+  "alt": 10142
+ },
+ "nature_lightning": {
+  "pick": 10162,
+  "alt": null,
+  "notes": "teal offset layer; others have figures"
+ },
+ "nature_mushroom": {
+  "pick": 10520,
+  "alt": 10521
+ },
+ "nature_sun": {
+  "pick": 9986,
+  "alt": 9984
+ },
+ "nature_blossom": {
+  "pick": 10085,
+  "alt": 10087
+ },
+ "party_cake": {
+  "pick": 9503,
+  "alt": 9502,
+  "notes": "on a paper plate"
+ },
+ "party_gift": {
+  "pick": 9521,
+  "alt": 9522
+ },
+ "party_balloon": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "party_trophy": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "party_medal": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "party_fireworks": {
+  "pick": 9620,
+  "alt": null,
+  "notes": "white rim; others have figures"
+ },
+ "party_sparkles": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "party_star": {
+  "pick": 9660,
+  "alt": 9662,
+  "notes": "teal star-shaped border layer"
+ },
+ "party_disco": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "party_clover": {
+  "pick": null,
+  "alt": 9702,
+  "notes": "three-leaf in every seed"
+ },
+ "party_tree": {
+  "pick": 9721,
+  "alt": 9720
+ },
+ "party_pumpkin": {
+  "pick": null,
+  "alt": 10482,
+  "notes": "carved holes keep grey background in every seed"
+ },
+ "party_egg": {
+  "pick": 10500,
+  "alt": null,
+  "notes": "others have figures"
+ },
+ "party_confetti": {
+  "pick": 9485,
+  "alt": null,
+  "notes": "white starburst behind ball; others have figures"
+ },
+ "party_crown": {
+  "pick": null,
+  "alt": null,
+  "notes": "crown on human head silhouette"
+ },
+ "party_popper": {
+  "pick": 9467,
+  "alt": 9466
+ },
+ "food_pizza": {
+  "pick": 9762,
+  "alt": 9760
+ },
+ "food_burger": {
+  "pick": 9782,
+  "alt": 9783
+ },
+ "food_fries": {
+  "pick": 9801,
+  "alt": 9802
+ },
+ "food_ice_cream": {
+  "pick": 9823,
+  "alt": 9822
+ },
+ "food_donut": {
+  "pick": null,
+  "alt": 9842,
+  "notes": "grey background left in donut hole in every seed"
+ },
+ "food_strawberry": {
+  "pick": 9880,
+  "alt": null,
+  "notes": "sliced into bands"
+ },
+ "food_cherries": {
+  "pick": 9901,
+  "alt": null
+ },
+ "food_avocado": {
+  "pick": 9920,
+  "alt": 9922
+ },
+ "food_popcorn": {
+  "pick": 9941,
+  "alt": 9943
+ },
+ "food_bubble_tea": {
+  "pick": 9962,
+  "alt": 9960
+ },
+ "food_chocolate": {
+  "pick": 10543,
+  "alt": 10541
+ },
+ "food_coffee": {
+  "pick": null,
+  "alt": null,
+  "notes": "human figure added in every seed"
+ },
+ "food_cookie": {
+  "pick": 9866,
+  "alt": 9865
+ },
+ "smile_grin": {
+  "pick": 7040,
+  "alt": null,
+  "notes": "thin layers at right edge"
+ },
+ "smile_rofl": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card, not tilted"
+ },
+ "smile_upside_down": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "smile_cool": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "smile_tongue": {
+  "pick": 7140,
+  "alt": null,
+  "notes": "thin layer at right edge"
+ },
+ "smile_zany": {
+  "pick": 7161,
+  "alt": 7163
+ },
+ "smile_angel": {
+  "pick": null,
+  "alt": null,
+  "notes": "stacks; the clean one lacks a halo"
+ },
+ "smile_party": {
+  "pick": null,
+  "alt": null,
+  "notes": "stacks/paper base"
+ },
+ "smile_nerd": {
+  "pick": 7221,
+  "alt": null,
+  "notes": "big grin rather than buck teeth"
+ },
+ "smile_star_struck": {
+  "pick": 7240,
+  "alt": 7241
+ },
+ "smile_hug": {
+  "pick": 7280,
+  "alt": 7281
+ },
+ "smile_thinking": {
+  "pick": 7301,
+  "alt": 7300,
+  "notes": "winking, white rim"
+ },
+ "smile_shush": {
+  "pick": 7323,
+  "alt": 7322,
+  "notes": "finger reads as thumb"
+ },
+ "smile_salute": {
+  "pick": null,
+  "alt": null,
+  "notes": "stacks/torso"
+ },
+ "smile_relaxed": {
+  "pick": 7362,
+  "alt": null,
+  "notes": "layer behind right edge"
+ },
+ "smile_sleeping": {
+  "pick": null,
+  "alt": null,
+  "notes": "all seeds on paper stack/backing card"
+ },
+ "smile_yawn": {
+  "pick": 7400,
+  "alt": 7403
+ },
+ "smile_monocle": {
+  "pick": 7423,
+  "alt": null,
+  "notes": "looks like glasses with wink"
+ },
+ "smile_cowboy": {
+  "pick": 7440,
+  "alt": 7441
+ },
+ "smile_ghost": {
+  "pick": 7460,
+  "alt": null
+ },
+ "smile_robot": {
+  "pick": 7480,
+  "alt": 7482
+ },
+ "smile_alien": {
+  "pick": 10381,
+  "alt": 10380
+ },
+ "smile_happy": {
+  "pick": 7026,
+  "alt": null,
+  "notes": "layer behind right edge"
+ },
+ "smile_yum": {
+  "pick": 7266,
+  "alt": 7267
+ },
+ "smile_laugh": {
+  "pick": 7066,
+  "alt": 7065
+ }
+}

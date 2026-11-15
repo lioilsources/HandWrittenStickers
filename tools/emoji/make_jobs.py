@@ -14,6 +14,7 @@ styles.json `selected`; I1 is the pilot plus the style-test emoji (to check the
 prompt fixes after I0), I2 the rest. `--styles` narrows any batch."""
 import argparse
 import json
+import re
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -34,9 +35,23 @@ def default_ks(item):
 
 
 def job(styles, item, style, seed):
-    prompt = f'{styles["styles"][style]}, {item["subject"]}, {styles["framing"]}'
+    # Objects get their own style text: the generic one turned hearts, gifts
+    # and rings into mascots with arms and legs (clay, I2).
+    look = styles.get('objects', {}).get(style) if item.get('object') else None
+    prompt = f'{look or styles["styles"][style]}, {item["subject"]}, {styles["framing"]}'
+    negative = [styles['negative'], styles.get('negative_style', {}).get(style)]
+    if item.get('object'):
+        negative.append(styles.get('negative_object'))
+    elif 'head only' in item['subject']:
+        negative.append(styles.get('negative_head'))
+    elif re.search(r'cartoon (hands?|fist|arm)\b', item['subject']):
+        negative.append(styles.get('negative_hand'))
+    elif 'emoji face' in item['subject']:
+        # A face with hands (hug, salute, facepalm) must not grow a body.
+        negative.append(styles.get('negative_face'))
     return {'file': f'{item["id"]}__{style}__{seed}.png', 'id': item['id'], 'style': style,
-            'seed': seed, 'size': styles['size'], 'prompt': prompt, 'negative': styles['negative']}
+            'seed': seed, 'size': styles['size'], 'prompt': prompt,
+            'negative': ', '.join(n for n in negative if n)}
 
 
 def pilot_ids(data, exclude):
