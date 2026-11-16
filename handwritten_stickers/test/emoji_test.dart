@@ -69,17 +69,24 @@ class _TwoStyleBundle extends CachingAssetBundle {
     final text = await rootBundle.loadString(key);
     if (key != EmojiIndex.assetPath) return text;
     final data = json.decode(text) as Map<String, dynamic>;
-    final first = (data['styles'] as List).first['id'] as String;
-    (data['styles'] as List).add({
-      'id': 'marker',
-      'name': {'cs': 'Fix', 'en': 'Marker'},
-      'pack': 'emoji_marker',
-    });
+    // Only the free style plus a fake "marker" that reuses its files, so the
+    // test does not depend on which styles the bundled set has.
+    final styles = data['styles'] as List;
+    final first = styles.first['id'] as String;
+    data['styles'] = [
+      styles.first,
+      {
+        'id': 'marker',
+        'name': {'cs': 'Fix', 'en': 'Marker'},
+        'pack': 'emoji_marker',
+      },
+    ];
     // Marker has every other emoji, so categories differ between styles.
     var i = 0;
     for (final e in data['emoji'] as List) {
       final files = e['files'] as Map;
-      if ((i++).isEven) files['marker'] = files[first];
+      files.removeWhere((style, _) => style != first);
+      if (files.isNotEmpty && (i++).isEven) files['marker'] = files[first];
     }
     return json.encode(data);
   }

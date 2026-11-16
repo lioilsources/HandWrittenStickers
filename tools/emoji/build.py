@@ -42,7 +42,12 @@ def render(src, dst):
     im = Image.open(src).convert('RGBA')
     if im.size != (SIZE, SIZE):
         im = im.resize((SIZE, SIZE), Image.LANCZOS)
-    im.save(dst, 'WEBP', quality=88, method=6)
+    # check_set.py allows 40 kB per sticker; busy artwork (fireworks, disco
+    # ball) needs a lower quality to fit.
+    for quality, alpha in ((88, 100), (82, 100), (76, 100), (70, 100), (76, 80), (70, 80)):
+        im.save(dst, 'WEBP', quality=quality, alpha_quality=alpha, method=6)
+        if os.path.getsize(dst) <= 40_000:
+            break
 
 
 def write_pubspec(style_ids):

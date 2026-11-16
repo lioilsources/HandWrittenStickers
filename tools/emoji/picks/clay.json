@@ -955,10 +955,10 @@
   "batch": "I1"
  },
  "food_coffee": {
-  "pick": null,
+  "pick": 9740,
   "alt": null,
-  "notes": "9740 good but grey left in handle (old cut-out); others have faces/figures",
-  "batch": "I1"
+  "batch": "I1",
+  "notes": "recut 2026-11-16, handle clean"
  },
  "food_cookie": {
   "pick": 9861,
