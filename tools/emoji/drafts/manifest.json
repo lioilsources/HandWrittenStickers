@@ -2065,5 +2065,775 @@
         ]
       }
     }
+  },
+  "I3": {
+    "batch": "I3",
+    "images": 512,
+    "failed": 0,
+    "styles_run": [
+      "paper",
+      "clay"
+    ],
+    "jobs": "emoji-own-set 2acea0b6 (positive prompts, exclusions in the negative)",
+    "cutout": "--clear-bg-holes 14: enclosed neutral-grey gaps (donut hole, padlock shackle, OK ring) are transparent",
+    "review": "by eye on a sample (clay love, paper party, paper feel); no per-id picks",
+    "styles": {
+      "clay": "objects are plain objects now (heart, sparkle_heart, broken, mending, gift, balloon, lock); love_ring still sits on a smooth blob",
+      "paper": "no human silhouettes any more; party_balloon adds a random pink shape or house, party_sparkles draws boxes and books; a white paper rim around some objects (disco, clover 9718, pumpkin 10497); faces still have a blue or white backing disc on scared, sick, dizzy, tear, worn_out, bored 7897; feel_dizzy 7758 is a figure"
+    },
+    "ids": {
+      "animal_panda": {
+        "seeds": [
+          9076,
+          9077,
+          9078,
+          9079
+        ]
+      },
+      "day_idea": {
+        "seeds": [
+          10236,
+          10237,
+          10238,
+          10239
+        ]
+      },
+      "day_music": {
+        "seeds": [
+          10256,
+          10257,
+          10258,
+          10259
+        ]
+      },
+      "day_books": {
+        "seeds": [
+          10276,
+          10277,
+          10278,
+          10279
+        ]
+      },
+      "day_phone": {
+        "seeds": [
+          10316,
+          10317,
+          10318,
+          10319
+        ]
+      },
+      "day_plane": {
+        "seeds": [
+          10336,
+          10337,
+          10338,
+          10339
+        ]
+      },
+      "day_ball": {
+        "seeds": [
+          10596,
+          10597,
+          10598,
+          10599
+        ]
+      },
+      "day_laptop": {
+        "seeds": [
+          10296,
+          10297,
+          10298,
+          10299
+        ]
+      },
+      "feel_furious": {
+        "seeds": [
+          7576,
+          7577,
+          7578,
+          7579
+        ]
+      },
+      "feel_scared": {
+        "seeds": [
+          7596,
+          7597,
+          7598,
+          7599
+        ]
+      },
+      "feel_surprised": {
+        "seeds": [
+          7636,
+          7637,
+          7638,
+          7639
+        ]
+      },
+      "feel_sad": {
+        "seeds": [
+          7676,
+          7677,
+          7678,
+          7679
+        ]
+      },
+      "feel_sick": {
+        "seeds": [
+          7736,
+          7737,
+          7738,
+          7739
+        ]
+      },
+      "feel_dizzy": {
+        "seeds": [
+          7756,
+          7757,
+          7758,
+          7759
+        ]
+      },
+      "feel_mind_blown": {
+        "seeds": [
+          7776,
+          7777,
+          7778,
+          7779
+        ]
+      },
+      "feel_facepalm": {
+        "seeds": [
+          7796,
+          7797,
+          7798,
+          7799
+        ]
+      },
+      "feel_eye_roll": {
+        "seeds": [
+          7816,
+          7817,
+          7818,
+          7819
+        ]
+      },
+      "feel_oops": {
+        "seeds": [
+          7836,
+          7837,
+          7838,
+          7839
+        ]
+      },
+      "feel_hot": {
+        "seeds": [
+          7876,
+          7877,
+          7878,
+          7879
+        ]
+      },
+      "feel_bored": {
+        "seeds": [
+          7896,
+          7897,
+          7898,
+          7899
+        ]
+      },
+      "feel_tear": {
+        "seeds": [
+          7516,
+          7517,
+          7518,
+          7519
+        ]
+      },
+      "feel_worn_out": {
+        "seeds": [
+          7716,
+          7717,
+          7718,
+          7719
+        ]
+      },
+      "feel_angry": {
+        "seeds": [
+          7556,
+          7557,
+          7558,
+          7559
+        ]
+      },
+      "flirt_smirk": {
+        "seeds": [
+          7956,
+          7957,
+          7958,
+          7959
+        ]
+      },
+      "flirt_blush": {
+        "seeds": [
+          7976,
+          7977,
+          7978,
+          7979
+        ]
+      },
+      "flirt_call_me": {
+        "seeds": [
+          8056,
+          8057,
+          8058,
+          8059
+        ]
+      },
+      "flirt_spark": {
+        "seeds": [
+          8096,
+          8097,
+          8098,
+          8099
+        ]
+      },
+      "flirt_devil": {
+        "seeds": [
+          8116,
+          8117,
+          8118,
+          8119
+        ]
+      },
+      "flirt_love_note": {
+        "seeds": [
+          8196,
+          8197,
+          8198,
+          8199
+        ]
+      },
+      "flirt_kiss": {
+        "seeds": [
+          7936,
+          7937,
+          7938,
+          7939
+        ]
+      },
+      "flirt_wink": {
+        "seeds": [
+          7916,
+          7917,
+          7918,
+          7919
+        ]
+      },
+      "hand_clap": {
+        "seeds": [
+          8656,
+          8657,
+          8658,
+          8659
+        ]
+      },
+      "hand_pray": {
+        "seeds": [
+          8736,
+          8737,
+          8738,
+          8739
+        ]
+      },
+      "hand_flex": {
+        "seeds": [
+          8796,
+          8797,
+          8798,
+          8799
+        ]
+      },
+      "hand_love_you": {
+        "seeds": [
+          8876,
+          8877,
+          8878,
+          8879
+        ]
+      },
+      "hand_raised": {
+        "seeds": [
+          8916,
+          8917,
+          8918,
+          8919
+        ]
+      },
+      "hand_pinch": {
+        "seeds": [
+          8936,
+          8937,
+          8938,
+          8939
+        ]
+      },
+      "hand_point_you": {
+        "seeds": [
+          8816,
+          8817,
+          8818,
+          8819
+        ]
+      },
+      "love_sparkle_heart": {
+        "seeds": [
+          8276,
+          8277,
+          8278,
+          8279
+        ]
+      },
+      "love_heart_hands": {
+        "seeds": [
+          8396,
+          8397,
+          8398,
+          8399
+        ]
+      },
+      "love_hearts": {
+        "seeds": [
+          8256,
+          8257,
+          8258,
+          8259
+        ]
+      },
+      "love_ring": {
+        "seeds": [
+          8416,
+          8417,
+          8418,
+          8419
+        ]
+      },
+      "love_heart": {
+        "seeds": [
+          8236,
+          8237,
+          8238,
+          8239
+        ]
+      },
+      "nature_rainbow": {
+        "seeds": [
+          10016,
+          10017,
+          10018,
+          10019
+        ]
+      },
+      "nature_rain": {
+        "seeds": [
+          10036,
+          10037,
+          10038,
+          10039
+        ]
+      },
+      "nature_moon": {
+        "seeds": [
+          10076,
+          10077,
+          10078,
+          10079
+        ]
+      },
+      "party_balloon": {
+        "seeds": [
+          9556,
+          9557,
+          9558,
+          9559
+        ]
+      },
+      "party_trophy": {
+        "seeds": [
+          9576,
+          9577,
+          9578,
+          9579
+        ]
+      },
+      "party_medal": {
+        "seeds": [
+          9596,
+          9597,
+          9598,
+          9599
+        ]
+      },
+      "party_sparkles": {
+        "seeds": [
+          9656,
+          9657,
+          9658,
+          9659
+        ]
+      },
+      "party_disco": {
+        "seeds": [
+          9696,
+          9697,
+          9698,
+          9699
+        ]
+      },
+      "party_clover": {
+        "seeds": [
+          9716,
+          9717,
+          9718,
+          9719
+        ]
+      },
+      "party_pumpkin": {
+        "seeds": [
+          10496,
+          10497,
+          10498,
+          10499
+        ]
+      },
+      "party_crown": {
+        "seeds": [
+          9616,
+          9617,
+          9618,
+          9619
+        ]
+      },
+      "food_donut": {
+        "seeds": [
+          9856,
+          9857,
+          9858,
+          9859
+        ]
+      },
+      "food_coffee": {
+        "seeds": [
+          9756,
+          9757,
+          9758,
+          9759
+        ]
+      },
+      "smile_rofl": {
+        "seeds": [
+          7096,
+          7097,
+          7098,
+          7099
+        ]
+      },
+      "smile_upside_down": {
+        "seeds": [
+          7116,
+          7117,
+          7118,
+          7119
+        ]
+      },
+      "smile_cool": {
+        "seeds": [
+          7136,
+          7137,
+          7138,
+          7139
+        ]
+      },
+      "smile_angel": {
+        "seeds": [
+          7196,
+          7197,
+          7198,
+          7199
+        ]
+      },
+      "smile_party": {
+        "seeds": [
+          7216,
+          7217,
+          7218,
+          7219
+        ]
+      },
+      "smile_salute": {
+        "seeds": [
+          7356,
+          7357,
+          7358,
+          7359
+        ]
+      },
+      "smile_sleeping": {
+        "seeds": [
+          7396,
+          7397,
+          7398,
+          7399
+        ]
+      },
+      "flirt_lips": {
+        "seeds": [
+          8016,
+          8017,
+          8018,
+          8019
+        ]
+      },
+      "flirt_heart_arrow": {
+        "seeds": [
+          8156,
+          8157,
+          8158,
+          8159
+        ]
+      },
+      "flirt_eyes": {
+        "seeds": [
+          8076,
+          8077,
+          8078,
+          8079
+        ]
+      },
+      "love_broken": {
+        "seeds": [
+          8296,
+          8297,
+          8298,
+          8299
+        ]
+      },
+      "love_mending": {
+        "seeds": [
+          8316,
+          8317,
+          8318,
+          8319
+        ]
+      },
+      "love_gift": {
+        "seeds": [
+          8476,
+          8477,
+          8478,
+          8479
+        ]
+      },
+      "love_balloon": {
+        "seeds": [
+          8496,
+          8497,
+          8498,
+          8499
+        ]
+      },
+      "love_miss_you": {
+        "seeds": [
+          8556,
+          8557,
+          8558,
+          8559
+        ]
+      },
+      "love_lock": {
+        "seeds": [
+          8576,
+          8577,
+          8578,
+          8579
+        ]
+      },
+      "hand_ok": {
+        "seeds": [
+          8676,
+          8677,
+          8678,
+          8679
+        ]
+      },
+      "hand_handshake": {
+        "seeds": [
+          8856,
+          8857,
+          8858,
+          8859
+        ]
+      },
+      "hand_writing": {
+        "seeds": [
+          8956,
+          8957,
+          8958,
+          8959
+        ]
+      },
+      "animal_sloth": {
+        "seeds": [
+          9216,
+          9217,
+          9218,
+          9219
+        ]
+      },
+      "party_fireworks": {
+        "seeds": [
+          9636,
+          9637,
+          9638,
+          9639
+        ]
+      },
+      "party_confetti": {
+        "seeds": [
+          9496,
+          9497,
+          9498,
+          9499
+        ]
+      },
+      "party_popper": {
+        "seeds": [
+          9476,
+          9477,
+          9478,
+          9479
+        ]
+      },
+      "food_burger": {
+        "seeds": [
+          9796,
+          9797,
+          9798,
+          9799
+        ]
+      },
+      "food_fries": {
+        "seeds": [
+          9816,
+          9817,
+          9818,
+          9819
+        ]
+      },
+      "food_strawberry": {
+        "seeds": [
+          9896,
+          9897,
+          9898,
+          9899
+        ]
+      },
+      "food_cherries": {
+        "seeds": [
+          9916,
+          9917,
+          9918,
+          9919
+        ]
+      },
+      "food_avocado": {
+        "seeds": [
+          9936,
+          9937,
+          9938,
+          9939
+        ]
+      },
+      "food_popcorn": {
+        "seeds": [
+          9956,
+          9957,
+          9958,
+          9959
+        ]
+      },
+      "food_bubble_tea": {
+        "seeds": [
+          9976,
+          9977,
+          9978,
+          9979
+        ]
+      },
+      "food_chocolate": {
+        "seeds": [
+          10556,
+          10557,
+          10558,
+          10559
+        ]
+      },
+      "nature_leaf": {
+        "seeds": [
+          10136,
+          10137,
+          10138,
+          10139
+        ]
+      },
+      "nature_fire": {
+        "seeds": [
+          10156,
+          10157,
+          10158,
+          10159
+        ]
+      },
+      "nature_lightning": {
+        "seeds": [
+          10176,
+          10177,
+          10178,
+          10179
+        ]
+      },
+      "nature_mushroom": {
+        "seeds": [
+          10536,
+          10537,
+          10538,
+          10539
+        ]
+      },
+      "day_alarm": {
+        "seeds": [
+          10216,
+          10217,
+          10218,
+          10219
+        ]
+      },
+      "day_car": {
+        "seeds": [
+          10576,
+          10577,
+          10578,
+          10579
+        ]
+      },
+      "day_home": {
+        "seeds": [
+          10616,
+          10617,
+          10618,
+          10619
+        ]
+      }
+    }
   }
 }
