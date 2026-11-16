@@ -88,7 +88,7 @@ Data flow: `GlyphSheetIndex` → `GlyphLoader` → `GlyphRenderer.layoutText()` 
 
 ## Store
 
-`store/listing.md` holds the store texts (cs/en) and the in-app purchase table, `site/` the support page and privacy policy that `.github/workflows/pages.yml` publishes to GitHub Pages. `ios/Runner/PrivacyInfo.xcprivacy` is the app's privacy manifest (no tracking, no collected data).
+`store/listing.md` holds the store texts (cs/en) and the in-app purchase table, `site/` the support page and privacy policy that `.github/workflows/pages.yml` publishes to GitHub Pages. `ios/Runner/PrivacyInfo.xcprivacy` and `macos/Runner/PrivacyInfo.xcprivacy` are the app's privacy manifests (no tracking; collected, not linked, for analytics: product interaction, performance data, coarse location, matching the anonymous usage statistics in `docs/telemetry.md`). `store/privacy-answers.md` holds the matching App Privacy and Data safety answers; a new event or property changes the policy, the manifests and those answers together.
 
 ## Glyph Sheets
 
