@@ -4,8 +4,8 @@ import '../l10n/l10n.dart';
 import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
 
-/// Horizontal row of presets: built-in ones, then the user's own, then a
-/// chip that saves the current look.
+/// Horizontal row of presets: a chip that saves the current look, the
+/// user's own presets, then the built-in ones.
 ///
 /// Tapping a chip applies the preset; a long press opens its actions
 /// ([showPresetActions]). The applied preset shows a dot once the look has
@@ -50,10 +50,8 @@ class PresetSelector extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          for (final p in builtIns) _chip(context, p),
-          if (userPresets.isNotEmpty)
-            const SizedBox(height: 24, child: VerticalDivider(width: 16)),
-          for (final p in userPresets) _chip(context, p),
+          // First, not after 18 built-ins: at the end of the row nobody
+          // found it (TestFlight, 2026-11-13).
           ActionChip(
             key: const ValueKey('preset-save'),
             avatar: const Icon(Icons.bookmark_add_outlined, size: 18),
@@ -61,6 +59,10 @@ class PresetSelector extends StatelessWidget {
             tooltip: context.l10n.savePresetTooltip,
             onPressed: onSave,
           ),
+          const SizedBox(width: 8),
+          for (final p in userPresets) _chip(context, p),
+          const SizedBox(height: 24, child: VerticalDivider(width: 16)),
+          for (final p in builtIns) _chip(context, p),
         ],
       ),
     );
