@@ -72,7 +72,7 @@ tools/emoji/drafts/manifest.json                    # backend; u každého id: s
 Na větev **`emoji-own-set`** až po výběru (seznam pošle Stickers):
 
 ```
-tools/emoji/masters/<styl>/<id>.webp    # vybraný výřez, 768 px, bezztrátový WebP s alfou, do 150 kB
+tools/emoji/masters/<styl>/<id>.webp    # vybraný výřez, 768 px, WebP q 90 s bezztrátovou alfou, kolem 150 kB
 ```
 
 Zmenšení do aplikace, testy a zapojení dělá Stickers na Macu.
