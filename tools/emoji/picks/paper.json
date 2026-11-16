@@ -9,8 +9,9 @@
  },
  "animal_panda": {
   "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "alt": 9076,
+  "batch": "I3",
+  "notes": "teal/pastel backing layer in every seed"
  },
  "animal_bear": {
   "pick": 9081,
@@ -120,29 +121,32 @@
   "alt": 10203
  },
  "day_idea": {
-  "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed / paper stack"
+  "pick": 10238,
+  "alt": 10236,
+  "batch": "I3"
  },
  "day_music": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "notes sit on boxes/blobs"
  },
  "day_books": {
-  "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed"
+  "pick": 10276,
+  "alt": 10279,
+  "batch": "I3"
  },
  "day_phone": {
-  "pick": null,
-  "alt": null,
-  "notes": "figure on screen or paper stack behind"
+  "pick": 10319,
+  "alt": 10318,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "day_plane": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "paper planes on blobs, no passenger plane"
  },
  "day_rocket": {
   "pick": 10340,
@@ -158,9 +162,9 @@
   "notes": "tiny passenger silhouettes in windows"
  },
  "day_ball": {
-  "pick": null,
-  "alt": 10580,
-  "notes": "figures/stacks; 10580 has a small figure printed on the ball"
+  "pick": 10596,
+  "alt": 10598,
+  "batch": "I3"
  },
  "day_home": {
   "pick": 10603,
@@ -172,8 +176,9 @@
  },
  "day_laptop": {
   "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed + paper stack"
+  "alt": 10296,
+  "batch": "I3",
+  "notes": "laptop on a paper block in every seed"
  },
  "feel_crying": {
   "pick": 7521,
@@ -181,14 +186,16 @@
   "notes": "alt has layers at right edge"
  },
  "feel_furious": {
-  "pick": null,
-  "alt": 7561,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7577,
+  "alt": 7576,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "feel_scared": {
   "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "alt": 7597,
+  "batch": "I3",
+  "notes": "teal backing disc in every seed"
  },
  "feel_scream": {
   "pick": 7602,
@@ -196,9 +203,9 @@
   "notes": "white rim around face"
  },
  "feel_surprised": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7639,
+  "alt": 7638,
+  "batch": "I3"
  },
  "feel_embarrassed": {
   "pick": 7642,
@@ -206,9 +213,10 @@
   "notes": "face cut into blocky pieces, not quite round"
  },
  "feel_sad": {
-  "pick": null,
-  "alt": 7663,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7679,
+  "alt": null,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "feel_pleading": {
   "pick": 7681,
@@ -216,34 +224,38 @@
   "notes": "white rim, tears instead of watery eyes"
  },
  "feel_sick": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7738,
+  "alt": 7737,
+  "batch": "I3",
+  "notes": "white rim, tears too"
  },
  "feel_dizzy": {
   "pick": null,
   "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "batch": "I3",
+  "notes": "teal/white backing in every seed"
  },
  "feel_mind_blown": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7777,
+  "alt": 7776,
+  "batch": "I3"
  },
  "feel_facepalm": {
-  "pick": null,
-  "alt": null,
-  "notes": "arm with sleeve/torso or paper stack"
+  "pick": 7799,
+  "alt": 7797,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "feel_eye_roll": {
-  "pick": null,
-  "alt": null,
-  "notes": "wrong expression (>< eyes) and stacks; 7801 right eyes but stacked"
+  "pick": 7819,
+  "alt": 7818,
+  "batch": "I3",
+  "notes": "pupils up, reads mildly"
  },
  "feel_oops": {
-  "pick": null,
-  "alt": null,
-  "notes": "angry expression instead of awkward grimace, stacks"
+  "pick": 7839,
+  "alt": 7838,
+  "batch": "I3"
  },
  "feel_cold": {
   "pick": 7843,
@@ -251,39 +263,44 @@
   "notes": "fangs rather than chattering teeth"
  },
  "feel_hot": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7878,
+  "alt": 7877,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "feel_bored": {
-  "pick": null,
-  "alt": null,
-  "notes": "sad expression instead of flat, stacks"
+  "pick": 7896,
+  "alt": 7898,
+  "batch": "I3"
  },
  "feel_tear": {
   "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "alt": 7519,
+  "batch": "I3",
+  "notes": "teal backing/paper base in every seed"
  },
  "feel_worn_out": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7719,
+  "alt": 7717,
+  "batch": "I3",
+  "notes": "white rim, tear"
  },
  "feel_angry": {
-  "pick": null,
+  "pick": 7558,
   "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "batch": "I3",
+  "notes": "partial white rim; others teal backing"
  },
  "flirt_smirk": {
-  "pick": null,
+  "pick": 7959,
   "alt": null,
-  "notes": "wink instead of smirk, stacks"
+  "batch": "I3",
+  "notes": "white rim; 7956/7957 have holes in eye and teeth"
  },
  "flirt_blush": {
-  "pick": null,
-  "alt": 7961,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7979,
+  "alt": 7978,
+  "batch": "I3"
  },
  "flirt_heart_eyes": {
   "pick": 7983,
@@ -301,17 +318,20 @@
  "flirt_call_me": {
   "pick": null,
   "alt": null,
-  "notes": "index finger up instead of thumb+pinky"
+  "batch": "I3",
+  "notes": "open hands / phone receiver, no call-me gesture"
  },
  "flirt_spark": {
   "pick": null,
-  "alt": null,
-  "notes": "two human figures in every seed"
+  "alt": 8098,
+  "batch": "I3",
+  "notes": "8098 sits on a big heart card; others figures"
  },
  "flirt_devil": {
-  "pick": null,
-  "alt": 8102,
-  "notes": "stacks/backing card or paper base"
+  "pick": 8118,
+  "alt": 8116,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "flirt_finger_heart": {
   "pick": 8121,
@@ -329,7 +349,8 @@
  "flirt_love_note": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "person in every envelope"
  },
  "flirt_peek": {
   "pick": 8202,
@@ -337,9 +358,10 @@
   "notes": "hands over eyes but no peeking eye; alt peeks but stacked"
  },
  "flirt_kiss": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7938,
+  "alt": 7936,
+  "batch": "I3",
+  "notes": "partial white rim"
  },
  "flirt_eyes": {
   "pick": 8064,
@@ -347,9 +369,9 @@
   "notes": "eyes on pink/peach paper patches; others are heads"
  },
  "flirt_wink": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7919,
+  "alt": 7916,
+  "batch": "I3"
  },
  "hand_wave": {
   "pick": 8627,
@@ -358,7 +380,8 @@
  "hand_clap": {
   "pick": null,
   "alt": null,
-  "notes": "human figures or backing"
+  "batch": "I3",
+  "notes": "person in every seed"
  },
  "hand_ok": {
   "pick": 8666,
@@ -370,8 +393,9 @@
  },
  "hand_pray": {
   "pick": null,
-  "alt": 8724,
-  "notes": "wrong pose/backing; 8724 has grey gap between palms"
+  "alt": null,
+  "batch": "I3",
+  "notes": "two hands side by side, not pressed together"
  },
  "hand_high_five": {
   "pick": 8746,
@@ -384,9 +408,10 @@
   "notes": "front-view fist, not punching toward viewer"
  },
  "hand_flex": {
-  "pick": null,
-  "alt": null,
-  "notes": "full human torso in every seed"
+  "pick": 8798,
+  "alt": 8796,
+  "batch": "I3",
+  "notes": "arm with shoulder chunk"
  },
  "hand_point_up": {
   "pick": 8824,
@@ -399,7 +424,8 @@
  "hand_love_you": {
   "pick": null,
   "alt": null,
-  "notes": "'love-you' text on wrist, wrong gesture"
+  "batch": "I3",
+  "notes": "open palms, wrong gesture"
  },
  "hand_shrug": {
   "pick": 8882,
@@ -409,12 +435,14 @@
  "hand_raised": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "person in every seed"
  },
  "hand_pinch": {
   "pick": null,
   "alt": null,
-  "notes": "open palm/pointing, no pinch"
+  "batch": "I3",
+  "notes": "OK sign / pointing, no pinch"
  },
  "hand_writing": {
   "pick": 8941,
@@ -432,7 +460,8 @@
  "hand_point_you": {
   "pick": null,
   "alt": null,
-  "notes": "index points up, no foreshortening toward viewer"
+  "batch": "I3",
+  "notes": "index points up again, no foreshortening"
  },
  "hand_thumbs_up": {
   "pick": 8589,
@@ -443,9 +472,9 @@
   "alt": 8688
  },
  "love_sparkle_heart": {
-  "pick": null,
-  "alt": 8261,
-  "notes": "figures; 8261 faint figure ghost"
+  "pick": 8278,
+  "alt": 8276,
+  "batch": "I3"
  },
  "love_broken": {
   "pick": 8280,
@@ -471,8 +500,9 @@
  },
  "love_heart_hands": {
   "pick": null,
-  "alt": 8382,
-  "notes": "heart backing; 8382 grey left in heart gap"
+  "alt": null,
+  "batch": "I3",
+  "notes": "hands on a layered heart card in every seed"
  },
  "love_rose": {
   "pick": 8421,
@@ -510,38 +540,43 @@
   "notes": "padlock not heart-shaped"
  },
  "love_hearts": {
-  "pick": null,
+  "pick": 8257,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "big heart plus small heart; others are bowls/boxes"
  },
  "love_ring": {
-  "pick": null,
+  "pick": 8419,
   "alt": null,
-  "notes": "human figure added in every seed + paper stack"
+  "batch": "I3",
+  "notes": "white rim, grey shading inside band; 8417 hole filled"
  },
  "love_heart": {
-  "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed"
+  "pick": 8238,
+  "alt": 8237,
+  "batch": "I3"
  },
  "nature_rainbow": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "blob objects under rainbow"
  },
  "nature_rain": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed + paper stack"
+  "batch": "I3",
+  "notes": "house/tub/bucket under cloud"
  },
  "nature_snowflake": {
   "pick": 10041,
   "alt": 10043
  },
  "nature_moon": {
-  "pick": null,
-  "alt": null,
-  "notes": "figures/paper stack"
+  "pick": 10077,
+  "alt": 10078,
+  "batch": "I3",
+  "notes": "moon has a faint face"
  },
  "nature_sunflower": {
   "pick": 10100,
@@ -583,19 +618,20 @@
   "alt": 9522
  },
  "party_balloon": {
-  "pick": null,
+  "pick": 9557,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "pale patch on balloon; others add a box/blob"
  },
  "party_trophy": {
-  "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed"
+  "pick": 9578,
+  "alt": 9579,
+  "batch": "I3"
  },
  "party_medal": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 9596,
+  "alt": 9598,
+  "batch": "I3"
  },
  "party_fireworks": {
   "pick": 9620,
@@ -605,7 +641,8 @@
  "party_sparkles": {
   "pick": null,
   "alt": null,
-  "notes": "human figure added in every seed"
+  "batch": "I3",
+  "notes": "sparkles over boxes/books"
  },
  "party_star": {
   "pick": 9660,
@@ -613,23 +650,24 @@
   "notes": "teal star-shaped border layer"
  },
  "party_disco": {
-  "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed"
+  "pick": 9696,
+  "alt": 9699,
+  "batch": "I3"
  },
  "party_clover": {
   "pick": null,
-  "alt": 9702,
-  "notes": "three-leaf in every seed"
+  "alt": null,
+  "batch": "I3",
+  "notes": "three leaves again"
  },
  "party_tree": {
   "pick": 9721,
   "alt": 9720
  },
  "party_pumpkin": {
-  "pick": null,
-  "alt": 10482,
-  "notes": "carved holes keep grey background in every seed"
+  "pick": 10498,
+  "alt": 10496,
+  "batch": "I3"
  },
  "party_egg": {
   "pick": 10500,
@@ -642,9 +680,9 @@
   "notes": "white starburst behind ball; others have figures"
  },
  "party_crown": {
-  "pick": null,
-  "alt": null,
-  "notes": "crown on human head silhouette"
+  "pick": 9617,
+  "alt": 9618,
+  "batch": "I3"
  },
  "party_popper": {
   "pick": 9467,
@@ -667,9 +705,9 @@
   "alt": 9822
  },
  "food_donut": {
-  "pick": null,
-  "alt": 9842,
-  "notes": "grey background left in donut hole in every seed"
+  "pick": 9857,
+  "alt": 9859,
+  "batch": "I3"
  },
  "food_strawberry": {
   "pick": 9880,
@@ -697,9 +735,9 @@
   "alt": 10541
  },
  "food_coffee": {
-  "pick": null,
-  "alt": null,
-  "notes": "human figure added in every seed"
+  "pick": 9757,
+  "alt": 9759,
+  "batch": "I3"
  },
  "food_cookie": {
   "pick": 9866,
@@ -713,17 +751,20 @@
  "smile_rofl": {
   "pick": null,
   "alt": null,
-  "notes": "all seeds on paper stack/backing card, not tilted"
+  "batch": "I3",
+  "notes": "teal backing in every seed, not tilted"
  },
  "smile_upside_down": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7117,
+  "alt": 7119,
+  "batch": "I3",
+  "notes": "folded paper flap at lower left"
  },
  "smile_cool": {
-  "pick": null,
-  "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "pick": 7138,
+  "alt": 7136,
+  "batch": "I3",
+  "notes": "white rim"
  },
  "smile_tongue": {
   "pick": 7140,
@@ -735,14 +776,16 @@
   "alt": 7163
  },
  "smile_angel": {
-  "pick": null,
-  "alt": null,
-  "notes": "stacks; the clean one lacks a halo"
+  "pick": 7199,
+  "alt": 7196,
+  "batch": "I3",
+  "notes": "white rim scraps"
  },
  "smile_party": {
-  "pick": null,
+  "pick": 7217,
   "alt": null,
-  "notes": "stacks/paper base"
+  "batch": "I3",
+  "notes": "white rim with teal edge; others on cards"
  },
  "smile_nerd": {
   "pick": 7221,
@@ -770,7 +813,8 @@
  "smile_salute": {
   "pick": null,
   "alt": null,
-  "notes": "stacks/torso"
+  "batch": "I3",
+  "notes": "uniformed torso in every seed"
  },
  "smile_relaxed": {
   "pick": 7362,
@@ -780,7 +824,8 @@
  "smile_sleeping": {
   "pick": null,
   "alt": null,
-  "notes": "all seeds on paper stack/backing card"
+  "batch": "I3",
+  "notes": "teal cloud backing, tears instead of drool"
  },
  "smile_yawn": {
   "pick": 7400,

@@ -42,13 +42,13 @@
   "paper": "flat paper-craft illustration of a single object: one main piece of coloured paper cut to the exact outline of the object, with the smaller details cut from paper and glued on top of it, clean scissor-cut edges, a thin soft shadow under each detail, light gouache texture, the cut-out edge of the main piece is the outer edge of the whole picture"
  },
  "framing": "one single isolated subject shown whole, centred, filling about 80 percent of the frame, floating freely in empty space in front of a plain flat medium grey background",
- "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers, ground shadow, floor, pedestal",
+ "negative": "text, letters, numbers, watermark, signature, logo, frame, border, white sticker outline, several subjects, cropped subject, photograph, realistic human skin, extra fingers, missing fingers, ground shadow, cast shadow, floor line, shadow strokes under the subject, floor, pedestal",
  "negative_style": {
-  "paper": "person, people, human figure, human silhouette, stack of paper, stacked paper squares, coloured paper layers behind the subject, square background, backing card, mounting board, white rim",
+  "paper": "person, people, human figure, human silhouette, stack of paper, stacked paper squares, coloured paper layers behind the subject, square background, backing card, mounting board, white rim, coloured disc behind the subject, card behind the subject",
   "clay": "fingerprints",
   "marker": ""
  },
- "negative_object": "face, eyes, mouth, arms, legs, feet, hands, body, mascot, cartoon character, person, figure holding it",
+ "negative_object": "face, eyes, mouth, arms, legs, feet, hands, body, mascot, cartoon character, person, child, people, figure holding it, umbrella, blob underneath, round base, platform, stand, ball underneath, box underneath",
  "negative_head": "arms, hands, legs, feet, body, torso",
  "size": 1024,
  "seed": {
@@ -69,6 +69,6 @@
   ],
   "seeds_per_item": 2
  },
- "negative_hand": "face, eyes, mouth, text, letters, sleeve, shirt, torso, person, character body",
+ "negative_hand": "face, eyes, mouth, text, letters, sleeve, shirt, torso, person, character body, telephone, handset, sign, blob body",
  "negative_face": "torso, shoulders, sleeve, shirt, legs, feet, body"
 }

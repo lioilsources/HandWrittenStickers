@@ -299,7 +299,7 @@
     "en": "Sleeping"
    },
    "motion": "float",
-   "subject": "a round yellow emoji face, shown as a head only, fast asleep with closed eyes and a little drool bubble, small cloud shapes of sleep around"
+   "subject": "a round yellow emoji face, shown as a head only, fast asleep with peaceful closed eyes, a small round drool bubble at one side of the mouth"
   },
   {
    "n": 20,
@@ -695,7 +695,7 @@
     "en": "Call me"
    },
    "motion": "wave",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb and little finger stretched out wide like a telephone handset, index, middle and ring fingers curled tightly into the palm"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, making the shaka hand sign: the hand curled into a fist with only the thumb sticking out to one side and only the little finger sticking out to the other side"
   },
   {
    "n": 53,
@@ -719,7 +719,8 @@
     "en": "Sparks fly"
    },
    "motion": "twinkle",
-   "subject": "two small pink hearts touching, golden sparkles bursting between them"
+   "subject": "two small pink hearts touching, golden sparkles bursting between them",
+   "object": true
   },
   {
    "n": 55,
@@ -779,7 +780,8 @@
     "en": "Love note"
    },
    "motion": "bounce",
-   "subject": "a white envelope sealed with a red heart-shaped wax seal, small hearts floating out"
+   "subject": "a white envelope sealed with a red heart-shaped wax seal, small hearts floating out",
+   "object": true
   },
   {
    "n": 60,
@@ -917,7 +919,7 @@
     "en": "Ring"
    },
    "motion": "twinkle",
-   "subject": "a gold ring with a big sparkling diamond",
+   "subject": "a single gold ring standing upright on its band, seen from the front, one big sparkling diamond on top",
    "object": true
   },
   {
@@ -1115,7 +1117,7 @@
     "en": "Please / Thanks"
    },
    "motion": "nod",
-   "subject": "two yellow cartoon hands pressed flat together palm to palm, all ten fingers straight and lying flat against each other, fingertips pointing up"
+   "subject": "two yellow cartoon hands seen from the side, pressed flat together in a prayer pose like a closed book standing upright, the fingertips touching at the top, the thumbs side by side at the front"
   },
   {
    "n": 87,
@@ -1163,7 +1165,7 @@
     "en": "You!"
    },
    "motion": "bounce",
-   "subject": "a yellow cartoon hand pointing straight at the viewer, seen head-on: the round tip of the index finger is big and close in the centre of the picture and the curled fist with the thumb sits behind it, five fingers in total"
+   "subject": "a yellow cartoon hand with the index finger pointing directly into the camera in extreme foreshortening: we look straight at the round fingertip and fingernail in the centre, the knuckles and the curled fist behind it"
   },
   {
    "n": 91,
@@ -1211,7 +1213,7 @@
     "en": "No idea"
    },
    "motion": "nod",
-   "subject": "a round yellow emoji face with two open hands raised palms up beside it, shrugging, eyebrows up"
+   "subject": "a round yellow emoji face, shown as a head with two small open yellow cartoon hands floating on either side of it at chin height, palms up, eyebrows raised, shrugging"
   },
   {
    "n": 95,
@@ -1223,7 +1225,7 @@
     "en": "Hooray"
    },
    "motion": "bounce",
-   "subject": "two yellow cartoon hands raised high in celebration, small sparkles"
+   "subject": "two yellow cartoon hands, each cut off at the wrist, held up high side by side with open palms facing forward and fingers spread, small sparkles around them"
   },
   {
    "n": 96,
@@ -1235,7 +1237,7 @@
     "en": "A little"
    },
    "motion": "breathe",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, seen from the side, thumb and index finger held a tiny gap apart, the other three fingers curled into the palm"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, making a pinching gesture as if holding a single grain of salt: the thumb tip and index fingertip almost touching with a tiny gap between them, the other three fingers curled"
   },
   {
    "n": 97,
@@ -1247,7 +1249,7 @@
     "en": "Writing"
    },
    "motion": "wave",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, holding a pencil and writing a squiggle line on a small paper sheet"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, holding a yellow pencil, its tip touching a small blank sheet of white paper"
   },
   {
    "n": 98,
@@ -1259,7 +1261,7 @@
     "en": "Stop"
    },
    "motion": "breathe",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, raised flat palm facing forward, fingers together, a stop sign gesture"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, raised flat palm facing the viewer, the four fingers together and pointing straight up, thumb at the side"
   },
   {
    "n": 99,
@@ -1611,7 +1613,7 @@
     "en": "Balloon"
    },
    "motion": "float",
-   "subject": "a shiny round red balloon on a string",
+   "subject": "a single shiny round red balloon with a thin curly string hanging below it",
    "object": true
   },
   {
@@ -1676,7 +1678,7 @@
     "en": "Sparkles"
    },
    "motion": "twinkle",
-   "subject": "three golden four-pointed sparkles of different sizes",
+   "subject": "three golden four-pointed star-shaped twinkles of different sizes, like glints of light",
    "object": true
   },
   {
@@ -1715,7 +1717,7 @@
     "en": "Good luck"
    },
    "motion": "breathe",
-   "subject": "a green four-leaf clover with exactly four heart-shaped leaves and a short stem",
+   "subject": "a lucky four-leaf clover seen from above: four heart-shaped green leaves arranged in a cross around the centre, a short stem",
    "object": true
   },
   {
@@ -1909,7 +1911,7 @@
     "en": "Rainbow"
    },
    "motion": "breathe",
-   "subject": "a rainbow arc with small white clouds at both ends",
+   "subject": "a rainbow arc of coloured stripes with a small fluffy white cloud at each end",
    "object": true
   },
   {
@@ -1922,7 +1924,7 @@
     "en": "Rain"
    },
    "motion": "float",
-   "subject": "a grey cloud with raindrops falling",
+   "subject": "a single grey rain cloud with a few blue teardrop-shaped raindrops falling below it",
    "object": true
   },
   {

@@ -4,7 +4,7 @@
   python3 make_jobs.py I0                    # style test: 8 emoji × every style × 2 seeds
   python3 make_jobs.py I1                    # pilot: 2 emoji per category
   python3 make_jobs.py I2                    # the rest of the set
-  python3 make_jobs.py I3 --ids a,b --from-k 4 --count 6   # retries
+  python3 make_jobs.py I3 --ids a,b --from-k 4 --count 6   # retries (I4 likewise)
   python3 make_jobs.py I2 --styles clay --retry love_ring,party_crown  # + pilot redo
 
 Output: tools/emoji/jobs/<batch>.json, a list of
@@ -44,11 +44,11 @@ def job(styles, item, style, seed):
         negative.append(styles.get('negative_object'))
     elif 'head only' in item['subject']:
         negative.append(styles.get('negative_head'))
+    elif 'emoji face' in item['subject']:
+        # A face with hands (hug, salute, shrug) must not grow a body.
+        negative.append(styles.get('negative_face'))
     elif re.search(r'cartoon (hands?|fist|arm)\b', item['subject']):
         negative.append(styles.get('negative_hand'))
-    elif 'emoji face' in item['subject']:
-        # A face with hands (hug, salute, facepalm) must not grow a body.
-        negative.append(styles.get('negative_face'))
     return {'file': f'{item["id"]}__{style}__{seed}.png', 'id': item['id'], 'style': style,
             'seed': seed, 'size': styles['size'], 'prompt': prompt,
             'negative': ', '.join(n for n in negative if n)}
@@ -65,7 +65,7 @@ def pilot_ids(data, exclude):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('batch', choices=['I0', 'I1', 'I2', 'I3'])
+    ap.add_argument('batch', choices=['I0', 'I1', 'I2', 'I3', 'I4'])
     ap.add_argument('--ids', help='comma-separated ids (I3)')
     ap.add_argument('--from-k', type=int, default=0)
     ap.add_argument('--count', type=int, default=6)

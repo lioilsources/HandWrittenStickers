@@ -10,9 +10,10 @@
   "notes": ""
  },
  "smile_upside_down": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have arms/legs; 7101 not flipped"
+  "pick": 7117,
+  "alt": 7119,
+  "notes": "",
+  "batch": "I3"
  },
  "smile_cool": {
   "pick": 7123,
@@ -30,9 +31,10 @@
   "notes": "reads as wink+tongue rather than big/small eye"
  },
  "smile_angel": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have arms and legs"
+  "pick": 7198,
+  "alt": 7199,
+  "notes": "",
+  "batch": "I3"
  },
  "smile_party": {
   "pick": 7203,
@@ -172,12 +174,14 @@
  "feel_eye_roll": {
   "pick": null,
   "alt": null,
-  "notes": "eyes squeezed shut, no upward roll"
+  "notes": "pupils not rolled up; 7817 looks up but smiles",
+  "batch": "I3"
  },
  "feel_oops": {
-  "pick": null,
-  "alt": null,
-  "notes": "all angry faces, not awkward grimace"
+  "pick": 7838,
+  "alt": 7836,
+  "notes": "",
+  "batch": "I3"
  },
  "feel_cold": {
   "pick": 7842,
@@ -190,14 +194,16 @@
   "notes": ""
  },
  "feel_bored": {
-  "pick": null,
-  "alt": null,
-  "notes": "sad frowns not flat face; all have limbs"
+  "pick": 7897,
+  "alt": 7898,
+  "notes": "",
+  "batch": "I3"
  },
  "flirt_smirk": {
-  "pick": null,
-  "alt": null,
-  "notes": "happy squint/wink, no sly smirk"
+  "pick": 7958,
+  "alt": 7957,
+  "notes": "",
+  "batch": "I3"
  },
  "flirt_blush": {
   "pick": 7962,
@@ -210,9 +216,10 @@
   "notes": ""
  },
  "flirt_lips": {
-  "pick": null,
-  "alt": null,
-  "notes": "lips on a flesh blob/mascot, not a print"
+  "pick": 8017,
+  "alt": 8016,
+  "notes": "",
+  "batch": "I3"
  },
  "flirt_rose_teeth": {
   "pick": 8022,
@@ -222,12 +229,14 @@
  "flirt_call_me": {
   "pick": null,
   "alt": null,
-  "notes": "wrong gestures (open hand/point up); 8040 face on hand"
+  "notes": "phone handset + open hand, no call-me gesture",
+  "batch": "I3"
  },
  "flirt_spark": {
-  "pick": null,
-  "alt": null,
-  "notes": "two mascots instead of hearts"
+  "pick": 8098,
+  "alt": 8097,
+  "notes": "",
+  "batch": "I3"
  },
  "flirt_devil": {
   "pick": 8102,
@@ -240,9 +249,10 @@
   "notes": ""
  },
  "flirt_heart_arrow": {
-  "pick": null,
-  "alt": null,
-  "notes": "all hearts have arms/legs"
+  "pick": 8157,
+  "alt": 8156,
+  "notes": "",
+  "batch": "I3"
  },
  "flirt_cupid": {
   "pick": 8161,
@@ -250,9 +260,10 @@
   "notes": ""
  },
  "flirt_love_note": {
-  "pick": null,
-  "alt": null,
-  "notes": "mascot holding envelope"
+  "pick": 8196,
+  "alt": 8199,
+  "notes": "",
+  "batch": "I3"
  },
  "flirt_peek": {
   "pick": 8202,
@@ -262,27 +273,32 @@
  "flirt_eyes": {
   "pick": null,
   "alt": null,
-  "notes": "eyes on a blob body/head"
+  "notes": "pupils set in orange balls, not white eyeballs",
+  "batch": "I3"
  },
  "love_heart": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have limbs (8226 tiny legs)"
+  "pick": 8236,
+  "alt": 8238,
+  "notes": "",
+  "batch": "I3"
  },
  "love_sparkle_heart": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have limbs"
+  "pick": 8279,
+  "alt": 8276,
+  "notes": "",
+  "batch": "I3"
  },
  "love_broken": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have limbs"
+  "pick": 8297,
+  "alt": 8298,
+  "notes": "",
+  "batch": "I3"
  },
  "love_mending": {
   "pick": null,
   "alt": null,
-  "notes": "all have limbs"
+  "notes": "hole clearing knocked out parts of the white plaster on all",
+  "batch": "I3"
  },
  "love_fire": {
   "pick": 8321,
@@ -307,7 +323,8 @@
  "love_ring": {
   "pick": null,
   "alt": null,
-  "notes": "ring worn by mascot"
+  "notes": "ring still sits on a smooth blob",
+  "batch": "I3"
  },
  "love_rose": {
   "pick": 8423,
@@ -320,14 +337,16 @@
   "notes": "others held by figure"
  },
  "love_gift": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have limbs"
+  "pick": 8477,
+  "alt": 8478,
+  "notes": "",
+  "batch": "I3"
  },
  "love_balloon": {
-  "pick": null,
-  "alt": null,
-  "notes": "held by figure or has arms"
+  "pick": 8496,
+  "alt": 8499,
+  "notes": "",
+  "batch": "I3"
  },
  "love_birds": {
   "pick": 8501,
@@ -340,14 +359,16 @@
   "notes": "others have legs"
  },
  "love_miss_you": {
-  "pick": null,
-  "alt": null,
-  "notes": "hands on cheeks and tears falling, not head only"
+  "pick": 8558,
+  "alt": 8559,
+  "notes": "tear already rolling",
+  "batch": "I3"
  },
  "love_lock": {
-  "pick": null,
-  "alt": null,
-  "notes": "grey left inside shackle on all; 8562 otherwise good"
+  "pick": 8576,
+  "alt": 8578,
+  "notes": "",
+  "batch": "I3"
  },
  "hand_wave": {
   "pick": 8620,
@@ -355,14 +376,16 @@
   "notes": "others mascots"
  },
  "hand_clap": {
-  "pick": null,
+  "pick": 8658,
   "alt": null,
-  "notes": "mascot with arms"
+  "notes": "others are mascots",
+  "batch": "I3"
  },
  "hand_ok": {
-  "pick": null,
-  "alt": null,
-  "notes": "grey left in finger circle on all; 8662 otherwise good"
+  "pick": 8676,
+  "alt": 8679,
+  "notes": "",
+  "batch": "I3"
  },
  "hand_crossed": {
   "pick": 8703,
@@ -372,7 +395,8 @@
  "hand_pray": {
   "pick": null,
   "alt": null,
-  "notes": "no palms together; mascots/thumbs"
+  "notes": "hands side by side, not palm to palm",
+  "batch": "I3"
  },
  "hand_high_five": {
   "pick": 8742,
@@ -385,9 +409,10 @@
   "notes": "others attached to mascot"
  },
  "hand_flex": {
-  "pick": null,
-  "alt": null,
-  "notes": "arm attached to round body"
+  "pick": 8797,
+  "alt": 8798,
+  "notes": "",
+  "batch": "I3"
  },
  "hand_point_up": {
   "pick": 8820,
@@ -395,14 +420,16 @@
   "notes": ""
  },
  "hand_handshake": {
-  "pick": null,
-  "alt": null,
-  "notes": "two mascots shaking"
+  "pick": 8857,
+  "alt": 8858,
+  "notes": "",
+  "batch": "I3"
  },
  "hand_love_you": {
   "pick": null,
   "alt": null,
-  "notes": "text 'love you' on hand, wrong gesture"
+  "notes": "open hand / wrong fingers",
+  "batch": "I3"
  },
  "hand_shrug": {
   "pick": 8881,
@@ -412,17 +439,20 @@
  "hand_raised": {
   "pick": null,
   "alt": null,
-  "notes": "mascot body raising arms"
+  "notes": "arms on a blob body",
+  "batch": "I3"
  },
  "hand_pinch": {
   "pick": null,
   "alt": null,
-  "notes": "open hands, no pinch"
+  "notes": "open hands, no pinch",
+  "batch": "I3"
  },
  "hand_writing": {
-  "pick": null,
-  "alt": null,
-  "notes": "faces on hand / writing on own palm / pseudo-text"
+  "pick": 8958,
+  "alt": 8957,
+  "notes": "pencil grip unclear",
+  "batch": "I3"
  },
  "hand_stop": {
   "pick": 8962,
@@ -432,7 +462,8 @@
  "hand_point_you": {
   "pick": null,
   "alt": null,
-  "notes": "all point up, no foreshortening; usable as point_up alts"
+  "notes": "still points straight up",
+  "batch": "I3"
  },
  "animal_cat": {
   "pick": 9001,
@@ -480,9 +511,10 @@
   "notes": ""
  },
  "animal_sloth": {
-  "pick": null,
-  "alt": null,
-  "notes": "grey background left between arms/branch on all; 9201 least"
+  "pick": 9216,
+  "alt": 9217,
+  "notes": "9218/9219 grey left",
+  "batch": "I3"
  },
  "animal_monkey_hear": {
   "pick": 9242,
@@ -570,29 +602,34 @@
   "notes": ""
  },
  "party_balloon": {
-  "pick": null,
+  "pick": 9558,
   "alt": null,
-  "notes": "held by mascot"
+  "notes": "others have a blob under the balloon",
+  "batch": "I3"
  },
  "party_trophy": {
-  "pick": null,
-  "alt": null,
-  "notes": "grey left inside handles on all; 9561 otherwise good"
+  "pick": 9577,
+  "alt": 9576,
+  "notes": "",
+  "batch": "I3"
  },
  "party_medal": {
   "pick": null,
   "alt": null,
-  "notes": "worn by mascot"
+  "notes": "medal on a blob",
+  "batch": "I3"
  },
  "party_fireworks": {
   "pick": null,
   "alt": null,
-  "notes": "mascot with firework hair"
+  "notes": "burst sprouting from a blob",
+  "batch": "I3"
  },
  "party_sparkles": {
   "pick": null,
   "alt": null,
-  "notes": "mascot among sparkles"
+  "notes": "sparkles on an egg blob",
+  "batch": "I3"
  },
  "party_star": {
   "pick": 9662,
@@ -602,12 +639,14 @@
  "party_disco": {
   "pick": null,
   "alt": null,
-  "notes": "disco ball with arms/legs"
+  "notes": "hole clearing knocked out mirror tiles on all",
+  "batch": "I3"
  },
  "party_clover": {
-  "pick": null,
+  "pick": 9718,
   "alt": null,
-  "notes": "three leaves, not four"
+  "notes": "only four-leaf seed",
+  "batch": "I3"
  },
  "party_tree": {
   "pick": 9722,
@@ -627,17 +666,20 @@
  "party_crown": {
   "pick": null,
   "alt": null,
-  "notes": "worn by mascot"
+  "notes": "crown on a blob",
+  "batch": "I3"
  },
  "party_confetti": {
-  "pick": null,
-  "alt": null,
-  "notes": "mascot"
+  "pick": 9496,
+  "alt": 9498,
+  "notes": "confetti-covered ball, not bursting",
+  "batch": "I3"
  },
  "party_popper": {
-  "pick": null,
+  "pick": 9476,
   "alt": null,
-  "notes": "held by mascot"
+  "notes": "odd knob/wheel on cone; others have a figure",
+  "batch": "I3"
  },
  "food_pizza": {
   "pick": 9762,
@@ -645,14 +687,16 @@
   "notes": ""
  },
  "food_burger": {
-  "pick": null,
-  "alt": null,
-  "notes": "faces/limbs on all"
+  "pick": 9798,
+  "alt": 9796,
+  "notes": "",
+  "batch": "I3"
  },
  "food_fries": {
-  "pick": null,
-  "alt": null,
-  "notes": "faces/limbs on all"
+  "pick": 9817,
+  "alt": 9819,
+  "notes": "",
+  "batch": "I3"
  },
  "food_ice_cream": {
   "pick": 9822,
@@ -660,49 +704,58 @@
   "notes": ""
  },
  "food_donut": {
-  "pick": null,
-  "alt": null,
-  "notes": "grey left in hole; faces/limbs"
+  "pick": 9857,
+  "alt": 9856,
+  "notes": "",
+  "batch": "I3"
  },
  "food_strawberry": {
-  "pick": null,
-  "alt": null,
-  "notes": "all have limbs"
+  "pick": 9898,
+  "alt": 9897,
+  "notes": "",
+  "batch": "I3"
  },
  "food_cherries": {
-  "pick": null,
-  "alt": null,
-  "notes": "grey between stems on all"
+  "pick": 9918,
+  "alt": 9917,
+  "notes": "",
+  "batch": "I3"
  },
  "food_avocado": {
-  "pick": null,
-  "alt": null,
-  "notes": "face on all"
+  "pick": 9937,
+  "alt": 9938,
+  "notes": "",
+  "batch": "I3"
  },
  "food_popcorn": {
-  "pick": null,
+  "pick": 9958,
   "alt": null,
-  "notes": "mascot"
+  "notes": "white stripes knocked out on others",
+  "batch": "I3"
  },
  "food_bubble_tea": {
-  "pick": null,
-  "alt": null,
-  "notes": "mascot"
+  "pick": 9978,
+  "alt": 9977,
+  "notes": "",
+  "batch": "I3"
  },
  "food_chocolate": {
-  "pick": null,
-  "alt": null,
-  "notes": "bar with arms/legs"
+  "pick": 10556,
+  "alt": 10557,
+  "notes": "",
+  "batch": "I3"
  },
  "nature_rainbow": {
-  "pick": null,
+  "pick": 10017,
   "alt": null,
-  "notes": "mascot under rainbow"
+  "notes": "cloud holes on others",
+  "batch": "I3"
  },
  "nature_rain": {
   "pick": null,
   "alt": null,
-  "notes": "mascot under cloud"
+  "notes": "cloud over a blob; holes in cloud",
+  "batch": "I3"
  },
  "nature_snowflake": {
   "pick": 10040,
@@ -710,9 +763,10 @@
   "notes": "others have face"
  },
  "nature_moon": {
-  "pick": null,
-  "alt": null,
-  "notes": "faces/legs; 10063 only a face + tiny feet"
+  "pick": 10077,
+  "alt": 10078,
+  "notes": "",
+  "batch": "I3"
  },
  "nature_sunflower": {
   "pick": 10101,
@@ -720,29 +774,34 @@
   "notes": ""
  },
  "nature_leaf": {
-  "pick": null,
-  "alt": null,
-  "notes": "mascot among leaves"
+  "pick": 10139,
+  "alt": 10138,
+  "notes": "one leaf plus a small falling piece",
+  "batch": "I3"
  },
  "nature_fire": {
-  "pick": null,
-  "alt": null,
-  "notes": "flame mascot"
+  "pick": 10157,
+  "alt": 10158,
+  "notes": "",
+  "batch": "I3"
  },
  "nature_lightning": {
   "pick": null,
   "alt": null,
-  "notes": "eyes/limbs or on blob"
+  "notes": "bolt stuck on a disc/blob",
+  "batch": "I3"
  },
  "nature_mushroom": {
   "pick": null,
   "alt": null,
-  "notes": "stem turned into a body"
+  "notes": "white spots partly knocked out on all",
+  "batch": "I3"
  },
  "day_alarm": {
-  "pick": null,
+  "pick": 10219,
   "alt": null,
-  "notes": "arm nubs on all"
+  "notes": "others have dial knocked out; no motion lines",
+  "batch": "I3"
  },
  "day_idea": {
   "pick": 10221,
@@ -752,22 +811,26 @@
  "day_music": {
   "pick": null,
   "alt": null,
-  "notes": "notes on mascot"
+  "notes": "notes on a blob",
+  "batch": "I3"
  },
  "day_books": {
   "pick": null,
   "alt": null,
-  "notes": "mascot on books"
+  "notes": "blob on books",
+  "batch": "I3"
  },
  "day_phone": {
   "pick": null,
   "alt": null,
-  "notes": "mascot holding phone"
+  "notes": "phone in a blob",
+  "batch": "I3"
  },
  "day_plane": {
   "pick": null,
   "alt": null,
-  "notes": "mascot, plane tiny"
+  "notes": "plane on a blob",
+  "batch": "I3"
  },
  "day_rocket": {
   "pick": 10340,
@@ -780,9 +843,10 @@
   "notes": ""
  },
  "day_car": {
-  "pick": null,
-  "alt": null,
-  "notes": "red mascot, car tiny"
+  "pick": 10577,
+  "alt": 10576,
+  "notes": "",
+  "batch": "I3"
  },
  "day_ball": {
   "pick": 10582,
@@ -790,13 +854,134 @@
   "notes": ""
  },
  "day_home": {
-  "pick": null,
-  "alt": null,
-  "notes": "house mascot"
+  "pick": 10617,
+  "alt": 10616,
+  "notes": "",
+  "batch": "I3"
  },
  "day_zzz": {
   "pick": 10185,
   "alt": 10187,
   "notes": ""
+ },
+ "smile_happy": {
+  "pick": 7022,
+  "alt": 7023,
+  "notes": "",
+  "batch": "I1"
+ },
+ "smile_yum": {
+  "pick": 7263,
+  "alt": 7262,
+  "notes": "",
+  "batch": "I1"
+ },
+ "smile_laugh": {
+  "pick": 7061,
+  "alt": 7060,
+  "notes": "",
+  "batch": "I1"
+ },
+ "feel_tear": {
+  "pick": 7501,
+  "alt": 7502,
+  "notes": "",
+  "batch": "I1"
+ },
+ "feel_worn_out": {
+  "pick": 7701,
+  "alt": 7703,
+  "notes": "",
+  "batch": "I1"
+ },
+ "feel_angry": {
+  "pick": 7542,
+  "alt": 7540,
+  "notes": "",
+  "batch": "I1"
+ },
+ "flirt_kiss": {
+  "pick": 7922,
+  "alt": 7920,
+  "notes": "",
+  "batch": "I1"
+ },
+ "flirt_wink": {
+  "pick": 7903,
+  "alt": 7900,
+  "notes": "",
+  "batch": "I1"
+ },
+ "love_hearts": {
+  "pick": 8241,
+  "alt": 8240,
+  "notes": "",
+  "batch": "I1"
+ },
+ "hand_thumbs_up": {
+  "pick": 8583,
+  "alt": 8580,
+  "notes": "",
+  "batch": "I1"
+ },
+ "hand_thumbs_down": {
+  "pick": 8600,
+  "alt": 8602,
+  "notes": "others point up",
+  "batch": "I1"
+ },
+ "hand_peace": {
+  "pick": 8682,
+  "alt": 8686,
+  "notes": "",
+  "batch": "I1"
+ },
+ "animal_dog": {
+  "pick": 8982,
+  "alt": 8980,
+  "notes": "",
+  "batch": "I1"
+ },
+ "animal_monkey_see": {
+  "pick": 9221,
+  "alt": 9220,
+  "notes": "",
+  "batch": "I1"
+ },
+ "animal_fox": {
+  "pick": 9043,
+  "alt": 9041,
+  "notes": "",
+  "batch": "I1"
+ },
+ "food_coffee": {
+  "pick": null,
+  "alt": null,
+  "notes": "9740 good but grey left in handle (old cut-out); others have faces/figures",
+  "batch": "I1"
+ },
+ "food_cookie": {
+  "pick": 9861,
+  "alt": 9863,
+  "notes": "",
+  "batch": "I1"
+ },
+ "nature_sun": {
+  "pick": 9982,
+  "alt": 9981,
+  "notes": "",
+  "batch": "I1"
+ },
+ "nature_blossom": {
+  "pick": 10082,
+  "alt": 10080,
+  "notes": "",
+  "batch": "I1"
+ },
+ "day_laptop": {
+  "pick": 10282,
+  "alt": 10280,
+  "notes": "",
+  "batch": "I1"
  }
 }
