@@ -130,10 +130,18 @@ void main() {
     await settle(tester);
   }
 
-  Future<void> pickEmoji(WidgetTester tester, String emoji) async {
+  Future<void> pickEmoji(
+    WidgetTester tester,
+    String category,
+    String id,
+  ) async {
     await tester.tap(find.byTooltip(_t('Emoji ke zprávě', 'Emoji tag')));
     await settle(tester);
-    final tile = find.byKey(ValueKey('emoji-$emoji'));
+    final chip = find.byKey(ValueKey('emoji-cat-$category'));
+    await tester.ensureVisible(chip);
+    await tester.tap(chip);
+    await settle(tester);
+    final tile = find.byKey(ValueKey('emoji-$id'));
     await tester.ensureVisible(tile);
     await tester.tap(tile);
     await settle(tester);
@@ -164,7 +172,7 @@ void main() {
     await open(tester);
     await pickSheet(tester, _t('Bublinky broskev', 'Bubbles Peach'));
     await write(tester, _t('Ahoj maminko', 'Hi mummy'));
-    await pickEmoji(tester, '🐱');
+    await pickEmoji(tester, 'animals', 'animal_cat');
     await shoot(tester, 'stickers_1_bublinky');
 
     // A scanned child handwriting (the default sheet).
@@ -176,7 +184,7 @@ void main() {
     await open(tester);
     await pickSheet(tester, 'Great Vibes');
     await write(tester, _t('Všechno nejlepší!', 'Happy birthday!'));
-    await pickEmoji(tester, '🎂');
+    await pickEmoji(tester, 'celebration', 'party_cake');
     await shoot(tester, 'stickers_3_kaligrafie');
 
     // Emoji picker.

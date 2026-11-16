@@ -145,7 +145,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   /// Pack the current look needs and the user does not own: the sheet's,
-  /// else that of the applied (unchanged) preset.
+  /// else that of the applied (unchanged) preset, else the emoji style's.
   ContentPack? get _lockedPack {
     final sheet = _sheet;
     if (sheet != null && !_entitlements.canUseSheet(sheet)) {
@@ -154,6 +154,10 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final preset = _appliedPreset;
     if (preset != null && !_modified && !_entitlements.canUsePreset(preset)) {
       return _entitlements.packs.byId(preset.pack);
+    }
+    final style = _emojiIndex?.styleById(_emoji?.style);
+    if (style != null && !_entitlements.ownsPack(style.pack)) {
+      return _entitlements.packs.byId(style.pack);
     }
     return null;
   }
@@ -171,6 +175,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
         pack,
         sheets: _sheetIndex?.sheets ?? const [],
         presets: _presets.builtIns,
+        emoji: _emojiIndex,
       ),
       loaderFor: _sampleLoader,
     );
@@ -200,6 +205,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
           entitlements: _entitlements,
           sheets: _sheetIndex?.sheets ?? const [],
           presets: _presets.builtIns,
+          emoji: _emojiIndex,
           loaderFor: _sampleLoader,
         ),
       ),
@@ -208,7 +214,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
   Future<void> _loadEmoji() async {
     try {
-      final index = await EmojiIndex.load();
+      final index = await EmojiIndex.load(language: _language);
       if (mounted) setState(() => _emojiIndex = index);
     } catch (e) {
       debugPrint('CanvasEditor: no emoji stickers ($e)');
@@ -230,8 +236,17 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Future<void> _pickEmoji() async {
     final index = _emojiIndex;
     if (index == null) return;
-    final tag = await showEmojiPicker(context, index: index, selected: _emoji);
-    if (mounted) setState(() => _emoji = tag);
+    final tag = await showEmojiPicker(
+      context,
+      index: index,
+      selected: _emoji,
+      recentIds: _presets.recentEmoji,
+      style: _presets.emojiStyle,
+      isLocked: (s) => !_entitlements.ownsPack(s.pack),
+    );
+    if (!mounted) return;
+    setState(() => _emoji = tag);
+    if (tag != null) _presets.noteEmojiUsed(tag.id, style: tag.style);
   }
 
   Future<void> _initializeSheets() async {
@@ -569,17 +584,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                 height: layout.height,
                 child: Stack(
                   children: [
-                    Positioned(
-                      left: StickerLayout.padding,
-                      top: StickerLayout.padding,
-                      width: layout.text.width,
-                      height: layout.text.height,
-                      child: HandwrittenCanvas(
-                        glyphs: _glyphs,
-                        style: _styleParams,
-                      ),
-                    ),
-                    // The tag rides along beside the text, bottom right;
+                    // The tag sits behind the end of the text, bottom right;
                     // tap to change. Without one, the same spot adds it.
                     if (_emoji != null)
                       Positioned(
@@ -613,6 +618,19 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                           ),
                         ),
                       ),
+                    // The handwriting covers the emoji; taps go through to it.
+                    Positioned(
+                      left: StickerLayout.padding,
+                      top: StickerLayout.padding,
+                      width: layout.text.width,
+                      height: layout.text.height,
+                      child: IgnorePointer(
+                        child: HandwrittenCanvas(
+                          glyphs: _glyphs,
+                          style: _styleParams,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -876,7 +894,8 @@ class _LockedBadge extends StatelessWidget {
 }
 
 /// The add-emoji button in the preview: a faded, still sticker with a "+"
-/// at its corner, in the spot the chosen emoji will take.
+/// at its corner, behind the text in the spot the chosen emoji will take.
+/// The "+" sits in the part the text does not cover.
 class _EmojiAddHint extends StatelessWidget {
   final EmojiTag tag;
   final double size;

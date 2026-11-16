@@ -38,8 +38,9 @@ class StickerLayout {
 
   const StickerLayout(this.text, this.badge);
 
-  /// The emoji sits right of the text, bottom-aligned with the last line.
-  static const double _gap = 8.0;
+  /// The emoji sits behind the end of the text, bottom-aligned with the
+  /// last line: the handwriting covers its left part ([overlap]).
+  static const double _overlapShare = 0.6;
 
   factory StickerLayout.of(
     List<PositionedGlyph> glyphs, {
@@ -56,13 +57,25 @@ class StickerLayout {
     return StickerLayout(Size(maxX, maxY), badge);
   }
 
-  double get width => text.width + padding * 2 + (badge > 0 ? _gap + badge : 0);
+  /// Extra room right of the badge: wave and nod rotate it about its
+  /// bottom edge, which swings the top corner sideways.
+  double get badgeRoom => badge * 0.1;
+
+  /// How far the badge reaches in under the text.
+  double get overlap => math.min(badge * _overlapShare, text.width);
+
+  double get width =>
+      padding * 2 +
+      math.max(
+        text.width,
+        badge > 0 ? text.width - overlap + badge + badgeRoom : 0,
+      );
 
   double get height => math.max(text.height, badge) + padding * 2;
 
   /// Top-left of the badge box.
   Offset get badgeOrigin => Offset(
-    padding + text.width + _gap,
+    padding + text.width - overlap,
     padding + math.max(text.height, badge) - badge,
   );
 }
@@ -129,6 +142,7 @@ class ImageExporter {
         scale: scale,
         backgroundColor: backgroundColor,
         emoji: emojiImage,
+        motion: emoji.motion,
         phase: i / EmojiMotion.gifFrames,
         evenSize: true,
       );
@@ -146,7 +160,7 @@ class ImageExporter {
     return compute(_encodeGif, _GifJob(w, h, frames, frameMs ~/ 10));
   }
 
-  /// Draws one frame: background, glyphs, and the emoji at loop [phase].
+  /// Draws one frame: background, the emoji at loop [phase], glyphs on top.
   /// [evenSize] rounds the pixel size up to even numbers: messengers turn
   /// GIFs into H.264 video, which cannot have an odd width or height.
   static Future<ui.Image> renderFrame({
@@ -155,6 +169,7 @@ class ImageExporter {
     required double scale,
     Color? backgroundColor,
     ui.Image? emoji,
+    EmojiMotionKind motion = EmojiMotionKind.breathe,
     double phase = 0,
     bool evenSize = false,
   }) {
@@ -173,19 +188,12 @@ class ImageExporter {
     }
     canvas.scale(scale);
 
-    canvas.save();
-    canvas.translate(StickerLayout.padding, StickerLayout.padding);
-    paintGlyphs(canvas, glyphs, quality: FilterQuality.high);
-    canvas.restore();
-
     if (emoji != null && layout.badge > 0) {
-      final m = EmojiMotion.at(phase);
       final b = layout.badge;
-      final centre = layout.badgeOrigin + Offset(b / 2, b / 2 + b * m.lift);
+      final centre = layout.badgeOrigin + Offset(b / 2, b / 2);
       canvas.save();
       canvas.translate(centre.dx, centre.dy);
-      canvas.rotate(m.angle);
-      canvas.scale(m.scale);
+      canvas.transform(EmojiMotion.pose(motion, phase).matrix(b).storage);
       canvas.drawImageRect(
         emoji,
         Rect.fromLTWH(0, 0, emoji.width.toDouble(), emoji.height.toDouble()),
@@ -194,6 +202,12 @@ class ImageExporter {
       );
       canvas.restore();
     }
+
+    // The handwriting on top, covering part of the emoji.
+    canvas.save();
+    canvas.translate(StickerLayout.padding, StickerLayout.padding);
+    paintGlyphs(canvas, glyphs, quality: FilterQuality.high);
+    canvas.restore();
 
     final picture = recorder.endRecording();
     return picture.toImage(width, height).whenComplete(picture.dispose);

@@ -1,205 +1,2745 @@
 {
- "version": 1,
+ "version": 3,
+ "styles": [
+  {
+   "id": "paper",
+   "name": {
+    "cs": "Papír",
+    "en": "Paper"
+   }
+  },
+  {
+   "id": "marker",
+   "name": {
+    "cs": "Fix",
+    "en": "Marker"
+   },
+   "pack": "emoji_marker"
+  },
+  {
+   "id": "clay",
+   "name": {
+    "cs": "Modelína",
+    "en": "Clay"
+   },
+   "pack": "emoji_clay"
+  }
+ ],
+ "categories": [
+  {
+   "id": "smileys",
+   "name": {
+    "cs": "Smajlíci",
+    "en": "Smileys"
+   }
+  },
+  {
+   "id": "emotions",
+   "name": {
+    "cs": "Emoce",
+    "en": "Feelings"
+   }
+  },
+  {
+   "id": "flirt",
+   "name": {
+    "cs": "Flirtování",
+    "en": "Flirting"
+   }
+  },
+  {
+   "id": "romance",
+   "name": {
+    "cs": "Romantika",
+    "en": "Romance"
+   }
+  },
+  {
+   "id": "hands",
+   "name": {
+    "cs": "Gesta rukou",
+    "en": "Hands"
+   }
+  },
+  {
+   "id": "animals",
+   "name": {
+    "cs": "Zvířátka",
+    "en": "Animals"
+   }
+  },
+  {
+   "id": "celebration",
+   "name": {
+    "cs": "Oslavy",
+    "en": "Celebrations"
+   }
+  },
+  {
+   "id": "food",
+   "name": {
+    "cs": "Jídlo a pití",
+    "en": "Food & drink"
+   }
+  },
+  {
+   "id": "nature",
+   "name": {
+    "cs": "Příroda a počasí",
+    "en": "Nature & weather"
+   }
+  },
+  {
+   "id": "everyday",
+   "name": {
+    "cs": "Všední den",
+    "en": "Everyday"
+   }
+  }
+ ],
  "emoji": [
   {
-   "emoji": "❤",
-   "name": "Srdce",
-   "file": "2764.webp"
-  },
-  {
-   "emoji": "😂",
-   "name": "Smích",
-   "file": "1f602.webp"
-  },
-  {
+   "id": "smile_happy",
+   "category": "smileys",
    "emoji": "😊",
-   "name": "Úsměv",
-   "file": "1f60a.webp"
+   "name": {
+    "cs": "Úsměv",
+    "en": "Smile"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_happy.webp",
+    "marker": "marker/smile_happy.webp",
+    "clay": "clay/smile_happy.webp"
+   }
   },
   {
-   "emoji": "😠",
-   "name": "Zlobím se",
-   "file": "1f620.webp"
+   "id": "smile_grin",
+   "category": "smileys",
+   "emoji": "😁",
+   "name": {
+    "cs": "Zubím se",
+    "en": "Grin"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/smile_grin.webp",
+    "marker": "marker/smile_grin.webp",
+    "clay": "clay/smile_grin.webp"
+   }
   },
   {
-   "emoji": "😨",
-   "name": "Lekl jsem se",
-   "file": "1f628.webp"
+   "id": "smile_laugh",
+   "category": "smileys",
+   "emoji": "😂",
+   "name": {
+    "cs": "Smích do slz",
+    "en": "Tears of joy"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/smile_laugh.webp",
+    "marker": "marker/smile_laugh.webp",
+    "clay": "clay/smile_laugh.webp"
+   }
   },
   {
-   "emoji": "👍",
-   "name": "Palec",
-   "file": "1f44d.webp"
+   "id": "smile_rofl",
+   "category": "smileys",
+   "emoji": "🤣",
+   "name": {
+    "cs": "Válím se smíchy",
+    "en": "Rolling laughing"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/smile_rofl.webp",
+    "marker": "marker/smile_rofl.webp",
+    "clay": "clay/smile_rofl.webp"
+   }
   },
   {
-   "emoji": "👋",
-   "name": "Ahoj",
-   "file": "1f44b.webp"
+   "id": "smile_upside_down",
+   "category": "smileys",
+   "emoji": "🙃",
+   "name": {
+    "cs": "Vzhůru nohama",
+    "en": "Upside down"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_upside_down.webp",
+    "marker": "marker/smile_upside_down.webp",
+    "clay": "clay/smile_upside_down.webp"
+   }
   },
   {
-   "emoji": "🔥",
-   "name": "Oheň",
-   "file": "1f525.webp"
-  },
-  {
-   "emoji": "⭐",
-   "name": "Hvězda",
-   "file": "2b50.webp"
-  },
-  {
-   "emoji": "🌈",
-   "name": "Duha",
-   "file": "1f308.webp"
-  },
-  {
-   "emoji": "☀",
-   "name": "Sluníčko",
-   "file": "2600.webp"
-  },
-  {
-   "emoji": "🌸",
-   "name": "Kytička",
-   "file": "1f338.webp"
-  },
-  {
-   "emoji": "🎂",
-   "name": "Dort",
-   "file": "1f382.webp"
-  },
-  {
-   "emoji": "🎁",
-   "name": "Dárek",
-   "file": "1f381.webp"
-  },
-  {
-   "emoji": "🎈",
-   "name": "Balónek",
-   "file": "1f388.webp"
-  },
-  {
-   "emoji": "💤",
-   "name": "Dobrou noc",
-   "file": "1f4a4.webp"
-  },
-  {
-   "emoji": "🐶",
-   "name": "Pejsek",
-   "file": "1f436.webp"
-  },
-  {
-   "emoji": "🐱",
-   "name": "Kočička",
-   "file": "1f431.webp"
-  },
-  {
-   "emoji": "🦊",
-   "name": "Liška",
-   "file": "1f98a.webp"
-  },
-  {
-   "emoji": "🐼",
-   "name": "Panda",
-   "file": "1f43c.webp"
-  },
-  {
-   "emoji": "🍕",
-   "name": "Pizza",
-   "file": "1f355.webp"
-  },
-  {
-   "emoji": "☕",
-   "name": "Kafíčko",
-   "file": "2615.webp"
-  },
-  {
-   "emoji": "👀",
-   "name": "Koukám",
-   "file": "1f440.webp"
-  },
-  {
-   "emoji": "🤝",
-   "name": "Dohoda",
-   "file": "1f91d.webp"
-  },
-  {
-   "emoji": "🏆",
-   "name": "Vítěz",
-   "file": "1f3c6.webp"
-  },
-  {
-   "emoji": "😍",
-   "name": "Zamilovaný",
-   "file": "1f60d.webp"
-  },
-  {
-   "emoji": "😘",
-   "name": "Pusa",
-   "file": "1f618.webp"
-  },
-  {
-   "emoji": "🥰",
-   "name": "Láska",
-   "file": "1f970.webp"
-  },
-  {
-   "emoji": "😢",
-   "name": "Smutný",
-   "file": "1f622.webp"
-  },
-  {
-   "emoji": "😭",
-   "name": "Pláč",
-   "file": "1f62d.webp"
-  },
-  {
-   "emoji": "😮",
-   "name": "Překvapení",
-   "file": "1f62e.webp"
-  },
-  {
-   "emoji": "😴",
-   "name": "Spánek",
-   "file": "1f634.webp"
-  },
-  {
-   "emoji": "🤔",
-   "name": "Přemýšlím",
-   "file": "1f914.webp"
-  },
-  {
+   "id": "smile_cool",
+   "category": "smileys",
    "emoji": "😎",
-   "name": "Pohoda",
-   "file": "1f60e.webp"
+   "name": {
+    "cs": "Pohodář",
+    "en": "Cool"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_cool.webp",
+    "marker": "marker/smile_cool.webp",
+    "clay": "clay/smile_cool.webp"
+   }
   },
   {
-   "emoji": "🥳",
-   "name": "Oslava",
-   "file": "1f973.webp"
-  },
-  {
+   "id": "smile_tongue",
+   "category": "smileys",
    "emoji": "😜",
-   "name": "Legrace",
-   "file": "1f61c.webp"
+   "name": {
+    "cs": "Vyplazený jazyk",
+    "en": "Cheeky"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/smile_tongue.webp",
+    "marker": "marker/smile_tongue.webp",
+    "clay": "clay/smile_tongue.webp"
+   }
   },
   {
+   "id": "smile_zany",
+   "category": "smileys",
+   "emoji": "🤪",
+   "name": {
+    "cs": "Blázním",
+    "en": "Zany"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/smile_zany.webp",
+    "marker": "marker/smile_zany.webp",
+    "clay": "clay/smile_zany.webp"
+   }
+  },
+  {
+   "id": "smile_angel",
+   "category": "smileys",
    "emoji": "😇",
-   "name": "Andílek",
-   "file": "1f607.webp"
+   "name": {
+    "cs": "Andílek",
+    "en": "Angel"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/smile_angel.webp",
+    "marker": "marker/smile_angel.webp",
+    "clay": "clay/smile_angel.webp"
+   }
   },
   {
+   "id": "smile_party",
+   "category": "smileys",
+   "emoji": "🥳",
+   "name": {
+    "cs": "Slavím",
+    "en": "Party face"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/smile_party.webp",
+    "marker": "marker/smile_party.webp",
+    "clay": "clay/smile_party.webp"
+   }
+  },
+  {
+   "id": "smile_nerd",
+   "category": "smileys",
+   "emoji": "🤓",
+   "name": {
+    "cs": "Chytrolín",
+    "en": "Nerd"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_nerd.webp",
+    "marker": "marker/smile_nerd.webp",
+    "clay": "clay/smile_nerd.webp"
+   }
+  },
+  {
+   "id": "smile_star_struck",
+   "category": "smileys",
+   "emoji": "🤩",
+   "name": {
+    "cs": "Hvězdy v očích",
+    "en": "Star-struck"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/smile_star_struck.webp",
+    "marker": "marker/smile_star_struck.webp",
+    "clay": "clay/smile_star_struck.webp"
+   }
+  },
+  {
+   "id": "smile_yum",
+   "category": "smileys",
+   "emoji": "😋",
+   "name": {
+    "cs": "Mňam",
+    "en": "Yum"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_yum.webp",
+    "marker": "marker/smile_yum.webp",
+    "clay": "clay/smile_yum.webp"
+   }
+  },
+  {
+   "id": "smile_hug",
+   "category": "smileys",
+   "emoji": "🤗",
+   "name": {
+    "cs": "Objetí",
+    "en": "Hug"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_hug.webp",
+    "marker": "marker/smile_hug.webp",
+    "clay": "clay/smile_hug.webp"
+   }
+  },
+  {
+   "id": "smile_thinking",
+   "category": "smileys",
+   "emoji": "🤔",
+   "name": {
+    "cs": "Přemýšlím",
+    "en": "Thinking"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_thinking.webp",
+    "marker": "marker/smile_thinking.webp",
+    "clay": "clay/smile_thinking.webp"
+   }
+  },
+  {
+   "id": "smile_shush",
+   "category": "smileys",
+   "emoji": "🤫",
+   "name": {
+    "cs": "Pšt",
+    "en": "Shush"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_shush.webp",
+    "marker": "marker/smile_shush.webp",
+    "clay": "clay/smile_shush.webp"
+   }
+  },
+  {
+   "id": "smile_salute",
+   "category": "smileys",
+   "emoji": "🫡",
+   "name": {
+    "cs": "Rozkaz",
+    "en": "Salute"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_salute.webp",
+    "marker": "marker/smile_salute.webp",
+    "clay": "clay/smile_salute.webp"
+   }
+  },
+  {
+   "id": "smile_relaxed",
+   "category": "smileys",
+   "emoji": "😌",
+   "name": {
+    "cs": "Pohoda",
+    "en": "Relaxed"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_relaxed.webp",
+    "marker": "marker/smile_relaxed.webp",
+    "clay": "clay/smile_relaxed.webp"
+   }
+  },
+  {
+   "id": "smile_sleeping",
+   "category": "smileys",
+   "emoji": "😴",
+   "name": {
+    "cs": "Spím",
+    "en": "Sleeping"
+   },
+   "motion": "float",
+   "files": {
+    "clay": "clay/smile_sleeping.webp"
+   }
+  },
+  {
+   "id": "smile_yawn",
+   "category": "smileys",
+   "emoji": "🥱",
+   "name": {
+    "cs": "Zívám",
+    "en": "Yawn"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/smile_yawn.webp",
+    "marker": "marker/smile_yawn.webp",
+    "clay": "clay/smile_yawn.webp"
+   }
+  },
+  {
+   "id": "smile_monocle",
+   "category": "smileys",
+   "emoji": "🧐",
+   "name": {
+    "cs": "Hmm",
+    "en": "Hmm"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/smile_monocle.webp",
+    "marker": "marker/smile_monocle.webp",
+    "clay": "clay/smile_monocle.webp"
+   }
+  },
+  {
+   "id": "smile_cowboy",
+   "category": "smileys",
+   "emoji": "🤠",
+   "name": {
+    "cs": "Kovboj",
+    "en": "Cowboy"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/smile_cowboy.webp",
+    "marker": "marker/smile_cowboy.webp",
+    "clay": "clay/smile_cowboy.webp"
+   }
+  },
+  {
+   "id": "smile_ghost",
+   "category": "smileys",
+   "emoji": "👻",
+   "name": {
+    "cs": "Bubák",
+    "en": "Ghost"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/smile_ghost.webp",
+    "marker": "marker/smile_ghost.webp",
+    "clay": "clay/smile_ghost.webp"
+   }
+  },
+  {
+   "id": "smile_robot",
+   "category": "smileys",
+   "emoji": "🤖",
+   "name": {
+    "cs": "Robot",
+    "en": "Robot"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/smile_robot.webp",
+    "clay": "clay/smile_robot.webp"
+   }
+  },
+  {
+   "id": "feel_tear",
+   "category": "emotions",
+   "emoji": "😢",
+   "name": {
+    "cs": "Slzička",
+    "en": "Tear"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_tear.webp",
+    "marker": "marker/feel_tear.webp",
+    "clay": "clay/feel_tear.webp"
+   }
+  },
+  {
+   "id": "feel_crying",
+   "category": "emotions",
+   "emoji": "😭",
+   "name": {
+    "cs": "Brečím",
+    "en": "Crying"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_crying.webp",
+    "marker": "marker/feel_crying.webp",
+    "clay": "clay/feel_crying.webp"
+   }
+  },
+  {
+   "id": "feel_angry",
+   "category": "emotions",
+   "emoji": "😠",
+   "name": {
+    "cs": "Zlobím se",
+    "en": "Angry"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_angry.webp",
+    "marker": "marker/feel_angry.webp",
+    "clay": "clay/feel_angry.webp"
+   }
+  },
+  {
+   "id": "feel_furious",
+   "category": "emotions",
+   "emoji": "😡",
+   "name": {
+    "cs": "Zuřím",
+    "en": "Furious"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_furious.webp",
+    "marker": "marker/feel_furious.webp",
+    "clay": "clay/feel_furious.webp"
+   }
+  },
+  {
+   "id": "feel_scared",
+   "category": "emotions",
+   "emoji": "😨",
+   "name": {
+    "cs": "Leknutí",
+    "en": "Scared"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_scared.webp",
+    "marker": "marker/feel_scared.webp",
+    "clay": "clay/feel_scared.webp"
+   }
+  },
+  {
+   "id": "feel_scream",
+   "category": "emotions",
+   "emoji": "😱",
+   "name": {
+    "cs": "Hrůza",
+    "en": "Scream"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_scream.webp",
+    "marker": "marker/feel_scream.webp",
+    "clay": "clay/feel_scream.webp"
+   }
+  },
+  {
+   "id": "feel_surprised",
+   "category": "emotions",
+   "emoji": "😮",
+   "name": {
+    "cs": "Překvapení",
+    "en": "Surprised"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/feel_surprised.webp",
+    "marker": "marker/feel_surprised.webp",
+    "clay": "clay/feel_surprised.webp"
+   }
+  },
+  {
+   "id": "feel_embarrassed",
+   "category": "emotions",
+   "emoji": "😳",
+   "name": {
+    "cs": "Trapas",
+    "en": "Embarrassed"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_embarrassed.webp",
+    "marker": "marker/feel_embarrassed.webp",
+    "clay": "clay/feel_embarrassed.webp"
+   }
+  },
+  {
+   "id": "feel_sad",
+   "category": "emotions",
+   "emoji": "😔",
+   "name": {
+    "cs": "Smutek",
+    "en": "Sad"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/feel_sad.webp",
+    "marker": "marker/feel_sad.webp",
+    "clay": "clay/feel_sad.webp"
+   }
+  },
+  {
+   "id": "feel_pleading",
+   "category": "emotions",
+   "emoji": "🥺",
+   "name": {
+    "cs": "Prosím, prosím",
+    "en": "Pleading"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_pleading.webp",
+    "marker": "marker/feel_pleading.webp",
+    "clay": "clay/feel_pleading.webp"
+   }
+  },
+  {
+   "id": "feel_worn_out",
+   "category": "emotions",
+   "emoji": "😩",
+   "name": {
+    "cs": "Už nemůžu",
+    "en": "Worn out"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/feel_worn_out.webp",
+    "marker": "marker/feel_worn_out.webp",
+    "clay": "clay/feel_worn_out.webp"
+   }
+  },
+  {
+   "id": "feel_sick",
+   "category": "emotions",
+   "emoji": "🤒",
+   "name": {
+    "cs": "Marodím",
+    "en": "Sick"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_sick.webp",
+    "marker": "marker/feel_sick.webp",
+    "clay": "clay/feel_sick.webp"
+   }
+  },
+  {
+   "id": "feel_dizzy",
+   "category": "emotions",
+   "emoji": "😵‍💫",
+   "name": {
+    "cs": "Točí se mi hlava",
+    "en": "Dizzy"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/feel_dizzy.webp",
+    "marker": "marker/feel_dizzy.webp",
+    "clay": "clay/feel_dizzy.webp"
+   }
+  },
+  {
+   "id": "feel_mind_blown",
+   "category": "emotions",
+   "emoji": "🤯",
+   "name": {
+    "cs": "To mě odbouralo",
+    "en": "Mind blown"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/feel_mind_blown.webp",
+    "marker": "marker/feel_mind_blown.webp",
+    "clay": "clay/feel_mind_blown.webp"
+   }
+  },
+  {
+   "id": "feel_facepalm",
+   "category": "emotions",
+   "emoji": "🤦",
+   "name": {
+    "cs": "Facepalm",
+    "en": "Facepalm"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/feel_facepalm.webp",
+    "marker": "marker/feel_facepalm.webp",
+    "clay": "clay/feel_facepalm.webp"
+   }
+  },
+  {
+   "id": "feel_eye_roll",
+   "category": "emotions",
+   "emoji": "🙄",
+   "name": {
+    "cs": "Oči v sloup",
+    "en": "Eye roll"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_eye_roll.webp",
+    "marker": "marker/feel_eye_roll.webp"
+   }
+  },
+  {
+   "id": "feel_oops",
+   "category": "emotions",
+   "emoji": "😬",
+   "name": {
+    "cs": "Jejda",
+    "en": "Oops"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_oops.webp",
+    "marker": "marker/feel_oops.webp",
+    "clay": "clay/feel_oops.webp"
+   }
+  },
+  {
+   "id": "feel_cold",
+   "category": "emotions",
+   "emoji": "🥶",
+   "name": {
+    "cs": "Zima",
+    "en": "Freezing"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/feel_cold.webp",
+    "marker": "marker/feel_cold.webp",
+    "clay": "clay/feel_cold.webp"
+   }
+  },
+  {
+   "id": "feel_hot",
+   "category": "emotions",
+   "emoji": "🥵",
+   "name": {
+    "cs": "Vedro",
+    "en": "Too hot"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_hot.webp",
+    "marker": "marker/feel_hot.webp",
+    "clay": "clay/feel_hot.webp"
+   }
+  },
+  {
+   "id": "feel_bored",
+   "category": "emotions",
+   "emoji": "😑",
+   "name": {
+    "cs": "Nuda",
+    "en": "Bored"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/feel_bored.webp",
+    "marker": "marker/feel_bored.webp",
+    "clay": "clay/feel_bored.webp"
+   }
+  },
+  {
+   "id": "flirt_wink",
+   "category": "flirt",
+   "emoji": "😉",
+   "name": {
+    "cs": "Mrknutí",
+    "en": "Wink"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/flirt_wink.webp",
+    "marker": "marker/flirt_wink.webp",
+    "clay": "clay/flirt_wink.webp"
+   }
+  },
+  {
+   "id": "flirt_kiss",
+   "category": "flirt",
+   "emoji": "😘",
+   "name": {
+    "cs": "Posílám pusu",
+    "en": "Blowing a kiss"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/flirt_kiss.webp",
+    "marker": "marker/flirt_kiss.webp",
+    "clay": "clay/flirt_kiss.webp"
+   }
+  },
+  {
+   "id": "flirt_smirk",
+   "category": "flirt",
+   "emoji": "😏",
+   "name": {
+    "cs": "Šibalský úsměv",
+    "en": "Smirk"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/flirt_smirk.webp",
+    "marker": "marker/flirt_smirk.webp",
+    "clay": "clay/flirt_smirk.webp"
+   }
+  },
+  {
+   "id": "flirt_blush",
+   "category": "flirt",
+   "emoji": "☺️",
+   "name": {
+    "cs": "Červenám se",
+    "en": "Blushing"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/flirt_blush.webp",
+    "marker": "marker/flirt_blush.webp",
+    "clay": "clay/flirt_blush.webp"
+   }
+  },
+  {
+   "id": "flirt_heart_eyes",
+   "category": "flirt",
+   "emoji": "😍",
+   "name": {
+    "cs": "Zamilované oči",
+    "en": "Heart eyes"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/flirt_heart_eyes.webp",
+    "marker": "marker/flirt_heart_eyes.webp",
+    "clay": "clay/flirt_heart_eyes.webp"
+   }
+  },
+  {
+   "id": "flirt_lips",
+   "category": "flirt",
+   "emoji": "💋",
+   "name": {
+    "cs": "Pusa",
+    "en": "Kiss mark"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/flirt_lips.webp",
+    "marker": "marker/flirt_lips.webp",
+    "clay": "clay/flirt_lips.webp"
+   }
+  },
+  {
+   "id": "flirt_rose_teeth",
+   "category": "flirt",
+   "emoji": "🌹",
+   "name": {
+    "cs": "Růže v zubech",
+    "en": "Rose in teeth"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/flirt_rose_teeth.webp",
+    "marker": "marker/flirt_rose_teeth.webp",
+    "clay": "clay/flirt_rose_teeth.webp"
+   }
+  },
+  {
+   "id": "flirt_call_me",
+   "category": "flirt",
+   "emoji": "🤙",
+   "name": {
+    "cs": "Zavolej mi",
+    "en": "Call me"
+   },
+   "motion": "wave",
+   "files": {
+    "marker": "marker/flirt_call_me.webp",
+    "clay": "clay/flirt_call_me.webp"
+   }
+  },
+  {
+   "id": "flirt_eyes",
+   "category": "flirt",
+   "emoji": "👀",
+   "name": {
+    "cs": "Koukám",
+    "en": "Looking"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/flirt_eyes.webp",
+    "marker": "marker/flirt_eyes.webp"
+   }
+  },
+  {
+   "id": "flirt_spark",
+   "category": "flirt",
+   "emoji": "✨",
+   "name": {
+    "cs": "Jiskří to",
+    "en": "Sparks fly"
+   },
+   "motion": "twinkle",
+   "files": {
+    "marker": "marker/flirt_spark.webp",
+    "clay": "clay/flirt_spark.webp"
+   }
+  },
+  {
+   "id": "flirt_devil",
+   "category": "flirt",
+   "emoji": "😈",
+   "name": {
+    "cs": "Čertík",
+    "en": "Little devil"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/flirt_devil.webp",
+    "marker": "marker/flirt_devil.webp",
+    "clay": "clay/flirt_devil.webp"
+   }
+  },
+  {
+   "id": "flirt_finger_heart",
+   "category": "flirt",
+   "emoji": "🫰",
+   "name": {
+    "cs": "Srdíčko z prstů",
+    "en": "Finger heart"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/flirt_finger_heart.webp",
+    "marker": "marker/flirt_finger_heart.webp",
+    "clay": "clay/flirt_finger_heart.webp"
+   }
+  },
+  {
+   "id": "flirt_heart_arrow",
+   "category": "flirt",
+   "emoji": "💘",
+   "name": {
+    "cs": "Amorův šíp",
+    "en": "Cupid's arrow"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/flirt_heart_arrow.webp",
+    "marker": "marker/flirt_heart_arrow.webp",
+    "clay": "clay/flirt_heart_arrow.webp"
+   }
+  },
+  {
+   "id": "flirt_cupid",
+   "category": "flirt",
+   "emoji": "👼",
+   "name": {
+    "cs": "Amor",
+    "en": "Cupid"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/flirt_cupid.webp",
+    "marker": "marker/flirt_cupid.webp",
+    "clay": "clay/flirt_cupid.webp"
+   }
+  },
+  {
+   "id": "flirt_love_note",
+   "category": "flirt",
+   "emoji": "💌",
+   "name": {
+    "cs": "Psaníčko",
+    "en": "Love note"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/flirt_love_note.webp",
+    "marker": "marker/flirt_love_note.webp",
+    "clay": "clay/flirt_love_note.webp"
+   }
+  },
+  {
+   "id": "flirt_peek",
+   "category": "flirt",
+   "emoji": "🫣",
+   "name": {
+    "cs": "Tajně koukám",
+    "en": "Peeking"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/flirt_peek.webp",
+    "marker": "marker/flirt_peek.webp",
+    "clay": "clay/flirt_peek.webp"
+   }
+  },
+  {
+   "id": "love_heart",
+   "category": "romance",
+   "emoji": "❤️",
+   "name": {
+    "cs": "Srdce",
+    "en": "Heart"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/love_heart.webp",
+    "marker": "marker/love_heart.webp",
+    "clay": "clay/love_heart.webp"
+   }
+  },
+  {
+   "id": "love_hearts",
+   "category": "romance",
+   "emoji": "💕",
+   "name": {
+    "cs": "Srdíčka",
+    "en": "Two hearts"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/love_hearts.webp",
+    "marker": "marker/love_hearts.webp",
+    "clay": "clay/love_hearts.webp"
+   }
+  },
+  {
+   "id": "love_sparkle_heart",
+   "category": "romance",
+   "emoji": "💖",
+   "name": {
+    "cs": "Zářící srdce",
+    "en": "Sparkling heart"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/love_sparkle_heart.webp",
+    "marker": "marker/love_sparkle_heart.webp",
+    "clay": "clay/love_sparkle_heart.webp"
+   }
+  },
+  {
+   "id": "love_broken",
+   "category": "romance",
+   "emoji": "💔",
+   "name": {
+    "cs": "Zlomené srdce",
+    "en": "Broken heart"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/love_broken.webp",
+    "marker": "marker/love_broken.webp",
+    "clay": "clay/love_broken.webp"
+   }
+  },
+  {
+   "id": "love_mending",
+   "category": "romance",
+   "emoji": "❤️‍🩹",
+   "name": {
+    "cs": "Zalepené srdce",
+    "en": "Mending heart"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_mending.webp",
+    "marker": "marker/love_mending.webp",
+    "clay": "clay/love_mending.webp"
+   }
+  },
+  {
+   "id": "love_fire",
+   "category": "romance",
+   "emoji": "❤️‍🔥",
+   "name": {
+    "cs": "Hořící srdce",
+    "en": "Heart on fire"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/love_fire.webp",
+    "marker": "marker/love_fire.webp",
+    "clay": "clay/love_fire.webp"
+   }
+  },
+  {
+   "id": "love_smitten",
+   "category": "romance",
+   "emoji": "🥰",
+   "name": {
+    "cs": "Zamilovaně",
+    "en": "Smitten"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_smitten.webp",
+    "marker": "marker/love_smitten.webp",
+    "clay": "clay/love_smitten.webp"
+   }
+  },
+  {
+   "id": "love_hug",
+   "category": "romance",
+   "emoji": "🫂",
+   "name": {
+    "cs": "Objímám tě",
+    "en": "Big hug"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_hug.webp",
+    "marker": "marker/love_hug.webp",
+    "clay": "clay/love_hug.webp"
+   }
+  },
+  {
+   "id": "love_heart_hands",
+   "category": "romance",
+   "emoji": "🫶",
+   "name": {
+    "cs": "Srdce z rukou",
+    "en": "Heart hands"
+   },
+   "motion": "pulse",
+   "files": {
+    "marker": "marker/love_heart_hands.webp",
+    "clay": "clay/love_heart_hands.webp"
+   }
+  },
+  {
+   "id": "love_ring",
+   "category": "romance",
+   "emoji": "💍",
+   "name": {
+    "cs": "Prstýnek",
+    "en": "Ring"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/love_ring.webp"
+   }
+  },
+  {
+   "id": "love_rose",
+   "category": "romance",
+   "emoji": "🌹",
+   "name": {
+    "cs": "Růže",
+    "en": "Rose"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_rose.webp",
+    "marker": "marker/love_rose.webp",
+    "clay": "clay/love_rose.webp"
+   }
+  },
+  {
+   "id": "love_bouquet",
+   "category": "romance",
+   "emoji": "💐",
+   "name": {
+    "cs": "Kytice",
+    "en": "Bouquet"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/love_bouquet.webp",
+    "marker": "marker/love_bouquet.webp",
+    "clay": "clay/love_bouquet.webp"
+   }
+  },
+  {
+   "id": "love_gift",
+   "category": "romance",
+   "emoji": "💝",
+   "name": {
+    "cs": "Dárek z lásky",
+    "en": "Gift of love"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/love_gift.webp",
+    "marker": "marker/love_gift.webp",
+    "clay": "clay/love_gift.webp"
+   }
+  },
+  {
+   "id": "love_balloon",
+   "category": "romance",
+   "emoji": "🎈",
+   "name": {
+    "cs": "Srdíčkový balónek",
+    "en": "Heart balloon"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/love_balloon.webp",
+    "marker": "marker/love_balloon.webp",
+    "clay": "clay/love_balloon.webp"
+   }
+  },
+  {
+   "id": "love_birds",
+   "category": "romance",
+   "emoji": "🕊️",
+   "name": {
+    "cs": "Hrdličky",
+    "en": "Lovebirds"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_birds.webp",
+    "marker": "marker/love_birds.webp",
+    "clay": "clay/love_birds.webp"
+   }
+  },
+  {
+   "id": "love_moon",
+   "category": "romance",
+   "emoji": "🌙",
+   "name": {
+    "cs": "Dobrou noc, lásko",
+    "en": "Good night, love"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/love_moon.webp",
+    "marker": "marker/love_moon.webp",
+    "clay": "clay/love_moon.webp"
+   }
+  },
+  {
+   "id": "love_miss_you",
+   "category": "romance",
+   "emoji": "🥹",
+   "name": {
+    "cs": "Chybíš mi",
+    "en": "Miss you"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/love_miss_you.webp",
+    "marker": "marker/love_miss_you.webp",
+    "clay": "clay/love_miss_you.webp"
+   }
+  },
+  {
+   "id": "love_lock",
+   "category": "romance",
+   "emoji": "🔐",
+   "name": {
+    "cs": "Zámek lásky",
+    "en": "Love lock"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/love_lock.webp",
+    "marker": "marker/love_lock.webp",
+    "clay": "clay/love_lock.webp"
+   }
+  },
+  {
+   "id": "hand_thumbs_up",
+   "category": "hands",
+   "emoji": "👍",
+   "name": {
+    "cs": "Palec nahoru",
+    "en": "Thumbs up"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/hand_thumbs_up.webp",
+    "marker": "marker/hand_thumbs_up.webp",
+    "clay": "clay/hand_thumbs_up.webp"
+   }
+  },
+  {
+   "id": "hand_thumbs_down",
+   "category": "hands",
+   "emoji": "👎",
+   "name": {
+    "cs": "Palec dolů",
+    "en": "Thumbs down"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/hand_thumbs_down.webp",
+    "marker": "marker/hand_thumbs_down.webp",
+    "clay": "clay/hand_thumbs_down.webp"
+   }
+  },
+  {
+   "id": "hand_wave",
+   "category": "hands",
+   "emoji": "👋",
+   "name": {
+    "cs": "Ahoj",
+    "en": "Hello"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/hand_wave.webp",
+    "marker": "marker/hand_wave.webp",
+    "clay": "clay/hand_wave.webp"
+   }
+  },
+  {
+   "id": "hand_clap",
+   "category": "hands",
    "emoji": "👏",
-   "name": "Potlesk",
-   "file": "1f44f.webp"
+   "name": {
+    "cs": "Potlesk",
+    "en": "Applause"
+   },
+   "motion": "shake",
+   "files": {
+    "marker": "marker/hand_clap.webp",
+    "clay": "clay/hand_clap.webp"
+   }
   },
   {
+   "id": "hand_ok",
+   "category": "hands",
+   "emoji": "👌",
+   "name": {
+    "cs": "OK",
+    "en": "OK"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/hand_ok.webp",
+    "marker": "marker/hand_ok.webp",
+    "clay": "clay/hand_ok.webp"
+   }
+  },
+  {
+   "id": "hand_peace",
+   "category": "hands",
+   "emoji": "✌️",
+   "name": {
+    "cs": "Vé",
+    "en": "Peace"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/hand_peace.webp",
+    "marker": "marker/hand_peace.webp",
+    "clay": "clay/hand_peace.webp"
+   }
+  },
+  {
+   "id": "hand_crossed",
+   "category": "hands",
+   "emoji": "🤞",
+   "name": {
+    "cs": "Držím palce",
+    "en": "Fingers crossed"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/hand_crossed.webp",
+    "marker": "marker/hand_crossed.webp",
+    "clay": "clay/hand_crossed.webp"
+   }
+  },
+  {
+   "id": "hand_pray",
+   "category": "hands",
+   "emoji": "🙏",
+   "name": {
+    "cs": "Prosím / Děkuji",
+    "en": "Please / Thanks"
+   },
+   "motion": "nod",
+   "files": {
+    "marker": "marker/hand_pray.webp",
+    "clay": "clay/hand_pray.webp"
+   }
+  },
+  {
+   "id": "hand_high_five",
+   "category": "hands",
+   "emoji": "✋",
+   "name": {
+    "cs": "Plácneme si",
+    "en": "High five"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/hand_high_five.webp",
+    "marker": "marker/hand_high_five.webp",
+    "clay": "clay/hand_high_five.webp"
+   }
+  },
+  {
+   "id": "hand_fist_bump",
+   "category": "hands",
+   "emoji": "👊",
+   "name": {
+    "cs": "Ťuk",
+    "en": "Fist bump"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/hand_fist_bump.webp",
+    "marker": "marker/hand_fist_bump.webp",
+    "clay": "clay/hand_fist_bump.webp"
+   }
+  },
+  {
+   "id": "hand_flex",
+   "category": "hands",
    "emoji": "💪",
-   "name": "Síla",
-   "file": "1f4aa.webp"
+   "name": {
+    "cs": "Síla",
+    "en": "Strong"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/hand_flex.webp",
+    "marker": "marker/hand_flex.webp",
+    "clay": "clay/hand_flex.webp"
+   }
   },
   {
+   "id": "hand_point_up",
+   "category": "hands",
+   "emoji": "☝️",
+   "name": {
+    "cs": "Pozor",
+    "en": "Listen"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/hand_point_up.webp",
+    "marker": "marker/hand_point_up.webp",
+    "clay": "clay/hand_point_up.webp"
+   }
+  },
+  {
+   "id": "hand_handshake",
+   "category": "hands",
+   "emoji": "🤝",
+   "name": {
+    "cs": "Platí",
+    "en": "Deal"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/hand_handshake.webp",
+    "marker": "marker/hand_handshake.webp",
+    "clay": "clay/hand_handshake.webp"
+   }
+  },
+  {
+   "id": "hand_love_you",
+   "category": "hands",
+   "emoji": "🤟",
+   "name": {
+    "cs": "Miluju tě",
+    "en": "Love you"
+   },
+   "motion": "wave",
+   "files": {
+    "marker": "marker/hand_love_you.webp"
+   }
+  },
+  {
+   "id": "hand_shrug",
+   "category": "hands",
+   "emoji": "🤷",
+   "name": {
+    "cs": "Nevím",
+    "en": "No idea"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/hand_shrug.webp",
+    "marker": "marker/hand_shrug.webp",
+    "clay": "clay/hand_shrug.webp"
+   }
+  },
+  {
+   "id": "hand_raised",
+   "category": "hands",
+   "emoji": "🙌",
+   "name": {
+    "cs": "Hurá",
+    "en": "Hooray"
+   },
+   "motion": "bounce",
+   "files": {
+    "marker": "marker/hand_raised.webp",
+    "clay": "clay/hand_raised.webp"
+   }
+  },
+  {
+   "id": "hand_pinch",
+   "category": "hands",
+   "emoji": "🤏",
+   "name": {
+    "cs": "Trošku",
+    "en": "A little"
+   },
+   "motion": "breathe",
+   "files": {
+    "marker": "marker/hand_pinch.webp"
+   }
+  },
+  {
+   "id": "hand_writing",
+   "category": "hands",
+   "emoji": "✍️",
+   "name": {
+    "cs": "Píšu",
+    "en": "Writing"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/hand_writing.webp",
+    "marker": "marker/hand_writing.webp",
+    "clay": "clay/hand_writing.webp"
+   }
+  },
+  {
+   "id": "hand_stop",
+   "category": "hands",
+   "emoji": "🤚",
+   "name": {
+    "cs": "Stop",
+    "en": "Stop"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/hand_stop.webp",
+    "marker": "marker/hand_stop.webp",
+    "clay": "clay/hand_stop.webp"
+   }
+  },
+  {
+   "id": "animal_dog",
+   "category": "animals",
+   "emoji": "🐶",
+   "name": {
+    "cs": "Pejsek",
+    "en": "Puppy"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/animal_dog.webp",
+    "marker": "marker/animal_dog.webp",
+    "clay": "clay/animal_dog.webp"
+   }
+  },
+  {
+   "id": "animal_cat",
+   "category": "animals",
+   "emoji": "🐱",
+   "name": {
+    "cs": "Kočička",
+    "en": "Kitty"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_cat.webp",
+    "marker": "marker/animal_cat.webp",
+    "clay": "clay/animal_cat.webp"
+   }
+  },
+  {
+   "id": "animal_cat_love",
+   "category": "animals",
+   "emoji": "😻",
+   "name": {
+    "cs": "Zamilovaná kočka",
+    "en": "Cat in love"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/animal_cat_love.webp",
+    "marker": "marker/animal_cat_love.webp",
+    "clay": "clay/animal_cat_love.webp"
+   }
+  },
+  {
+   "id": "animal_fox",
+   "category": "animals",
+   "emoji": "🦊",
+   "name": {
+    "cs": "Liška",
+    "en": "Fox"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_fox.webp",
+    "marker": "marker/animal_fox.webp",
+    "clay": "clay/animal_fox.webp"
+   }
+  },
+  {
+   "id": "animal_panda",
+   "category": "animals",
+   "emoji": "🐼",
+   "name": {
+    "cs": "Panda",
+    "en": "Panda"
+   },
+   "motion": "breathe",
+   "files": {
+    "marker": "marker/animal_panda.webp",
+    "clay": "clay/animal_panda.webp"
+   }
+  },
+  {
+   "id": "animal_bear",
+   "category": "animals",
+   "emoji": "🧸",
+   "name": {
+    "cs": "Medvídek",
+    "en": "Teddy bear"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_bear.webp",
+    "marker": "marker/animal_bear.webp",
+    "clay": "clay/animal_bear.webp"
+   }
+  },
+  {
+   "id": "animal_bunny",
+   "category": "animals",
+   "emoji": "🐰",
+   "name": {
+    "cs": "Zajíček",
+    "en": "Bunny"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/animal_bunny.webp",
+    "marker": "marker/animal_bunny.webp",
+    "clay": "clay/animal_bunny.webp"
+   }
+  },
+  {
+   "id": "animal_hedgehog",
+   "category": "animals",
+   "emoji": "🦔",
+   "name": {
+    "cs": "Ježek",
+    "en": "Hedgehog"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_hedgehog.webp",
+    "marker": "marker/animal_hedgehog.webp",
+    "clay": "clay/animal_hedgehog.webp"
+   }
+  },
+  {
+   "id": "animal_owl",
+   "category": "animals",
+   "emoji": "🦉",
+   "name": {
+    "cs": "Sova",
+    "en": "Owl"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/animal_owl.webp",
+    "marker": "marker/animal_owl.webp",
+    "clay": "clay/animal_owl.webp"
+   }
+  },
+  {
+   "id": "animal_penguin",
+   "category": "animals",
+   "emoji": "🐧",
+   "name": {
+    "cs": "Tučňák",
+    "en": "Penguin"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/animal_penguin.webp",
+    "marker": "marker/animal_penguin.webp",
+    "clay": "clay/animal_penguin.webp"
+   }
+  },
+  {
+   "id": "animal_koala",
+   "category": "animals",
+   "emoji": "🐨",
+   "name": {
+    "cs": "Koala",
+    "en": "Koala"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/animal_koala.webp",
+    "marker": "marker/animal_koala.webp",
+    "clay": "clay/animal_koala.webp"
+   }
+  },
+  {
+   "id": "animal_sloth",
+   "category": "animals",
+   "emoji": "🦥",
+   "name": {
+    "cs": "Lenochod",
+    "en": "Sloth"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/animal_sloth.webp",
+    "marker": "marker/animal_sloth.webp",
+    "clay": "clay/animal_sloth.webp"
+   }
+  },
+  {
+   "id": "animal_monkey_see",
+   "category": "animals",
+   "emoji": "🙈",
+   "name": {
+    "cs": "Nevidím",
+    "en": "See no evil"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_monkey_see.webp",
+    "marker": "marker/animal_monkey_see.webp",
+    "clay": "clay/animal_monkey_see.webp"
+   }
+  },
+  {
+   "id": "animal_monkey_hear",
+   "category": "animals",
+   "emoji": "🙉",
+   "name": {
+    "cs": "Neslyším",
+    "en": "Hear no evil"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_monkey_hear.webp",
+    "marker": "marker/animal_monkey_hear.webp",
+    "clay": "clay/animal_monkey_hear.webp"
+   }
+  },
+  {
+   "id": "animal_monkey_speak",
+   "category": "animals",
+   "emoji": "🙊",
+   "name": {
+    "cs": "Nemluvím",
+    "en": "Speak no evil"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_monkey_speak.webp",
+    "marker": "marker/animal_monkey_speak.webp",
+    "clay": "clay/animal_monkey_speak.webp"
+   }
+  },
+  {
+   "id": "animal_unicorn",
+   "category": "animals",
+   "emoji": "🦄",
+   "name": {
+    "cs": "Jednorožec",
+    "en": "Unicorn"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/animal_unicorn.webp",
+    "marker": "marker/animal_unicorn.webp",
+    "clay": "clay/animal_unicorn.webp"
+   }
+  },
+  {
+   "id": "animal_dino",
+   "category": "animals",
+   "emoji": "🦖",
+   "name": {
+    "cs": "Dinosaurus",
+    "en": "Dinosaur"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/animal_dino.webp",
+    "marker": "marker/animal_dino.webp",
+    "clay": "clay/animal_dino.webp"
+   }
+  },
+  {
+   "id": "animal_frog",
+   "category": "animals",
+   "emoji": "🐸",
+   "name": {
+    "cs": "Žabka",
+    "en": "Frog"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/animal_frog.webp",
+    "marker": "marker/animal_frog.webp",
+    "clay": "clay/animal_frog.webp"
+   }
+  },
+  {
+   "id": "animal_chick",
+   "category": "animals",
+   "emoji": "🐥",
+   "name": {
+    "cs": "Kuřátko",
+    "en": "Chick"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/animal_chick.webp",
+    "marker": "marker/animal_chick.webp",
+    "clay": "clay/animal_chick.webp"
+   }
+  },
+  {
+   "id": "animal_pig",
+   "category": "animals",
+   "emoji": "🐷",
+   "name": {
+    "cs": "Prasátko",
+    "en": "Piggy"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_pig.webp",
+    "marker": "marker/animal_pig.webp",
+    "clay": "clay/animal_pig.webp"
+   }
+  },
+  {
+   "id": "animal_mouse",
+   "category": "animals",
+   "emoji": "🐭",
+   "name": {
+    "cs": "Myška",
+    "en": "Mouse"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/animal_mouse.webp",
+    "marker": "marker/animal_mouse.webp",
+    "clay": "clay/animal_mouse.webp"
+   }
+  },
+  {
+   "id": "animal_lion",
+   "category": "animals",
+   "emoji": "🦁",
+   "name": {
+    "cs": "Lev",
+    "en": "Lion"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/animal_lion.webp",
+    "marker": "marker/animal_lion.webp",
+    "clay": "clay/animal_lion.webp"
+   }
+  },
+  {
+   "id": "animal_turtle",
+   "category": "animals",
+   "emoji": "🐢",
+   "name": {
+    "cs": "Želva",
+    "en": "Turtle"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/animal_turtle.webp",
+    "marker": "marker/animal_turtle.webp",
+    "clay": "clay/animal_turtle.webp"
+   }
+  },
+  {
+   "id": "animal_bee",
+   "category": "animals",
+   "emoji": "🐝",
+   "name": {
+    "cs": "Včelka",
+    "en": "Bee"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/animal_bee.webp",
+    "marker": "marker/animal_bee.webp",
+    "clay": "clay/animal_bee.webp"
+   }
+  },
+  {
+   "id": "party_popper",
+   "category": "celebration",
    "emoji": "🎉",
-   "name": "Hurá",
-   "file": "1f389.webp"
+   "name": {
+    "cs": "Oslava",
+    "en": "Party"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_popper.webp",
+    "marker": "marker/party_popper.webp",
+    "clay": "clay/party_popper.webp"
+   }
+  },
+  {
+   "id": "party_confetti",
+   "category": "celebration",
+   "emoji": "🎊",
+   "name": {
+    "cs": "Konfety",
+    "en": "Confetti"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/party_confetti.webp",
+    "marker": "marker/party_confetti.webp",
+    "clay": "clay/party_confetti.webp"
+   }
+  },
+  {
+   "id": "party_cake",
+   "category": "celebration",
+   "emoji": "🎂",
+   "name": {
+    "cs": "Dort",
+    "en": "Cake"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/party_cake.webp",
+    "marker": "marker/party_cake.webp",
+    "clay": "clay/party_cake.webp"
+   }
+  },
+  {
+   "id": "party_gift",
+   "category": "celebration",
+   "emoji": "🎁",
+   "name": {
+    "cs": "Dárek",
+    "en": "Gift"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_gift.webp",
+    "marker": "marker/party_gift.webp",
+    "clay": "clay/party_gift.webp"
+   }
+  },
+  {
+   "id": "party_balloon",
+   "category": "celebration",
+   "emoji": "🎈",
+   "name": {
+    "cs": "Balónek",
+    "en": "Balloon"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/party_balloon.webp",
+    "marker": "marker/party_balloon.webp",
+    "clay": "clay/party_balloon.webp"
+   }
+  },
+  {
+   "id": "party_trophy",
+   "category": "celebration",
+   "emoji": "🏆",
+   "name": {
+    "cs": "Vítěz",
+    "en": "Winner"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_trophy.webp",
+    "marker": "marker/party_trophy.webp",
+    "clay": "clay/party_trophy.webp"
+   }
+  },
+  {
+   "id": "party_medal",
+   "category": "celebration",
+   "emoji": "🥇",
+   "name": {
+    "cs": "Zlatá medaile",
+    "en": "Gold medal"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/party_medal.webp",
+    "marker": "marker/party_medal.webp",
+    "clay": "clay/party_medal.webp"
+   }
+  },
+  {
+   "id": "party_crown",
+   "category": "celebration",
+   "emoji": "👑",
+   "name": {
+    "cs": "Koruna",
+    "en": "Crown"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/party_crown.webp",
+    "marker": "marker/party_crown.webp"
+   }
+  },
+  {
+   "id": "party_fireworks",
+   "category": "celebration",
+   "emoji": "🎆",
+   "name": {
+    "cs": "Ohňostroj",
+    "en": "Fireworks"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/party_fireworks.webp",
+    "marker": "marker/party_fireworks.webp",
+    "clay": "clay/party_fireworks.webp"
+   }
+  },
+  {
+   "id": "party_sparkles",
+   "category": "celebration",
+   "emoji": "✨",
+   "name": {
+    "cs": "Třpytky",
+    "en": "Sparkles"
+   },
+   "motion": "twinkle",
+   "files": {
+    "marker": "marker/party_sparkles.webp"
+   }
+  },
+  {
+   "id": "party_star",
+   "category": "celebration",
+   "emoji": "⭐",
+   "name": {
+    "cs": "Hvězda",
+    "en": "Star"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/party_star.webp",
+    "marker": "marker/party_star.webp",
+    "clay": "clay/party_star.webp"
+   }
+  },
+  {
+   "id": "party_disco",
+   "category": "celebration",
+   "emoji": "🪩",
+   "name": {
+    "cs": "Disko",
+    "en": "Disco"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/party_disco.webp",
+    "marker": "marker/party_disco.webp",
+    "clay": "clay/party_disco.webp"
+   }
+  },
+  {
+   "id": "party_clover",
+   "category": "celebration",
+   "emoji": "🍀",
+   "name": {
+    "cs": "Štěstí",
+    "en": "Good luck"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/party_clover.webp",
+    "marker": "marker/party_clover.webp",
+    "clay": "clay/party_clover.webp"
+   }
+  },
+  {
+   "id": "party_tree",
+   "category": "celebration",
+   "emoji": "🎄",
+   "name": {
+    "cs": "Vánoce",
+    "en": "Christmas"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/party_tree.webp",
+    "marker": "marker/party_tree.webp",
+    "clay": "clay/party_tree.webp"
+   }
+  },
+  {
+   "id": "food_coffee",
+   "category": "food",
+   "emoji": "☕",
+   "name": {
+    "cs": "Kafe",
+    "en": "Coffee"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_coffee.webp",
+    "marker": "marker/food_coffee.webp",
+    "clay": "clay/food_coffee.webp"
+   }
+  },
+  {
+   "id": "food_pizza",
+   "category": "food",
+   "emoji": "🍕",
+   "name": {
+    "cs": "Pizza",
+    "en": "Pizza"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/food_pizza.webp",
+    "marker": "marker/food_pizza.webp",
+    "clay": "clay/food_pizza.webp"
+   }
+  },
+  {
+   "id": "food_burger",
+   "category": "food",
+   "emoji": "🍔",
+   "name": {
+    "cs": "Burger",
+    "en": "Burger"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/food_burger.webp",
+    "marker": "marker/food_burger.webp",
+    "clay": "clay/food_burger.webp"
+   }
+  },
+  {
+   "id": "food_fries",
+   "category": "food",
+   "emoji": "🍟",
+   "name": {
+    "cs": "Hranolky",
+    "en": "Fries"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_fries.webp",
+    "marker": "marker/food_fries.webp",
+    "clay": "clay/food_fries.webp"
+   }
+  },
+  {
+   "id": "food_ice_cream",
+   "category": "food",
+   "emoji": "🍦",
+   "name": {
+    "cs": "Zmrzlina",
+    "en": "Ice cream"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_ice_cream.webp",
+    "marker": "marker/food_ice_cream.webp",
+    "clay": "clay/food_ice_cream.webp"
+   }
+  },
+  {
+   "id": "food_donut",
+   "category": "food",
+   "emoji": "🍩",
+   "name": {
+    "cs": "Kobliha",
+    "en": "Donut"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/food_donut.webp",
+    "marker": "marker/food_donut.webp",
+    "clay": "clay/food_donut.webp"
+   }
+  },
+  {
+   "id": "food_cookie",
+   "category": "food",
+   "emoji": "🍪",
+   "name": {
+    "cs": "Sušenka",
+    "en": "Cookie"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_cookie.webp",
+    "marker": "marker/food_cookie.webp",
+    "clay": "clay/food_cookie.webp"
+   }
+  },
+  {
+   "id": "food_strawberry",
+   "category": "food",
+   "emoji": "🍓",
+   "name": {
+    "cs": "Jahoda",
+    "en": "Strawberry"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/food_strawberry.webp",
+    "marker": "marker/food_strawberry.webp",
+    "clay": "clay/food_strawberry.webp"
+   }
+  },
+  {
+   "id": "food_cherries",
+   "category": "food",
+   "emoji": "🍒",
+   "name": {
+    "cs": "Třešně",
+    "en": "Cherries"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/food_cherries.webp",
+    "marker": "marker/food_cherries.webp",
+    "clay": "clay/food_cherries.webp"
+   }
+  },
+  {
+   "id": "food_avocado",
+   "category": "food",
+   "emoji": "🥑",
+   "name": {
+    "cs": "Avokádo",
+    "en": "Avocado"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_avocado.webp",
+    "marker": "marker/food_avocado.webp",
+    "clay": "clay/food_avocado.webp"
+   }
+  },
+  {
+   "id": "food_popcorn",
+   "category": "food",
+   "emoji": "🍿",
+   "name": {
+    "cs": "Popcorn",
+    "en": "Popcorn"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/food_popcorn.webp",
+    "marker": "marker/food_popcorn.webp",
+    "clay": "clay/food_popcorn.webp"
+   }
+  },
+  {
+   "id": "food_bubble_tea",
+   "category": "food",
+   "emoji": "🧋",
+   "name": {
+    "cs": "Bubble tea",
+    "en": "Bubble tea"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_bubble_tea.webp",
+    "marker": "marker/food_bubble_tea.webp",
+    "clay": "clay/food_bubble_tea.webp"
+   }
+  },
+  {
+   "id": "nature_sun",
+   "category": "nature",
+   "emoji": "☀️",
+   "name": {
+    "cs": "Sluníčko",
+    "en": "Sunshine"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/nature_sun.webp",
+    "marker": "marker/nature_sun.webp",
+    "clay": "clay/nature_sun.webp"
+   }
+  },
+  {
+   "id": "nature_rainbow",
+   "category": "nature",
+   "emoji": "🌈",
+   "name": {
+    "cs": "Duha",
+    "en": "Rainbow"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/nature_rainbow.webp",
+    "marker": "marker/nature_rainbow.webp",
+    "clay": "clay/nature_rainbow.webp"
+   }
+  },
+  {
+   "id": "nature_snowflake",
+   "category": "nature",
+   "emoji": "❄️",
+   "name": {
+    "cs": "Sněží",
+    "en": "Snow"
+   },
+   "motion": "twinkle",
+   "files": {
+    "paper": "paper/nature_snowflake.webp",
+    "marker": "marker/nature_snowflake.webp",
+    "clay": "clay/nature_snowflake.webp"
+   }
+  },
+  {
+   "id": "nature_moon",
+   "category": "nature",
+   "emoji": "🌙",
+   "name": {
+    "cs": "Měsíc",
+    "en": "Moon"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/nature_moon.webp",
+    "marker": "marker/nature_moon.webp",
+    "clay": "clay/nature_moon.webp"
+   }
+  },
+  {
+   "id": "nature_blossom",
+   "category": "nature",
+   "emoji": "🌸",
+   "name": {
+    "cs": "Kytička",
+    "en": "Blossom"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/nature_blossom.webp",
+    "marker": "marker/nature_blossom.webp",
+    "clay": "clay/nature_blossom.webp"
+   }
+  },
+  {
+   "id": "nature_sunflower",
+   "category": "nature",
+   "emoji": "🌻",
+   "name": {
+    "cs": "Slunečnice",
+    "en": "Sunflower"
+   },
+   "motion": "nod",
+   "files": {
+    "paper": "paper/nature_sunflower.webp",
+    "marker": "marker/nature_sunflower.webp",
+    "clay": "clay/nature_sunflower.webp"
+   }
+  },
+  {
+   "id": "nature_leaf",
+   "category": "nature",
+   "emoji": "🍂",
+   "name": {
+    "cs": "Podzim",
+    "en": "Autumn"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/nature_leaf.webp",
+    "marker": "marker/nature_leaf.webp",
+    "clay": "clay/nature_leaf.webp"
+   }
+  },
+  {
+   "id": "nature_fire",
+   "category": "nature",
+   "emoji": "🔥",
+   "name": {
+    "cs": "Oheň",
+    "en": "Fire"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/nature_fire.webp",
+    "marker": "marker/nature_fire.webp",
+    "clay": "clay/nature_fire.webp"
+   }
+  },
+  {
+   "id": "nature_lightning",
+   "category": "nature",
+   "emoji": "⚡",
+   "name": {
+    "cs": "Blesk",
+    "en": "Lightning"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/nature_lightning.webp",
+    "marker": "marker/nature_lightning.webp"
+   }
+  },
+  {
+   "id": "day_zzz",
+   "category": "everyday",
+   "emoji": "💤",
+   "name": {
+    "cs": "Dobrou noc",
+    "en": "Good night"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/day_zzz.webp",
+    "marker": "marker/day_zzz.webp",
+    "clay": "clay/day_zzz.webp"
+   }
+  },
+  {
+   "id": "day_alarm",
+   "category": "everyday",
+   "emoji": "⏰",
+   "name": {
+    "cs": "Budíček",
+    "en": "Wake up"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/day_alarm.webp",
+    "marker": "marker/day_alarm.webp",
+    "clay": "clay/day_alarm.webp"
+   }
+  },
+  {
+   "id": "day_idea",
+   "category": "everyday",
+   "emoji": "💡",
+   "name": {
+    "cs": "Nápad",
+    "en": "Idea"
+   },
+   "motion": "pulse",
+   "files": {
+    "paper": "paper/day_idea.webp",
+    "marker": "marker/day_idea.webp",
+    "clay": "clay/day_idea.webp"
+   }
+  },
+  {
+   "id": "day_music",
+   "category": "everyday",
+   "emoji": "🎵",
+   "name": {
+    "cs": "Hudba",
+    "en": "Music"
+   },
+   "motion": "bounce",
+   "files": {
+    "marker": "marker/day_music.webp"
+   }
+  },
+  {
+   "id": "day_books",
+   "category": "everyday",
+   "emoji": "📚",
+   "name": {
+    "cs": "Učím se",
+    "en": "Studying"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/day_books.webp",
+    "marker": "marker/day_books.webp"
+   }
+  },
+  {
+   "id": "day_laptop",
+   "category": "everyday",
+   "emoji": "💻",
+   "name": {
+    "cs": "Pracuju",
+    "en": "Working"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/day_laptop.webp",
+    "marker": "marker/day_laptop.webp",
+    "clay": "clay/day_laptop.webp"
+   }
+  },
+  {
+   "id": "day_phone",
+   "category": "everyday",
+   "emoji": "📱",
+   "name": {
+    "cs": "Napiš mi",
+    "en": "Text me"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/day_phone.webp",
+    "marker": "marker/day_phone.webp"
+   }
+  },
+  {
+   "id": "day_plane",
+   "category": "everyday",
+   "emoji": "✈️",
+   "name": {
+    "cs": "Dovolená",
+    "en": "Holiday"
+   },
+   "motion": "float",
+   "files": {
+    "marker": "marker/day_plane.webp",
+    "clay": "clay/day_plane.webp"
+   }
+  },
+  {
+   "id": "day_rocket",
+   "category": "everyday",
+   "emoji": "🚀",
+   "name": {
+    "cs": "Jdeme na to",
+    "en": "Let's go"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/day_rocket.webp",
+    "marker": "marker/day_rocket.webp",
+    "clay": "clay/day_rocket.webp"
+   }
+  },
+  {
+   "id": "day_gamepad",
+   "category": "everyday",
+   "emoji": "🎮",
+   "name": {
+    "cs": "Hraju",
+    "en": "Gaming"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/day_gamepad.webp",
+    "marker": "marker/day_gamepad.webp",
+    "clay": "clay/day_gamepad.webp"
+   }
+  },
+  {
+   "id": "smile_alien",
+   "category": "smileys",
+   "emoji": "👽",
+   "name": {
+    "cs": "Mimozemšťan",
+    "en": "Alien"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/smile_alien.webp",
+    "marker": "marker/smile_alien.webp",
+    "clay": "clay/smile_alien.webp"
+   }
+  },
+  {
+   "id": "animal_butterfly",
+   "category": "animals",
+   "emoji": "🦋",
+   "name": {
+    "cs": "Motýl",
+    "en": "Butterfly"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/animal_butterfly.webp",
+    "marker": "marker/animal_butterfly.webp",
+    "clay": "clay/animal_butterfly.webp"
+   }
+  },
+  {
+   "id": "animal_ladybug",
+   "category": "animals",
+   "emoji": "🐞",
+   "name": {
+    "cs": "Beruška",
+    "en": "Ladybug"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/animal_ladybug.webp",
+    "marker": "marker/animal_ladybug.webp",
+    "clay": "clay/animal_ladybug.webp"
+   }
+  },
+  {
+   "id": "animal_whale",
+   "category": "animals",
+   "emoji": "🐳",
+   "name": {
+    "cs": "Velryba",
+    "en": "Whale"
+   },
+   "motion": "float",
+   "files": {
+    "paper": "paper/animal_whale.webp",
+    "marker": "marker/animal_whale.webp",
+    "clay": "clay/animal_whale.webp"
+   }
+  },
+  {
+   "id": "animal_octopus",
+   "category": "animals",
+   "emoji": "🐙",
+   "name": {
+    "cs": "Chobotnice",
+    "en": "Octopus"
+   },
+   "motion": "wave",
+   "files": {
+    "paper": "paper/animal_octopus.webp",
+    "marker": "marker/animal_octopus.webp",
+    "clay": "clay/animal_octopus.webp"
+   }
+  },
+  {
+   "id": "party_pumpkin",
+   "category": "celebration",
+   "emoji": "🎃",
+   "name": {
+    "cs": "Halloween",
+    "en": "Halloween"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/party_pumpkin.webp",
+    "marker": "marker/party_pumpkin.webp",
+    "clay": "clay/party_pumpkin.webp"
+   }
+  },
+  {
+   "id": "party_egg",
+   "category": "celebration",
+   "emoji": "🥚",
+   "name": {
+    "cs": "Velikonoce",
+    "en": "Easter"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/party_egg.webp",
+    "marker": "marker/party_egg.webp",
+    "clay": "clay/party_egg.webp"
+   }
+  },
+  {
+   "id": "nature_mushroom",
+   "category": "nature",
+   "emoji": "🍄",
+   "name": {
+    "cs": "Houby",
+    "en": "Mushroom"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/nature_mushroom.webp",
+    "marker": "marker/nature_mushroom.webp",
+    "clay": "clay/nature_mushroom.webp"
+   }
+  },
+  {
+   "id": "food_chocolate",
+   "category": "food",
+   "emoji": "🍫",
+   "name": {
+    "cs": "Čokoláda",
+    "en": "Chocolate"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/food_chocolate.webp",
+    "marker": "marker/food_chocolate.webp",
+    "clay": "clay/food_chocolate.webp"
+   }
+  },
+  {
+   "id": "day_car",
+   "category": "everyday",
+   "emoji": "🚗",
+   "name": {
+    "cs": "Jedu",
+    "en": "On my way"
+   },
+   "motion": "shake",
+   "files": {
+    "paper": "paper/day_car.webp",
+    "marker": "marker/day_car.webp",
+    "clay": "clay/day_car.webp"
+   }
+  },
+  {
+   "id": "day_ball",
+   "category": "everyday",
+   "emoji": "⚽",
+   "name": {
+    "cs": "Fotbal",
+    "en": "Football"
+   },
+   "motion": "bounce",
+   "files": {
+    "paper": "paper/day_ball.webp",
+    "marker": "marker/day_ball.webp",
+    "clay": "clay/day_ball.webp"
+   }
+  },
+  {
+   "id": "day_home",
+   "category": "everyday",
+   "emoji": "🏠",
+   "name": {
+    "cs": "Doma",
+    "en": "At home"
+   },
+   "motion": "breathe",
+   "files": {
+    "paper": "paper/day_home.webp",
+    "marker": "marker/day_home.webp",
+    "clay": "clay/day_home.webp"
+   }
   }
  ]
 }

@@ -87,6 +87,32 @@
       }
     },
     {
+      "id": "emoji_marker",
+      "product": "com.ol1n.handwrittenStickers.pack.emoji_marker",
+      "name": {
+        "cs": "Emoji fixou",
+        "en": "Marker emoji"
+      },
+      "description": {
+        "cs": "Všechna animovaná emoji kreslená fixou a pastelkou.",
+        "en": "Every animated emoji, drawn in felt-tip marker and coloured pencil."
+      },
+      "order": 6
+    },
+    {
+      "id": "emoji_clay",
+      "product": "com.ol1n.handwrittenStickers.pack.emoji_clay",
+      "name": {
+        "cs": "Emoji z modelíny",
+        "en": "Clay emoji"
+      },
+      "description": {
+        "cs": "Všechna animovaná emoji vymodelovaná z plastelíny.",
+        "en": "Every animated emoji, modelled in soft clay."
+      },
+      "order": 7
+    },
+    {
       "id": "presets",
       "product": "com.ol1n.handwrittenStickers.pack.presets",
       "name": {
@@ -97,7 +123,7 @@
         "cs": "Ukládej si vlastní kombinace písma a stylu a vracej se k nim jedním klepnutím.",
         "en": "Save your own font and style combinations and reuse them with one tap."
       },
-      "order": 6,
+      "order": 8,
       "feature": "savePresets"
     },
     {

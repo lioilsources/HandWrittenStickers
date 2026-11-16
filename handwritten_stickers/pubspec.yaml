@@ -68,6 +68,9 @@ flutter:
   assets:
     - assets/brand/
     - assets/emoji/
+    - assets/emoji/paper/
+    - assets/emoji/marker/
+    - assets/emoji/clay/
     - assets/presets/
     - assets/packs/
     - assets/glyphs/

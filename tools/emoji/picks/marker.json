@@ -1,0 +1,1082 @@
+{
+ "smile_happy": {
+  "pick": 7021,
+  "alt": 7020,
+  "batch": "I1",
+  "notes": ""
+ },
+ "smile_laugh": {
+  "pick": 7062,
+  "alt": 7063,
+  "batch": "I1",
+  "notes": ""
+ },
+ "smile_yum": {
+  "pick": 7260,
+  "alt": 7263,
+  "batch": "I1",
+  "notes": "7262 has ground shadow"
+ },
+ "smile_grin": {
+  "pick": 7041,
+  "alt": 7043,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_rofl": {
+  "pick": 7082,
+  "alt": 7081,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_upside_down": {
+  "pick": 7100,
+  "alt": 7102,
+  "batch": "I2",
+  "notes": "7101/7103 eyes closed, 7103 shadow"
+ },
+ "smile_cool": {
+  "pick": 7120,
+  "alt": 7122,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_tongue": {
+  "pick": 7141,
+  "alt": 7143,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_zany": {
+  "pick": 7163,
+  "alt": 7161,
+  "batch": "I2",
+  "notes": "all draw wink + tongue, not big/small eye; 7163/7161 closest"
+ },
+ "smile_angel": {
+  "pick": 7181,
+  "alt": null,
+  "batch": "I2",
+  "notes": "only 7181 has the halo"
+ },
+ "smile_party": {
+  "pick": 7201,
+  "alt": null,
+  "batch": "I2",
+  "notes": "others have shadow; trumpet not party horn, no confetti"
+ },
+ "smile_nerd": {
+  "pick": 7223,
+  "alt": 7222,
+  "batch": "I2",
+  "notes": "no buck teeth in any seed"
+ },
+ "smile_star_struck": {
+  "pick": 7241,
+  "alt": 7243,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_hug": {
+  "pick": 7281,
+  "alt": 7282,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_thinking": {
+  "pick": 7303,
+  "alt": 7300,
+  "batch": "I2",
+  "notes": "all wink instead of raised eyebrow; 7301 finger reads rude"
+ },
+ "smile_shush": {
+  "pick": 7321,
+  "alt": null,
+  "batch": "I2",
+  "notes": "others hold a thumb, not index finger, to the lips"
+ },
+ "smile_salute": {
+  "pick": 7343,
+  "alt": 7340,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_relaxed": {
+  "pick": 7362,
+  "alt": 7361,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_sleeping": {
+  "pick": null,
+  "alt": 7383,
+  "batch": "I2",
+  "notes": "every seed has Z letters; tears instead of drool bubble; 7381/7382 shadow"
+ },
+ "smile_yawn": {
+  "pick": 7402,
+  "alt": 7400,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_monocle": {
+  "pick": 7423,
+  "alt": null,
+  "batch": "I2",
+  "notes": "7420/7421 draw two-lens glasses, 7422 eye patch; 7423 monocle but winks"
+ },
+ "smile_cowboy": {
+  "pick": 7441,
+  "alt": 7442,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_ghost": {
+  "pick": 7460,
+  "alt": 7461,
+  "batch": "I2",
+  "notes": ""
+ },
+ "smile_robot": {
+  "pick": null,
+  "alt": 7482,
+  "batch": "I2",
+  "notes": "ground shadow under every seed"
+ },
+ "smile_alien": {
+  "pick": 10383,
+  "alt": 10380,
+  "batch": "I2",
+  "notes": "10382 shadow"
+ },
+ "feel_tear": {
+  "pick": 7500,
+  "alt": 7503,
+  "batch": "I1",
+  "notes": ""
+ },
+ "feel_worn_out": {
+  "pick": 7703,
+  "alt": 7700,
+  "batch": "I1",
+  "notes": "7701 shadow"
+ },
+ "feel_angry": {
+  "pick": 7543,
+  "alt": 7540,
+  "batch": "I1",
+  "notes": ""
+ },
+ "feel_crying": {
+  "pick": 7521,
+  "alt": 7522,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_furious": {
+  "pick": 7560,
+  "alt": null,
+  "batch": "I2",
+  "notes": "7561-7563 ground shadow"
+ },
+ "feel_scared": {
+  "pick": 7580,
+  "alt": 7582,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_scream": {
+  "pick": 7601,
+  "alt": 7602,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_surprised": {
+  "pick": 7621,
+  "alt": 7620,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_embarrassed": {
+  "pick": 7643,
+  "alt": 7641,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_sad": {
+  "pick": 7661,
+  "alt": 7662,
+  "batch": "I2",
+  "notes": "eyes not looking down; 7660 shadow"
+ },
+ "feel_pleading": {
+  "pick": 7681,
+  "alt": 7683,
+  "batch": "I2",
+  "notes": "tears added; 7680 shadow"
+ },
+ "feel_sick": {
+  "pick": 7723,
+  "alt": 7720,
+  "batch": "I2",
+  "notes": "tears added"
+ },
+ "feel_dizzy": {
+  "pick": 7741,
+  "alt": 7740,
+  "batch": "I2",
+  "notes": "7742/7743 shadow"
+ },
+ "feel_mind_blown": {
+  "pick": 7763,
+  "alt": null,
+  "batch": "I2",
+  "notes": "7760-7762 ground shadow"
+ },
+ "feel_facepalm": {
+  "pick": 7780,
+  "alt": 7783,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_eye_roll": {
+  "pick": 7800,
+  "alt": 7803,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_oops": {
+  "pick": 7822,
+  "alt": 7821,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_cold": {
+  "pick": 7841,
+  "alt": 7840,
+  "batch": "I2",
+  "notes": ""
+ },
+ "feel_hot": {
+  "pick": 7860,
+  "alt": null,
+  "batch": "I2",
+  "notes": "7861-7863 ground shadow"
+ },
+ "feel_bored": {
+  "pick": 7880,
+  "alt": 7883,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_wink": {
+  "pick": 7901,
+  "alt": 7900,
+  "batch": "I1",
+  "notes": ""
+ },
+ "flirt_kiss": {
+  "pick": 7920,
+  "alt": 7923,
+  "batch": "I1",
+  "notes": "lips drawn as a '3' pucker, standard kiss-emoji shape"
+ },
+ "flirt_eyes": {
+  "pick": 8061,
+  "alt": 8060,
+  "batch": "I1",
+  "notes": "8062/8063 eyes on a dark blob"
+ },
+ "flirt_smirk": {
+  "pick": 7943,
+  "alt": 7940,
+  "batch": "I2",
+  "notes": "7941/7942 wink"
+ },
+ "flirt_blush": {
+  "pick": 7961,
+  "alt": 7960,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_heart_eyes": {
+  "pick": 7981,
+  "alt": 7983,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_lips": {
+  "pick": 8001,
+  "alt": 8003,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_rose_teeth": {
+  "pick": 8022,
+  "alt": 8021,
+  "batch": "I2",
+  "notes": "stem in mouth; winks instead of half-closed eyes; 8021 has a yellow blob on stem"
+ },
+ "flirt_call_me": {
+  "pick": 8053,
+  "alt": 8054,
+  "notes": "pinky up, thumb out: shaka; others horns",
+  "batch": "I4"
+ },
+ "flirt_spark": {
+  "pick": 8082,
+  "alt": 8081,
+  "batch": "I2",
+  "notes": "8080 extra outline heart"
+ },
+ "flirt_devil": {
+  "pick": 8101,
+  "alt": 8102,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_finger_heart": {
+  "pick": 8121,
+  "alt": 8123,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_heart_arrow": {
+  "pick": 8141,
+  "alt": 8142,
+  "batch": "I2",
+  "notes": ""
+ },
+ "flirt_cupid": {
+  "pick": 8160,
+  "alt": 8162,
+  "batch": "I2",
+  "notes": "no halo in any seed"
+ },
+ "flirt_love_note": {
+  "pick": 8192,
+  "alt": 8191,
+  "notes": "no ground shadow; 8190/93/94/95 have one",
+  "batch": "I4"
+ },
+ "flirt_peek": {
+  "pick": 8200,
+  "alt": null,
+  "batch": "I2",
+  "notes": "only 8200 peeks through the fingers"
+ },
+ "love_heart": {
+  "pick": 8221,
+  "alt": 8220,
+  "batch": "I1",
+  "notes": ""
+ },
+ "love_hearts": {
+  "pick": 8241,
+  "alt": 8242,
+  "batch": "I1",
+  "notes": ""
+ },
+ "love_ring": {
+  "pick": null,
+  "alt": null,
+  "batch": "I1",
+  "notes": "grey background left inside the band in every seed"
+ },
+ "love_sparkle_heart": {
+  "pick": 8261,
+  "alt": 8260,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_broken": {
+  "pick": 8281,
+  "alt": 8283,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_mending": {
+  "pick": 8301,
+  "alt": 8303,
+  "batch": "I2",
+  "notes": "crossed plasters, not one"
+ },
+ "love_fire": {
+  "pick": 8323,
+  "alt": null,
+  "batch": "I2",
+  "notes": "8320-8322 wrapped in orange bands, not flames"
+ },
+ "love_smitten": {
+  "pick": 8341,
+  "alt": 8343,
+  "batch": "I2",
+  "notes": "8342 shadow"
+ },
+ "love_hug": {
+  "pick": 8361,
+  "alt": 8363,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_heart_hands": {
+  "pick": 8381,
+  "alt": 8383,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_rose": {
+  "pick": 8421,
+  "alt": 8423,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_bouquet": {
+  "pick": 8443,
+  "alt": 8441,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_gift": {
+  "pick": 8461,
+  "alt": 8460,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_balloon": {
+  "pick": 8481,
+  "alt": 8482,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_birds": {
+  "pick": 8502,
+  "alt": 8501,
+  "batch": "I2",
+  "notes": "heart is dark brown"
+ },
+ "love_moon": {
+  "pick": 8521,
+  "alt": 8522,
+  "batch": "I2",
+  "notes": ""
+ },
+ "love_miss_you": {
+  "pick": 8540,
+  "alt": 8542,
+  "batch": "I2",
+  "notes": "8543 winks"
+ },
+ "love_lock": {
+  "pick": 8561,
+  "alt": 8562,
+  "batch": "I2",
+  "notes": "8561 heart padlock but no key; 8560/8562 padlock drawn on a heart"
+ },
+ "hand_thumbs_up": {
+  "pick": 8586,
+  "alt": 8585,
+  "batch": "I1",
+  "notes": "8580/8581 sleeve cuffs"
+ },
+ "hand_thumbs_down": {
+  "pick": 8602,
+  "alt": null,
+  "batch": "I1",
+  "notes": "only 8602 points down; rest are thumbs up"
+ },
+ "hand_peace": {
+  "pick": 8681,
+  "alt": 8682,
+  "batch": "I1",
+  "notes": "8683 shadow, 8684 three fingers"
+ },
+ "hand_point_you": {
+  "pick": null,
+  "alt": null,
+  "batch": "I2",
+  "notes": "I1 8800-8807 and I2 8808-8815 all point up"
+ },
+ "hand_wave": {
+  "pick": 8625,
+  "alt": 8621,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_clap": {
+  "pick": 8645,
+  "alt": 8642,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_ok": {
+  "pick": 8661,
+  "alt": 8665,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_crossed": {
+  "pick": 8703,
+  "alt": 8707,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_pray": {
+  "pick": 8735,
+  "alt": 8733,
+  "notes": "palms flat together, no book",
+  "batch": "I4"
+ },
+ "hand_high_five": {
+  "pick": 8747,
+  "alt": 8742,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_fist_bump": {
+  "pick": 8761,
+  "alt": 8767,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_flex": {
+  "pick": 8782,
+  "alt": 8787,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_point_up": {
+  "pick": 8826,
+  "alt": 8821,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_handshake": {
+  "pick": 8845,
+  "alt": 8841,
+  "batch": "I2",
+  "notes": ""
+ },
+ "hand_love_you": {
+  "pick": 8862,
+  "alt": null,
+  "batch": "I2",
+  "notes": "only 8862 has thumb, index and pinky out"
+ },
+ "hand_shrug": {
+  "pick": 8884,
+  "alt": 8880,
+  "batch": "I2",
+  "notes": "short arms join the hands; palms face out; sad not shrugging; 8881/8882 shadow"
+ },
+ "hand_raised": {
+  "pick": 8910,
+  "alt": 8913,
+  "notes": "two raised hands with sparkles; 8914 shadow, 8915 drips",
+  "batch": "I4"
+ },
+ "hand_pinch": {
+  "pick": 8935,
+  "alt": 8932,
+  "notes": "thumb and index tip nearly touching, grain, others curled",
+  "batch": "I4"
+ },
+ "hand_writing": {
+  "pick": 8945,
+  "alt": null,
+  "batch": "I2",
+  "notes": "loopy squiggle line, no letters; others write 'squig'/'mag' or grip oddly"
+ },
+ "hand_stop": {
+  "pick": 8963,
+  "alt": 8960,
+  "batch": "I2",
+  "notes": "8961/8962/8964-8967 draw a stop sign, some with STOP text"
+ },
+ "animal_dog": {
+  "pick": 8981,
+  "alt": 8982,
+  "batch": "I1",
+  "notes": "8983 has body"
+ },
+ "animal_monkey_see": {
+  "pick": 9221,
+  "alt": 9220,
+  "batch": "I1",
+  "notes": ""
+ },
+ "animal_fox": {
+  "pick": 9041,
+  "alt": 9040,
+  "batch": "I1",
+  "notes": "9043 has body"
+ },
+ "animal_cat": {
+  "pick": 9001,
+  "alt": 9000,
+  "batch": "I2",
+  "notes": "9001 face only, others show body"
+ },
+ "animal_cat_love": {
+  "pick": 9020,
+  "alt": 9023,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_panda": {
+  "pick": 9061,
+  "alt": 9063,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_bear": {
+  "pick": 9081,
+  "alt": 9083,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_bunny": {
+  "pick": 9101,
+  "alt": 9102,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_hedgehog": {
+  "pick": 9121,
+  "alt": 9123,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_owl": {
+  "pick": 9141,
+  "alt": 9142,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_penguin": {
+  "pick": 9162,
+  "alt": 9160,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_koala": {
+  "pick": 9181,
+  "alt": 9183,
+  "batch": "I2",
+  "notes": "white, not grey"
+ },
+ "animal_sloth": {
+  "pick": 9201,
+  "alt": 9202,
+  "batch": "I2",
+  "notes": "9200 grey gap between arm and body"
+ },
+ "animal_monkey_hear": {
+  "pick": 9241,
+  "alt": 9240,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_monkey_speak": {
+  "pick": 9261,
+  "alt": 9260,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_unicorn": {
+  "pick": 9281,
+  "alt": 9283,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_dino": {
+  "pick": 9303,
+  "alt": 9300,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_frog": {
+  "pick": 9321,
+  "alt": 9322,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_chick": {
+  "pick": 9341,
+  "alt": 9343,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_pig": {
+  "pick": 9361,
+  "alt": 9363,
+  "batch": "I2",
+  "notes": "9360 has feet"
+ },
+ "animal_mouse": {
+  "pick": 9381,
+  "alt": 9380,
+  "batch": "I2",
+  "notes": "white, not grey"
+ },
+ "animal_lion": {
+  "pick": 9401,
+  "alt": 9403,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_turtle": {
+  "pick": 9421,
+  "alt": 9422,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_bee": {
+  "pick": 9442,
+  "alt": 9443,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_butterfly": {
+  "pick": 10401,
+  "alt": 10403,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_ladybug": {
+  "pick": 10421,
+  "alt": 10422,
+  "batch": "I2",
+  "notes": ""
+ },
+ "animal_whale": {
+  "pick": 10441,
+  "alt": 10440,
+  "batch": "I2",
+  "notes": "10442 water puddle under it"
+ },
+ "animal_octopus": {
+  "pick": 10461,
+  "alt": 10463,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_popper": {
+  "pick": 9473,
+  "alt": 9470,
+  "notes": "striped cone, confetti; 9472 has a hand, 9474 shadow",
+  "batch": "I4"
+ },
+ "party_confetti": {
+  "pick": 9480,
+  "alt": null,
+  "batch": "I1",
+  "notes": "9481-9483 ground shadow"
+ },
+ "party_crown": {
+  "pick": 9610,
+  "alt": 9613,
+  "notes": "red and blue jewels; 9614 shadow",
+  "batch": "I4"
+ },
+ "party_cake": {
+  "pick": 9500,
+  "alt": 9502,
+  "batch": "I2",
+  "notes": "9501 plate ring, 9503 shadow"
+ },
+ "party_gift": {
+  "pick": 9521,
+  "alt": 9522,
+  "batch": "I2",
+  "notes": "ribbon is dark brown"
+ },
+ "party_balloon": {
+  "pick": 9541,
+  "alt": 9542,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_trophy": {
+  "pick": 9561,
+  "alt": 9563,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_medal": {
+  "pick": 9580,
+  "alt": 9582,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_fireworks": {
+  "pick": 9621,
+  "alt": 9620,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_sparkles": {
+  "pick": 9640,
+  "alt": 9642,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_star": {
+  "pick": 9661,
+  "alt": 9663,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_disco": {
+  "pick": 9681,
+  "alt": 9682,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_clover": {
+  "pick": 9703,
+  "alt": null,
+  "batch": "I2",
+  "notes": "other seeds have three leaves"
+ },
+ "party_tree": {
+  "pick": 9723,
+  "alt": 9720,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_pumpkin": {
+  "pick": 10481,
+  "alt": 10482,
+  "batch": "I2",
+  "notes": ""
+ },
+ "party_egg": {
+  "pick": 10500,
+  "alt": 10503,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_coffee": {
+  "pick": 9742,
+  "alt": 9741,
+  "batch": "I1",
+  "notes": "9740/9743 shadow hatching"
+ },
+ "food_cookie": {
+  "pick": 9861,
+  "alt": 9862,
+  "batch": "I1",
+  "notes": ""
+ },
+ "food_pizza": {
+  "pick": 9761,
+  "alt": 9763,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_burger": {
+  "pick": 9781,
+  "alt": 9783,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_fries": {
+  "pick": 9801,
+  "alt": 9803,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_ice_cream": {
+  "pick": 9821,
+  "alt": 9823,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_donut": {
+  "pick": 9841,
+  "alt": 9843,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_strawberry": {
+  "pick": 9881,
+  "alt": 9883,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_cherries": {
+  "pick": 9902,
+  "alt": 9903,
+  "batch": "I2",
+  "notes": "9900 grey left between stems"
+ },
+ "food_avocado": {
+  "pick": 9921,
+  "alt": 9922,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_popcorn": {
+  "pick": 9941,
+  "alt": 9943,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_bubble_tea": {
+  "pick": 9962,
+  "alt": 9960,
+  "batch": "I2",
+  "notes": ""
+ },
+ "food_chocolate": {
+  "pick": 10541,
+  "alt": 10542,
+  "batch": "I2",
+  "notes": ""
+ },
+ "nature_sun": {
+  "pick": 9981,
+  "alt": 9980,
+  "batch": "I1",
+  "notes": ""
+ },
+ "nature_blossom": {
+  "pick": 10081,
+  "alt": 10083,
+  "batch": "I1",
+  "notes": ""
+ },
+ "nature_rainbow": {
+  "pick": 10012,
+  "alt": 10011,
+  "notes": "all clean; vivid colours",
+  "batch": "I4"
+ },
+ "nature_rain": {
+  "pick": null,
+  "alt": null,
+  "batch": "I2",
+  "notes": "a human figure under the cloud in every seed; cloud not grey"
+ },
+ "nature_snowflake": {
+  "pick": 10041,
+  "alt": 10043,
+  "batch": "I2",
+  "notes": "10040/10042 grey in gaps"
+ },
+ "nature_moon": {
+  "pick": 10061,
+  "alt": 10062,
+  "batch": "I2",
+  "notes": ""
+ },
+ "nature_sunflower": {
+  "pick": 10101,
+  "alt": 10102,
+  "batch": "I2",
+  "notes": ""
+ },
+ "nature_leaf": {
+  "pick": 10123,
+  "alt": 10120,
+  "batch": "I2",
+  "notes": "one leaf, not several falling; 10122 shadow"
+ },
+ "nature_fire": {
+  "pick": 10140,
+  "alt": 10141,
+  "batch": "I2",
+  "notes": "10143 white smudge"
+ },
+ "nature_lightning": {
+  "pick": 10161,
+  "alt": 10163,
+  "batch": "I2",
+  "notes": "10160 shadow"
+ },
+ "nature_mushroom": {
+  "pick": 10521,
+  "alt": 10520,
+  "batch": "I2",
+  "notes": ""
+ },
+ "day_laptop": {
+  "pick": 10283,
+  "alt": 10281,
+  "batch": "I1",
+  "notes": ""
+ },
+ "day_zzz": {
+  "pick": 10185,
+  "alt": 10186,
+  "batch": "I2",
+  "notes": "I1 drew a pillow with a cap"
+ },
+ "day_alarm": {
+  "pick": 10201,
+  "alt": 10203,
+  "batch": "I2",
+  "notes": "dial has hands and ticks; 10200/10202 shadow"
+ },
+ "day_idea": {
+  "pick": 10222,
+  "alt": 10221,
+  "batch": "I2",
+  "notes": ""
+ },
+ "day_music": {
+  "pick": 10240,
+  "alt": 10243,
+  "batch": "I2",
+  "notes": "10241 adds a treble clef"
+ },
+ "day_books": {
+  "pick": 10261,
+  "alt": 10263,
+  "batch": "I2",
+  "notes": ""
+ },
+ "day_phone": {
+  "pick": 10301,
+  "alt": 10302,
+  "batch": "I2",
+  "notes": "10303 shadow"
+ },
+ "day_plane": {
+  "pick": 10321,
+  "alt": 10320,
+  "batch": "I2",
+  "notes": "10322/10323 dark backing"
+ },
+ "day_rocket": {
+  "pick": 10341,
+  "alt": 10342,
+  "batch": "I2",
+  "notes": ""
+ },
+ "day_gamepad": {
+  "pick": 10360,
+  "alt": 10362,
+  "batch": "I2",
+  "notes": ""
+ },
+ "day_car": {
+  "pick": 10562,
+  "alt": 10563,
+  "batch": "I2",
+  "notes": ""
+ },
+ "day_ball": {
+  "pick": 10581,
+  "alt": 10580,
+  "batch": "I2",
+  "notes": "10582/10583 faded cut-out at bottom"
+ },
+ "day_home": {
+  "pick": 10601,
+  "alt": 10603,
+  "batch": "I2",
+  "notes": ""
+ }
+}

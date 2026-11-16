@@ -112,9 +112,34 @@ void main() {
       }
     });
 
-    test('every content pack has sheets and presets in release builds', () {
+    /// Packs that sell an emoji art style (`tools/emoji/styles.json`).
+    Set<String> emojiPacks() {
+      final styles =
+          json.decode(File('../tools/emoji/styles.json').readAsStringSync())
+              as Map<String, dynamic>;
+      return {
+        for (final s in styles['ship'] as List)
+          if (s['pack'] != null) s['pack'] as String,
+      };
+    }
+
+    test('emoji style packs match the shipped styles', () {
+      final emoji = emojiPacks();
+      expect(emoji, isNotEmpty);
+      for (final id in emoji) {
+        expect(packs.byId(id), isNotNull, reason: id);
+      }
       for (final pack in packs.single) {
-        if (pack.feature != null) continue;
+        if (pack.id.startsWith('emoji_')) {
+          expect(emoji, contains(pack.id));
+        }
+      }
+    });
+
+    test('every content pack has sheets and presets in release builds', () {
+      final emoji = emojiPacks();
+      for (final pack in packs.single) {
+        if (pack.feature != null || emoji.contains(pack.id)) continue;
         expect(
           release.sheets.where((s) => s.pack == pack.id),
           isNotEmpty,
