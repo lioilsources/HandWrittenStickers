@@ -227,10 +227,10 @@
   "notes": "grin+wink instead of half-closed eyes; 8020/8023 hold rose by hand"
  },
  "flirt_call_me": {
-  "pick": null,
+  "pick": 8055,
   "alt": null,
-  "notes": "phone handset + open hand, no call-me gesture",
-  "batch": "I3"
+  "notes": "thumb and pinky out, closest shaka; thumb short",
+  "batch": "I4"
  },
  "flirt_spark": {
   "pick": 8098,
@@ -295,10 +295,10 @@
   "batch": "I3"
  },
  "love_mending": {
-  "pick": null,
-  "alt": null,
-  "notes": "hole clearing knocked out parts of the white plaster on all",
-  "batch": "I3"
+  "pick": 8315,
+  "alt": 8310,
+  "notes": "plaster intact; 8311-8314 have holes cut in the plaster",
+  "batch": "I4"
  },
  "love_fire": {
   "pick": 8321,
@@ -393,10 +393,10 @@
   "notes": "8700/8702/8704 are V signs"
  },
  "hand_pray": {
-  "pick": null,
-  "alt": null,
-  "notes": "hands side by side, not palm to palm",
-  "batch": "I3"
+  "pick": 8734,
+  "alt": 8735,
+  "notes": "palms pressed flat, no book; 8730/32/33 have books",
+  "batch": "I4"
  },
  "hand_high_five": {
   "pick": 8742,
@@ -437,10 +437,10 @@
   "notes": "worried frown, hands raised high on arms"
  },
  "hand_raised": {
-  "pick": null,
-  "alt": null,
-  "notes": "arms on a blob body",
-  "batch": "I3"
+  "pick": 8913,
+  "alt": 8914,
+  "notes": "two spread hands; no sparkles; 8911 has a blob",
+  "batch": "I4"
  },
  "hand_pinch": {
   "pick": null,
@@ -614,16 +614,16 @@
   "batch": "I3"
  },
  "party_medal": {
-  "pick": null,
+  "pick": 9595,
   "alt": null,
-  "notes": "medal on a blob",
-  "batch": "I3"
+  "notes": "medal alone; others on blobs",
+  "batch": "I4"
  },
  "party_fireworks": {
-  "pick": null,
+  "pick": 9633,
   "alt": null,
-  "notes": "burst sprouting from a blob",
-  "batch": "I3"
+  "notes": "burst alone; others on blobs",
+  "batch": "I4"
  },
  "party_sparkles": {
   "pick": null,
@@ -637,10 +637,10 @@
   "notes": ""
  },
  "party_disco": {
-  "pick": null,
-  "alt": null,
-  "notes": "hole clearing knocked out mirror tiles on all",
-  "batch": "I3"
+  "pick": 9690,
+  "alt": 9691,
+  "notes": "clean ball; 9694/9695 have blobs",
+  "batch": "I4"
  },
  "party_clover": {
   "pick": 9718,
@@ -792,10 +792,10 @@
   "batch": "I3"
  },
  "nature_mushroom": {
-  "pick": null,
-  "alt": null,
-  "notes": "white spots partly knocked out on all",
-  "batch": "I3"
+  "pick": 10533,
+  "alt": 10535,
+  "notes": "clean; 10532 has a hole in a spot",
+  "batch": "I4"
  },
  "day_alarm": {
   "pick": 10219,
@@ -827,10 +827,10 @@
   "batch": "I3"
  },
  "day_plane": {
-  "pick": null,
+  "pick": 10335,
   "alt": null,
-  "notes": "plane on a blob",
-  "batch": "I3"
+  "notes": "plane alone; the rest sit on blobs",
+  "batch": "I4"
  },
  "day_rocket": {
   "pick": 10340,

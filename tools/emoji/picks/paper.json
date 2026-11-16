@@ -175,10 +175,10 @@
   "alt": 10186
  },
  "day_laptop": {
-  "pick": null,
-  "alt": 10296,
-  "batch": "I3",
-  "notes": "laptop on a paper block in every seed"
+  "pick": 10290,
+  "alt": 10291,
+  "notes": "clean open laptop, blank screen; 10294 sits on a stack",
+  "batch": "I4"
  },
  "feel_crying": {
   "pick": 7521,
@@ -192,10 +192,10 @@
   "notes": "white rim"
  },
  "feel_scared": {
-  "pick": null,
-  "alt": 7597,
-  "batch": "I3",
-  "notes": "teal backing disc in every seed"
+  "pick": 7591,
+  "alt": 7595,
+  "notes": "thinnest rim (thin blue edge, borderline); others on blue card; no blue forehead tint",
+  "batch": "I4"
  },
  "feel_scream": {
   "pick": 7602,
@@ -230,10 +230,10 @@
   "notes": "white rim, tears too"
  },
  "feel_dizzy": {
-  "pick": null,
-  "alt": null,
-  "batch": "I3",
-  "notes": "teal/white backing in every seed"
+  "pick": 7750,
+  "alt": 7753,
+  "notes": "spiral eyes, stars around; small cream piece behind, no blue card",
+  "batch": "I4"
  },
  "feel_mind_blown": {
   "pick": 7777,
@@ -274,10 +274,10 @@
   "batch": "I3"
  },
  "feel_tear": {
-  "pick": null,
-  "alt": 7519,
-  "batch": "I3",
-  "notes": "teal backing/paper base in every seed"
+  "pick": 7512,
+  "alt": 7510,
+  "notes": "single tear, white rim only",
+  "batch": "I4"
  },
  "feel_worn_out": {
   "pick": 7719,
@@ -347,10 +347,10 @@
   "alt": 8162
  },
  "flirt_love_note": {
-  "pick": null,
-  "alt": null,
-  "batch": "I3",
-  "notes": "person in every envelope"
+  "pick": 8194,
+  "alt": 8192,
+  "notes": "envelope, wax heart seal, floating hearts; 8193 on blue card",
+  "batch": "I4"
  },
  "flirt_peek": {
   "pick": 8202,
@@ -557,10 +557,10 @@
   "batch": "I3"
  },
  "nature_rainbow": {
-  "pick": null,
-  "alt": null,
-  "batch": "I3",
-  "notes": "blob objects under rainbow"
+  "pick": 10014,
+  "alt": 10015,
+  "notes": "clean rainbow, cloud each end",
+  "batch": "I4"
  },
  "nature_rain": {
   "pick": null,
@@ -655,10 +655,10 @@
   "batch": "I3"
  },
  "party_clover": {
-  "pick": null,
-  "alt": null,
-  "batch": "I3",
-  "notes": "three leaves again"
+  "pick": 9711,
+  "alt": 9715,
+  "notes": "four leaves, clean; most others are three-leaf shamrocks",
+  "batch": "I4"
  },
  "party_tree": {
   "pick": 9721,
@@ -749,10 +749,10 @@
   "notes": "thin layers at right edge"
  },
  "smile_rofl": {
-  "pick": null,
-  "alt": null,
-  "batch": "I3",
-  "notes": "teal backing in every seed, not tilted"
+  "pick": 7094,
+  "alt": 7092,
+  "notes": "tilted laugh with tears; white backing a bit wide",
+  "batch": "I4"
  },
  "smile_upside_down": {
   "pick": 7117,
@@ -811,10 +811,10 @@
   "notes": "finger reads as thumb"
  },
  "smile_salute": {
-  "pick": null,
-  "alt": null,
-  "batch": "I3",
-  "notes": "uniformed torso in every seed"
+  "pick": 7351,
+  "alt": 7350,
+  "notes": "face plus saluting sleeve arm, no torso; others have uniformed bodies",
+  "batch": "I4"
  },
  "smile_relaxed": {
   "pick": 7362,

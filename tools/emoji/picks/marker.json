@@ -318,10 +318,10 @@
   "notes": "stem in mouth; winks instead of half-closed eyes; 8021 has a yellow blob on stem"
  },
  "flirt_call_me": {
-  "pick": null,
-  "alt": null,
-  "batch": "I2",
-  "notes": "every seed is a fist holding a real telephone handset, not the gesture"
+  "pick": 8053,
+  "alt": 8054,
+  "notes": "pinky up, thumb out: shaka; others horns",
+  "batch": "I4"
  },
  "flirt_spark": {
   "pick": 8082,
@@ -354,10 +354,10 @@
   "notes": "no halo in any seed"
  },
  "flirt_love_note": {
-  "pick": null,
-  "alt": 8181,
-  "batch": "I2",
-  "notes": "ground shadow under every seed"
+  "pick": 8192,
+  "alt": 8191,
+  "notes": "no ground shadow; 8190/93/94/95 have one",
+  "batch": "I4"
  },
  "flirt_peek": {
   "pick": 8200,
@@ -522,10 +522,10 @@
   "notes": ""
  },
  "hand_pray": {
-  "pick": null,
-  "alt": 8727,
-  "batch": "I2",
-  "notes": "no seed presses palms together; hands side by side or fingertips meeting"
+  "pick": 8735,
+  "alt": 8733,
+  "notes": "palms flat together, no book",
+  "batch": "I4"
  },
  "hand_high_five": {
   "pick": 8747,
@@ -570,16 +570,16 @@
   "notes": "short arms join the hands; palms face out; sad not shrugging; 8881/8882 shadow"
  },
  "hand_raised": {
-  "pick": null,
-  "alt": null,
-  "batch": "I2",
-  "notes": "every seed is a blob figure with fists up"
+  "pick": 8910,
+  "alt": 8913,
+  "notes": "two raised hands with sparkles; 8914 shadow, 8915 drips",
+  "batch": "I4"
  },
  "hand_pinch": {
-  "pick": null,
-  "alt": null,
-  "batch": "I2",
-  "notes": "no seed shows the pinch: OK sign, point up, V or flat hand"
+  "pick": 8935,
+  "alt": 8932,
+  "notes": "thumb and index tip nearly touching, grain, others curled",
+  "batch": "I4"
  },
  "hand_writing": {
   "pick": 8945,
@@ -762,10 +762,10 @@
   "notes": ""
  },
  "party_popper": {
-  "pick": null,
-  "alt": 9463,
-  "batch": "I1",
-  "notes": "shadow strokes under every seed"
+  "pick": 9473,
+  "alt": 9470,
+  "notes": "striped cone, confetti; 9472 has a hand, 9474 shadow",
+  "batch": "I4"
  },
  "party_confetti": {
   "pick": 9480,
@@ -774,10 +774,10 @@
   "notes": "9481-9483 ground shadow"
  },
  "party_crown": {
-  "pick": null,
-  "alt": null,
-  "batch": "I1",
-  "notes": "ground shadow under every seed"
+  "pick": 9610,
+  "alt": 9613,
+  "notes": "red and blue jewels; 9614 shadow",
+  "batch": "I4"
  },
  "party_cake": {
   "pick": 9500,
@@ -948,10 +948,10 @@
   "notes": ""
  },
  "nature_rainbow": {
-  "pick": null,
-  "alt": null,
-  "batch": "I2",
-  "notes": "a human figure under the arc in every seed"
+  "pick": 10012,
+  "alt": 10011,
+  "notes": "all clean; vivid colours",
+  "batch": "I4"
  },
  "nature_rain": {
   "pick": null,
