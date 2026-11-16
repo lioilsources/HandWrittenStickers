@@ -180,7 +180,20 @@ void main() {
     final glyphs = await _glyphs(2);
     final layout = StickerLayout.of(glyphs, withEmoji: true);
     expect(layout.badge, greaterThanOrEqualTo(44));
-    expect(layout.width, greaterThan(90 + layout.badge));
+    // The badge tucks in behind the end of the text and sticks out past it.
+    expect(layout.overlap, greaterThan(0));
+    expect(layout.badgeOrigin.dx, lessThan(StickerLayout.padding + 90));
+    expect(
+      layout.width,
+      closeTo(
+        StickerLayout.padding * 2 +
+            90 -
+            layout.overlap +
+            layout.badge +
+            layout.badgeRoom,
+        0.001,
+      ),
+    );
 
     final gif = await ImageExporter.exportToGif(
       glyphs: glyphs,

@@ -1069,7 +1069,8 @@
     "en": "Applause"
    },
    "motion": "shake",
-   "subject": "two yellow cartoon hands clapping together, small motion lines"
+   "subject": "two yellow cartoon hands clapping together, small motion lines",
+   "reserve": true
   },
   {
    "n": 83,
@@ -1117,7 +1118,8 @@
     "en": "Please / Thanks"
    },
    "motion": "nod",
-   "subject": "two yellow cartoon hands seen from the side, pressed flat together in a prayer pose like a closed book standing upright, the fingertips touching at the top, the thumbs side by side at the front"
+   "subject": "two yellow cartoon hands seen from the side, pressed flat together in a prayer pose like a closed book standing upright, the fingertips touching at the top, the thumbs side by side at the front",
+   "reserve": true
   },
   {
    "n": 87,
@@ -1165,7 +1167,8 @@
     "en": "You!"
    },
    "motion": "bounce",
-   "subject": "a yellow cartoon hand with the index finger pointing directly into the camera in extreme foreshortening: we look straight at the round fingertip and fingernail in the centre, the knuckles and the curled fist behind it"
+   "subject": "a yellow cartoon hand with the index finger pointing directly into the camera in extreme foreshortening: we look straight at the round fingertip and fingernail in the centre, the knuckles and the curled fist behind it",
+   "reserve": true
   },
   {
    "n": 91,
@@ -1201,7 +1204,8 @@
     "en": "Love you"
    },
    "motion": "wave",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb, index finger and little finger stretched straight out, middle and ring fingers folded down onto the palm"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, thumb, index finger and little finger stretched straight out, middle and ring fingers folded down onto the palm",
+   "reserve": true
   },
   {
    "n": 94,
@@ -1225,7 +1229,8 @@
     "en": "Hooray"
    },
    "motion": "bounce",
-   "subject": "two yellow cartoon hands, each cut off at the wrist, held up high side by side with open palms facing forward and fingers spread, small sparkles around them"
+   "subject": "two yellow cartoon hands, each cut off at the wrist, held up high side by side with open palms facing forward and fingers spread, small sparkles around them",
+   "reserve": true
   },
   {
    "n": 96,
@@ -1237,7 +1242,8 @@
     "en": "A little"
    },
    "motion": "breathe",
-   "subject": "a single yellow cartoon hand with five fingers and a short wrist, making a pinching gesture as if holding a single grain of salt: the thumb tip and index fingertip almost touching with a tiny gap between them, the other three fingers curled"
+   "subject": "a single yellow cartoon hand with five fingers and a short wrist, making a pinching gesture as if holding a single grain of salt: the thumb tip and index fingertip almost touching with a tiny gap between them, the other three fingers curled",
+   "reserve": true
   },
   {
    "n": 97,

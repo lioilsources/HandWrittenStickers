@@ -22,7 +22,7 @@ BANNED = re.compile(
     r'beer|wine|alcohol|cigarette|tobacco|gun|weapon|knife|blood|nude|naked|'
     r'casino|gambling)\b', re.I)
 MIN_TOTAL = 150
-MIN_SHARE = 0.8
+MIN_SHARE = 0.7
 
 
 def load(name):

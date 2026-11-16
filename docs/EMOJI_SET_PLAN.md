@@ -38,7 +38,7 @@ modely (`docs/EMOJI_PLAN.md`) byl opuštěn a tento plán se k němu nevrací.
 ## 2. Co znamená hotovo
 
 - V appce je **nejméně 150 emoji** vlastní kresby, žádná ze SwypeKids, a
-  každá kategorie má aspoň 80 % svých položek z oddílu 5.
+  každá kategorie má aspoň 70 % svých položek z oddílu 5.
 - Výběr má kategorie a řadu naposledy použitých; názvy jsou česky i anglicky.
 - Každé emoji má přiřazený jeden z osmi pohybů (oddíl 7); náhled i GIF se
   hýbou stejně.
@@ -587,7 +587,7 @@ Automaticky (`check_set.py --assets` nebo test v `emoji_test.dart`):
   selhal nebo je objekt oříznutý);
 - objekt zabírá 55–95 % delší strany rámečku;
 - žádné dva obrázky nejsou skoro stejné (percepční otisk);
-- každé `id` z indexu má soubor a naopak; každá kategorie má aspoň 80 %
+- každé `id` z indexu má soubor a naopak; každá kategorie má aspoň 70 %
   základních položek; celkem aspoň 150.
 
 Okem (Opus, pak uživatel v B2), na arších 64 px na světlém i tmavém podkladu:

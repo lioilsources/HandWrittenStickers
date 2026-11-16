@@ -584,17 +584,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                 height: layout.height,
                 child: Stack(
                   children: [
-                    Positioned(
-                      left: StickerLayout.padding,
-                      top: StickerLayout.padding,
-                      width: layout.text.width,
-                      height: layout.text.height,
-                      child: HandwrittenCanvas(
-                        glyphs: _glyphs,
-                        style: _styleParams,
-                      ),
-                    ),
-                    // The tag rides along beside the text, bottom right;
+                    // The tag sits behind the end of the text, bottom right;
                     // tap to change. Without one, the same spot adds it.
                     if (_emoji != null)
                       Positioned(
@@ -628,6 +618,19 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                           ),
                         ),
                       ),
+                    // The handwriting covers the emoji; taps go through to it.
+                    Positioned(
+                      left: StickerLayout.padding,
+                      top: StickerLayout.padding,
+                      width: layout.text.width,
+                      height: layout.text.height,
+                      child: IgnorePointer(
+                        child: HandwrittenCanvas(
+                          glyphs: _glyphs,
+                          style: _styleParams,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -891,7 +894,8 @@ class _LockedBadge extends StatelessWidget {
 }
 
 /// The add-emoji button in the preview: a faded, still sticker with a "+"
-/// at its corner, in the spot the chosen emoji will take.
+/// at its corner, behind the text in the spot the chosen emoji will take.
+/// The "+" sits in the part the text does not cover.
 class _EmojiAddHint extends StatelessWidget {
   final EmojiTag tag;
   final double size;
