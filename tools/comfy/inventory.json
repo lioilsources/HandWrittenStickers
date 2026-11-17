@@ -1,5 +1,5 @@
 {
-  "url": "http://192.168.88.66:8188",
+  "url": "http://<spark-host>:8188",
   "devices": [
     {
       "name": "cuda:0 NVIDIA GB10 : cudaMallocAsync",
