@@ -18,7 +18,7 @@ příroda, všední den). Obrázky generuje **L40S, ne SPARK**.
 |---|---|---|
 | Sada | 41 položek: 25 `source: swypekids` (zkopírované soubory), 16 `generated` (flux-schnell na SPARKu, prompt SwypeKids). Sestaveno 40. | `tools/emoji/emoji_set.json` |
 | Sestavení | `build.py` kopíruje z `../SwypeKids/assets/emoji/` nebo vyřezává návrhy podle bílého samolepkového okraje. Výstup 320 px WebP, celkem 872 kB. | `tools/emoji/build.py` |
-| Generování | `run_batch.py` volá flux-schnell NIM na SPARKu (192.168.88.66:8091). | `tools/emoji/run_batch.py`, `prompts.json` |
+| Generování | `run_batch.py` volá flux-schnell NIM na SPARKu (`$SPARK_HOST:8091`). | `tools/emoji/run_batch.py`, `prompts.json` |
 | Index | verze 1: `{emoji, name (jen česky), file: <codepointy>.webp}`. Klíčem je znak Unicode. | `handwritten_stickers/assets/emoji/emoji.json` |
 | Model v appce | `EmojiTag`, `EmojiIndex`, `EmojiMotion` (jedna smyčka 2,4 s pro všechny: nádech, zvětšení, kolébání; 24 snímků GIFu). | `lib/models/emoji_tag.dart` |
 | Náhled | `AnimatedEmojiSticker`; stojí, když systém žádá omezení pohybu. | `lib/widgets/emoji_sticker.dart` |
@@ -69,7 +69,7 @@ Blokující body, kde se čeká na uživatele:
 
 ## 4. Pravidla
 
-1. **Jen L40S.** Žádné `sparkctl`, žádné adresy 192.168.88.66, žádný
+1. **Jen L40S.** Žádné `sparkctl`, žádné adresy SPARKu (`$SPARK_HOST`), žádný
    `run_batch.py`. Když L40S není k dispozici, práce stojí a Opus to oznámí
    uživateli. Na SPARK se nepřechází.
 2. **Licence modelu musí dovolovat komerční použití výstupů.** Povolené:
