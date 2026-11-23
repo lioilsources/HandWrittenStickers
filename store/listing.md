@@ -5,7 +5,8 @@ Each field is a heading with its limit `(≤N)` and the text in a code block;
 `python3 store/check_listing.py` checks the lengths.
 
 Numbers come from the release build: 85 fonts (14 free), 18 presets (4 free),
-40 animated emoji. Update them here when `sheets.json` changes.
+178 animated emoji in three styles (paper 165 free, marker 175, clay 167).
+Update them here when `sheets.json` or `assets/emoji/emoji.json` changes.
 
 URLs (live once `site/` is published with GitHub Pages):
 
@@ -30,7 +31,8 @@ SDK rules). The app qualifies, but 13+ is the quicker route for a first
 release.
 
 Screenshots: `store/screenshots.sh` renders them to
-`store/screenshots/<cs|en>/<iphone69|play|ipad13|play_tablet>/`. The Google
+`store/screenshots/<cs|en>/<iphone69|play|ipad13|play_tablet>/` (`review_emoji_*.png` are the
+App Store review shots of the two emoji packs, not store screenshots). The Google
 Play feature graphic (1024×500) and icon (512×512) are in `store/graphics/`,
 rendered from the app's glyphs by `store/play_graphics.py`.
 
@@ -76,7 +78,7 @@ Handwritten Stickers turns what you type into a picture: a child's wobbly handwr
 FREE
 • 14 fonts: scanned real handwriting, calligraphy, typography and bubble letters for kids
 • 4 ready-made looks: Neat, Casual, Quick note, Chaotic
-• 40 animated emoji; a sticker with an emoji is saved as a looping GIF
+• 160+ animated emoji cut from paper; a sticker with an emoji is saved as a looping GIF
 • Sliders for spacing, wobble, size, rotation and ink, so no two letters look the same
 • Joined-up handwriting whose letters connect the way a pen would
 • Czech accents in every font (ě š č ř ž ý á í é ů ú ď ť ň)
@@ -89,6 +91,8 @@ One-time purchases, no subscription. Try any pack in the editor first; you only 
 • Posters & signs: 19 bold and historic typefaces
 • For kids: 7 colourful bubble and playful fonts
 • Materials: letters made of gingerbread, neon and plasticine
+• Marker emoji: every emoji drawn in marker and pencil
+• Clay emoji: every emoji modelled in soft clay
 • Your presets: save your own font and style combinations
 • Everything: all packs at once
 
@@ -146,7 +150,7 @@ Handwritten Stickers udělá z napsaného textu obrázek: kostrbatý dětský ru
 ZDARMA
 • 14 písem: naskenovaný skutečný rukopis, kaligrafie, typografie a bublinkové písmo pro děti
 • 4 hotové styly: Úhledně, Běžně, Rychlý vzkaz, Chaos
-• 40 animovaných emoji; samolepka s emoji se uloží jako GIF ve smyčce
+• 160+ animovaných emoji z papíru; samolepka s emoji se uloží jako GIF ve smyčce
 • Posuvníky pro mezery, kolísání řádku, velikost, natočení a krytí, takže žádná dvě písmena nejsou stejná
 • Psací písmo, které se spojuje jako tah perem
 • Česká diakritika ve všech písmech
@@ -159,6 +163,8 @@ Jednorázové nákupy, žádné předplatné. Každý balíček si nejdřív vyz
 • Plakát a nápisy: 19 výrazných a historických písem
 • Pro děti: 7 barevných bublinkových a hravých písem
 • Materiály: písmena z perníku, neonu a modelíny
+• Emoji fixou: všechna emoji kreslená fixou a pastelkou
+• Emoji z modelíny: všechna emoji z modelíny
 • Vlastní presety: ukládej si vlastní kombinace písma a stylu
 • Komplet: všechny balíčky najednou
 
@@ -176,13 +182,13 @@ První vydání.
 
 ## In-app purchases
 
-Seven non-consumable products. Play allows no capital letters in product
+Nine non-consumable products. Play allows no capital letters in product
 ids, so Play sells the lowercase form (`com.ol1n.handwrittenstickers.pack.kids`);
 `StorePurchaseBackend` maps it back to the id below. Display names
 match `assets/packs/packs.json`. The limits here are kept short enough for
 both stores.
 
-Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč). The two emoji style packs (paper emoji stay free) were created on 2026-11-13: App Store Connect with texts, USD + CZK price and availability, still without the review screenshot (taken once the emoji set is in the app); Play active. They ship with the own emoji set (docs/EMOJI_SET_PLAN.md).
+Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč). The two emoji style packs (paper emoji stay free) were created on 2026-11-13: App Store Connect with texts, USD + CZK price and availability, Play active. They ship with the own emoji set (docs/EMOJI_SET_PLAN.md) from v1.0.10.
 
 | Product id | Name en (≤30) | Description en (≤45) | Name cs (≤30) | Description cs (≤45) |
 |---|---|---|---|---|
