@@ -41,6 +41,7 @@ Data flow: `GlyphSheetIndex` → `GlyphLoader` → `GlyphRenderer.layoutText()` 
 - Manifest v3 writes a single variant as a plain string, so v2 readers keep working.
 - `paintGlyphs` (`glyph_painter.dart`) is the one place glyphs and joins are drawn, for preview and export alike.
 - Content packs: all features free except saving presets; everything else paid is content. No `pack` = free (`packs_test.dart` pins the free sheet list).
+- Anonymous statistics (`ol1n_telemetry`): the event dictionary is `lib/telemetry/telemetry_dictionary.dart` = `docs/telemetry.md`, kept in step by `test/telemetry_test.dart`; details in `docs/architecture.md`.
 - Privacy manifests (`ios/` and `macos/Runner/PrivacyInfo.xcprivacy`), `store/privacy-answers.md` and the policy in `site/` change together with any new telemetry event or property.
 - Localisation: English ARB is the template; `l10n_test.dart` keeps `app_en.arb` and `app_cs.arb` in step.
 - Widget tests that open the editor more than once per file need `addTearDown(rootBundle.clear)`.

@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Anonymous usage statistics (docs/telemetry.md); store purchases. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="handwritten_stickers"
         android:name="${applicationName}"
