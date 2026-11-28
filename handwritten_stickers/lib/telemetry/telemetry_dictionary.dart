@@ -162,6 +162,8 @@ const kPackIds = {
   'poster',
   'kids',
   'materials',
+  'emoji_marker',
+  'emoji_clay',
   'presets',
   'all',
 };

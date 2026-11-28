@@ -211,7 +211,7 @@ lock badge of the preview. Answers: which paid content draws interest.
 
 | Property | Type | Values |
 |---|---|---|
-| `target` | enum | `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `presets`, `all` |
+| `target` | enum | `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `emoji_marker`, `emoji_clay`, `presets`, `all` |
 
 ### `export_start`
 
@@ -227,7 +227,7 @@ animated GIF takes.
 | `animated` | bool | with an emoji tag (a GIF) |
 | `sheet` | enum | the font: a sheet id from `assets/glyphs/sheets.json` (`kSheetIds`), or `other` |
 | `category` | enum | `handwriting`, `calligraphy`, `typography`, `kids`, `material` |
-| `pack` | enum | the font's pack: `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `presets`, `all`, `free`, `other` |
+| `pack` | enum | the font's pack: `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `emoji_marker`, `emoji_clay`, `presets`, `all`, `free`, `other` |
 | `preset` | enum | the applied built-in preset (`neat`, `casual`, `fast`, `chaotic`, `love_letter`, `wedding`, `greeting`, `diary`, `grandma`, `sticky`, `poster`, `cake`, `sign`, `kid_note`, `school`, `gingerbread`, `neon`, `plasticine`), `user` for an own preset, `none`, `other` |
 | `modified` | bool | the look was changed since the preset |
 | `chars` | int | length of the message in characters (never the text) |
@@ -253,7 +253,7 @@ list) and for which packs.
 
 | Property | Type | Values |
 |---|---|---|
-| `pack` | enum | `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `presets`, `all`, `other` |
+| `pack` | enum | `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `emoji_marker`, `emoji_clay`, `presets`, `all`, `other` |
 | `source` | enum | `export`, `preset_save`, `badge`, `packs` |
 
 ### `paywall_end`
@@ -276,7 +276,7 @@ Answers: together with `purchase_end`, where the store purchase fails.
 
 | Property | Type | Values |
 |---|---|---|
-| `pack` | enum | `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `presets`, `all`, `other` |
+| `pack` | enum | `handwriting`, `calligraphy`, `poster`, `kids`, `materials`, `emoji_marker`, `emoji_clay`, `presets`, `all`, `other` |
 
 ### `purchase_end`
 
