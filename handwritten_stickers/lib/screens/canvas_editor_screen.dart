@@ -147,7 +147,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   }
 
   /// Pack the current look needs and the user does not own: the sheet's,
-  /// else that of the applied (unchanged) preset.
+  /// else that of the applied (unchanged) preset, else the emoji style's.
   ContentPack? get _lockedPack {
     final sheet = _sheet;
     if (sheet != null && !_entitlements.canUseSheet(sheet)) {
@@ -156,6 +156,10 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final preset = _appliedPreset;
     if (preset != null && !_modified && !_entitlements.canUsePreset(preset)) {
       return _entitlements.packs.byId(preset.pack);
+    }
+    final style = _emojiIndex?.styleById(_emoji?.style);
+    if (style != null && !_entitlements.ownsPack(style.pack)) {
+      return _entitlements.packs.byId(style.pack);
     }
     return null;
   }
@@ -175,6 +179,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
         pack,
         sheets: _sheetIndex?.sheets ?? const [],
         presets: _presets.builtIns,
+        emoji: _emojiIndex,
       ),
       loaderFor: _sampleLoader,
     );
@@ -211,6 +216,7 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
           entitlements: _entitlements,
           sheets: _sheetIndex?.sheets ?? const [],
           presets: _presets.builtIns,
+          emoji: _emojiIndex,
           loaderFor: _sampleLoader,
         ),
       ),
@@ -219,19 +225,40 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
 
   Future<void> _loadEmoji() async {
     try {
-      final index = await EmojiIndex.load();
+      final index = await EmojiIndex.load(language: _language);
       if (mounted) setState(() => _emojiIndex = index);
     } catch (e) {
       debugPrint('CanvasEditor: no emoji stickers ($e)');
     }
   }
 
+  /// The sticker the empty emoji spot shows, faded, as the add button: a
+  /// smiley if the index has one.
+  EmojiTag? get _placeholderEmoji {
+    final tags = _emojiIndex?.tags ?? const <EmojiTag>[];
+    for (final e in const ['😊', '🙂', '😀', '😄']) {
+      for (final t in tags) {
+        if (t.emoji == e) return t;
+      }
+    }
+    return tags.isEmpty ? null : tags.first;
+  }
+
   Future<void> _pickEmoji() async {
     final index = _emojiIndex;
     if (index == null) return;
-    final tag = await showEmojiPicker(context, index: index, selected: _emoji);
+    final tag = await showEmojiPicker(
+      context,
+      index: index,
+      selected: _emoji,
+      recentIds: _presets.recentEmoji,
+      style: _presets.emojiStyle,
+      isLocked: (s) => !_entitlements.ownsPack(s.pack),
+    );
+    if (!mounted) return;
     if (tag != null && tag != _emoji) Telemetry.feature('emoji');
-    if (mounted) setState(() => _emoji = tag);
+    setState(() => _emoji = tag);
+    if (tag != null) _presets.noteEmojiUsed(tag.id, style: tag.style);
   }
 
   Future<void> _initializeSheets() async {
@@ -652,8 +679,12 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
   Widget _buildPreview() {
     return LayoutBuilder(
       builder: (context, box) {
-        // Same geometry as the export, so the emoji sits where it will.
-        final layout = StickerLayout.of(_glyphs, withEmoji: _emoji != null);
+        // Same geometry as the export, so the emoji sits where it will. With
+        // no emoji yet the spot still shows, holding the add button.
+        final layout = StickerLayout.of(
+          _glyphs,
+          withEmoji: _emoji != null || _placeholderEmoji != null,
+        );
         const inset = 8.0;
         final zoom = [
           _maxPreviewZoom,
@@ -670,30 +701,53 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
                 height: layout.height,
                 child: Stack(
                   children: [
+                    // The tag sits behind the end of the text, bottom right;
+                    // tap to change. Without one, the same spot adds it.
+                    if (_emoji != null)
+                      Positioned(
+                        left: layout.badgeOrigin.dx,
+                        top: layout.badgeOrigin.dy,
+                        child: Tooltip(
+                          message: context.l10n.emojiTag,
+                          child: GestureDetector(
+                            onTap: _pickEmoji,
+                            child: AnimatedEmojiSticker(
+                              key: const ValueKey('emoji-badge'),
+                              tag: _emoji!,
+                              size: layout.badge,
+                            ),
+                          ),
+                        ),
+                      )
+                    else if (_placeholderEmoji case final hint?)
+                      Positioned(
+                        left: layout.badgeOrigin.dx,
+                        top: layout.badgeOrigin.dy,
+                        width: layout.badge,
+                        height: layout.badge,
+                        child: Tooltip(
+                          message: context.l10n.emojiTag,
+                          child: GestureDetector(
+                            key: const ValueKey('emoji-add'),
+                            behavior: HitTestBehavior.opaque,
+                            onTap: _pickEmoji,
+                            child: _EmojiAddHint(tag: hint, size: layout.badge),
+                          ),
+                        ),
+                      ),
+                    // The handwriting covers the emoji; taps go through to it.
                     Positioned(
                       left: StickerLayout.padding,
                       top: StickerLayout.padding,
                       width: layout.text.width,
                       height: layout.text.height,
-                      child: HandwrittenCanvas(
-                        glyphs: _glyphs,
-                        style: _styleParams,
-                      ),
-                    ),
-                    // The tag rides along beside the text; tap to change.
-                    if (_emoji != null)
-                      Positioned(
-                        left: layout.badgeOrigin.dx,
-                        top: layout.badgeOrigin.dy,
-                        child: GestureDetector(
-                          onTap: _pickEmoji,
-                          child: AnimatedEmojiSticker(
-                            key: const ValueKey('emoji-badge'),
-                            tag: _emoji!,
-                            size: layout.badge,
-                          ),
+                      child: IgnorePointer(
+                        child: HandwrittenCanvas(
+                          glyphs: _glyphs,
+                          style: _styleParams,
                         ),
                       ),
+                    ),
                   ],
                 ),
               ),
@@ -709,12 +763,20 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        // Five actions leave little room on a narrow phone: shrink the
-        // title rather than cut it off.
-        title: FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: AlignmentDirectional.centerStart,
-          child: Text(l10n.editorTitle),
+        // The app icon instead of a title: four actions and a name do not
+        // fit a narrow phone.
+        title: Semantics(
+          label: l10n.editorTitle,
+          child: ClipRRect(
+            key: const ValueKey('app-icon'),
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              'assets/brand/app_icon.png',
+              width: 36,
+              height: 36,
+              excludeFromSemantics: true,
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -729,16 +791,6 @@ class _CanvasEditorScreenState extends State<CanvasEditorScreen> {
             onPressed: _openAbout,
             tooltip: l10n.aboutAndLicences,
           ),
-          if (_emojiIndex != null)
-            IconButton(
-              icon: Icon(
-                _emoji == null
-                    ? Icons.add_reaction_outlined
-                    : Icons.add_reaction,
-              ),
-              onPressed: _pickEmoji,
-              tooltip: l10n.emojiTag,
-            ),
           if (_exporting)
             const Padding(
               padding: EdgeInsets.all(12),
@@ -954,6 +1006,45 @@ class _LockedBadge extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// The add-emoji button in the preview: a faded, still sticker with a "+"
+/// at its corner, behind the text in the spot the chosen emoji will take.
+/// The "+" sits in the part the text does not cover.
+class _EmojiAddHint extends StatelessWidget {
+  final EmojiTag tag;
+  final double size;
+
+  const _EmojiAddHint({required this.tag, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final plus = size * 0.36;
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Opacity(
+          opacity: 0.35,
+          child: AnimatedEmojiSticker(tag: tag, size: size, animate: false),
+        ),
+        Positioned(
+          right: 0,
+          bottom: 0,
+          child: Container(
+            width: plus,
+            height: plus,
+            decoration: BoxDecoration(
+              color: scheme.primary,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: plus * 0.1),
+            ),
+            child: Icon(Icons.add, size: plus * 0.7, color: scheme.onPrimary),
+          ),
+        ),
+      ],
     );
   }
 }

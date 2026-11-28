@@ -5,7 +5,8 @@ Each field is a heading with its limit `(≤N)` and the text in a code block;
 `python3 store/check_listing.py` checks the lengths.
 
 Numbers come from the release build: 85 fonts (14 free), 18 presets (4 free),
-40 animated emoji. Update them here when `sheets.json` changes.
+178 animated emoji in three styles (paper 165 free, marker 175, clay 167).
+Update them here when `sheets.json` or `assets/emoji/emoji.json` changes.
 
 URLs (live once `site/` is published with GitHub Pages):
 
@@ -19,7 +20,7 @@ URLs (live once `site/` is published with GitHub Pages):
 | Category | Graphics & Design, secondary Utilities | Art & Design |
 | Price | Free, in-app purchases | Free, in-app purchases |
 | Age | 4+ | Everyone; target audience 13+ (see note) |
-| Privacy | Data Not Collected | Data safety: nothing collected, nothing shared |
+| Privacy | Product Interaction, Performance Data, Coarse Location; not linked, no tracking (`store/privacy-answers.md`) | Data safety: App interactions, Diagnostics, Approximate location; collected, not shared, optional (`store/privacy-answers.md`) |
 | Encryption | None (`ITSAppUsesNonExemptEncryption` = NO is in Info.plist) | – |
 | Ads | No | No |
 | Sign-in | None | None |
@@ -30,7 +31,8 @@ SDK rules). The app qualifies, but 13+ is the quicker route for a first
 release.
 
 Screenshots: `store/screenshots.sh` renders them to
-`store/screenshots/<cs|en>/<iphone69|play|ipad13|play_tablet>/`. The Google
+`store/screenshots/<cs|en>/<iphone69|play|ipad13|play_tablet>/` (`review_emoji_*.png` are the
+App Store review shots of the two emoji packs, not store screenshots). The Google
 Play feature graphic (1024×500) and icon (512×512) are in `store/graphics/`,
 rendered from the app's glyphs by `store/play_graphics.py`.
 
@@ -76,7 +78,7 @@ Handwritten Stickers turns what you type into a picture: a child's wobbly handwr
 FREE
 • 14 fonts: scanned real handwriting, calligraphy, typography and bubble letters for kids
 • 4 ready-made looks: Neat, Casual, Quick note, Chaotic
-• 40 animated emoji; a sticker with an emoji is saved as a looping GIF
+• 160+ animated emoji cut from paper; a sticker with an emoji is saved as a looping GIF
 • Sliders for spacing, wobble, size, rotation and ink, so no two letters look the same
 • Joined-up handwriting whose letters connect the way a pen would
 • Czech accents in every font (ě š č ř ž ý á í é ů ú ď ť ň)
@@ -89,11 +91,13 @@ One-time purchases, no subscription. Try any pack in the editor first; you only 
 • Posters & signs: 19 bold and historic typefaces
 • For kids: 7 colourful bubble and playful fonts
 • Materials: letters made of gingerbread, neon and plasticine
+• Marker emoji: every emoji drawn in marker and pencil
+• Clay emoji: every emoji modelled in soft clay
 • Your presets: save your own font and style combinations
 • Everything: all packs at once
 
 PRIVATE
-No account, no ads, no tracking. What you type stays on your device until you share it.
+No account, no ads, no third-party analytics. What you type stays on your device until you share it. Anonymous usage statistics, which never include your text, can be turned off in the app.
 
 The fonts are licensed under the SIL Open Font License. Their authors are credited in the app.
 ```
@@ -146,7 +150,7 @@ Handwritten Stickers udělá z napsaného textu obrázek: kostrbatý dětský ru
 ZDARMA
 • 14 písem: naskenovaný skutečný rukopis, kaligrafie, typografie a bublinkové písmo pro děti
 • 4 hotové styly: Úhledně, Běžně, Rychlý vzkaz, Chaos
-• 40 animovaných emoji; samolepka s emoji se uloží jako GIF ve smyčce
+• 160+ animovaných emoji z papíru; samolepka s emoji se uloží jako GIF ve smyčce
 • Posuvníky pro mezery, kolísání řádku, velikost, natočení a krytí, takže žádná dvě písmena nejsou stejná
 • Psací písmo, které se spojuje jako tah perem
 • Česká diakritika ve všech písmech
@@ -159,11 +163,13 @@ Jednorázové nákupy, žádné předplatné. Každý balíček si nejdřív vyz
 • Plakát a nápisy: 19 výrazných a historických písem
 • Pro děti: 7 barevných bublinkových a hravých písem
 • Materiály: písmena z perníku, neonu a modelíny
+• Emoji fixou: všechna emoji kreslená fixou a pastelkou
+• Emoji z modelíny: všechna emoji z modelíny
 • Vlastní presety: ukládej si vlastní kombinace písma a stylu
 • Komplet: všechny balíčky najednou
 
 SOUKROMÍ
-Žádný účet, žádná reklama, žádné sledování. Co napíšeš, zůstává v zařízení, dokud to nenasdílíš.
+Žádný účet, žádná reklama, žádná analytika třetích stran. Co napíšeš, zůstává v zařízení, dokud to nenasdílíš. Anonymní statistiky používání, které nikdy neobsahují tvůj text, jdou v aplikaci vypnout.
 
 Písma mají licenci SIL Open Font License. Jejich autory najdeš v aplikaci.
 ```
@@ -176,13 +182,13 @@ První vydání.
 
 ## In-app purchases
 
-Seven non-consumable products. Play allows no capital letters in product
+Nine non-consumable products. Play allows no capital letters in product
 ids, so Play sells the lowercase form (`com.ol1n.handwrittenstickers.pack.kids`);
 `StorePurchaseBackend` maps it back to the id below. Display names
 match `assets/packs/packs.json`. The limits here are kept short enough for
 both stores.
 
-Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč).
+Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč). The two emoji style packs (paper emoji stay free) were created on 2026-11-13: App Store Connect with texts, USD + CZK price and availability, Play active. They ship with the own emoji set (docs/EMOJI_SET_PLAN.md) from v1.0.10.
 
 | Product id | Name en (≤30) | Description en (≤45) | Name cs (≤30) | Description cs (≤45) |
 |---|---|---|---|---|
@@ -191,6 +197,8 @@ Planned prices: 0.99 USD each (25 Kč), `all` 3.99 USD (99 Kč).
 | `com.ol1n.handwrittenStickers.pack.poster` | Posters & signs | 19 bold and historic typefaces | Plakát a nápisy | 19 výrazných a historických písem |
 | `com.ol1n.handwrittenStickers.pack.kids` | For kids | 7 colourful bubble and playful fonts | Pro děti | 7 barevných a hravých dětských písem |
 | `com.ol1n.handwrittenStickers.pack.materials` | Materials | Gingerbread, neon and plasticine letters | Materiály | Písmena z perníku, neonu a modelíny |
+| `com.ol1n.handwrittenStickers.pack.emoji_marker` | Marker emoji | Every emoji drawn in marker and pencil | Emoji fixou | Všechna emoji kreslená fixou |
+| `com.ol1n.handwrittenStickers.pack.emoji_clay` | Clay emoji | Every emoji modelled in soft clay | Emoji z modelíny | Všechna emoji z modelíny |
 | `com.ol1n.handwrittenStickers.pack.presets` | Your presets | Save your own font and style combinations | Vlastní presety | Ukládej si vlastní kombinace písma a stylu |
 | `com.ol1n.handwrittenStickers.pack.all` | Everything | All packs at once | Komplet | Všechny balíčky najednou |
 
@@ -203,5 +211,5 @@ All features are free. In-app purchases are non-consumable content packs (fonts 
 
 To see all packs: tap the shop icon in the top bar. "Restore purchases" is on that screen and on every purchase sheet.
 
-The app makes no network requests of its own and collects no data.
+The app sends anonymous usage statistics (no identifiers, never the text the user types) to the developer's own server; they can be turned off under the info button in the editor. Apart from that and the store's purchase APIs it makes no network requests of its own.
 ```

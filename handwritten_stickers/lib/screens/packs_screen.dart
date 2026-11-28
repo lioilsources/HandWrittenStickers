@@ -3,6 +3,7 @@ import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../l10n/l10n.dart';
 import '../models/content_pack.dart';
+import '../models/emoji_tag.dart';
 import '../models/glyph_sheet.dart';
 import '../models/preset.dart';
 import '../services/entitlement_service.dart';
@@ -15,6 +16,7 @@ class PacksScreen extends StatelessWidget {
   final EntitlementService entitlements;
   final List<GlyphSheet> sheets;
   final List<Preset> presets;
+  final EmojiIndex? emoji;
   final Future<GlyphLoader> Function(GlyphSheet sheet)? loaderFor;
 
   const PacksScreen({
@@ -22,11 +24,12 @@ class PacksScreen extends StatelessWidget {
     required this.entitlements,
     required this.sheets,
     required this.presets,
+    this.emoji,
     this.loaderFor,
   });
 
   PackContents _contents(ContentPack pack) =>
-      PackContents.of(pack, sheets: sheets, presets: presets);
+      PackContents.of(pack, sheets: sheets, presets: presets, emoji: emoji);
 
   Future<void> _open(BuildContext context, ContentPack pack) async {
     if (entitlements.ownsPack(pack.id)) return;
@@ -76,14 +79,21 @@ class PacksScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 12),
-              for (final pack in packs)
-                // The bundle only while it is still worth it.
-                if (!pack.includesAll ||
-                    entitlements.offerAll ||
-                    entitlements.ownsPack(pack.id))
+              for (final (pack, contents) in [
+                for (final p in packs) (p, _contents(p)),
+              ])
+                // The bundle only while it is still worth it; a content pack
+                // only once this build has its content (emoji styles land
+                // after the pack is defined).
+                if ((!pack.includesAll ||
+                        entitlements.offerAll ||
+                        entitlements.ownsPack(pack.id)) &&
+                    (pack.includesAll ||
+                        pack.feature != null ||
+                        !contents.isEmpty))
                   _PackCard(
                     pack: pack,
-                    contents: _contents(pack),
+                    contents: contents,
                     owned: entitlements.ownsPack(pack.id),
                     price: entitlements.price(pack.id),
                     loaderFor: loaderFor,
@@ -123,6 +133,7 @@ class _PackCard extends StatelessWidget {
       if (contents.sheets.isNotEmpty) l10n.sheetCount(contents.sheets.length),
       if (contents.presets.isNotEmpty)
         l10n.presetCount(contents.presets.length),
+      if (contents.emoji.isNotEmpty) l10n.emojiCount(contents.emojiCount),
     ].join(' · ');
     return Card(
       key: ValueKey('pack-${pack.id}'),
@@ -164,6 +175,10 @@ class _PackCard extends StatelessWidget {
                   height: 32,
                   loaderFor: loaderFor,
                 ),
+              ],
+              if (contents.emoji.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                EmojiSampleRow(emoji: contents.emoji, size: 32),
               ],
             ],
           ),

@@ -134,6 +134,12 @@ abstract class AppLocalizations {
   /// **'Emoji tag'**
   String get emojiTag;
 
+  /// No description provided for @emojiRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get emojiRecent;
+
   /// No description provided for @noEmoji.
   ///
   /// In en, this message translates to:
@@ -481,6 +487,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 preset} other{{count} presets}}'**
   String presetCount(int count);
+
+  /// No description provided for @emojiCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 emoji} other{{count} emoji}}'**
+  String emojiCount(int count);
 
   /// No description provided for @presetsList.
   ///

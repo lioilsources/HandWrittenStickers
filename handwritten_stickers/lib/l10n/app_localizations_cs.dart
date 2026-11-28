@@ -27,6 +27,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get emojiTag => 'Emoji ke zprávě';
 
   @override
+  String get emojiRecent => 'Naposledy';
+
+  @override
   String get noEmoji => 'Bez emoji';
 
   @override
@@ -229,6 +232,18 @@ class AppLocalizationsCs extends AppLocalizations {
       other: '$count presetů',
       few: '$count presety',
       one: '1 preset',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String emojiCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count emoji',
+      few: '$count emoji',
+      one: '1 emoji',
     );
     return '$_temp0';
   }

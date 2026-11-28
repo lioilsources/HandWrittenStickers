@@ -56,7 +56,7 @@ Náhledy: [rukopis](glyph_sheets_handwriting.png), [kaligrafie](glyph_sheets_cal
 |---|---------|-------|
 | L1 | Laurinčina sada je rukopis dítěte, v aplikaci pod jménem. **Vyřešeno 10. 11. 2026:** souhlas rodiče dán, sada zůstává pod jménem Laurinka a jako výchozí. Fotky předloh `glyph_extractor/matrix/*.jpg` jsou v repu. | – |
 | L2 | Fontové sady jsou z fontů pod SIL OFL 1.1. Rasterizované PNG nejsou „Font Software“, ale attribution je slušnost a licence je u každé sady v `OFL.txt` (bundlují se do appky). | Přidat obrazovku „O aplikaci / Licence“ se seznamem fontů. |
-| L3 | App Store vyžaduje URL na Privacy Policy (i když appka nesbírá nic). | Statická stránka (GitHub Pages) – „aplikace neposílá žádná data“. |
+| L3 | App Store vyžaduje URL na Privacy Policy. | Statická stránka (GitHub Pages, `site/privacy/`): žádné osobní údaje, anonymní statistiky používání jdou vypnout (`docs/telemetry.md`). |
 | L4 | Název „Handwritten Stickers“ je generický, v App Store pravděpodobně obsazený. | Ověřit v App Store Connect, připravit alternativu. |
 
 ### Hygiena repozitáře

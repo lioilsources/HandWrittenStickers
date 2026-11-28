@@ -130,10 +130,45 @@ void main() {
     await settle(tester);
   }
 
-  Future<void> pickEmoji(WidgetTester tester, String emoji) async {
+  Future<void> pickEmoji(
+    WidgetTester tester,
+    String category,
+    String id,
+  ) async {
     await tester.tap(find.byTooltip(_t('Emoji ke zprávě', 'Emoji tag')));
     await settle(tester);
-    final tile = find.byKey(ValueKey('emoji-$emoji'));
+    // The category row builds lazily: scroll it until the chip exists.
+    final chip = find.byKey(ValueKey('emoji-cat-$category'));
+    final row = find
+        .ancestor(
+          of: find
+              .byWidgetPredicate(
+                (w) =>
+                    w.key is ValueKey<String> &&
+                    (w.key! as ValueKey<String>).value.startsWith('emoji-cat-'),
+              )
+              .first,
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.dragUntilVisible(chip, row, const Offset(-120, 0));
+    // Bring the chip fully into the row (the sheet is narrower than an
+    // iPad), whichever side it hangs off.
+    final box = tester.getRect(row);
+    for (var i = 0; i < 10; i++) {
+      final r = tester.getRect(chip);
+      final dx = r.left < box.left + 12
+          ? box.left + 12 - r.left
+          : r.right > box.right - 12
+          ? box.right - 12 - r.right
+          : 0.0;
+      if (dx == 0) break;
+      await tester.drag(row, Offset(dx, 0), touchSlopX: 0);
+      await tester.pump();
+    }
+    await tester.tap(chip);
+    await settle(tester);
+    final tile = find.byKey(ValueKey('emoji-$id'));
     await tester.ensureVisible(tile);
     await tester.tap(tile);
     await settle(tester);
@@ -164,7 +199,7 @@ void main() {
     await open(tester);
     await pickSheet(tester, _t('Bublinky broskev', 'Bubbles Peach'));
     await write(tester, _t('Ahoj maminko', 'Hi mummy'));
-    await pickEmoji(tester, '🐱');
+    await pickEmoji(tester, 'animals', 'animal_cat');
     await shoot(tester, 'stickers_1_bublinky');
 
     // A scanned child handwriting (the default sheet).
@@ -176,7 +211,7 @@ void main() {
     await open(tester);
     await pickSheet(tester, 'Great Vibes');
     await write(tester, _t('Všechno nejlepší!', 'Happy birthday!'));
-    await pickEmoji(tester, '🎂');
+    await pickEmoji(tester, 'celebration', 'party_cake');
     await shoot(tester, 'stickers_3_kaligrafie');
 
     // Emoji picker.
@@ -185,6 +220,12 @@ void main() {
     await write(tester, _t('Dobrou noc', 'Good night'));
     await tester.tap(find.byTooltip(_t('Emoji ke zprávě', 'Emoji tag')));
     await shoot(tester, 'stickers_4_emoji');
+    // App Store review shots of the two emoji packs (not store screenshots).
+    for (final style in ['marker', 'clay']) {
+      await tester.tap(find.byKey(ValueKey('emoji-style-$style')));
+      await settle(tester);
+      await shoot(tester, 'review_emoji_$style');
+    }
     await tester.tapAt(const Offset(20, 20));
     await settle(tester);
 

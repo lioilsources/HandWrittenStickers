@@ -44,7 +44,7 @@ být vyříznuté ze správně zarovnaného skenu).
 ## Materiálové písmo (ComfyUI)
 
 ```bash
-echo COMFY_URL=http://192.168.88.66:8188 > tools/comfy/.env   # SPARK v LAN, okno 07–13, dávku ohlásit Directorovi
+echo COMFY_URL=http://$SPARK_HOST:8188 > tools/comfy/.env   # SPARK v LAN, okno 07–13, dávku ohlásit Directorovi
 python3 tools/comfy/client.py inventory --out tools/comfy/inventory.json
 python3 tools/sheets/material.py list
 python3 tools/sheets/material.py all --material plasticine
